@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.intro.StringCalculator;
+package com.sirma.itt.javacourse.intro.stringCalculator;
 
 /**
  * Class for calculating big numbers using Strings.

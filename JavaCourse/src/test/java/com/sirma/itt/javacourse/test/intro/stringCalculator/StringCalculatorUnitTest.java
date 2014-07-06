@@ -1,13 +1,21 @@
 package com.sirma.itt.javacourse.test.intro.stringCalculator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.StringCalculator.StringCalculator;
+import com.sirma.itt.javacourse.intro.stringCalculator.StringCalculator;
 
+/**
+ * 
+ * 
+ * @author simeon
+ */
 public class StringCalculatorUnitTest {
 
+	/**
+	 * Test the StringSumator.
+	 */
 	@Test
 	public void testSumStrings() {
 		StringCalculator calculator = new StringCalculator();

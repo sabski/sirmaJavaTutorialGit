@@ -1,6 +1,8 @@
 package com.sirma.itt.javacourse.intro.mathUtil;
 
 /**
+ * Math Utility class that provides some mathematical functionality.
+ * 
  * @author simeon
  */
 

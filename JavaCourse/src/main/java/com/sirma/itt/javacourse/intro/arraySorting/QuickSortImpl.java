@@ -3,6 +3,7 @@ package com.sirma.itt.javacourse.intro.arraySorting;
 import java.util.ArrayList;
 
 /**
+ * Class that implements the Quick Sort algorithm for arrays.
  * @author simeon
  */
 public class QuickSortImpl {

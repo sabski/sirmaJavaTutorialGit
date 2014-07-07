@@ -3,9 +3,11 @@ package com.sirma.itt.javacourse.intro.mathUtil;
 import java.util.Scanner;
 
 /**
+ * 
+ * Class for running the MAthUtil class.
  * @author simeon
  */
-public final class MathRun {
+public class MathRun {
 
 	/**
 	 * @param args
@@ -26,12 +28,5 @@ public final class MathRun {
 		System.out.println(math.getLeastCommonDenominator(numbers[0], numbers[1]));
 
 		scan.close();
-	}
-
-	/**
-	 * Private Constructor to satisfy .
-	 */
-	private MathRun() {
-
 	}
 }

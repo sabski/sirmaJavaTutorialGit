@@ -1,13 +1,15 @@
 package com.sirma.itt.javacourse.intro.arrayUtil;
 
-
 /**
+ * Class for running the ArrayUtil class.
+ * 
  * @author simeon
  */
-public final class RunArrayUtil {
+public class RunArrayUtil {
 
 	/**
 	 * @param args
+	 *            for the main method.
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,10 +20,4 @@ public final class RunArrayUtil {
 		util.print(arr);
 	}
 
-	/**
-	 * 
-	 */
-	private RunArrayUtil() {
-
-	}
 }

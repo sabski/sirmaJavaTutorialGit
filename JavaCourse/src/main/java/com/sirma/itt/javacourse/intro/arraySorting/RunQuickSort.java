@@ -3,12 +3,15 @@ package com.sirma.itt.javacourse.intro.arraySorting;
 import java.util.ArrayList;
 
 /**
+ * Class for running the QuickSort class.
+ * 
  * @author simeon
  */
-public final class RunQuickSort {
+public class RunQuickSort {
 
 	/**
 	 * @param args
+	 *            for main method.
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -27,10 +30,4 @@ public final class RunQuickSort {
 		System.out.println("Array after sorting" + impl.quickSortArray(arr).toString());
 	}
 
-	/**
-	 * 
-	 */
-	private RunQuickSort() {
-
-	}
 }

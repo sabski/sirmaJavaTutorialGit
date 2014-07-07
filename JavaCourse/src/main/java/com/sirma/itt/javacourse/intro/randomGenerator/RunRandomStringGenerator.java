@@ -1,14 +1,15 @@
 package com.sirma.itt.javacourse.intro.randomGenerator;
 
 /**
+ * Class for running the RandomString generator.
+ * 
  * @author simeon
  */
-public final class RunRandomStringGenerator {
+public class RunRandomStringGenerator {
 
 	/**
-	 * 
-	 * @param args for the main method
-	 * 
+	 * @param args
+	 *            for the main method
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -17,12 +18,5 @@ public final class RunRandomStringGenerator {
 			System.out.println(randGen.generateRandomString((i + 7) * 2));
 		}
 
-	}
-
-	/**
-	 * 
-	 */
-	private RunRandomStringGenerator(){
-		
 	}
 }

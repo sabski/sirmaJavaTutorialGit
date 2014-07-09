@@ -19,6 +19,7 @@ public class MathRun {
 		MathUtil math = new MathUtil();
 		int count = 0;
 		int[] numbers = new int[2];
+		System.out.println("Input 2 numbers");
 		while (count != 2) {
 			String line = scan.next();
 			numbers[count] = Integer.parseInt(line);

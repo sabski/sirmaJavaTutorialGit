@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.intro.randomGenerator;
 
+import java.util.Scanner;
+
 /**
  * Class for running the RandomString generator.
  * 
@@ -14,8 +16,13 @@ public class RunRandomStringGenerator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RandomStringGenerator randGen = new RandomStringGenerator();
-		for (int i = 0; i < 5; i++) {
-			System.out.println(randGen.generateRandomString((i + 7) * 2));
+		Scanner scaner = new Scanner(System.in);
+		System.out.println("input the number of random string you want to generate.");
+		int count = scaner.nextInt();
+		for (int i = 0; i < count; i++) {
+			System.out.println("Input String lenght :");
+			int lenght = scaner.nextInt();
+			System.out.println(randGen.generateRandomString(lenght));
 		}
 
 	}

@@ -9,6 +9,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.intro.arraySorting.QuickSortImpl;
 
 /**
+ * Unit test class for QuickSortImpl class.
+ * 
  * @author simeon
  */
 public class ArraySorting {

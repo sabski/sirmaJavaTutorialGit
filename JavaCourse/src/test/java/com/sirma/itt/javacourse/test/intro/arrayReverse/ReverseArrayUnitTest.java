@@ -8,8 +8,9 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.intro.arrayReverse.ReverseArray;
+
 /**
- * 
+ * Unit test class for ReverseArray.
  * 
  * @author simeon
  */

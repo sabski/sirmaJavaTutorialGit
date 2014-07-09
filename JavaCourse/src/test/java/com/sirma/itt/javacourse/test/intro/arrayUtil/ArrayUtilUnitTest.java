@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.intro.arrayUtil.ArrayUtil;
 
 /**
+ * Unit test for the ArrayUtil class.
+ * 
  * @author simeon
  */
 public class ArrayUtilUnitTest {
@@ -22,7 +24,6 @@ public class ArrayUtilUnitTest {
 		util.print(arr);
 	}
 
-	
 	/**
 	 * Test the sum functionality of the ArrayUtil class.
 	 */

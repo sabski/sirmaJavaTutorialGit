@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.intro.stringCalculator.StringCalculator;
 
 /**
- * 
+ * Unit test for the StringCalculator class.
  * 
  * @author simeon
  */

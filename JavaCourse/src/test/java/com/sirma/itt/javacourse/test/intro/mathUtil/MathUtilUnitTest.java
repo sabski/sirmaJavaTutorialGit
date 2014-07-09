@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.intro.mathUtil.MathUtil;
 
 /**
+ * Unit test for the MathUtil class.
+ * 
  * @author simeon
  */
 public class MathUtilUnitTest {

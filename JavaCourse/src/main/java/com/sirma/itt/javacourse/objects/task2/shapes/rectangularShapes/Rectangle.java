@@ -51,7 +51,7 @@ public class Rectangle extends Square {
 	 */
 	@Override
 	public void draw() {
-		// TODO Draw me ....
+		// TODO Draw Rectangle....
 	}
 
 }

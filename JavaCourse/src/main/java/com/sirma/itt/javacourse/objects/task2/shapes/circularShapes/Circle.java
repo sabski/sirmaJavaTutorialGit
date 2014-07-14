@@ -30,19 +30,7 @@ public class Circle extends Point {
 		this.radius = radius;
 	}
 
-	/**
-	 * Constructor with point only default radius is 50.
-	 * 
-	 * @param x
-	 *            the x - coordinate value;
-	 * @param y
-	 *            the y - coordinate value;
-	 */
-	public Circle(int x, int y) {
-		super(x, y);
-		this.radius = 50;
-		setName("Circle");
-	}
+	
 
 	/**
 	 * Constructor with center point and radius.

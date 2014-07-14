@@ -1,9 +1,5 @@
 package com.sirma.itt.javacourse.intro.task8.hangman;
 
-import java.util.Scanner;
-
-import org.w3c.dom.css.Counter;
-
 import com.sirma.itt.javacourse.InputUtil;
 
 /**

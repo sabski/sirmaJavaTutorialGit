@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.mathUtil.MathUtil;
+import com.sirma.itt.javacourse.intro.task1.mathUtil.MathUtil;
 
 /**
  * Unit test for the MathUtil class.

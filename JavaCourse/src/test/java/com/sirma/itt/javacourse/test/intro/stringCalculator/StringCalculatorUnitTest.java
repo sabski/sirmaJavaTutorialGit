@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.stringCalculator.StringCalculator;
+import com.sirma.itt.javacourse.intro.task6.stringCalculator.StringCalculator;
 
 /**
  * Unit test for the StringCalculator class.

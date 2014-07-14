@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.arrayUtil.ArrayUtil;
+import com.sirma.itt.javacourse.intro.task2.arrayUtil.ArrayUtil;
 
 /**
  * Unit test for the ArrayUtil class.

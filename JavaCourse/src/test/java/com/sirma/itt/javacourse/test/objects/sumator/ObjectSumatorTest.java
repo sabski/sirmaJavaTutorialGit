@@ -8,7 +8,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.objects.sumator.Sumator;
+import com.sirma.itt.javacourse.objects.task1.sumator.Sumator;
 
 /**
  * @author simeon
@@ -18,7 +18,7 @@ public class ObjectSumatorTest {
 	private Sumator sumator = new Sumator();
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.objects.sumator.Sumator#sum(int, int)}.
+	 * Test method for {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(int, int)}.
 	 */
 	@Test
 	public void testSumIntInt() {
@@ -27,7 +27,7 @@ public class ObjectSumatorTest {
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.objects.sumator.Sumator#sum(float, float)}.
+	 * Test method for {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(float, float)}.
 	 */
 	@Test
 	public void testSumFloatFloat() {
@@ -36,7 +36,7 @@ public class ObjectSumatorTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.sumator.Sumator#sum(java.lang.String, java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -46,7 +46,7 @@ public class ObjectSumatorTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.sumator.Sumator#sum(java.math.BigInteger, java.math.BigInteger)}
+	 * {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(java.math.BigInteger, java.math.BigInteger)}
 	 * .
 	 */
 	@Test
@@ -59,7 +59,7 @@ public class ObjectSumatorTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.sumator.Sumator#sum(java.math.BigDecimal, java.math.BigDecimal)}
+	 * {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(java.math.BigDecimal, java.math.BigDecimal)}
 	 * .
 	 */
 	@Test

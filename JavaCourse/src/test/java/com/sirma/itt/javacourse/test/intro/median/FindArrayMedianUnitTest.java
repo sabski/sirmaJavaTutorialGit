@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.median.FindArrayMedian;
+import com.sirma.itt.javacourse.intro.task3.median.FindArrayMedian;
 
 /**
  * Unit test for the array median.

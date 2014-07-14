@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.arrayReverse.ReverseArray;
+import com.sirma.itt.javacourse.intro.task5.arrayReverse.ReverseArray;
 
 /**
  * Unit test class for ReverseArray.

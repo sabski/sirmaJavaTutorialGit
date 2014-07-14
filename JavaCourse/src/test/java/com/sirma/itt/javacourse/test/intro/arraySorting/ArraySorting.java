@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.arraySorting.QuickSortImpl;
+import com.sirma.itt.javacourse.intro.task4.arraySorting.QuickSortImpl;
 
 /**
  * Unit test class for QuickSortImpl class.

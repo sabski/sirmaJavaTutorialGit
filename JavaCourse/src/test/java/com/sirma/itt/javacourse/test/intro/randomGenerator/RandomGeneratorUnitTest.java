@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.randomGenerator.RandomStringGenerator;
+import com.sirma.itt.javacourse.intro.task7.randomGenerator.RandomStringGenerator;
 
 /**
  * Unit test class for RandomStringGenarator.

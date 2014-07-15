@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.sirma.itt.javacourse.objects.task2.shapes.circularShapes.Circle" 
+    project="JavaCourse" 
+    file="/JavaCourse/src/main/java/com/sirma/itt/javacourse/objects/task2/shapes/circularShapes/Circle.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="151" width="269" x="149" y="736"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.sirma.itt.javacourse.objects.task2.shapes.circularShapes.Ellipse" 
+    project="JavaCourse" 
+    file="/JavaCourse/src/main/java/com/sirma/itt/javacourse/objects/task2/shapes/circularShapes/Ellipse.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="151" width="269" x="149" y="927"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.sirma.itt.javacourse.objects.task2.shapes.Figure" project="JavaCourse" 
+    file="/JavaCourse/src/main/java/com/sirma/itt/javacourse/objects/task2/shapes/Figure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="151" width="205" x="213" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.sirma.itt.javacourse.objects.task2.shapes.Point" project="JavaCourse" 
+    file="/JavaCourse/src/main/java/com/sirma/itt/javacourse/objects/task2/shapes/Point.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="205" width="205" x="149" y="491"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.sirma.itt.javacourse.objects.task2.shapes.circularShapes.Curve" 
+    project="JavaCourse" 
+    file="/JavaCourse/src/main/java/com/sirma/itt/javacourse/objects/task2/shapes/circularShapes/Curve.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="223" width="269" x="41" y="228"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="8">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="9" name="b"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="12">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="13" name="a"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="15">    
+    <bendpoint x="340" y="228"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

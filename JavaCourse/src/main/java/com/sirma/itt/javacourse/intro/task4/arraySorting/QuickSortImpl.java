@@ -15,7 +15,7 @@ public class QuickSortImpl {
 	 *            the array of integers to be sorted
 	 * @return the sorted array
 	 */
-	public ArrayList<Integer> quickSortArray(ArrayList<Integer> arrayToBeSorted) {
+	public static ArrayList<Integer> quickSortArray(ArrayList<Integer> arrayToBeSorted) {
 		ArrayList<Integer> left = new ArrayList<Integer>();
 		ArrayList<Integer> right = new ArrayList<Integer>();
 		ArrayList<Integer> sortedArray = new ArrayList<Integer>();

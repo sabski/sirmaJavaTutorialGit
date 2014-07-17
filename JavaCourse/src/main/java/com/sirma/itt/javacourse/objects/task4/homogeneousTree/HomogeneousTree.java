@@ -1,7 +1,5 @@
 package com.sirma.itt.javacourse.objects.task4.homogeneousTree;
 
-import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
-
 /**
  * This class represent a generic type collection that extend Figure.
  * 
@@ -9,34 +7,34 @@ import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
  *            generic parameter
  * @author simeon
  */
-public class HomogeneousTree<T extends Figure> {
+public class HomogeneousTree<T> {
 
-	private NodeElement<T> rootEllement;
+	private TreeElement<T> rootElement;
 
 	/**
-	 * Getter method for rootEllement.
+	 * Getter method for rootElement.
 	 * 
-	 * @return the rootEllement
+	 * @return the rootElement
 	 */
-	public NodeElement<T> getRootEllement() {
-		return rootEllement;
+	public TreeElement<T> getRootElement() {
+		return rootElement;
 	}
 
 	/**
-	 * Setter method for rootEllement.
+	 * Setter method for rootElement.
 	 * 
-	 * @param rootEllement
-	 *            the rootEllement to set
+	 * @param rootElement
+	 *            the rootElement to set
 	 */
-	public void setRootEllement(NodeElement<T> rootEllement) {
-		this.rootEllement = rootEllement;
+	public void setRootElement(TreeElement<T> rootElement) {
+		this.rootElement = rootElement;
 	}
 
 	/**
 	 * Prints all the element names.
 	 */
-	public void printAllNames() {
-		printElementNode(rootEllement);
+	public void printAllValues() {
+		printElementNode(rootElement);
 	}
 
 	/**
@@ -45,8 +43,8 @@ public class HomogeneousTree<T extends Figure> {
 	 * @param node
 	 *            the node element to be printed
 	 */
-	private void printElementNode(NodeElement<T> node) {
-		System.out.println(node.getObject().getName());
+	private void printElementNode(TreeElement<T> node) {
+		System.out.println(node.getElement().toString());
 		if (node.getLeft() != null) {
 			printElementNode(node.getLeft());
 		}
@@ -60,21 +58,24 @@ public class HomogeneousTree<T extends Figure> {
 	 * 
 	 * @param element
 	 *            the element to be added to the tree.
+	 * @return true if the node element was inserted
 	 */
-	public void addElement(NodeElement<T> element) {
+	public boolean addElement(TreeElement<T> element) {
 
-		System.out.println(insertNode(rootEllement, element));
+		return insertNode(rootElement, element);
 	}
 
 	/**
 	 * Add directly a figure element to the tree.
 	 * 
-	 * @param f
-	 *            the Figure we are adding
+	 * @param element
+	 *            add element to the tree
+	 * @return true if the T element was inserted
 	 */
-	public void addFigureEllemet(Figure f) {
-		NodeElement<T> node = new NodeElement<T>(f);
-		addElement(node);
+	public boolean addEllemet(T element) {
+		TreeElement<T> node = new TreeElement<T>();
+		node.setElement(element);
+		return addElement(node);
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class HomogeneousTree<T extends Figure> {
 	 *            the node we want to insert.
 	 * @return true if we inserted into the tree.
 	 */
-	private boolean insertNode(NodeElement<T> treeNode, NodeElement<T> nodeTobeInserted) {
+	private boolean insertNode(TreeElement<T> treeNode, TreeElement<T> nodeTobeInserted) {
 		if (treeNode.equals(nodeTobeInserted)) {
 			return false;
 		}

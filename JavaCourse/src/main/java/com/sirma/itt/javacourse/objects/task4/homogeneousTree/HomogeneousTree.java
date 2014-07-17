@@ -32,9 +32,11 @@ public class HomogeneousTree<T> {
 
 	/**
 	 * Prints all the element names.
+	 * 
+	 * @return printed values.
 	 */
-	public void printAllValues() {
-		printElementNode(rootElement);
+	public String printAllValues() {
+		return printElementNode(rootElement);
 	}
 
 	/**
@@ -42,15 +44,18 @@ public class HomogeneousTree<T> {
 	 * 
 	 * @param node
 	 *            the node element to be printed
+	 * @return printed values
 	 */
-	private void printElementNode(TreeElement<T> node) {
-		System.out.println(node.getElement().toString());
+	private String printElementNode(TreeElement<T> node) {
+		StringBuilder build = new StringBuilder();
 		if (node.getLeft() != null) {
-			printElementNode(node.getLeft());
+			build.append(printElementNode(node.getLeft()));
 		}
+		build.append(node.getElement().toString());
 		if (node.getRight() != null) {
-			printElementNode(node.getRight());
+			build.append(printElementNode(node.getRight()));
 		}
+		return build.toString();
 	}
 
 	/**

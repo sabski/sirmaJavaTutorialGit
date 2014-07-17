@@ -34,12 +34,15 @@ public class BinaryTree {
 
 	/**
 	 * Prints the elements in the tree in a sorted way.
+	 * 
+	 * @return the sorted array
 	 */
-	public void printSortedElements() {
+	public ArrayList<Integer> printSortedElements() {
 		ArrayList<Integer> result = rootNode.returnNodeElements();
 		// System.out.println("Array before sorting" + result.toString());
-		result = QuickSortImpl.quickSortArray(result);
-		System.out.println(result.toString());
+		// result = QuickSortImpl.quickSortArray(result);
+		System.out.println("Sorted Array " + result.toString());
+		return result;
 	}
 
 	/**
@@ -47,30 +50,41 @@ public class BinaryTree {
 	 * 
 	 * @param val
 	 *            value to be inserted.
+	 * @return true if insert was successful.
 	 */
-	public void insertIntoTree(int val) {
-		insertIntoTree(rootNode, val);
+	public boolean insertIntoTree(int val) {
+		Node nodeToBeInserted = new Node(val);
+		return insertIntoTree(rootNode, nodeToBeInserted);
 	}
 
 	/**
 	 * Inserts a value into a specific node.
 	 * 
-	 * @param node
+	 * @param treeNode
 	 *            the node to check if the value can be inserted.
-	 * @param val
+	 * @param nodeToBeInserted
 	 *            value to be inserted.
+	 * @return true if the element was inserted in the tree.
 	 */
-	private void insertIntoTree(Node node, int val) {
-		if (node == null) {
-			Node temp = new Node();
-			temp.setValue(val);
-			System.out.println("Value inserted");
-		} else if (node.getValue() == val) {
-			System.out.println("Value is alredy a tree element" + val);
-		} else if (node.getValue() > val) {
+	private boolean insertIntoTree(Node treeNode, Node nodeToBeInserted) {
+		if (treeNode.equals(nodeToBeInserted)) {
+			return false;
+		}
+		if (treeNode.getValue() > nodeToBeInserted.getValue()) {
+			if (treeNode.getLeft() != null) {
+				return insertIntoTree(treeNode.getLeft(), nodeToBeInserted);
 
+			} else {
+				treeNode.setLeft(nodeToBeInserted);
+				return true;
+			}
 		} else {
-
+			if (treeNode.getRight() != null) {
+				return insertIntoTree(treeNode.getRight(), nodeToBeInserted);
+			} else {
+				treeNode.setRight(nodeToBeInserted);
+				return true;
+			}
 		}
 	}
 
@@ -79,8 +93,9 @@ public class BinaryTree {
 	 * 
 	 * @param val
 	 *            value we are looking for
+	 * @return true if element is in the tree
 	 */
-	public void searchTree(int val) {
-		rootNode.searchNodes(rootNode, val);
+	public boolean searchTree(int val) {
+		return rootNode.searchNodes(rootNode, val);
 	}
 }

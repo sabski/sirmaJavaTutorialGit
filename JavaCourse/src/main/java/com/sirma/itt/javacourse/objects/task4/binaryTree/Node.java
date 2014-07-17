@@ -135,22 +135,26 @@ public class Node {
 	 *            the node to be searched.
 	 * @param val
 	 *            the value that we are looking for.
+	 * @return true if element is found
 	 */
-	public void searchNodes(Node node, int val) {
+	public boolean searchNodes(Node node, int val) {
 		int temp = node.getValue();
 		if (temp == val) {
 			System.out.println("Value is in the tree");
+			return true;
 		} else if (val > temp) {
 			if (node.getRight() != null) {
-				searchNodes(node.getRight(), val);
+				return searchNodes(node.getRight(), val);
 			} else {
 				System.out.println("No such value");
+				return false;
 			}
 		} else {
 			if (node.getLeft() != null) {
-				searchNodes(node.getLeft(), val);
+				return searchNodes(node.getLeft(), val);
 			} else {
 				System.out.println("No such value");
+				return false;
 			}
 		}
 	}

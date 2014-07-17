@@ -34,9 +34,11 @@ public class HeterogeneousTree<T extends Figure> {
 
 	/**
 	 * Prints all the element names.
+	 * 
+	 * @return The name of the objects in the tree.
 	 */
-	public void printAllNames() {
-		printElementNode(rootEllement);
+	public String printAllNames() {
+		return printElementNode(rootEllement);
 	}
 
 	/**
@@ -44,15 +46,20 @@ public class HeterogeneousTree<T extends Figure> {
 	 * 
 	 * @param node
 	 *            the node element to be printed
+	 * @return The names of the objects.
 	 */
-	private void printElementNode(NodeElement<T> node) {
+	private String printElementNode(NodeElement<T> node) {
+		StringBuilder builder = new StringBuilder();
+
 		System.out.println(node.getObject().getName());
+		builder.append(node.getObject().getName());
 		if (node.getLeft() != null) {
-			printElementNode(node.getLeft());
+			builder.append(printElementNode(node.getLeft()));
 		}
 		if (node.getRight() != null) {
-			printElementNode(node.getRight());
+			builder.append(printElementNode(node.getRight()));
 		}
+		return builder.toString();
 	}
 
 	/**
@@ -60,10 +67,11 @@ public class HeterogeneousTree<T extends Figure> {
 	 * 
 	 * @param element
 	 *            the element to be added to the tree.
+	 * @return true if element was inserted
 	 */
-	public void addElement(NodeElement<T> element) {
+	public boolean addElement(NodeElement<T> element) {
 
-		System.out.println(insertNode(rootEllement, element));
+		return insertNode(rootEllement, element);
 	}
 
 	/**
@@ -71,10 +79,11 @@ public class HeterogeneousTree<T extends Figure> {
 	 * 
 	 * @param f
 	 *            the Figure we are adding
+	 * @return True if element was inserted.
 	 */
-	public void addFigureEllemet(Figure f) {
+	public boolean addFigureEllemet(Figure f) {
 		NodeElement<T> node = new NodeElement<T>(f);
-		addElement(node);
+		return addElement(node);
 	}
 
 	/**

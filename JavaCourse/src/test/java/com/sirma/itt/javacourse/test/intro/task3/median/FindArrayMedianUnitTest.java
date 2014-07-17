@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.median;
+package com.sirma.itt.javacourse.test.intro.task3.median;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.objects.sumator;
+package com.sirma.itt.javacourse.test.objects.task1.sumator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

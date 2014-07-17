@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.arrayUtil;
+package com.sirma.itt.javacourse.test.intro.task2.arrayUtil;
 
 import static org.junit.Assert.assertEquals;
 

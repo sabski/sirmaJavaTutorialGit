@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.arraySorting;
+package com.sirma.itt.javacourse.test.intro.task4.arraySorting;
 
 import static org.junit.Assert.assertEquals;
 

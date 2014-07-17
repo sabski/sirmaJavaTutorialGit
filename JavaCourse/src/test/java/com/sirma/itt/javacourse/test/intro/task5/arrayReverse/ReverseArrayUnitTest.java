@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.arrayReverse;
+package com.sirma.itt.javacourse.test.intro.task5.arrayReverse;
 
 import static org.junit.Assert.assertEquals;
 

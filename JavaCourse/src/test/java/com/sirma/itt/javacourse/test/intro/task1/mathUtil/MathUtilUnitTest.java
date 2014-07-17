@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.mathUtil;
+package com.sirma.itt.javacourse.test.intro.task1.mathUtil;
 
 import static org.junit.Assert.assertEquals;
 

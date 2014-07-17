@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.test.intro.stringCalculator;
+package com.sirma.itt.javacourse.test.intro.task6.stringCalculator;
 
 import static org.junit.Assert.assertEquals;
 

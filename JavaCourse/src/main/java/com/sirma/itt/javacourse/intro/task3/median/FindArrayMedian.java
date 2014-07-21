@@ -86,7 +86,6 @@ public class FindArrayMedian {
 		int index = -1;
 		int difference = Integer.MAX_VALUE;
 		int length = arr.length / 2;
-		System.out.println("Array length is " + arr.length + " and lenght is " + length);
 
 		if (arr.length % 2 == 1) {
 			length++;
@@ -94,7 +93,6 @@ public class FindArrayMedian {
 
 		int indexA = 0;
 		int indexB = 0;
-		System.out.println("Lenght is " + length);
 		for (int i = 1; i <= length; i++) {
 			int[] arr1 = splitArray(arr, 0, i + 1);
 			int[] arr2 = splitArray(arr, arr.length - i - 1, arr.length);
@@ -114,14 +112,11 @@ public class FindArrayMedian {
 				tempIndex = indexA;
 			}
 
-			System.out.println("Temp difference is " + tempDiference + " at index " + i
-					+ " sumone is = " + sumOne + " sumtwo is = " + sumTwo);
 			if (difference >= tempDiference) {
 				System.out.println("New diff");
 				index = tempIndex;
 				difference = tempDiference;
 			}
-			System.out.println(indexA + " " + indexB);
 		}
 
 		if (arr.length % 2 == 1) {
@@ -129,7 +124,5 @@ public class FindArrayMedian {
 		} else {
 			return index;
 		}
-
 	}
-
 }

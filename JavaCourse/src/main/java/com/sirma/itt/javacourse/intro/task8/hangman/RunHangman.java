@@ -8,6 +8,8 @@ package com.sirma.itt.javacourse.intro.task8.hangman;
 public class RunHangman {
 
 	/**
+	 * Main method for starting the hang man game.
+	 * 
 	 * @param args
 	 *            for the main method
 	 */

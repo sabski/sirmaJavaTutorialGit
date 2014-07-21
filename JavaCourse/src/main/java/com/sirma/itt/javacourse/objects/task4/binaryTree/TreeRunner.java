@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.objects.task4.binaryTree;
 
-import com.sirma.itt.javacourse.InputUtil;
+import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class for running binary tree.
@@ -18,15 +18,15 @@ public class TreeRunner {
 		Node node = new Node();
 		tree.setRootNode(node);
 		System.out.println("Insert the number of tree elements");
-		int lenght = InputUtil.readLineNumber();
+		int lenght = Utils.readLineNumber();
 		for (int i = 0; i < lenght; i++) {
 			System.out.println("Insert tree element");
-			int temp = InputUtil.readLineNumber();
+			int temp = Utils.readLineNumber();
 			tree.getRootNode().insertIntoNode(temp);
 		}
 		tree.printSortedElements();
 		System.out.println("Search the tree for ellement");
-		tree.searchTree(InputUtil.readLineNumber());
+		tree.searchTree(Utils.readLineNumber());
 	}
 
 }

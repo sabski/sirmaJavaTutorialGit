@@ -1,11 +1,14 @@
 package com.sirma.itt.javacourse;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * Utils class for the JavaCourse Project, this class contains various utility methods.
+ * 
  * @author simeon
  */
-public class InputUtil {
+public class Utils {
 
 	private static Scanner scaner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
@@ -27,7 +30,7 @@ public class InputUtil {
 	 *            the scaner to set
 	 */
 	public void setScaner(Scanner scaner) {
-		InputUtil.scaner = scaner;
+		Utils.scaner = scaner;
 	}
 
 	/**
@@ -46,13 +49,13 @@ public class InputUtil {
 	 * @return the number that was inputed thru the console otherwise it returns -1.
 	 */
 	public static int readLineNumber() {
-		int temp = -1;
-		try {
-			temp = scaner.nextInt();
-		} catch (Exception e) {
-			System.out.println("Pleaze input number value");
+		System.out.println("Plese input number value");
+		Integer input = null;
+		input = inputNumber();
+		if (input == null) {
+			input = readLineNumber();
 		}
-		return temp;
+		return input;
 	}
 
 	/**
@@ -66,5 +69,38 @@ public class InputUtil {
 	 */
 	public static boolean validateStringWithREgex(String regex, String inputToverify) {
 		return inputToverify.matches(regex);
+	}
+
+	/**
+	 * Allows the user to input array list with certain length and user input numbers that are
+	 * verified by the class regex.
+	 * 
+	 * @return an ArrayList of integers that were inputed via the console.
+	 */
+	public static ArrayList<Integer> inputArrayListOfIntegers() {
+		ArrayList<Integer> input = new ArrayList<Integer>();
+
+		int numbersCount = 0;
+		System.out.println("Plese input the lenght of the array");
+		numbersCount = Utils.readLineNumber();
+		for (int i = 0; i < numbersCount; i++) {
+			input.add(Utils.readLineNumber());
+		}
+		return input;
+	}
+
+	/**
+	 * Gets input from the console and prints an error message if the input is incorrect.
+	 * 
+	 * @return the number that was inputed via the console.
+	 */
+	private static Integer inputNumber() {
+		Integer temp = null;
+		try {
+			temp = Integer.parseInt(scaner.nextLine());
+		} catch (Exception e) {
+			System.out.println("Pleaze input number value");
+		}
+		return temp;
 	}
 }

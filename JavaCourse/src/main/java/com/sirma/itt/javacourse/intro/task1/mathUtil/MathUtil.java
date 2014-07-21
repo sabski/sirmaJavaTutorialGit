@@ -36,12 +36,12 @@ public class MathUtil {
 	 * 
 	 * @param firstNumber
 	 *            first number
-	 * @param secindNumber
+	 * @param secondNumber
 	 *            second number
 	 * @return the least common denominator
 	 */
-	public int getLeastCommonDenominator(int firstNumber, int secindNumber) {
+	public int getLeastCommonDenominator(int firstNumber, int secondNumber) {
 
-		return (firstNumber * secindNumber) / getGreatestCommonDivisor(firstNumber, secindNumber);
+		return (firstNumber * secondNumber) / getGreatestCommonDivisor(firstNumber, secondNumber);
 	}
 }

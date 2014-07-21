@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task8.hangman;
 
-import com.sirma.itt.javacourse.InputUtil;
+import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class for playing the hang man game.
@@ -27,7 +27,7 @@ public class Hangman {
 
 		while (counter != 5) {
 			printConsoleMessage(inputword);
-			String line = InputUtil.readLine();
+			String line = Utils.readLine();
 			if (line.length() > 1) {
 				if (checkWord(line, word)) {
 					printConsoleMessage(winGame);

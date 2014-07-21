@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task6.stringCalculator;
 
-import com.sirma.itt.javacourse.InputUtil;
+import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class for running the String calculator.
@@ -10,6 +10,8 @@ import com.sirma.itt.javacourse.InputUtil;
 public class RunStringCalculator {
 
 	/**
+	 * Main method for running the String calculator.
+	 * 
 	 * @param args
 	 *            for the main method.
 	 */
@@ -18,14 +20,16 @@ public class RunStringCalculator {
 		StringCalculator calculator = new StringCalculator();
 		String firstBigNumber = null;
 		String secondBigNumber = null;
+		System.out.println("Input only one number on a line. ");
 		do {
 			System.out.println("Plese input number values ");
-			firstBigNumber = InputUtil.readLine();
-			secondBigNumber = InputUtil.readLine();
-		} while (!(InputUtil.validateStringWithREgex(InputUtil.REGEX_VALIDATOR_NUMBERS_ONLY,
-				firstBigNumber) && InputUtil.validateStringWithREgex(
-				InputUtil.REGEX_VALIDATOR_NUMBERS_ONLY, secondBigNumber)));
-		System.out.println(" 1 = " + firstBigNumber + " 2 = " + secondBigNumber);
+			firstBigNumber = Utils.readLine();
+			System.out.println("Plese input number values ");
+			secondBigNumber = Utils.readLine();
+		} while (!(Utils.validateStringWithREgex(Utils.REGEX_VALIDATOR_NUMBERS_ONLY, firstBigNumber
+				+ secondBigNumber)));
+		System.out.println(" Firts number is  " + firstBigNumber + " Second number is "
+				+ secondBigNumber);
 		System.out.println(calculator.sumStrings(firstBigNumber, secondBigNumber));
 
 	}

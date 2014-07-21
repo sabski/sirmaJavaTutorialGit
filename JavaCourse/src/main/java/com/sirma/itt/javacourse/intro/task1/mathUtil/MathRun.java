@@ -21,13 +21,12 @@ public class MathRun {
 		int count = 0;
 		int[] numbers = new int[2];
 		System.out
-				.println("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator");
+				.println("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator \n"
+						+ "input one number on a line.");
 		while (count != 2) {
-			
 			numbers[count] = Utils.readLineNumber();
 			count++;
 		}
-
 		System.out.println("The Greatest Common Divisor of the numbers is "
 				+ math.getGreatestCommonDivisor(numbers[0], numbers[1]));
 		System.out.println("The Least Common Denominator of the numbers is "

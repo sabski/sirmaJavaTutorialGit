@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
+import com.sirma.itt.javacourse.Utils;
+
 /**
  * Array utility class which contains some basic utility methods.
  * 
@@ -14,13 +16,18 @@ public class ArrayUtil {
 	 *            array to be printed in the console
 	 */
 	public void print(int[] arr) {
+		if (Utils.isNull(arr)) {
+			Utils.printConsoleMessage("Array is null !!!");
+			return;
+		}
+
 		StringBuilder build = new StringBuilder();
 		build.append("[");
 		for (int i : arr) {
 			build.append(i + " ");
 		}
 		build.append("]");
-		System.out.println(build.toString());
+		Utils.printConsoleMessage(build.toString());
 	}
 
 	/**
@@ -31,6 +38,10 @@ public class ArrayUtil {
 	 * @return the summed value of the array
 	 */
 	public int sum(int[] arr) {
+		if (Utils.isNull(arr)) {
+			Utils.printConsoleMessage("Array is null !!!");
+			return -1;
+		}
 		int sum = 0;
 		for (int i : arr) {
 			sum += i;
@@ -46,6 +57,10 @@ public class ArrayUtil {
 	 * @return the smallest element of the array
 	 */
 	public int getMinElement(int[] arr) {
+		if (Utils.isNull(arr)) {
+			Utils.printConsoleMessage("Array is null !!!");
+			return -1;
+		}
 		int minValue = Integer.MAX_VALUE;
 
 		for (int i : arr) {

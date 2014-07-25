@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.intro.task6.stringCalculator;
 
+import com.sirma.itt.javacourse.Utils;
+
 /**
  * Class for calculating big numbers using Strings.
  * 
@@ -17,9 +19,15 @@ public class StringCalculator {
 	 * @return the String Sum of the given Strings
 	 */
 	public String sumStrings(String firstNumber, String secondNumber) {
+
 		String result = "";
 		int lenght;
 		boolean isOverTen = false;
+
+		if (Utils.isNull(firstNumber) || Utils.isNull(secondNumber)) {
+			return result;
+		}
+
 		String inverseFirstNumber = new StringBuilder(firstNumber).reverse().toString();
 		String inverseSecondNumber = new StringBuilder(secondNumber).reverse().toString();
 

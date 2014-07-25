@@ -20,17 +20,17 @@ public class RunStringCalculator {
 		StringCalculator calculator = new StringCalculator();
 		String firstBigNumber = null;
 		String secondBigNumber = null;
-		System.out.println("Input only one number on a line. ");
+		Utils.printConsoleMessage("Input only one number on a line. ");
 		do {
-			System.out.println("Plese input number values ");
+			Utils.printConsoleMessage("Plese input number value for the first number ");
 			firstBigNumber = Utils.readLine();
-			System.out.println("Plese input number values ");
+			Utils.printConsoleMessage("Plese input number value for the second number ");
 			secondBigNumber = Utils.readLine();
 		} while (!(Utils.validateStringWithREgex(Utils.REGEX_VALIDATOR_NUMBERS_ONLY, firstBigNumber
 				+ secondBigNumber)));
-		System.out.println(" Firts number is  " + firstBigNumber + " Second number is "
+		Utils.printConsoleMessage(" Firts number is  " + firstBigNumber + " Second number is "
 				+ secondBigNumber);
-		System.out.println(calculator.sumStrings(firstBigNumber, secondBigNumber));
+		Utils.printConsoleMessage(calculator.sumStrings(firstBigNumber, secondBigNumber));
 
 	}
 }

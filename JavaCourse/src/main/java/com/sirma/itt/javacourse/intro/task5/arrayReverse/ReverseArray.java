@@ -1,6 +1,9 @@
 package com.sirma.itt.javacourse.intro.task5.arrayReverse;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class for reversing arrays of Integers.
@@ -16,7 +19,13 @@ public class ReverseArray {
 	 *            array to be reversed
 	 * @return the reversed array
 	 */
-	public ArrayList<Integer> reverseArray(ArrayList<Integer> arrayOfInts) {
+	public List<Integer> reverseArray(List<Integer> arrayOfInts) {
+
+		if (Utils.isNull(arrayOfInts)) {
+			List<Integer> res = new ArrayList<Integer>();
+			res.add(-1);
+			return res;
+		}
 
 		for (int i = 0; i < arrayOfInts.size() / 2; i++) {
 			int tmp = arrayOfInts.get(i);

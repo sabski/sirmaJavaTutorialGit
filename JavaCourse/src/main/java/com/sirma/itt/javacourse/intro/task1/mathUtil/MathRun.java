@@ -20,16 +20,18 @@ public class MathRun {
 		MathUtil math = new MathUtil();
 		int count = 0;
 		int[] numbers = new int[2];
-		System.out
-				.println("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator \n"
-						+ "input one number on a line.");
+		Utils.printConsoleMessage("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator \n"
+				+ "input one number on a line.");
 		while (count != 2) {
+			Utils.printConsoleMessage("Please input number value for the " + (count + 1)
+					+ " number");
 			numbers[count] = Utils.readLineNumber();
 			count++;
 		}
-		System.out.println("The Greatest Common Divisor of the numbers is "
+
+		Utils.printConsoleMessage("The Greatest Common Divisor of the numbers is "
 				+ math.getGreatestCommonDivisor(numbers[0], numbers[1]));
-		System.out.println("The Least Common Denominator of the numbers is "
+		Utils.printConsoleMessage("The Least Common Denominator of the numbers is "
 				+ math.getLeastCommonDenominator(numbers[0], numbers[1]));
 
 	}

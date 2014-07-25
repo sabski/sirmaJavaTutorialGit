@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.intro.task5.arrayReverse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sirma.itt.javacourse.Utils;
 
@@ -19,12 +20,11 @@ public class RunReverseArray {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<Integer> arr = new ArrayList<Integer>();
+		List<Integer> arr = new ArrayList<Integer>();
 		ReverseArray reverse = new ReverseArray();
-
 		arr = Utils.inputArrayListOfIntegers();
 
-		System.out.println(arr.toString());
-		System.out.println(reverse.reverseArray(arr).toString());
+		Utils.printConsoleMessage("Array before : " + arr);
+		Utils.printConsoleMessage("Array after : " + reverse.reverseArray(arr));
 	}
 }

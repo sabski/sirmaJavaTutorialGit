@@ -29,6 +29,6 @@ public class RunFindArrayMedian {
 			arr[i] = list.get(i);
 		}
 
-		System.out.println("The median of the array is " + median.findMedian(arr));
+		Utils.printConsoleMessage("The median of the array is " + median.findMedian(arr));
 	}
 }

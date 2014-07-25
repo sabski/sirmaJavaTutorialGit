@@ -1,5 +1,6 @@
 package com.sirma.itt.javacourse.intro.task1.mathUtil;
 
+
 /**
  * Math Utility class that provides some mathematical functionality.
  * 
@@ -19,6 +20,9 @@ public class MathUtil {
 	 */
 	public int getGreatestCommonDivisor(int firstNumber, int secondNumber) {
 		int temp;
+		if (firstNumber == 0 || secondNumber == 0) {
+			return -1;
+		}
 		if (firstNumber == secondNumber) {
 			return firstNumber;
 		} else if (firstNumber > secondNumber) {
@@ -41,6 +45,10 @@ public class MathUtil {
 	 * @return the least common denominator
 	 */
 	public int getLeastCommonDenominator(int firstNumber, int secondNumber) {
+
+		if (firstNumber == 0 || secondNumber == 0) {
+			return -1;
+		}
 
 		return (firstNumber * secondNumber) / getGreatestCommonDivisor(firstNumber, secondNumber);
 	}

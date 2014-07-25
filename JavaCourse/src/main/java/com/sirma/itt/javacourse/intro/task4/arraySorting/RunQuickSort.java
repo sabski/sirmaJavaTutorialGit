@@ -23,8 +23,8 @@ public class RunQuickSort {
 
 		arr = Utils.inputArrayListOfIntegers();
 
-		System.out.println("Array before sorting " + arr);
-		System.out.println("Array after sorting " + QuickSortImpl.quickSortArray(arr));
+		Utils.printConsoleMessage("Array before sorting " + arr);
+		Utils.printConsoleMessage("Array after sorting " + QuickSortImpl.quickSortArray(arr));
 	}
 
 }

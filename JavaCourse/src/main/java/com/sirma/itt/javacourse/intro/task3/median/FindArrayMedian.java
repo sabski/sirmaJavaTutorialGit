@@ -113,7 +113,6 @@ public class FindArrayMedian {
 			}
 
 			if (difference >= tempDiference) {
-				System.out.println("New diff");
 				index = tempIndex;
 				difference = tempDiference;
 			}

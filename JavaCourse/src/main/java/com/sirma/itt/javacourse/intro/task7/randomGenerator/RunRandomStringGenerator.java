@@ -16,12 +16,12 @@ public class RunRandomStringGenerator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RandomStringGenerator randGen = new RandomStringGenerator();
-		System.out.println("input the number of random string you want to generate.");
+		Utils.printConsoleMessage("Input the number of random string you want to generate.");
 		int count = Utils.readLineNumber();
 		for (int i = 0; i < count; i++) {
-			System.out.println("Input String lenght :");
+			Utils.printConsoleMessage("Input String lenght :");
 			int lenght = Utils.readLineNumber();
-			System.out.println(randGen.generateRandomString(lenght));
+			Utils.printConsoleMessage(randGen.generateRandomString(lenght));
 		}
 
 	}

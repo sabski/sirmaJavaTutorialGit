@@ -23,32 +23,32 @@ public class Hangman {
 	 */
 	public void newGame() {
 
-		printConsoleMessage(guesTheWord);
+		Utils.printConsoleMessage(guesTheWord);
 
 		while (counter != 5) {
-			printConsoleMessage(inputword);
+			Utils.printConsoleMessage(inputword);
 			String line = Utils.readLine();
 			if (line.length() > 1) {
 				if (checkWord(line, word)) {
-					printConsoleMessage(winGame);
+					Utils.printConsoleMessage(winGame);
 					break;
 				} else {
 					counter++;
-					printConsoleMessage("You have " + (5 - counter) + " tries left");
+					Utils.printConsoleMessage("You have " + (5 - counter) + " tries left");
 				}
 			} else {
 				if (!chekLether(line, word)) {
 					counter++;
-					printConsoleMessage("You have " + (5 - counter) + " tries left");
+					Utils.printConsoleMessage("You have " + (5 - counter) + " tries left");
 				}
 				if (checkWord(view, word)) {
-					printConsoleMessage(winGame);
+					Utils.printConsoleMessage(winGame);
 					break;
 				}
 			}
 		}
 		if (counter == 5) {
-			printConsoleMessage(youLose);
+			Utils.printConsoleMessage(youLose);
 		}
 	}
 
@@ -87,17 +87,8 @@ public class Hangman {
 			}
 		}
 		view = new String(temp);
-		System.out.println(view);
+		Utils.printConsoleMessage(view);
 		return word.contains(leather);
 	}
 
-	/**
-	 * Prints a message to the user.
-	 * 
-	 * @param message
-	 *            the message to be printed in the console.
-	 */
-	public void printConsoleMessage(String message) {
-		System.out.println(message);
-	}
 }

@@ -1,10 +1,8 @@
 package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import com.sirma.itt.javacourse.Utils;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 /**
  * Class for running the ArrayUtil class.
@@ -32,9 +30,10 @@ public class RunArrayUtil {
 			arr[i] = list.get(i);
 		}
 
-		System.out.println("The smallest ellement in the array is " + util.getMinElement(arr));
-		System.out.println("The sum of the array is " + util.sum(arr));
-		System.out.println("The array will be printed in the line bellow. ");
+		Utils.printConsoleMessage("The smallest ellement in the array is "
+				+ util.getMinElement(arr));
+		Utils.printConsoleMessage("The sum of the array is " + util.sum(arr));
+		Utils.printConsoleMessage("The array will be printed in the line bellow. ");
 		util.print(arr);
 	}
 

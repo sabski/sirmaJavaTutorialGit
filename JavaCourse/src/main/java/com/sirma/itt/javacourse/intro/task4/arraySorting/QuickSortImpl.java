@@ -1,9 +1,13 @@
 package com.sirma.itt.javacourse.intro.task4.arraySorting;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class that implements the Quick Sort algorithm for arrays.
+ * 
  * @author simeon
  */
 public class QuickSortImpl {
@@ -15,10 +19,15 @@ public class QuickSortImpl {
 	 *            the array of integers to be sorted
 	 * @return the sorted array
 	 */
-	public static ArrayList<Integer> quickSortArray(ArrayList<Integer> arrayToBeSorted) {
-		ArrayList<Integer> left = new ArrayList<Integer>();
-		ArrayList<Integer> right = new ArrayList<Integer>();
-		ArrayList<Integer> sortedArray = new ArrayList<Integer>();
+	public static List<Integer> quickSortArray(List<Integer> arrayToBeSorted) {
+		List<Integer> left = new ArrayList<Integer>();
+		List<Integer> right = new ArrayList<Integer>();
+		List<Integer> sortedArray = new ArrayList<Integer>();
+		if (Utils.isNull(arrayToBeSorted)) {
+			sortedArray.add(-1);
+			return sortedArray;
+		}
+
 		if (arrayToBeSorted.size() <= 1) {
 			return arrayToBeSorted;
 		}

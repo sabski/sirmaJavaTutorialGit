@@ -41,7 +41,7 @@ public class BinaryTree {
 		ArrayList<Integer> result = rootNode.returnNodeElements();
 		// System.out.println("Array before sorting" + result.toString());
 		// result = QuickSortImpl.quickSortArray(result);
-		System.out.println("Sorted Array " + result.toString());
+		System.out.println("Sorted Array " + result);
 		return result;
 	}
 

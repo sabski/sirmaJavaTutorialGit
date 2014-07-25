@@ -49,7 +49,6 @@ public class Utils {
 	 * @return the number that was inputed thru the console otherwise it returns -1.
 	 */
 	public static int readLineNumber() {
-		System.out.println("Plese input number value");
 		Integer input = null;
 		input = inputNumber();
 		if (input == null) {
@@ -84,6 +83,7 @@ public class Utils {
 		System.out.println("Plese input the lenght of the array");
 		numbersCount = Utils.readLineNumber();
 		for (int i = 0; i < numbersCount; i++) {
+			printConsoleMessage("Plese input value for " + (i + 1));
 			input.add(Utils.readLineNumber());
 		}
 		return input;
@@ -99,8 +99,35 @@ public class Utils {
 		try {
 			temp = Integer.parseInt(scaner.nextLine());
 		} catch (Exception e) {
-			System.out.println("Pleaze input number value");
+			printConsoleMessage("Please input number value");
 		}
 		return temp;
+	}
+
+	/**
+	 * Checks if given object is null.
+	 * 
+	 * @param o
+	 *            the object we want to check for null
+	 * @return true if object is null
+	 */
+	public static boolean isNull(Object o) {
+		if (o == null) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Prints out a message to the console.
+	 * 
+	 * @param message
+	 *            the message to be printed sin the console.
+	 */
+	public static void printConsoleMessage(String message) {
+
+		System.out.println(message);
+
 	}
 }

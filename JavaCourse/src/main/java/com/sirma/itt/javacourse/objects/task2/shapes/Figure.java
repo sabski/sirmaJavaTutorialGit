@@ -40,7 +40,6 @@ public abstract class Figure {
 	 *            the name of the figure
 	 */
 	public Figure(String name) {
-		super();
 		this.name = name;
 	}
 }

@@ -20,9 +20,6 @@ public class FindArrayMedian {
 	 */
 	public int findMedian(int[] arr) {
 		int index = 0;
-		int minDifference = Integer.MAX_VALUE;
-		int tempDifference;
-
 		int sumOne;
 		int sumTwo;
 		for (int i = 0; i < arr.length; i++) {
@@ -30,15 +27,9 @@ public class FindArrayMedian {
 			int[] arr2 = splitArray(arr, i, arr.length);
 			sumOne = util.sum(arr1);
 			sumTwo = util.sum(arr2);
-
 			if (sumOne > sumTwo) {
-				tempDifference = sumOne - sumTwo;
+				break;
 			} else {
-				tempDifference = sumTwo - sumOne;
-			}
-
-			if (minDifference >= tempDifference) {
-				minDifference = tempDifference;
 				index = i;
 			}
 		}

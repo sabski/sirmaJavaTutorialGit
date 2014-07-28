@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.intro.task3.median;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sirma.itt.javacourse.Utils;
 
@@ -20,7 +21,7 @@ public class RunFindArrayMedian {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FindArrayMedian median = new FindArrayMedian();
-		ArrayList<Integer> list = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<Integer>();
 
 		list = Utils.inputArrayListOfIntegers();
 

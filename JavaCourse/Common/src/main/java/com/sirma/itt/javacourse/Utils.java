@@ -10,27 +10,27 @@ import java.util.Scanner;
  */
 public class Utils {
 
-	private static Scanner scaner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "\\p{L}";
 
 	/**
-	 * Getter method for scaner.
+	 * Getter method for scanner.
 	 * 
-	 * @return the scaner
+	 * @return the scanner
 	 */
-	public Scanner getScaner() {
-		return scaner;
+	public Scanner getScanner() {
+		return scanner;
 	}
 
 	/**
-	 * Setter method for scaner.
+	 * Setter method for scanner.
 	 * 
-	 * @param scaner
-	 *            the scaner to set
+	 * @param scanner
+	 *            the scanner to set
 	 */
-	public void setScaner(Scanner scaner) {
-		Utils.scaner = scaner;
+	public void setScanner(Scanner scanner) {
+		Utils.scanner = scanner;
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Utils {
 	 * @return the next input line.
 	 */
 	public static String readLine() {
-		return scaner.nextLine();
+		return scanner.nextLine();
 	}
 
 	/**
@@ -81,10 +81,10 @@ public class Utils {
 
 		int numbersCount = 0;
 		System.out.println("Plese input the lenght of the array");
-		numbersCount = Utils.readLineNumber();
+		numbersCount = readLineNumber();
 		for (int i = 0; i < numbersCount; i++) {
 			printConsoleMessage("Plese input value for " + (i + 1));
-			input.add(Utils.readLineNumber());
+			input.add(readLineNumber());
 		}
 		return input;
 	}
@@ -97,7 +97,7 @@ public class Utils {
 	private static Integer inputNumber() {
 		Integer temp = null;
 		try {
-			temp = Integer.parseInt(scaner.nextLine());
+			temp = Integer.parseInt(scanner.nextLine());
 		} catch (Exception e) {
 			printConsoleMessage("Please input number value");
 		}

@@ -16,6 +16,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>com.github.stefanbirkner</groupId>
+			<artifactId>system-rules</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>JavaCourse</groupId>
 			<artifactId>IntroTasks</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

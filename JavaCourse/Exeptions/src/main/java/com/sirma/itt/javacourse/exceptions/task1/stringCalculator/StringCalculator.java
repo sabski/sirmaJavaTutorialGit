@@ -1,6 +1,5 @@
-package com.sirma.itt.javacourse.intro.task6.stringCalculator;
+package com.sirma.itt.javacourse.exceptions.task1.stringCalculator;
 
-import com.sirma.itt.javacourse.Utils;
 
 /**
  * Class for calculating big numbers using Strings.
@@ -18,16 +17,17 @@ public class StringCalculator {
 	 *            the second String
 	 * @return the String Sum of the given Strings
 	 */
-	public String sumStrings(String firstNumber, String secondNumber) {
+	public String sumStrings(String firstNumber, String secondNumber) throws NumberFormatException,
+			NullPointerException{
 
 		StringBuilder result = new StringBuilder();
 		int lenght;
 		boolean isOverTen = false;
-
+/*
 		if (Utils.isNull(firstNumber) || Utils.isNull(secondNumber)) {
 			return result.toString();
 		}
-
+*/
 		String inverseFirstNumber = new StringBuilder(firstNumber).reverse().toString();
 		String inverseSecondNumber = new StringBuilder(secondNumber).reverse().toString();
 

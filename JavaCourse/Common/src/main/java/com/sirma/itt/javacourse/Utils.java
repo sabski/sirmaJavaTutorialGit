@@ -12,7 +12,7 @@ public class Utils {
 
 	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
-	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "\\p{L}";
+	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z]*$";
 
 	/**
 	 * Getter method for scanner.
@@ -40,6 +40,23 @@ public class Utils {
 	 */
 	public static String readLine() {
 		return scanner.nextLine();
+	}
+
+	/**
+	 * Method gets the next console input line and validates the input with a regex expression.
+	 * 
+	 * @return the next input line.
+	 */
+	public static String readValidatedLine(String regex) {
+
+		String tmp = scanner.nextLine();
+		if (validateStringWithREgex(regex, tmp)) {
+			return tmp;
+		} else {
+			printConsoleMessage("Input correct statment");
+			return readValidatedLine(regex);
+		}
+
 	}
 
 	/**

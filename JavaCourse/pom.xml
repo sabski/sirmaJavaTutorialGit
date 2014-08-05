@@ -45,5 +45,6 @@
 		<module>IntroTasks</module>
 		<module>Objects</module>
 		<module>Exeptions</module>
+		<module>Reflection_Annotations_RegEx</module>
 	</modules>
 </project>

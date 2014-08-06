@@ -13,6 +13,8 @@ public class Utils {
 	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z]*$";
+	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^\\s*?(.+)@(.+?)\\s*$";
+	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
 
 	/**
 	 * Getter method for scanner.
@@ -50,7 +52,7 @@ public class Utils {
 	public static String readValidatedLine(String regex) {
 
 		String tmp = scanner.nextLine();
-		if (validateStringWithREgex(regex, tmp)) {
+		if (validateStringWithRegex(regex, tmp)) {
 			return tmp;
 		} else {
 			printConsoleMessage("Input correct statment");
@@ -83,7 +85,7 @@ public class Utils {
 	 *            the string that is to be matched.
 	 * @return true if the String matches the regex otherwise returns false.
 	 */
-	public static boolean validateStringWithREgex(String regex, String inputToverify) {
+	public static boolean validateStringWithRegex(String regex, String inputToverify) {
 		return inputToverify.matches(regex);
 	}
 
@@ -147,4 +149,5 @@ public class Utils {
 		System.out.println(message);
 
 	}
+
 }

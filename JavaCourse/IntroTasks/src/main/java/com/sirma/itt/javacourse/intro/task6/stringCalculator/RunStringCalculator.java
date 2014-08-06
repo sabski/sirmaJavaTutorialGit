@@ -26,7 +26,7 @@ public class RunStringCalculator {
 			firstBigNumber = Utils.readLine();
 			Utils.printConsoleMessage("Plese input number value for the second number ");
 			secondBigNumber = Utils.readLine();
-		} while (!(Utils.validateStringWithREgex(Utils.REGEX_VALIDATOR_NUMBERS_ONLY, firstBigNumber
+		} while (!(Utils.validateStringWithRegex(Utils.REGEX_VALIDATOR_NUMBERS_ONLY, firstBigNumber
 				+ secondBigNumber)));
 		Utils.printConsoleMessage(" Firts number is  " + firstBigNumber + " Second number is "
 				+ secondBigNumber);

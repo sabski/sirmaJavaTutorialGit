@@ -15,6 +15,7 @@ public class Utils {
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z]*$";
 	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^\\s*?(.+)@(.+?)\\s*$";
 	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
+	public static final String REGEX_VALIDATOR_X_TAGS = "(<x>)([0-9a-zA-Z\\s]+)(</x>)";
 
 	/**
 	 * Getter method for scanner.
@@ -148,6 +149,22 @@ public class Utils {
 
 		System.out.println(message);
 
+	}
+
+	/**
+	 * Takes String input and apples a REGEX expression and replaces the matching text with the
+	 * replacement string.
+	 * 
+	 * @param text
+	 *            the text that is to be trimmed
+	 * @param regex
+	 *            the REGEX expression to be used on the text
+	 * @param replacement
+	 *            the replacement text that is to be placed on to the matched areas.
+	 * @return the text with the replaced areas specified in the REGEX
+	 */
+	public static String editStringWithRegex(String text, String regex, String replacement) {
+		return text.replaceAll(regex, replacement);
 	}
 
 }

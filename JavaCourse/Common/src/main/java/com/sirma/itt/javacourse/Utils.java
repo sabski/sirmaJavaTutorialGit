@@ -68,11 +68,11 @@ public class Utils {
 	 * 
 	 * @return the number that was inputed thru the console otherwise it returns -1.
 	 */
-	public static int readLineNumber() {
+	public static int readInt() {
 		Integer input = null;
 		input = inputNumber();
 		if (input == null) {
-			input = readLineNumber();
+			input = readInt();
 		}
 		return input;
 	}
@@ -101,10 +101,10 @@ public class Utils {
 
 		int numbersCount = 0;
 		System.out.println("Plese input the lenght of the array");
-		numbersCount = readLineNumber();
+		numbersCount = readInt();
 		for (int i = 0; i < numbersCount; i++) {
 			printConsoleMessage("Plese input value for " + (i + 1));
-			input.add(readLineNumber());
+			input.add(readInt());
 		}
 		return input;
 	}
@@ -146,9 +146,7 @@ public class Utils {
 	 *            the message to be printed sin the console.
 	 */
 	public static void printConsoleMessage(String message) {
-
 		System.out.println(message);
-
 	}
 
 	/**
@@ -167,4 +165,77 @@ public class Utils {
 		return text.replaceAll(regex, replacement);
 	}
 
+	public static Character readChar() {
+		Character result = null;
+		result = inputChar();
+		if (result == null) {
+			printConsoleMessage("Input single char.");
+			result = readChar();
+		}
+		return result;
+	}
+
+	/**
+	 * Reads the console input and accepts any one character as input.
+	 * 
+	 * @return the character object that was inputed in the console returns null if not a single
+	 *         character was inputed.
+	 */
+	private static Character inputChar() {
+		Character result = null;
+		String tmp = readLine();
+		if (tmp.length() > 1) {
+			return result;
+		}
+		try {
+			result = tmp.charAt(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	/**
+	 * Reads the console input and assures the return value is of the float type.
+	 * 
+	 * @return the float value that was inputed in the console.
+	 */
+	public static float readFlaot() {
+		Float result = null;
+		result = inputNextFlaot();
+		if (result == null) {
+			result = readFlaot();
+		}
+		return result;
+	}
+
+	/**
+	 * Reads console input and tries to cast it to float type number.
+	 * 
+	 * @return the inputed number if the input is incorrect returns null object.
+	 */
+	private static Float inputNextFlaot() {
+		Float result = null;
+		try {
+			result = Float.parseFloat(scanner.next());
+		} catch (Exception e) {
+			printConsoleMessage("Input correct value");
+		}
+		return result;
+	}
+
+	/**
+	 * Reads the next inputed String that contains only leathers.
+	 * 
+	 * @return the inputed string
+	 */
+	public static String readString() {
+		scanner.reset();
+		String result = scanner.next();
+		if (!validateStringWithRegex(REGEX_VALIDATOR_LETHERS_ONLY, result)) {
+			printConsoleMessage("Input correct data.");
+			result = readString();
+		}
+		return result;
+	}
 }

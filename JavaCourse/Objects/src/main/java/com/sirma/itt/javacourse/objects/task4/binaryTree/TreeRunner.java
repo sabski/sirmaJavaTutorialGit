@@ -18,15 +18,15 @@ public class TreeRunner {
 		Node node = new Node();
 		tree.setRootNode(node);
 		System.out.println("Insert the number of tree elements");
-		int lenght = Utils.readLineNumber();
+		int lenght = Utils.readInt();
 		for (int i = 0; i < lenght; i++) {
 			System.out.println("Insert tree element");
-			int temp = Utils.readLineNumber();
+			int temp = Utils.readInt();
 			tree.getRootNode().insertIntoNode(temp);
 		}
 		tree.printSortedElements();
 		System.out.println("Search the tree for ellement");
-		tree.searchTree(Utils.readLineNumber());
+		tree.searchTree(Utils.readInt());
 	}
 
 }

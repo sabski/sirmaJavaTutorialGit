@@ -17,10 +17,10 @@ public class RunRandomStringGenerator {
 		// TODO Auto-generated method stub
 		RandomStringGenerator randGen = new RandomStringGenerator();
 		Utils.printConsoleMessage("Input the number of random string you want to generate.");
-		int count = Utils.readLineNumber();
+		int count = Utils.readInt();
 		for (int i = 0; i < count; i++) {
 			Utils.printConsoleMessage("Input String lenght :");
-			int lenght = Utils.readLineNumber();
+			int lenght = Utils.readInt();
 			Utils.printConsoleMessage(randGen.generateRandomString(lenght));
 		}
 

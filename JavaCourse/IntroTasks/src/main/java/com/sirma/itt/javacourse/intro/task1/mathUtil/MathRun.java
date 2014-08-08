@@ -25,7 +25,7 @@ public class MathRun {
 		while (count != 2) {
 			Utils.printConsoleMessage("Please input number value for the " + (count + 1)
 					+ " number");
-			numbers[count] = Utils.readLineNumber();
+			numbers[count] = Utils.readInt();
 			count++;
 		}
 

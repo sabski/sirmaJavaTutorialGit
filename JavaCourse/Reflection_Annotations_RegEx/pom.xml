@@ -12,18 +12,16 @@
 		<dependency>
 			<groupId>JavaCourse</groupId>
 			<artifactId>Common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.stefanbirkner</groupId>
 			<artifactId>system-rules</artifactId>
-			<version>1.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>JavaCourse</groupId>
 			<artifactId>Objects</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
-		
 	</dependencies>
 </project>

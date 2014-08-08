@@ -3,10 +3,12 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task7.greadyRegex;
 import com.sirma.itt.javacourse.Utils;
 
 /**
+ * Class for running gredy regex matc
  * @author simeon
  */
 public class RunGreedyRegexMatcher {
 
+	
 	/**
 	 * @param args
 	 */

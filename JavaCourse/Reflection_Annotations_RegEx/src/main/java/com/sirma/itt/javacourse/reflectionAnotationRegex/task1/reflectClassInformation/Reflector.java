@@ -25,6 +25,11 @@ public class Reflector {
 	public void reflect(Object object) throws IllegalArgumentException, IllegalAccessException,
 			SecurityException, NoSuchFieldException {
 
+		if (object == null) {
+			Utils.printConsoleMessage("Object is null");
+			return;
+		}
+
 		Class<?> reflecthionClass = object.getClass();
 		Utils.printConsoleMessage(reflecthionClass.getName());
 

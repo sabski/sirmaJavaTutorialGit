@@ -15,7 +15,7 @@ import com.sirma.itt.javacourse.objects.task4.homogeneousTree.TreeElement;
 public class HomogeneousTreeTester {
 
 	private HomogeneousTree<String> tree;
-
+	private TreeElement<String> rootElement = new TreeElement<String>();
 	/**
 	 * @throws java.lang.Exception
 	 *             something bad happens
@@ -23,7 +23,6 @@ public class HomogeneousTreeTester {
 	@Before
 	public void setUp() throws Exception {
 		tree = new HomogeneousTree<String>();
-		TreeElement<String> rootElement = new TreeElement<String>();
 		rootElement.setElement("Hello worlds");
 		tree.setRootElement(rootElement);
 	}

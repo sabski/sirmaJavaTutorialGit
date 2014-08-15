@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * @author simeon
  */
-public class CompareAnnotaion implements Comparator<ParentClass> {
+public class ComparatorAnnotaion implements Comparator<ParentClass> {
 
 	@Override
 	public int compare(ParentClass o1, ParentClass o2) {

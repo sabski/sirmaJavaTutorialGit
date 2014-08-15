@@ -22,7 +22,7 @@ public class Utils {
 	 * 
 	 * @return the scanner
 	 */
-	public Scanner getScanner() {
+	public static Scanner getScanner() {
 		return scanner;
 	}
 
@@ -32,7 +32,7 @@ public class Utils {
 	 * @param scanner
 	 *            the scanner to set
 	 */
-	public void setScanner(Scanner scanner) {
+	public static void setScanner(Scanner scanner) {
 		Utils.scanner = scanner;
 	}
 
@@ -117,7 +117,7 @@ public class Utils {
 	private static Integer inputNumber() {
 		Integer temp = null;
 		try {
-			temp = Integer.parseInt(scanner.nextLine());
+			temp = Integer.parseInt(scanner.nextLine().replace("\n", ""));
 		} catch (Exception e) {
 			printConsoleMessage("Please input number value");
 		}
@@ -184,6 +184,7 @@ public class Utils {
 	private static Character inputChar() {
 		Character result = null;
 		String tmp = readLine();
+		printConsoleMessage(tmp.length() + "");
 		if (tmp.length() > 1) {
 			return result;
 		}

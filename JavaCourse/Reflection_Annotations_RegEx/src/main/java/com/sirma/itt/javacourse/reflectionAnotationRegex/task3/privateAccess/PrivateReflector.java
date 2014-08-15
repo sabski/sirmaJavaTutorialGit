@@ -15,7 +15,7 @@ public class PrivateReflector {
 
 	MyPrivateClass myPrivateVariable = new MyPrivateClass();
 
-	public void violator(Object... params) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
+	public void breakPrivateFields(Object... params) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
 
 		Class<?> cl = myPrivateVariable.getClass();
 		

@@ -18,11 +18,11 @@ public class RunReflectPrivateMethods {
 	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
-		PrivateReflector violator = new PrivateReflector();
+		PrivateReflector reflector = new PrivateReflector();
 		try {
 			Utils.printConsoleMessage("Input parameter value ");
 			String s = Utils.readValidatedLine(Utils.REGEX_VALIDATOR_LETHERS_ONLY);
-			violator.violator(s);
+			reflector.breakPrivateFields(s);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

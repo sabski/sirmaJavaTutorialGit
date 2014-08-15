@@ -75,4 +75,15 @@ public class TreeTester {
 	public void testSearchTree() {
 		assertTrue(tree.searchTree(15));
 	}
+
+	@Test
+	public void testSearchWithSmallNember() {
+		assertTrue(!tree.searchTree(-1));
+	}
+	@Test
+	public void testSearchWithBigNumber(){
+		assertTrue(!tree.searchTree(999));
+	}
+	
+	
 }

@@ -16,7 +16,7 @@ public class ClassSorter {
 		for (int i = 0; i < list.size(); i++) {
 			p[i] = list.get(i);
 		}
-		Arrays.sort(p, new CompareAnnotaion());
+		Arrays.sort(p, new ComparatorAnnotaion());
 		List<Object> result = new ArrayList<Object>();
 		result.addAll(Arrays.asList(p));
 		return result;

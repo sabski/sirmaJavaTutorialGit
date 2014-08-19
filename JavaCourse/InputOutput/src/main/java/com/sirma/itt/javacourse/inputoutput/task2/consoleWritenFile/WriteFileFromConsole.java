@@ -19,7 +19,7 @@ public class WriteFileFromConsole {
 	 * Writes a text to a file that the user specifies in the console input.
 	 */
 	public void writeFile() {
-		Utils.printConsoleMessage("Input file name.");
+		Utils.printConsoleMessage("Input file name : ");
 		String name = Utils.readLine();
 
 		File file;
@@ -41,10 +41,7 @@ public class WriteFileFromConsole {
 			fileWriter = new FileWriter(file);
 			bufferedWriter = new BufferedWriter(fileWriter);
 			Utils.printConsoleMessage("Start input for file : ");
-			String line = readInputForFile();
-
-			bufferedWriter.write(line);
-
+			readInputForFile(bufferedWriter);
 		} catch (IOException e) {
 			System.err.println("Error writing the file : ");
 			e.printStackTrace();
@@ -66,15 +63,14 @@ public class WriteFileFromConsole {
 	 * String.
 	 * 
 	 * @return the console information inputed by the user.
+	 * @throws IOException
 	 */
-	private String readInputForFile() {
-		StringBuilder input = new StringBuilder();
+	private void readInputForFile(BufferedWriter bufferedWriter) throws IOException {
 		String line = null;
 		do {
 			line = Utils.readLine();
-			input.append(line + "\n");
+			bufferedWriter.write(line + "\n");
 		} while (!line.equals("."));
 
-		return input.toString();
 	}
 }

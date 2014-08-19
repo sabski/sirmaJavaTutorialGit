@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.inputoutput.task5.DirectoryBrowser;
+package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 
 import java.io.File;
 
@@ -20,7 +20,7 @@ public class DirectoryBrowser {
 	public void listContent(String path) {
 		File file = new File(path);
 		if (!file.isDirectory()) {
-			Utils.printConsoleMessage(" The path you entered leeds to a file " + path);
+			Utils.printConsoleMessage("The path you entered leeds to a file " + path);
 			return;
 		}
 		File[] list = file.listFiles();

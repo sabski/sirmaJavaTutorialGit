@@ -10,6 +10,8 @@ import com.sirma.itt.javacourse.Utils;
 public class RunFileReverser {
 
 	/**
+	 * Main method for FileReverser.
+	 * 
 	 * @param args
 	 *            argument for the main method.
 	 */

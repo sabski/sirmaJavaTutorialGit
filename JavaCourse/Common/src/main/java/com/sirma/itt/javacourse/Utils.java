@@ -1,5 +1,10 @@
 package com.sirma.itt.javacourse;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -232,11 +237,53 @@ public class Utils {
 	 */
 	public static String readString() {
 		scanner.reset();
-		String result = scanner.next();
+		String result = scanner.nextLine();
 		if (!validateStringWithRegex(REGEX_VALIDATOR_LETHERS_ONLY, result)) {
 			printConsoleMessage("Input correct data.");
 			result = readString();
 		}
 		return result;
+	}
+
+	/**
+	 * Reads the contents of a specific file.
+	 * 
+	 * @param fileName
+	 *            the file to be read.
+	 * @return the contents of the file as a String Object.
+	 * @throws FileNotFoundException
+	 */
+	public static String readFile(String fileName) throws FileNotFoundException {
+		String content = null;
+		StringBuffer stringBuffer = null;
+		File file = new File(fileName);
+		if (!file.exists() || file.isDirectory()) {
+			Utils.printConsoleMessage("Invalid file name");
+			throw new FileNotFoundException();
+		}
+		BufferedReader reader = null;
+		try {
+
+			reader = new BufferedReader(new FileReader(file));
+			String line = null;
+			stringBuffer = new StringBuffer();
+			while ((line = reader.readLine()) != null) {
+				Utils.printConsoleMessage(line);
+				stringBuffer.append(line + "\n");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return stringBuffer.toString();
 	}
 }

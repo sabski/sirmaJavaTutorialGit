@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.rmi.CORBA.Util;
+
 import com.sirma.itt.javacourse.Utils;
 
 /**
@@ -27,9 +29,14 @@ public class RunTransferObject {
 			Utils.printConsoleMessage("Input file from which to read data.");
 			InputStream input = new FileInputStream(Utils.readLine());
 			Utils.printConsoleMessage("Input file name to write data.");
-			OutputStream output = new FileOutputStream("test2.txt");
+			OutputStream output = new FileOutputStream(Utils.readLine());
 			TransferObject transfer = new TransferObject(input, output);
-			Utils.printConsoleMessage("Number of transfered bytes = " + transfer.transfer(15, 0));
+			Utils.printConsoleMessage("Input the number of bytes to transfer from the files");
+			int numberOfBites = Utils.readInt();
+			Utils.printConsoleMessage("Input offset for the stream.");
+			int offset = Utils.readInt();
+			Utils.printConsoleMessage("Number of transfered bytes = "
+					+ transfer.transfer(numberOfBites, offset));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

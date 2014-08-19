@@ -44,7 +44,7 @@ public class FileReverser {
 
 			}
 			writer = new BufferedWriter(new FileWriter(file));
-			writer.write(stringBuffer.reverse().toString());
+			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -53,7 +53,6 @@ public class FileReverser {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -61,7 +60,6 @@ public class FileReverser {
 				try {
 					writer.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

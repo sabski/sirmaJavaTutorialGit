@@ -89,8 +89,12 @@ public class UserDefinedObject implements Serializable {
 	 * @throws IOException
 	 *             throw exception if file is not accessible.
 	 */
-	public void saveObject(String path, UserDefinedObject o) {
+	public boolean saveObject(String path, UserDefinedObject o) {
 
+		if (o == null){
+			return false;
+		}
+		
 		File file = new File(path);
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -111,7 +115,6 @@ public class UserDefinedObject implements Serializable {
 			Utils.printConsoleMessage("File not found");
 			e.printStackTrace();
 		} catch (IOException e) {
-
 			Utils.printConsoleMessage("Input output error");
 			e.printStackTrace();
 		} finally {
@@ -133,6 +136,7 @@ public class UserDefinedObject implements Serializable {
 			}
 
 		}
+		return true;
 	}
 
 	/**

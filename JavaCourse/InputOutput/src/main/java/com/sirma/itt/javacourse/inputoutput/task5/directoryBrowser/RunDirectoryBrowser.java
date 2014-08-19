@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.inputoutput.task5.DirectoryBrowser;
+package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 
 import com.sirma.itt.javacourse.Utils;
 
@@ -18,7 +18,7 @@ public class RunDirectoryBrowser {
 	public static void main(String[] args) {
 
 		DirectoryBrowser browser = new DirectoryBrowser();
-		Utils.printConsoleMessage("Inout directory path");
+		Utils.printConsoleMessage("Input directory path");
 		browser.listContent(Utils.readLine());
 	}
 

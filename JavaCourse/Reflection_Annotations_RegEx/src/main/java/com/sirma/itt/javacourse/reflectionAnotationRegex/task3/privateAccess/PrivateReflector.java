@@ -15,31 +15,43 @@ public class PrivateReflector {
 
 	MyPrivateClass myPrivateVariable = new MyPrivateClass();
 
-	public void breakPrivateFields(Object... params) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
+	/**
+	 * Method for displaying the private fields of a specific object.
+	 * 
+	 * @param params
+	 *            the object which private fields should be displayed.
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws SecurityException
+	 * @throws NoSuchFieldException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 */
+	public void breakPrivateFields(Object... params) throws IllegalArgumentException,
+			IllegalAccessException, SecurityException, NoSuchFieldException, NoSuchMethodException,
+			InvocationTargetException {
 
 		Class<?> cl = myPrivateVariable.getClass();
-		
-		for(Field f : cl.getDeclaredFields()){
+
+		for (Field f : cl.getDeclaredFields()) {
 			Field field = myPrivateVariable.getClass().getDeclaredField(f.getName().toString());
 			field.setAccessible(true);
 			Object obj = field.get(myPrivateVariable);
 			Utils.printConsoleMessage(obj.toString());
 		}
-		
-		
-		for (Method m : cl.getDeclaredMethods()){
+
+		for (Method m : cl.getDeclaredMethods()) {
 			Utils.printConsoleMessage(m.getName());
 			int paramCount = m.getModifiers();
 			Utils.printConsoleMessage("Parameter count = " + paramCount);
-		    Class<?>[] parameterTypes =	m.getParameterTypes();
-			Method method = myPrivateVariable.getClass().getDeclaredMethod(m.getName(),parameterTypes);
+			Class<?>[] parameterTypes = m.getParameterTypes();
+			Method method = myPrivateVariable.getClass().getDeclaredMethod(m.getName(),
+					parameterTypes);
 			method.setAccessible(true);
 			String s = (String) method.invoke(myPrivateVariable, params);
 			Utils.printConsoleMessage(s);
-			
+
 		}
 	}
-
-
 
 }

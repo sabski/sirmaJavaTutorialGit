@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.objects.task4.binaryTree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A node for that represents a tree element in a binary tree.
@@ -116,8 +117,8 @@ public class Node {
 	 * 
 	 * @return arrayList with node child values and the values it holds.
 	 */
-	public ArrayList<Integer> returnNodeElements() {
-		ArrayList<Integer> result = new ArrayList<Integer>();
+	public List<Integer> returnNodeElements() {
+		List<Integer> result = new ArrayList<Integer>();
 		if (left != null) {
 			result.addAll(left.returnNodeElements());
 		}

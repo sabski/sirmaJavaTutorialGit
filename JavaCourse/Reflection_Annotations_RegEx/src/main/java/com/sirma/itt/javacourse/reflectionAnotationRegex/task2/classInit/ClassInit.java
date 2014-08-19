@@ -11,30 +11,27 @@ import com.sirma.itt.javacourse.Utils;
  */
 public class ClassInit {
 
+	/**
+	 * @param path
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 */
+	public Object getClassHierhahyAndInterfaces(String path) throws InstantiationException,
+			IllegalAccessException, ClassNotFoundException {
+		Object obj = null;
 
-	public void getClassHierhahyAndInterfaces(String path){
-
-		try {
-			Class<?> init = Class.forName(path);
-			Object obj = init.newInstance();
-			for (Class<?> c : init.getDeclaredClasses()){
-				Utils.printConsoleMessage(c.getName());
-			}
-			
-			for(Class<?> c : init.getInterfaces()){
-				Utils.printConsoleMessage(c.getName());
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Class<?> init = Class.forName(path);
+		obj = init.newInstance();
+		for (Class<?> c : init.getDeclaredClasses()) {
+			Utils.printConsoleMessage(c.getName());
 		}
 
-		
+		for (Class<?> c : init.getInterfaces()) {
+			Utils.printConsoleMessage(c.getName());
+		}
+
+		return obj;
 	}
 }

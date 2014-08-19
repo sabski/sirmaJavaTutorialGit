@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.objects.task4.binaryTree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sirma.itt.javacourse.intro.task4.arraySorting.QuickSortImpl;
 
@@ -37,8 +38,8 @@ public class BinaryTree {
 	 * 
 	 * @return the sorted array
 	 */
-	public ArrayList<Integer> printSortedElements() {
-		ArrayList<Integer> result = rootNode.returnNodeElements();
+	public List<Integer> printSortedElements() {
+		List<Integer> result = rootNode.returnNodeElements();
 		// System.out.println("Array before sorting" + result.toString());
 		// result = QuickSortImpl.quickSortArray(result);
 		System.out.println("Sorted Array " + result);

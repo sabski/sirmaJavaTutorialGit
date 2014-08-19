@@ -11,6 +11,13 @@ public class MyPrivateClass {
 	private String privateString = "Private String value";
 	private float myPieceOfPie = 3.14f;
 
+	/**
+	 * Private method that accept a string and returns it.
+	 * 
+	 * @param message
+	 *            the message to be returned.
+	 * @return the message the user entered.
+	 */
 	private String getMessage(String message) {
 		
 		return message;

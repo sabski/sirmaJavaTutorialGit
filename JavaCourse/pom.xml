@@ -51,5 +51,6 @@
 		<module>Exceptions</module>
 		<module>Reflection_Annotations_RegEx</module>
 		<module>InputOutput</module>
+		<module>Collections</module>
 	</modules>
 </project>

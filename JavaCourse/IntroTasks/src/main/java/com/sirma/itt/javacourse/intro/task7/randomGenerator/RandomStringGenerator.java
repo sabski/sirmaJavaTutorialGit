@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.intro.task7.randomGenerator;
 
+import com.sirma.itt.javacourse.Utils;
+
 /**
  * Generates random String with given length using characters from a-z , A-Z and 0-9.
  * 
@@ -18,19 +20,19 @@ public class RandomStringGenerator {
 
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < length; i++) {
-			int key = generateRandomNumberWithRange(1, 3);
+			int key = Utils.generateRandomNumberWithRange(1, 3);
 			int value;
 			switch (key) {
 				case 1:
-					value = generateRandomNumberWithRange(48, 57);
+					value = Utils.generateRandomNumberWithRange(48, 57);
 					builder.append(getCharecterFromInt(value));
 					break;
 				case 2:
-					value = generateRandomNumberWithRange(97, 122);
+					value = Utils.generateRandomNumberWithRange(97, 122);
 					builder.append(getCharecterFromInt(value));
 					break;
 				case 3:
-					value = generateRandomNumberWithRange(65, 90);
+					value = Utils.generateRandomNumberWithRange(65, 90);
 					builder.append(getCharecterFromInt(value));
 					break;
 				default:
@@ -38,20 +40,6 @@ public class RandomStringGenerator {
 			}
 		}
 		return builder.toString();
-	}
-
-	/**
-	 * Generates a random number within a specified range.
-	 * 
-	 * @param min
-	 *            the lowest value of the range
-	 * @param max
-	 *            the highest value of the range
-	 * @return the generated random value
-	 */
-	private int generateRandomNumberWithRange(int min, int max) {
-
-		return min + (int) (Math.random() * ((max - min) + 1));
 	}
 
 	/**

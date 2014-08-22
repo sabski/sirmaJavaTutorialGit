@@ -12,15 +12,19 @@ public class RunLRUCache {
 	 */
 	public static void main(String[] args) {
 		LRUCache cache = new LRUCache(150);
-
-		for (int i = 0; i < 122000; i++) {
-			Integer tmp = Utils.generateRandomNumberWithRange(1, 10000);
+		LRUMapCache mapCache = new LRUMapCache(50);
+		for (int i = 0; i < 100220; i++) {
+			Integer tmp = Utils.generateRandomNumberWithRange(1, 500);
 			Utils.printConsoleMessage("Random generated number " + tmp);
-			cache.addCacheEllement(tmp);
+			// cache.addCacheEllement(tmp);
+			mapCache.addCacheEllement(tmp, tmp);
 		}
 
-		Utils.printConsoleMessage(cache.getAllEllements().toString());
-		Utils.printConsoleMessage(cache.getAllEllements().size() + "");
+		// Utils.printConsoleMessage(cache.getAllEllements().toString());
+		// Utils.printConsoleMessage(cache.getAllEllements().size() + "");
+
+		Utils.printConsoleMessage(mapCache.getAllEllements().toString());
+		Utils.printConsoleMessage(mapCache.getAllEllements().size() + "");
 	}
 
 }

@@ -15,7 +15,7 @@ import com.sirma.itt.javacourse.Utils;
  */
 public class LRUCache {
 
-	private List<Object> lruCstack;
+	private List<Object> lruStack;
 	private int pointer;
 	private int hitCount;
 	private List<Integer> history;
@@ -46,15 +46,15 @@ public class LRUCache {
 	public LRUCache(int maxObjects) {
 		this.maxObjects = maxObjects;
 		pointer = 0;
-		lruCstack = new ArrayList<Object>();
+		lruStack = new ArrayList<Object>();
 		hitCount = 0;
 		history = new ArrayList<Integer>();
 	}
 
 	public boolean addCacheEllement(Object o) {
 
-		if (lruCstack.contains(o)) {
-			Integer tmp = lruCstack.indexOf(o);
+		if (lruStack.contains(o)) {
+			Integer tmp = lruStack.indexOf(o);
 			history.remove(tmp);
 			history.add(0, tmp);
 			return false;
@@ -65,11 +65,11 @@ public class LRUCache {
 				pointer++;
 			} else {
 				pointer = getLastIndex();
-				lruCstack.remove(pointer);
+				lruStack.remove(pointer);
 				history.remove(history.size() - 1);
 			}
 			history.add(0, pointer);
-			lruCstack.add(pointer, o);
+			lruStack.add(pointer, o);
 			return true;
 		}
 	}
@@ -85,6 +85,6 @@ public class LRUCache {
 	}
 
 	public Collection<Object> getAllEllements() {
-		return lruCstack;
+		return lruStack;
 	}
 }

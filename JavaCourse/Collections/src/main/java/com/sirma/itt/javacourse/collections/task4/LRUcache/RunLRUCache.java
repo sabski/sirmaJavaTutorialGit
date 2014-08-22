@@ -12,7 +12,8 @@ public class RunLRUCache {
 	 */
 	public static void main(String[] args) {
 		LRUCache cache = new LRUCache(150);
-		LRUMapCache mapCache = new LRUMapCache(50);
+		LRUMapCache<Integer, Integer> mapCache = new LRUMapCache<Integer, Integer>(100);
+
 		for (int i = 0; i < 100220; i++) {
 			Integer tmp = Utils.generateRandomNumberWithRange(1, 500);
 			Utils.printConsoleMessage("Random generated number " + tmp);

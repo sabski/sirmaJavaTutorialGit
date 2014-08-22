@@ -7,19 +7,19 @@ import java.util.Map;
 import com.sirma.itt.javacourse.Utils;
 
 /**
+ * @param <V>
+ * @param <K>
  * @author simeon
  */
-public class LRUMapCache {
+public class LRUMapCache<V, K> {
 
-	private Map<Integer, Object> cacheMap;
-	private Map<Integer, Integer> hitMap;
+	private Map<K, V> cacheMap;
+	private Map<K, Integer> hitMap;
 	private int maxObjects;
 
-	public boolean addCacheEllement(Integer key, Object o) {
+	public boolean addCacheEllement(K key, V o) {
 		if (cacheMap.containsKey(key)) {
-			int i = hitMap.get(key);
-			i++;
-			hitMap.put(key, i);
+			ellementHit(key);
 			Utils.printConsoleMessage("Hit");
 			return false;
 		} else if (maxObjects > cacheMap.size()) {
@@ -29,8 +29,8 @@ public class LRUMapCache {
 		} else {
 			Utils.printConsoleMessage("Miss");
 			int min = Integer.MAX_VALUE;
-			int searchedKey = 0;
-			for (int i : hitMap.keySet()) {
+			K searchedKey = null;
+			for (K i : hitMap.keySet()) {
 				int val = hitMap.get(i);
 				if (min > val) {
 					searchedKey = i;
@@ -45,8 +45,19 @@ public class LRUMapCache {
 		}
 	}
 
-	public Collection<Object> getAllEllements() {
+	private void ellementHit(K key) {
+		int i = hitMap.get(key);
+		i++;
+		hitMap.put(key, i);
+	}
+
+	public Collection<V> getAllEllements() {
 		return cacheMap.values();
+	}
+
+	public V getEllementByKey(K key) {
+		ellementHit(key);
+		return cacheMap.get(key);
 	}
 
 	/**
@@ -54,7 +65,8 @@ public class LRUMapCache {
 	 */
 	public LRUMapCache(int maxObjects) {
 		this.maxObjects = maxObjects;
-		cacheMap = new HashMap<Integer, Object>(maxObjects);
-		hitMap = new HashMap<Integer, Integer>(maxObjects);
+		cacheMap = new HashMap<K, V>(maxObjects);
+		hitMap = new HashMap<K, Integer>();
 	}
+
 }

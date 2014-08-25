@@ -33,7 +33,7 @@ public class RunBook {
 		int pageCount = Utils.readInt();
 		book = new Book(list, pageCount);
 		while (true) {
-			Utils.printConsoleMessage("Menu operathions : \n1-nextPage\n2-previousPage \n3-firstPage\n4-lastPage\n5-hasNext\n6-hasPrevious\n0-Exit");
+			Utils.printConsoleMessage("Menu operations : \n1-nextPage\n2-previousPage \n3-firstPage\n4-lastPage\n5-hasNext\n6-hasPrevious\n0-Exit");
 			menu(Utils.readInt());
 		}
 	}

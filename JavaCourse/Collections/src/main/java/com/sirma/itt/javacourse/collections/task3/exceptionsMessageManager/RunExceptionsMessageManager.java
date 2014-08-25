@@ -18,10 +18,14 @@ public class RunExceptionsMessageManager {
 	public static void main(String[] args) {
 		ExceptionsMessageManager manager = new ExceptionsMessageManager();
 		try {
-			Utils.printConsoleMessage(manager.addExceptionMessageUsingCode("first"));
-			Utils.printConsoleMessage(manager.addExceptionMessageUsingCode("second"));
-			Utils.printConsoleMessage(manager.addExceptionMessageUsingCode("third"));
-			Utils.printConsoleMessage(manager.addExceptionMessageUsingCode("second"));
+			Utils.printConsoleMessage(manager
+					.addExceptionMessageUsingCode(ExceptionsMessageManager.FIRST));
+			Utils.printConsoleMessage(manager
+					.addExceptionMessageUsingCode(ExceptionsMessageManager.SECOND));
+			Utils.printConsoleMessage(manager
+					.addExceptionMessageUsingCode(ExceptionsMessageManager.THIRD));
+			Utils.printConsoleMessage(manager
+					.addExceptionMessageUsingCode(ExceptionsMessageManager.SECOND));
 			Utils.printConsoleMessage(manager.getMesages(manager.getMesage()).toString());
 			Utils.printConsoleMessage(manager
 					.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER));

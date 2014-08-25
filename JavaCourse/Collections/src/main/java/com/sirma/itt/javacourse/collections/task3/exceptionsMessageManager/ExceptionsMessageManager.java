@@ -14,13 +14,41 @@ import javax.naming.directory.InvalidAttributesException;
  */
 public class ExceptionsMessageManager {
 
+	/**
+	 * Constant that contain a key value in the manger.
+	 */
+	public static final String THIRD = "third";
+
+	/**
+	 * Constant that contain a key value in the manger.
+	 */
+	public static final String SECOND = "second";
+
+	/**
+	 * Constant that contain a key value in the manger.
+	 */
+	public static final String FIRST = "first";
+
+	/**
+	 * Constant that contain a value in the manger.
+	 */
 	public static final String INVALID_POSTAL_CODE = "Невалиден пощенски код";
+
+	/**
+	 * Constant that contain a value in the manger.
+	 */
 
 	public static final String INVALID_EGN = "Грешно ЕГН";
 
+	/**
+	 * Constant that contain a value in the manger.
+	 */
 	public static final String INVALID_CARD_NUMBER = "Невалиден номер на дебитната карта";
 
-	private static final String SEPARATOR = System.getProperty("line.separator").toString();
+	/**
+	 * Constant that contain a value in the manger.
+	 */
+	public static final String SEPARATOR = System.getProperty("line.separator").toString();
 
 	private Map<String, String> exceptions;
 
@@ -47,15 +75,20 @@ public class ExceptionsMessageManager {
 	 */
 	public ExceptionsMessageManager() {
 		exceptions = new HashMap<String, String>();
-		exceptions.put("first", INVALID_CARD_NUMBER);
-		exceptions.put("second", INVALID_EGN);
-		exceptions.put("third", INVALID_POSTAL_CODE);
+		exceptions.put(FIRST, INVALID_CARD_NUMBER);
+		exceptions.put(SECOND, INVALID_EGN);
+		exceptions.put(THIRD, INVALID_POSTAL_CODE);
 	}
 
 	/**
+	 * Add an exception message to the current list of messages. This method should be used the
+	 * following way : myManager.addExceptionMessageUsingCode(ExceptionsMessageManager.THIRD)).
+	 * 
 	 * @param messageCode
-	 * @return
+	 *            the code of the message.
+	 * @return the full message String.
 	 * @throws InvalidAttributesException
+	 *             if a invalid code was given.
 	 */
 	public String addExceptionMessageUsingCode(String messageCode)
 			throws InvalidAttributesException {
@@ -79,10 +112,18 @@ public class ExceptionsMessageManager {
 	 * Transforms the message into a list with a line separator as divider.
 	 * 
 	 * @return the full list of messages.
+	 * @throws InvalidAttributesException
+	 *             if the String value that was given to the method doesn't contain none of the
+	 *             managed values.
 	 */
-	public static Collection<String> getMesages(String messagesCombination) {
+	public static Collection<String> getMesages(String messagesCombination)
+			throws InvalidAttributesException {
+		if (!messagesCombination.contains(INVALID_POSTAL_CODE)
+				&& !messagesCombination.contains(INVALID_CARD_NUMBER)
+				&& !messagesCombination.contains(INVALID_EGN)) {
+			throw new InvalidAttributesException();
+		}
 		Collection<String> result = Arrays.asList(messagesCombination.split(SEPARATOR));
-
 		return result;
 	}
 

@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task7.greadyRegex;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running gredy regex matc
@@ -14,8 +14,8 @@ public class RunGreedyRegexMatcher {
 	 */
 	public static void main(String[] args) {
 
-		Utils.printConsoleMessage(Utils.editStringWithRegex(Utils.readLine(),
-				Utils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
+		IOUtils.printConsoleMessage(IOUtils.editStringWithRegex(IOUtils.readLine(),
+				IOUtils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
 	}
 
 }

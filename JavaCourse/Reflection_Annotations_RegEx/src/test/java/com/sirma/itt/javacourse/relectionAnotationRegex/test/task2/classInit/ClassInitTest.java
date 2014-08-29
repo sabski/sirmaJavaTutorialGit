@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.rules.ExpectedException;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit.ClassInit;
 
 public class ClassInitTest {

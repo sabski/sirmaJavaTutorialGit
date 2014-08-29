@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInformation;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * A class that contains various fields and methods.
@@ -22,7 +22,7 @@ public class ReflectionClass {
 	 * Prints some of the elements..
 	 */
 	public void print() {
-		Utils.printConsoleMessage(string + pie + lie);
+		IOUtils.printConsoleMessage(string + pie + lie);
 
 	}
 

@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task6.stringCalculator;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for calculating big numbers using Strings.
@@ -24,7 +24,7 @@ public class StringCalculator {
 		int lenght;
 		boolean isOverTen = false;
 
-		if (Utils.isNull(firstNumber) || Utils.isNull(secondNumber)) {
+		if (IOUtils.isNull(firstNumber) || IOUtils.isNull(secondNumber)) {
 			return result.toString();
 		}
 

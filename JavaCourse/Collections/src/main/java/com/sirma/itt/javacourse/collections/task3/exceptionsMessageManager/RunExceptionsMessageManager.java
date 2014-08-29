@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager;
 
 import javax.naming.directory.InvalidAttributesException;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that runs a sample of ExceptionsMessageManager.
@@ -18,22 +18,22 @@ public class RunExceptionsMessageManager {
 	public static void main(String[] args) {
 		ExceptionsMessageManager manager = new ExceptionsMessageManager();
 		try {
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessageUsingCode(ExceptionsMessageManager.FIRST));
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessageUsingCode(ExceptionsMessageManager.SECOND));
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessageUsingCode(ExceptionsMessageManager.THIRD));
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessageUsingCode(ExceptionsMessageManager.SECOND));
-			Utils.printConsoleMessage(manager.getMesages(manager.getMesage()).toString());
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager.getMesages(manager.getMesage()).toString());
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER));
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessage(ExceptionsMessageManager.INVALID_EGN));
-			Utils.printConsoleMessage(manager
+			IOUtils.printConsoleMessage(manager
 					.addExceptionMessage(ExceptionsMessageManager.INVALID_POSTAL_CODE));
-			Utils.printConsoleMessage(manager.getMesages(manager.getMesage()).toString());
+			IOUtils.printConsoleMessage(manager.getMesages(manager.getMesage()).toString());
 		} catch (InvalidAttributesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

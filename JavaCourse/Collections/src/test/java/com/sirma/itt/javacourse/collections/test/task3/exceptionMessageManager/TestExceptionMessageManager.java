@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager.ExceptionsMessageManager;
 
 /**

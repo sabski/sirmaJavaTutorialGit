@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.inputoutput.task6.serialization;
 
 import java.io.IOException;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running serialization example we create a new UserDefinedObject and save it to a file
@@ -25,19 +25,19 @@ public class RunSerializathionObjects {
 		String path = null;
 		int myNumber;
 		String say;
-		Utils.printConsoleMessage("Input number and String to say something");
-		Utils.printConsoleMessage("Input my number ");
-		myNumber = Utils.readInt();
-		Utils.printConsoleMessage("Input say something for the object");
-		say = Utils.readLine();
+		IOUtils.printConsoleMessage("Input number and String to say something");
+		IOUtils.printConsoleMessage("Input my number ");
+		myNumber = IOUtils.readInt();
+		IOUtils.printConsoleMessage("Input say something for the object");
+		say = IOUtils.readLine();
 		UserDefinedObject object = new UserDefinedObject(myNumber, say);
-		Utils.printConsoleMessage("Input path to file to save the object");
-		path = Utils.readLine();
+		IOUtils.printConsoleMessage("Input path to file to save the object");
+		path = IOUtils.readLine();
 		object.saveObject(path, object);
 		UserDefinedObject object2 = null;
 		try {
 			object2 = object.getObject(path);
-			Utils.printConsoleMessage(object2.getSaySomething());
+			IOUtils.printConsoleMessage(object2.getSaySomething());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

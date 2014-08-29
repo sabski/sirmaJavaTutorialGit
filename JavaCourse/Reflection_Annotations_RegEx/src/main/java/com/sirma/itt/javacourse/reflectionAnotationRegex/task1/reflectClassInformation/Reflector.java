@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInfo
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that reflects a other class methods and fields.
@@ -15,23 +15,27 @@ public class Reflector {
 	/**
 	 * Prints the Fields Methods of a given class.
 	 * 
-	 * @param reflecthionClass
+	 * @param object
 	 *            the class that is going to be reflected.
 	 * @throws IllegalAccessException
+	 *             exception that may be triggered if there is illegal access to some parameters.
 	 * @throws IllegalArgumentException
+	 *             IDK
 	 * @throws NoSuchFieldException
+	 *             if we try to access a filed which is not there.
 	 * @throws SecurityException
+	 *             IDK
 	 */
-	public void reflect(Object object) throws IllegalArgumentException, IllegalAccessException,
-			SecurityException, NoSuchFieldException {
+	public void reflect(Object object) throws SecurityException, NoSuchFieldException,
+			IllegalArgumentException, IllegalAccessException {
 
 		if (object == null) {
-			Utils.printConsoleMessage("Object is null");
+			IOUtils.printConsoleMessage("Object is null");
 			return;
 		}
 
 		Class<?> reflecthionClass = object.getClass();
-		Utils.printConsoleMessage(reflecthionClass.getName());
+		IOUtils.printConsoleMessage(reflecthionClass.getName());
 
 		for (Field f : reflecthionClass.getDeclaredFields()) {
 			StringBuilder sb = new StringBuilder();
@@ -67,11 +71,11 @@ public class Reflector {
 			}
 
 			sb.append(f.getGenericType().toString() + " " + f.getName() + " = " + c.toString());
-			Utils.printConsoleMessage(sb.toString());
+			IOUtils.printConsoleMessage(sb.toString());
 		}
 
 		for (Method m : reflecthionClass.getDeclaredMethods()) {
-			Utils.printConsoleMessage(m.toString());
+			IOUtils.printConsoleMessage(m.toString());
 		}
 
 	}

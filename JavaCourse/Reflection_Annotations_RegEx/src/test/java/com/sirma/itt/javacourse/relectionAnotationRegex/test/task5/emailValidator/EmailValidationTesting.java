@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Test class for email validation regex.
@@ -23,13 +23,13 @@ public class EmailValidationTesting {
 	 */
 	@Test
 	public void testEmailValidathion() {
-		assertTrue(Utils.validateStringWithRegex(Utils.REGEX_VALIDATOR_EMAIL_ADDRESS,
+		assertTrue(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS,
 				"simeon@mail.com"));
 	}
 
 	@Test
 	public void testEmailValidathionWithFalseMail(){
-		assertFalse(Utils.validateStringWithRegex(Utils.REGEX_VALIDATOR_EMAIL_ADDRESS, "asdasdasda.lda.cko"));
+		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS, "asdasdasda.lda.cko"));
 	}
 	
 }

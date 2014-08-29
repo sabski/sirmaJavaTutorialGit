@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that stores some data and can be serialized.
@@ -112,10 +112,10 @@ public class UserDefinedObject implements Serializable {
 			oos.writeObject(o);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			Utils.printConsoleMessage("File not found");
+			IOUtils.printConsoleMessage("File not found");
 			e.printStackTrace();
 		} catch (IOException e) {
-			Utils.printConsoleMessage("Input output error");
+			IOUtils.printConsoleMessage("Input output error");
 			e.printStackTrace();
 		} finally {
 			if (oos != null) {
@@ -168,7 +168,7 @@ public class UserDefinedObject implements Serializable {
 		} finally {
 			if (ois != null) {
 				try {
-					Utils.printConsoleMessage("Closing streams");
+					IOUtils.printConsoleMessage("Closing streams");
 					ois.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

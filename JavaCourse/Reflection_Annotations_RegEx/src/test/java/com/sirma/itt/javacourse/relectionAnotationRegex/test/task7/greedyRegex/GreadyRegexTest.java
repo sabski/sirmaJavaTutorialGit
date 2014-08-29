@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Unit test for GreadyRegex expression.
@@ -29,7 +29,7 @@ public class GreadyRegexTest {
 	@Test
 	public void test() {
 		
-		assertEquals(result, Utils.editStringWithRegex(input, Utils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
+		assertEquals(result, IOUtils.editStringWithRegex(input, IOUtils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
 	}
 
 }

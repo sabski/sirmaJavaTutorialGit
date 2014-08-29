@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task5.emailValidator;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that asks a user to enter an email adres an validate it.
@@ -17,11 +17,11 @@ public class RunEmailValidator {
 	 */
 	public static void main(String[] args) {
 
-		Utils.printConsoleMessage("Please enter youre email address.");
+		IOUtils.printConsoleMessage("Please enter youre email address.");
 
-		String email = Utils.readValidatedLine(Utils.REGEX_VALIDATOR_EMAIL_ADDRESS);
+		String email = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS);
 
-		Utils.printConsoleMessage("Thank you for entaring youre email address." + email);
+		IOUtils.printConsoleMessage("Thank you for entaring youre email address." + email);
 
 	}
 

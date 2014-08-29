@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 import javax.swing.text.html.parser.Entity;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that collects the statistics off the dice rollers.
@@ -69,7 +69,7 @@ public class StatisticsCollector {
 		for (int i = 0; i < numberOfRolls; i++) {
 			pair = roller.rollDice();
 			if (!diceMap.containsKey(pair)) {
-				Utils.printConsoleMessage("Addind pair " + pair.toString());
+				IOUtils.printConsoleMessage("Addind pair " + pair.toString());
 				diceMap.put(pair, new ArrayList<Integer>());
 			}
 			List<Integer> map = diceMap.get(pair);
@@ -93,7 +93,7 @@ public class StatisticsCollector {
 	 */
 	public void printStatistics() {
 		for (Entry<DiceCombintionPair, List<Integer>> en : diceMap.entrySet()) {
-			Utils.printConsoleMessage("The combinathion " + en.getKey().getFirstNumber() + " "
+			IOUtils.printConsoleMessage("The combinathion " + en.getKey().getFirstNumber() + " "
 					+ en.getKey().getSecondNumber() + " was rolled in " + en.getValue().toString());
 		}
 	}

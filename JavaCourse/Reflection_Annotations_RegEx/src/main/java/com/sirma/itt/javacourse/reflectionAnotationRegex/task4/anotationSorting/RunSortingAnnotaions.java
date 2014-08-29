@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * @author simeon
@@ -31,10 +31,10 @@ public class RunSortingAnnotaions {
 		list.add(new ParentClass());
 		list.add(new ParentClass());
 		ClassSorter sort = new ClassSorter();
-		Utils.printConsoleMessage("Before Sorting");
-		Utils.printConsoleMessage(list.toString());
-		Utils.printConsoleMessage("After Sorting");
-		Utils.printConsoleMessage(sort.sort(list).toString());
+		IOUtils.printConsoleMessage("Before Sorting");
+		IOUtils.printConsoleMessage(list.toString());
+		IOUtils.printConsoleMessage("After Sorting");
+		IOUtils.printConsoleMessage(sort.sort(list).toString());
 	}
 
 }

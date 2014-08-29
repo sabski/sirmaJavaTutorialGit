@@ -1,7 +1,7 @@
 package com.sirma.itt.javacourse.objects.task4.homogeneousTree;
 
 /**
- * This class represent a generic type collection that extend Figure.
+ * This class represent a generic type collection.
  * 
  * @param <T>
  *            generic parameter

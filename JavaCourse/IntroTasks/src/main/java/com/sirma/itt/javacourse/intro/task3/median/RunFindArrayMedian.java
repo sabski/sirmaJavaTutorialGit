@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.intro.task3.median;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Runner class for FindArrayMedion.
@@ -23,13 +23,13 @@ public class RunFindArrayMedian {
 		FindArrayMedian median = new FindArrayMedian();
 		List<Integer> list = new ArrayList<Integer>();
 
-		list = Utils.inputArrayListOfIntegers();
+		list = IOUtils.inputArrayListOfIntegers();
 
 		int[] arr = new int[list.size()];
 		for (int i = 0; i < list.size(); i++) {
 			arr[i] = list.get(i);
 		}
 
-		Utils.printConsoleMessage("The median of the array is " + median.findMedian(arr));
+		IOUtils.printConsoleMessage("The median of the array is " + median.findMedian(arr));
 	}
 }

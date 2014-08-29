@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.exceptions.task1.stringCalculator;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running the String calculator.
@@ -20,21 +20,21 @@ public class RunStringCalculator {
 		StringCalculator calculator = new StringCalculator();
 		String firstBigNumber = null;
 		String secondBigNumber = null;
-		Utils.printConsoleMessage("Input only one number on a line. ");
+		IOUtils.printConsoleMessage("Input only one number on a line. ");
 		try {
-			Utils.printConsoleMessage("Plese input number value for the first number ");
-			firstBigNumber = Utils.readLine();
+			IOUtils.printConsoleMessage("Plese input number value for the first number ");
+			firstBigNumber = IOUtils.readLine();
 
-			Utils.printConsoleMessage("Plese input number value for the second number ");
-			// secondBigNumber = Utils.readLine();
+			IOUtils.printConsoleMessage("Plese input number value for the second number ");
+			secondBigNumber = IOUtils.readLine();
 
-			Utils.printConsoleMessage("Result is"
+			IOUtils.printConsoleMessage("Result is"
 					+ calculator.sumStrings(firstBigNumber, secondBigNumber));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

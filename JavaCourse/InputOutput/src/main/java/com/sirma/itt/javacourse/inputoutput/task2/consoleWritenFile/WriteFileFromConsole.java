@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Writes a file from the input in the console.
@@ -19,8 +19,8 @@ public class WriteFileFromConsole {
 	 * Writes a text to a file that the user specifies in the console input.
 	 */
 	public void writeFile() {
-		Utils.printConsoleMessage("Input file name : ");
-		String name = Utils.readLine();
+		IOUtils.printConsoleMessage("Input file name : ");
+		String name = IOUtils.readLine();
 
 		File file;
 		file = new File(name);
@@ -40,7 +40,7 @@ public class WriteFileFromConsole {
 
 			fileWriter = new FileWriter(file);
 			bufferedWriter = new BufferedWriter(fileWriter);
-			Utils.printConsoleMessage("Start input for file : ");
+			IOUtils.printConsoleMessage("Start input for file : ");
 			readInputForFile(bufferedWriter);
 		} catch (IOException e) {
 			System.err.println("Error writing the file : ");
@@ -62,15 +62,17 @@ public class WriteFileFromConsole {
 	 * Reads the console input until "." is entered then the console input is return as one single
 	 * String.
 	 * 
-	 * @return the console information inputed by the user.
+	 * @param bufferedWriter
+	 *            writer that is writes directly to the file.
 	 * @throws IOException
+	 *             if there is a problem with the buffer.
 	 */
 	private void readInputForFile(BufferedWriter bufferedWriter) throws IOException {
 		String line = null;
 		do {
-			line = Utils.readLine();
+			line = IOUtils.readLine();
 			bufferedWriter.write(line + "\n");
-		} while (!line.equals("."));
+		} while (!".".equals(line));
 
 	}
 }

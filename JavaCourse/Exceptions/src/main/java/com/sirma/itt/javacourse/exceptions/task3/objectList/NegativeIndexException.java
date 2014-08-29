@@ -24,10 +24,10 @@ public class NegativeIndexException extends ArrayIndexOutOfBoundsException {
 	/**
 	 * Message constructor for the exception.
 	 * 
-	 * @param s
+	 * @param message
 	 *            the message to be displayed.
 	 */
-	public NegativeIndexException(String s) {
+	public NegativeIndexException(String message) {
 		super(message);
 	}
 

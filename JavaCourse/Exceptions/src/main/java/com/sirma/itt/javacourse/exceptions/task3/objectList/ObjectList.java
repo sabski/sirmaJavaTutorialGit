@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.exceptions.task3.objectList;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that represents a list of items
@@ -103,6 +103,6 @@ public class ObjectList {
 			builder.append(" " + array[i]);
 		}
 		builder.append(" ]");
-		Utils.printConsoleMessage(builder.toString());
+		IOUtils.printConsoleMessage(builder.toString());
 	}
 }

@@ -1,6 +1,8 @@
 package com.sirma.itt.javacourse.exceptions.task3.objectList;
 
 /**
+ * Class that extends IndexOutOfBoundsException to throw a custom exception.
+ * 
  * @author simeon
  */
 public class OverFlodException extends IndexOutOfBoundsException {
@@ -22,10 +24,10 @@ public class OverFlodException extends IndexOutOfBoundsException {
 	/**
 	 * Message constructor for the exception.
 	 * 
-	 * @param s
+	 * @param message the message that is to be passed to
 	 */
-	public OverFlodException(String s) {
-		super(s);
+	public OverFlodException(String message) {
+		super(message);
 	}
 
 }

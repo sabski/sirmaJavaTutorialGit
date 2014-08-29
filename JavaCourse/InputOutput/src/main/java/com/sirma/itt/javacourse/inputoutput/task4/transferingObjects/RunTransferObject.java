@@ -8,7 +8,7 @@ import java.io.OutputStream;
 
 import javax.rmi.CORBA.Util;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running the Transfer object class.
@@ -26,16 +26,16 @@ public class RunTransferObject {
 	public static void main(String[] args) {
 
 		try {
-			Utils.printConsoleMessage("Input file from which to read data.");
-			InputStream input = new FileInputStream(Utils.readLine());
-			Utils.printConsoleMessage("Input file name to write data.");
-			OutputStream output = new FileOutputStream(Utils.readLine());
+			IOUtils.printConsoleMessage("Input file from which to read data.");
+			InputStream input = new FileInputStream(IOUtils.readLine());
+			IOUtils.printConsoleMessage("Input file name to write data.");
+			OutputStream output = new FileOutputStream(IOUtils.readLine());
 			TransferObject transfer = new TransferObject(input, output);
-			Utils.printConsoleMessage("Input the number of bytes to transfer from the files");
-			int numberOfBites = Utils.readInt();
-			Utils.printConsoleMessage("Input offset for the stream.");
-			int offset = Utils.readInt();
-			Utils.printConsoleMessage("Number of transfered bytes = "
+			IOUtils.printConsoleMessage("Input the number of bytes to transfer from the files");
+			int numberOfBites = IOUtils.readInt();
+			IOUtils.printConsoleMessage("Input offset for the stream.");
+			int offset = IOUtils.readInt();
+			IOUtils.printConsoleMessage("Number of transfered bytes = "
 					+ transfer.transfer(numberOfBites, offset));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

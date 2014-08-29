@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * LRU Algorithm implementation that uses two maps one maps stores the values of the objects, and
@@ -37,14 +37,14 @@ public class LRUMapCache<K, V> {
 	public boolean addCacheEllement(K key, V value) {
 		if (cacheMap.containsKey(key)) {
 			elementHit(key);
-			Utils.printConsoleMessage("Hit");
+			IOUtils.printConsoleMessage("Hit");
 			return false;
 		} else if (maxObjects > cacheMap.size()) {
 			cacheMap.put(key, value);
 			hitMap.put(key, 0);
 			return true;
 		} else {
-			Utils.printConsoleMessage("Miss");
+			IOUtils.printConsoleMessage("Miss");
 			int min = Integer.MAX_VALUE;
 			K searchedKey = null;
 			for (K i : hitMap.keySet()) {

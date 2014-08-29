@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * LRU implementation class.
@@ -51,16 +51,16 @@ public class LRUTailCache<K, V> {
 	public boolean addElement(K key, V value) {
 		if (cache.containsKey(key)) {
 			hitElement(key);
-			Utils.printConsoleMessage("Hit");
+			IOUtils.printConsoleMessage("Hit");
 			return false;
 		} else if (maxElementts > cache.size()) {
 			insertEllment(key, value);
-			Utils.printConsoleMessage("Miss");
+			IOUtils.printConsoleMessage("Miss");
 			return true;
 		} else {
 			removeElementByKey(queue.peek());
 			insertEllment(key, value);
-			Utils.printConsoleMessage("Miss");
+			IOUtils.printConsoleMessage("Miss");
 			return true;
 		}
 	}

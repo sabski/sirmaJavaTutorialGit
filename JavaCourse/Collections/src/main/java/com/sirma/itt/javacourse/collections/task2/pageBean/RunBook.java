@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.collections.task2.pageBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Runner class for book.
@@ -23,18 +23,18 @@ public class RunBook {
 	public static void main(String[] args) {
 
 		List<String> list = new ArrayList<String>();
-		Utils.printConsoleMessage("Input the number of ellement in the book");
-		int elCount = Utils.readInt();
+		IOUtils.printConsoleMessage("Input the number of ellement in the book");
+		int elCount = IOUtils.readInt();
 		for (int i = 0; i < elCount; i++) {
-			Utils.printConsoleMessage("Input ellement " + (i + 1));
-			list.add(Utils.readLine());
+			IOUtils.printConsoleMessage("Input ellement " + (i + 1));
+			list.add(IOUtils.readLine());
 		}
-		Utils.printConsoleMessage("Input the number of objects per page");
-		int pageCount = Utils.readInt();
+		IOUtils.printConsoleMessage("Input the number of objects per page");
+		int pageCount = IOUtils.readInt();
 		book = new Book(list, pageCount);
 		while (true) {
-			Utils.printConsoleMessage("Menu operations : \n1-nextPage\n2-previousPage \n3-firstPage\n4-lastPage\n5-hasNext\n6-hasPrevious\n0-Exit");
-			menu(Utils.readInt());
+			IOUtils.printConsoleMessage("Menu operations : \n1-nextPage\n2-previousPage \n3-firstPage\n4-lastPage\n5-hasNext\n6-hasPrevious\n0-Exit");
+			menu(IOUtils.readInt());
 		}
 	}
 
@@ -48,35 +48,35 @@ public class RunBook {
 		switch (code) {
 			case 1:
 				try {
-					Utils.printConsoleMessage(book.next().toString());
+					IOUtils.printConsoleMessage(book.next().toString());
 				} catch (NullPointerException e) {
-					Utils.printConsoleMessage("There are no more pages");
+					IOUtils.printConsoleMessage("There are no more pages");
 				}
 				break;
 			case 2:
 				try {
-					Utils.printConsoleMessage(book.previous().toString());
+					IOUtils.printConsoleMessage(book.previous().toString());
 				} catch (NullPointerException e) {
-					Utils.printConsoleMessage("Negative Index");
+					IOUtils.printConsoleMessage("Negative Index");
 				}
 				break;
 			case 3:
-				Utils.printConsoleMessage(book.firstPage().toString());
+				IOUtils.printConsoleMessage(book.firstPage().toString());
 				break;
 			case 4:
-				Utils.printConsoleMessage(book.lastPage().toString());
+				IOUtils.printConsoleMessage(book.lastPage().toString());
 				break;
 			case 5:
-				Utils.printConsoleMessage(book.hasNext() + "");
+				IOUtils.printConsoleMessage(book.hasNext() + "");
 				break;
 			case 6:
-				Utils.printConsoleMessage(book.hasPrevious() + "");
+				IOUtils.printConsoleMessage(book.hasPrevious() + "");
 				break;
 			case 0:
 				System.exit(0);
 				break;
 			default:
-				Utils.printConsoleMessage("Invalid code operathion !");
+				IOUtils.printConsoleMessage("Invalid code operathion !");
 				break;
 		}
 	}

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Test class for testing IBAN validation.
@@ -45,7 +45,7 @@ public class IBANValidatorTest {
 	 */
 	@Test
 	public void test() {
-		assertEquals(result, Utils.editStringWithRegex(iban, Utils.REGEX_VALIDATOR_IBANS, "****"));
+		assertEquals(result, IOUtils.editStringWithRegex(iban, IOUtils.REGEX_VALIDATOR_IBANS, "****"));
 	}
 
 }

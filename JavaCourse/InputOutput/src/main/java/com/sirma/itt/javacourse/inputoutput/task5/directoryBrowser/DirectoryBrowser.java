@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 
 import java.io.File;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that display the structure of a given directory.
@@ -20,12 +20,12 @@ public class DirectoryBrowser {
 	public void listContent(String path) {
 		File file = new File(path);
 		if (!file.isDirectory()) {
-			Utils.printConsoleMessage("The path you entered leeds to a file " + path);
+			IOUtils.printConsoleMessage("The path you entered leeds to a file " + path);
 			return;
 		}
 		File[] list = file.listFiles();
 		for (File f : list) {
-			Utils.printConsoleMessage(f.getName());
+			IOUtils.printConsoleMessage(f.getName());
 		}
 	}
 }

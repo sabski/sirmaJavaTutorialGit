@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for displaing the structure of a directory.
@@ -18,8 +18,8 @@ public class RunDirectoryBrowser {
 	public static void main(String[] args) {
 
 		DirectoryBrowser browser = new DirectoryBrowser();
-		Utils.printConsoleMessage("Input directory path");
-		browser.listContent(Utils.readLine());
+		IOUtils.printConsoleMessage("Input directory path");
+		browser.listContent(IOUtils.readLine());
 	}
 
 }

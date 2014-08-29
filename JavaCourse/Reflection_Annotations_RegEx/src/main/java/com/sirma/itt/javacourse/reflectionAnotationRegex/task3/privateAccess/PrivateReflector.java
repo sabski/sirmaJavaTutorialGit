@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that violates private methods via reflection.
@@ -37,19 +37,19 @@ public class PrivateReflector {
 			Field field = myPrivateVariable.getClass().getDeclaredField(f.getName().toString());
 			field.setAccessible(true);
 			Object obj = field.get(myPrivateVariable);
-			Utils.printConsoleMessage(obj.toString());
+			IOUtils.printConsoleMessage(obj.toString());
 		}
 
 		for (Method m : cl.getDeclaredMethods()) {
-			Utils.printConsoleMessage(m.getName());
+			IOUtils.printConsoleMessage(m.getName());
 			int paramCount = m.getModifiers();
-			Utils.printConsoleMessage("Parameter count = " + paramCount);
+			IOUtils.printConsoleMessage("Parameter count = " + paramCount);
 			Class<?>[] parameterTypes = m.getParameterTypes();
 			Method method = myPrivateVariable.getClass().getDeclaredMethod(m.getName(),
 					parameterTypes);
 			method.setAccessible(true);
 			String s = (String) method.invoke(myPrivateVariable, params);
-			Utils.printConsoleMessage(s);
+			IOUtils.printConsoleMessage(s);
 
 		}
 	}

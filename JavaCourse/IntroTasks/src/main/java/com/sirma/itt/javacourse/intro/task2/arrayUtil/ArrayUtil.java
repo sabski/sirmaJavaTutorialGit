@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Array utility class which contains some basic utility methods.
@@ -16,8 +16,8 @@ public class ArrayUtil {
 	 *            array to be printed in the console
 	 */
 	public void print(int[] arr) {
-		if (Utils.isNull(arr)) {
-			Utils.printConsoleMessage("Array is null !!!");
+		if (IOUtils.isNull(arr)) {
+			IOUtils.printConsoleMessage("Array is null !!!");
 			return;
 		}
 
@@ -27,7 +27,7 @@ public class ArrayUtil {
 			build.append(i + " ");
 		}
 		build.append("]");
-		Utils.printConsoleMessage(build.toString());
+		IOUtils.printConsoleMessage(build.toString());
 	}
 
 	/**
@@ -38,8 +38,8 @@ public class ArrayUtil {
 	 * @return the summed value of the array
 	 */
 	public int sum(int[] arr) {
-		if (Utils.isNull(arr)) {
-			Utils.printConsoleMessage("Array is null !!!");
+		if (IOUtils.isNull(arr)) {
+			IOUtils.printConsoleMessage("Array is null !!!");
 			return -1;
 		}
 		int sum = 0;
@@ -57,8 +57,8 @@ public class ArrayUtil {
 	 * @return the smallest element of the array
 	 */
 	public int getMinElement(int[] arr) {
-		if (Utils.isNull(arr)) {
-			Utils.printConsoleMessage("Array is null !!!");
+		if (IOUtils.isNull(arr)) {
+			IOUtils.printConsoleMessage("Array is null !!!");
 			return -1;
 		}
 		int minValue = Integer.MAX_VALUE;

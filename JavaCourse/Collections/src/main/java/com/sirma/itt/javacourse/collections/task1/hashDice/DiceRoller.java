@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.collections.task1.hashDice;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.MathUtil;
 
 /**
  * @author simeon
@@ -55,8 +56,8 @@ public class DiceRoller {
 	 */
 	public DiceCombintionPair rollDice() {
 		DiceCombintionPair pair = new DiceCombintionPair();
-		pair.setPair(Utils.generateRandomNumberWithRange(1, dice1.getSides()),
-				Utils.generateRandomNumberWithRange(1, dice2.getSides()));
+		pair.setPair(MathUtil.generateRandomNumberWithRange(1, dice1.getSides()),
+				MathUtil.generateRandomNumberWithRange(1, dice2.getSides()));
 
 		return pair;
 	}

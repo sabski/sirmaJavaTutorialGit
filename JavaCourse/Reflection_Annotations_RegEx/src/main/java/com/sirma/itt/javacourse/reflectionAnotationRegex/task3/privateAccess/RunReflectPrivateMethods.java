@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that runs private method reflector.
@@ -20,8 +20,8 @@ public class RunReflectPrivateMethods {
 	public static void main(String[] args) {
 		PrivateReflector reflector = new PrivateReflector();
 		try {
-			Utils.printConsoleMessage("Input parameter value ");
-			String s = Utils.readValidatedLine(Utils.REGEX_VALIDATOR_LETHERS_ONLY);
+			IOUtils.printConsoleMessage("Input parameter value ");
+			String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
 			reflector.breakPrivateFields(s);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block

@@ -24,7 +24,7 @@ public class StringCalculator {
 		int lenght;
 		boolean isOverTen = false;
 /*
-		if (Utils.isNull(firstNumber) || Utils.isNull(secondNumber)) {
+		if (IOUtils.isNull(firstNumber) || IOUtils.isNull(secondNumber)) {
 			return result.toString();
 		}
 */

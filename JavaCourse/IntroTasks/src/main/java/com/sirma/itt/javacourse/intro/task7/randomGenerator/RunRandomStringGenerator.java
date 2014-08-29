@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task7.randomGenerator;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running the RandomString generator.
@@ -16,12 +16,12 @@ public class RunRandomStringGenerator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RandomStringGenerator randGen = new RandomStringGenerator();
-		Utils.printConsoleMessage("Input the number of random string you want to generate.");
-		int count = Utils.readInt();
+		IOUtils.printConsoleMessage("Input the number of random string you want to generate.");
+		int count = IOUtils.readInt();
 		for (int i = 0; i < count; i++) {
-			Utils.printConsoleMessage("Input String lenght :");
-			int lenght = Utils.readInt();
-			Utils.printConsoleMessage(randGen.generateRandomString(lenght));
+			IOUtils.printConsoleMessage("Input String lenght :");
+			int lenght = IOUtils.readInt();
+			IOUtils.printConsoleMessage(randGen.generateRandomString(lenght));
 		}
 
 	}

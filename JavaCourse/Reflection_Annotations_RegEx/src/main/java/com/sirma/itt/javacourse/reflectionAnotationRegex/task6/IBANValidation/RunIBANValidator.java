@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task6.IBANValidation;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running the IBAN validator.
@@ -26,14 +26,14 @@ public class RunIBANValidator {
 				+ "<iban>AZ21 NABZ 0000 0000 1370 1000 1944</iban>\n"
 				+ "<iban>BG80 BNBG 9661 1020 3456 7843</iban>" + "</bankAccounts>";
 
-		Utils.printConsoleMessage("This is a sample input for the program :  " + sampleData);
-		Utils.printConsoleMessage("This is a sample ouput of the program : "
-				+ Utils.editStringWithRegex(sampleData, Utils.REGEX_VALIDATOR_IBANS, "****"));
-		Utils.printConsoleMessage("Please input iban ");
-		String result = Utils.editStringWithRegex(Utils.readLine(), Utils.REGEX_VALIDATOR_IBANS,
+		IOUtils.printConsoleMessage("This is a sample input for the program :  " + sampleData);
+		IOUtils.printConsoleMessage("This is a sample ouput of the program : "
+				+ IOUtils.editStringWithRegex(sampleData, IOUtils.REGEX_VALIDATOR_IBANS, "****"));
+		IOUtils.printConsoleMessage("Please input iban ");
+		String result = IOUtils.editStringWithRegex(IOUtils.readLine(), IOUtils.REGEX_VALIDATOR_IBANS,
 				"****");
 
-		Utils.printConsoleMessage("The result of the validation is " + result);
+		IOUtils.printConsoleMessage("The result of the validation is " + result);
 	}
 
 }

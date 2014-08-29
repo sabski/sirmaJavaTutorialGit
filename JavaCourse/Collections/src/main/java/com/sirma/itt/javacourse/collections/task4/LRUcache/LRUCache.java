@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that implement the LRU(Least Recently Used) buffer algorithm.
@@ -75,7 +75,7 @@ public class LRUCache {
 	}
 
 	private Integer getLastIndex() {
-		Utils.printConsoleMessage("History :" + history.get(history.size() - 1));
+		IOUtils.printConsoleMessage("History :" + history.get(history.size() - 1));
 		return history.get(history.size() - 1);
 	}
 

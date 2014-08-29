@@ -1,8 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit;
 
-import java.io.ObjectInputStream.GetField;
-
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Inits a class by its name and shows his parents.
@@ -13,6 +11,7 @@ public class ClassInit {
 
 	/**
 	 * @param path
+	 *            the path to the object that is to be displayed its hierarchy.
 	 * @return
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
@@ -25,11 +24,11 @@ public class ClassInit {
 		Class<?> init = Class.forName(path);
 		obj = init.newInstance();
 		for (Class<?> c : init.getDeclaredClasses()) {
-			Utils.printConsoleMessage(c.getName());
+			IOUtils.printConsoleMessage(c.getName());
 		}
 
 		for (Class<?> c : init.getInterfaces()) {
-			Utils.printConsoleMessage(c.getName());
+			IOUtils.printConsoleMessage(c.getName());
 		}
 
 		return obj;

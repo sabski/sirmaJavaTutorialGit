@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.intro.task4.arraySorting;
 
 import java.util.ArrayList;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for running the QuickSort class.
@@ -21,10 +21,10 @@ public class RunQuickSort {
 		// TODO Auto-generated method stub
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 
-		arr = Utils.inputArrayListOfIntegers();
+		arr = IOUtils.inputArrayListOfIntegers();
 
-		Utils.printConsoleMessage("Array before sorting " + arr);
-		Utils.printConsoleMessage("Array after sorting " + QuickSortImpl.quickSortArray(arr));
+		IOUtils.printConsoleMessage("Array before sorting " + arr);
+		IOUtils.printConsoleMessage("Array after sorting " + QuickSortImpl.quickSortArray(arr));
 	}
 
 }

@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Utils class for the JavaCourse Project, this class contains various utility methods.
+ * IOUtils class for the JavaCourse Project, this class contains various utility methods.
  * 
  * @author simeon
  */
-public class Utils {
+public class IOUtils {
 
 	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
@@ -38,7 +38,7 @@ public class Utils {
 	 *            the scanner to set
 	 */
 	public static void setScanner(Scanner scanner) {
-		Utils.scanner = scanner;
+		IOUtils.scanner = scanner;
 	}
 
 	/**
@@ -258,7 +258,7 @@ public class Utils {
 		StringBuffer stringBuffer = null;
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
-			Utils.printConsoleMessage("Invalid file name");
+			IOUtils.printConsoleMessage("Invalid file name");
 			throw new FileNotFoundException();
 		}
 		BufferedReader reader = null;
@@ -268,7 +268,7 @@ public class Utils {
 			String line = null;
 			stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
-				Utils.printConsoleMessage(line);
+				IOUtils.printConsoleMessage(line);
 				stringBuffer.append(line + "\n");
 			}
 
@@ -285,19 +285,5 @@ public class Utils {
 			}
 		}
 		return stringBuffer.toString();
-	}
-
-	/**
-	 * Generates a random number within a specified range.
-	 * 
-	 * @param min
-	 *            the lowest value of the range
-	 * @param max
-	 *            the highest value of the range
-	 * @return the generated random value
-	 */
-	public static int generateRandomNumberWithRange(int min, int max) {
-
-		return min + (int) (Math.random() * ((max - min) + 1));
 	}
 }

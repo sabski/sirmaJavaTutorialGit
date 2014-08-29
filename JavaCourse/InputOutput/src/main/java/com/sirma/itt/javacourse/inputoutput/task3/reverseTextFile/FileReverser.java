@@ -6,10 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Reverses the contents of a specific file.
@@ -28,7 +26,7 @@ public class FileReverser {
 
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
-			Utils.printConsoleMessage("Invalid file name");
+			IOUtils.printConsoleMessage("Invalid file name");
 			return;
 		}
 		BufferedReader reader = null;
@@ -39,7 +37,7 @@ public class FileReverser {
 			String line = null;
 			StringBuffer stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
-				Utils.printConsoleMessage(line);
+				IOUtils.printConsoleMessage(line);
 				stringBuffer.append(line + "\n");
 
 			}

@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.inputoutput.task1.consoleReader;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that accepts console input with different variations.
@@ -17,15 +17,15 @@ public class RunConsoleInput {
 	 */
 	public static void main(String[] args) {
 
-		Utils.printConsoleMessage("This is only test plese input correct values.");
-		Utils.printConsoleMessage("This is only test  plese input number.");
-		Utils.printConsoleMessage("Inputed int  = " + Utils.readInt());
-		Utils.printConsoleMessage("This is only test  plese input char.");
-		Utils.printConsoleMessage("Inputed char  = " + Utils.readChar());
-		Utils.printConsoleMessage("This is only test  plese input flaot.");
-		Utils.printConsoleMessage("Inputed float  = " + Utils.readFlaot());
-		Utils.printConsoleMessage("This is only test  plese input String.");
-		Utils.printConsoleMessage("Inputed string  = " + Utils.readString());
+		IOUtils.printConsoleMessage("This is only test plese input correct values.");
+		IOUtils.printConsoleMessage("This is only test  plese input number.");
+		IOUtils.printConsoleMessage("Inputed int  = " + IOUtils.readInt());
+		IOUtils.printConsoleMessage("This is only test  plese input char.");
+		IOUtils.printConsoleMessage("Inputed char  = " + IOUtils.readChar());
+		IOUtils.printConsoleMessage("This is only test  plese input flaot.");
+		IOUtils.printConsoleMessage("Inputed float  = " + IOUtils.readFlaot());
+		IOUtils.printConsoleMessage("This is only test  plese input String.");
+		IOUtils.printConsoleMessage("Inputed string  = " + IOUtils.readString());
 		
 	}
 

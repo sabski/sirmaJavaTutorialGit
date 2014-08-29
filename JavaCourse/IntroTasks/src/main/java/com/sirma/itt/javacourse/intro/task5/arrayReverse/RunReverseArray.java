@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.intro.task5.arrayReverse;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.Utils;
+import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class for Running the ReverseArray class.
@@ -22,9 +22,9 @@ public class RunReverseArray {
 		// TODO Auto-generated method stub
 		List<Integer> arr = new ArrayList<Integer>();
 		ReverseArray reverse = new ReverseArray();
-		arr = Utils.inputArrayListOfIntegers();
+		arr = IOUtils.inputArrayListOfIntegers();
 
-		Utils.printConsoleMessage("Array before : " + arr);
-		Utils.printConsoleMessage("Array after : " + reverse.reverseArray(arr));
+		IOUtils.printConsoleMessage("Array before : " + arr);
+		IOUtils.printConsoleMessage("Array after : " + reverse.reverseArray(arr));
 	}
 }

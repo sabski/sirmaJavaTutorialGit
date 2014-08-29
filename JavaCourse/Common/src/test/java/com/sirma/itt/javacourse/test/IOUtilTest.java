@@ -1,7 +1,9 @@
 package com.sirma.itt.javacourse.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +18,15 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
+ * Unit test for IOUtil.class
+ * 
  * @author simeon
  */
 public class IOUtilTest {
 
 	private String testString = "ThisIsATest";
+
 	private List<Integer> testList;
-
-	@Rule
-	public final StandardOutputStreamLog log = new StandardOutputStreamLog();
-
-	@Rule
-	public final TextFromStandardInputStream inputMock = TextFromStandardInputStream
-			.emptyStandardInputStream();
 
 	private Scanner scanner;
 
@@ -56,10 +54,11 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testReadValidatedLine() {
-		String input = testString + "\n";
+		String input = "abcd" + "\n";
 		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
 		String result = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
-		assertEquals(testString, result);
+		assertEquals("abcd", result);
 	}
 
 	/**
@@ -69,6 +68,7 @@ public class IOUtilTest {
 	public void testReadInt() {
 		String input = "5\n";
 		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
 		int result = IOUtils.readInt();
 		assertEquals(5, result);
 	}
@@ -80,27 +80,41 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testValidateStringWithRegex() {
-		// assertTrue(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY,
-		// testString));
+		assertTrue(IOUtils
+				.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY, testString));
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#inputArrayListOfIntegers()}.
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.IOUtils#validateStringWithRegex(java.lang.String, java.lang.String)}
+	 * .
+	 */
+	@Test
+	public void testValidateStringWithRegexFalseValue() {
+		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY, "5a3a1"));
+	}
+
+	/**
+	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#inputListOfIntegers()}.
 	 */
 	@Test
 	public void testInputArrayListOfIntegers() {
-		/*
-		 * List<Integer> tempList; inputMock.provideText(10 + "\n"); for (int i = 0; i < 10; i++) {
-		 * testList.add(i); inputMock.provideText(i + "\n"); } tempList =
-		 * IOUtils.inputArrayListOfIntegers(); assertTrue(tempList.equals(testList));
-		 */}
+		String input = "10\n";
+		for (int i = 0; i < 10; i++) {
+			testList.add(i + 1);
+			input += ((i + 1) + "\n");
+		}
+		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
+		assertEquals(testList, IOUtils.inputListOfIntegers());
+	}
 
 	/**
 	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#isNull(java.lang.Object)}.
 	 */
 	@Test
 	public void testIsNull() {
-		// assertTrue(IOUtils.isNull(null));
+		assertTrue(IOUtils.isNull(null));
 	}
 
 	/**
@@ -109,9 +123,7 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testPrintConsoleMessage() {
-		// IOUtils.printConsoleMessage(testString);
-		// assertEquals(testString, log.getLog().replaceAll("\n", ""));
-		// log.clear();
+		IOUtils.printConsoleMessage(testString);
 	}
 
 	/**
@@ -121,8 +133,8 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testEditStringWithRegex() {
-		// String result = IOUtils.editStringWithRegex(testString, testString, "25");
-		// assertEquals("25", result);
+		String result = IOUtils.editStringWithRegex(testString, testString, "25");
+		assertEquals("25", result);
 	}
 
 	/**
@@ -130,9 +142,12 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testReadChar() {
-		// inputMock.provideText("a");
-		// Character a = IOUtils.readChar();
-		// assertEquals("a", a);
+		String input = "a\n";
+		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
+		Character actial = IOUtils.readChar();
+		Character expected = "a".charAt(0);
+		assertTrue(expected.equals(actial));
 	}
 
 	/**
@@ -140,8 +155,11 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testReadFlaot() {
-		// inputMock.provideText("1.2");
-		// assertEquals(1.2, IOUtils.readFlaot(), 0.2);
+		String input = "1.5\n";
+		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
+		float number = IOUtils.readFlaot();
+		assertEquals(1.5, number, 1.0);
 	}
 
 	/**
@@ -149,8 +167,11 @@ public class IOUtilTest {
 	 */
 	@Test
 	public void testReadString() {
-		// inputMock.provideText(testString);
-		// assertEquals(testString, IOUtils.readString().replaceAll("\n", ""));
+		String input = "hello\n";
+		scanner = new Scanner(input);
+		IOUtils.setScanner(scanner);
+		assertEquals("hello", IOUtils.readString());
+
 	}
 
 }

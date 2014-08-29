@@ -23,7 +23,7 @@ public class RunFindArrayMedian {
 		FindArrayMedian median = new FindArrayMedian();
 		List<Integer> list = new ArrayList<Integer>();
 
-		list = IOUtils.inputArrayListOfIntegers();
+		list = IOUtils.inputListOfIntegers();
 
 		int[] arr = new int[list.size()];
 		for (int i = 0; i < list.size(); i++) {

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -101,12 +102,11 @@ public class IOUtils {
 	 * 
 	 * @return an ArrayList of integers that were inputed via the console.
 	 */
-	public static ArrayList<Integer> inputArrayListOfIntegers() {
-		ArrayList<Integer> input = new ArrayList<Integer>();
+	public static List<Integer> inputListOfIntegers() {
+		List<Integer> input = new ArrayList<Integer>();
 
-		int numbersCount = 0;
 		System.out.println("Plese input the lenght of the array");
-		numbersCount = readInt();
+		int numbersCount = readInt();
 		for (int i = 0; i < numbersCount; i++) {
 			printConsoleMessage("Plese input value for " + (i + 1));
 			input.add(readInt());
@@ -122,7 +122,7 @@ public class IOUtils {
 	private static Integer inputNumber() {
 		Integer temp = null;
 		try {
-			temp = Integer.parseInt(scanner.nextLine().replace("\n", ""));
+			temp = Integer.parseInt(scanner.nextLine());
 		} catch (Exception e) {
 			printConsoleMessage("Please input number value");
 		}

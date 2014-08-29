@@ -22,7 +22,7 @@ public class RunReverseArray {
 		// TODO Auto-generated method stub
 		List<Integer> arr = new ArrayList<Integer>();
 		ReverseArray reverse = new ReverseArray();
-		arr = IOUtils.inputArrayListOfIntegers();
+		arr = IOUtils.inputListOfIntegers();
 
 		IOUtils.printConsoleMessage("Array before : " + arr);
 		IOUtils.printConsoleMessage("Array after : " + reverse.reverseArray(arr));

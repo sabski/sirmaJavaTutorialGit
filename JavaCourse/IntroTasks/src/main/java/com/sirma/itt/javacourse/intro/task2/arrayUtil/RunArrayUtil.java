@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sirma.itt.javacourse.IOUtils;
 
@@ -21,9 +22,8 @@ public class RunArrayUtil {
 		// TODO Auto-generated method stub
 		int[] arr;
 		ArrayUtil util = new ArrayUtil();
-		ArrayList<Integer> list = new ArrayList<Integer>();
 
-		list = IOUtils.inputArrayListOfIntegers();
+		List<Integer> list = IOUtils.inputListOfIntegers();
 
 		arr = new int[list.size()];
 		for (int i = 0; i < list.size(); i++) {

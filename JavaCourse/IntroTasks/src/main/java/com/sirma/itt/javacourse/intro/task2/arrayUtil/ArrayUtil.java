@@ -16,11 +16,6 @@ public class ArrayUtil {
 	 *            array to be printed in the console
 	 */
 	public void print(int[] arr) {
-		if (IOUtils.isNull(arr)) {
-			IOUtils.printConsoleMessage("Array is null !!!");
-			return;
-		}
-
 		StringBuilder build = new StringBuilder();
 		build.append("[");
 		for (int i : arr) {
@@ -38,10 +33,6 @@ public class ArrayUtil {
 	 * @return the summed value of the array
 	 */
 	public int sum(int[] arr) {
-		if (IOUtils.isNull(arr)) {
-			IOUtils.printConsoleMessage("Array is null !!!");
-			return -1;
-		}
 		int sum = 0;
 		for (int i : arr) {
 			sum += i;
@@ -57,10 +48,6 @@ public class ArrayUtil {
 	 * @return the smallest element of the array
 	 */
 	public int getMinElement(int[] arr) {
-		if (IOUtils.isNull(arr)) {
-			IOUtils.printConsoleMessage("Array is null !!!");
-			return -1;
-		}
 		int minValue = Integer.MAX_VALUE;
 
 		for (int i : arr) {

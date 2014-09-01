@@ -3,6 +3,7 @@ package comsirma.itt.javacourse.inputOutput.test.task3.reverseTextFile;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -24,10 +25,6 @@ public class TestReverseTextFiles {
 	private String reverse = ".987654321";
 	private String fileName = "src/test/resources/reverseSource.txt";
 
-	@Rule
-	public final TextFromStandardInputStream systemInMock = TextFromStandardInputStream
-			.emptyStandardInputStream();
-
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -39,20 +36,32 @@ public class TestReverseTextFiles {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser#reverseFile(java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser#reverseFileContent(java.lang.String)}
 	 * .
 	 */
 	@Test
 	public void testReverseFile() {
-	/*	systemInMock.provideText(fileName + "\n" + originalContent);
+		String content = fileName + "\n" + originalContent;
+		Scanner scanner = new Scanner(content);
+		IOUtils.setScanner(scanner);
 		fileWriter.writeFile();
-		reverser.reverseFile(fileName);
 		try {
+			reverser.reverseFileContent(fileName);
 			assertEquals(reverse, IOUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	*/}
+	}
 
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser#reverseFileContent(java.lang.String)}
+	 * .
+	 * 
+	 * @throws FileNotFoundException
+	 */
+	@Test(expected = FileNotFoundException.class)
+	public void testReverseFileWrongFileName() throws FileNotFoundException {
+			reverser.reverseFileContent("src");
+	}
 }

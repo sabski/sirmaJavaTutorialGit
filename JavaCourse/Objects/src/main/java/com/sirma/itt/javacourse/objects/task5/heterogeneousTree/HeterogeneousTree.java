@@ -96,10 +96,10 @@ public class HeterogeneousTree<T extends Figure> {
 	 * @return true if we inserted into the tree.
 	 */
 	private boolean insertNode(NodeElement<T> treeNode, NodeElement<T> nodeTobeInserted) {
-		if (treeNode.equals(nodeTobeInserted)) {
+		if (treeNode.getObject().equals(nodeTobeInserted.getObject())) {
 			return false;
 		}
-		if (treeNode.hashCode() > nodeTobeInserted.hashCode()) {
+		if (treeNode.getObject().hashCode() > nodeTobeInserted.getObject().hashCode()) {
 			if (treeNode.getLeft() != null) {
 				return insertNode(treeNode.getLeft(), nodeTobeInserted);
 

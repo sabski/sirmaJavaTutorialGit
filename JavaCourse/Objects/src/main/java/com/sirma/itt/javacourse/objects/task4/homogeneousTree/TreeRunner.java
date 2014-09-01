@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.objects.task4.homogeneousTree;
 
+import com.sirma.itt.javacourse.IOUtils;
+
 /**
  * Class for running homogeneous tree example.
  * 
@@ -18,19 +20,20 @@ public class TreeRunner {
 		rootEllemtnt.setElement(15);
 		tree.setRootElement(rootEllemtnt);
 
-		tree.addEllemet(5);
-		tree.addEllemet(8);
-		tree.addEllemet(9);
-		tree.addEllemet(15);
-		tree.addEllemet(52);
-		tree.addEllemet(55);
-		tree.addEllemet(35);
-		tree.addEllemet(45);
-		tree.addEllemet(27);
-		tree.addEllemet(38);
-		tree.addEllemet(9);
+		tree.addElement(5);
+		tree.addElement(8);
+		tree.addElement(9);
+		tree.addElement(15);
+		tree.addElement(52);
+		tree.addElement(55);
+		tree.addElement(57);
+		tree.addElement(35);
+		tree.addElement(45);
+		tree.addElement(27);
+		tree.addElement(38);
+		tree.addElement(9);
 
-		tree.printAllValues();
+		IOUtils.printConsoleMessage(tree.testPrintTreeStructure());
 	}
 
 }

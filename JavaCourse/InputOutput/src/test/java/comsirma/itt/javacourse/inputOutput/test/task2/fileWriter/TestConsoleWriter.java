@@ -55,7 +55,10 @@ public class TestConsoleWriter {
 	 */
 	@Test
 	public void testWriteFile() {
-/*		systemInMock.provideText(line);
+		Scanner scanner = new Scanner(line);
+		IOUtils.setScanner(scanner);
+		File file = new File(fileName);
+		file.delete();
 		writer.writeFile();
 		try {
 			assertEquals(fileData.replaceAll("\n", ""),
@@ -63,6 +66,7 @@ public class TestConsoleWriter {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
+
 }

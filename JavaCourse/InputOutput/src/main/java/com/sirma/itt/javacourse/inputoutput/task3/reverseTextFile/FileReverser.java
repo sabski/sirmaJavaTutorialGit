@@ -3,9 +3,12 @@ package com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import org.apache.commons.io.FileExistsException;
 
 import com.sirma.itt.javacourse.IOUtils;
 
@@ -21,13 +24,14 @@ public class FileReverser {
 	 * 
 	 * @param fileName
 	 *            the name of the file we want to reverse its content.
+	 * @throws FileNotFoundException
+	 *             if the name of the given file is not valid.
 	 */
-	public void reverseFile(String fileName) {
+	public void reverseFileContent(String fileName) throws FileNotFoundException {
 
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
-			IOUtils.printConsoleMessage("Invalid file name");
-			return;
+			throw new FileNotFoundException();
 		}
 		BufferedReader reader = null;
 		BufferedWriter writer = null;
@@ -37,9 +41,7 @@ public class FileReverser {
 			String line = null;
 			StringBuffer stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
-				IOUtils.printConsoleMessage(line);
 				stringBuffer.append(line + "\n");
-
 			}
 			writer = new BufferedWriter(new FileWriter(file));
 			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));

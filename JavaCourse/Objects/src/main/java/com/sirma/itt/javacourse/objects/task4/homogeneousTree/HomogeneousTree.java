@@ -1,5 +1,8 @@
 package com.sirma.itt.javacourse.objects.task4.homogeneousTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represent a generic type collection.
  * 
@@ -39,6 +42,21 @@ public class HomogeneousTree<T> {
 		return printElementNode(rootElement);
 	}
 
+	public String testPrintTreeStructure() {
+		List<List<String>> treeStructyre = levelBulder(0, new ArrayList<List<String>>(),
+				rootElement);
+		StringBuilder stringBuilder = new StringBuilder();
+		for (List<String> level : treeStructyre) {
+			int tabCount = treeStructyre.size() - treeStructyre.indexOf(level) - 1;
+			for (int i = 0; i < tabCount; i++) {
+				stringBuilder.append(" ");
+			}
+			stringBuilder.append(level.toString());
+			stringBuilder.append("\n");
+		}
+		return stringBuilder.toString();
+	}
+
 	/**
 	 * Prints in the console the elements name and that of its children.
 	 * 
@@ -49,25 +67,78 @@ public class HomogeneousTree<T> {
 	private String printElementNode(TreeElement<T> node) {
 		StringBuilder build = new StringBuilder();
 		if (node.getLeft() != null) {
-			build.append(printElementNode(node.getLeft()));
+			build.append(printElementNode(node.getLeft()) + "\n");
 		}
-		build.append(node.getElement().toString());
+		build.append(node.getElement().toString() + "\n");
 		if (node.getRight() != null) {
-			build.append(printElementNode(node.getRight()));
+			build.append(printElementNode(node.getRight()) + " \n");
 		}
 		return build.toString();
 	}
 
 	/**
-	 * Adds an element to the tree.
+	 * Creates a tree level structure.
 	 * 
+	 * @param level
+	 *            the current level we are building.
+	 * @param treeList
+	 *            The list that contains the information about the tree levels.
 	 * @param element
-	 *            the element to be added to the tree.
-	 * @return true if the node element was inserted
+	 *            the current element we are searching for information.
+	 * @return the List of information we have created.s
 	 */
-	public boolean addElement(TreeElement<T> element) {
+	private List<List<String>> levelBulder(int level, List<List<String>> treeList,
+			TreeElement<T> element) {
+		List<String> currentLevel = getLevel(level, treeList);
+		currentLevel.add(element.getElement().toString());
+		if (element.getLeft() != null) {
+			// send the left element to be recursively processed.
+			levelBulder(level + 1, treeList, element.getLeft());
+		} else {
+			// Generates null values for end tree elements for better visualization.
+			Levelgenerator(level + 1, treeList);
+		}
+		if (element.getRight() != null) {
+			// send the right element to be recursively processed.
+			levelBulder(level + 1, treeList, element.getRight());
+		} else {
+			// Generates null values for end tree elements for better visualization.
+			Levelgenerator(level + 1, treeList);
+		}
+		return treeList;
+	}
 
-		return insertNode(rootElement, element);
+	/**
+	 * Generates null levels.
+	 * 
+	 * @param level
+	 *            the current we are at.
+	 * @param treeList
+	 *            the list that contains all the tree information.
+	 */
+	private void Levelgenerator(int level, List<List<String>> treeList) {
+		List<String> tempLVL = getLevel(level, treeList);
+		tempLVL.add("null");
+	}
+
+	/**
+	 * Gets level values for the tree structure. If the is no level created it creates a new one.
+	 * 
+	 * @param level
+	 *            the level we want to get.
+	 * @param treeList
+	 *            the list of all level elements currently available.
+	 * @return the current level instance;
+	 */
+	private List<String> getLevel(int level, List<List<String>> treeList) {
+		List<String> tempLVL;
+		if (level > (treeList.size() - 1)) {
+			tempLVL = new ArrayList<String>();
+			treeList.add(tempLVL);
+		} else {
+			tempLVL = treeList.get(level);
+		}
+		return tempLVL;
 	}
 
 	/**
@@ -77,10 +148,10 @@ public class HomogeneousTree<T> {
 	 *            add element to the tree
 	 * @return true if the T element was inserted
 	 */
-	public boolean addEllemet(T element) {
+	public void addElement(T element) {
 		TreeElement<T> node = new TreeElement<T>();
 		node.setElement(element);
-		return addElement(node);
+		insertNode(rootElement, node);
 	}
 
 	/**
@@ -92,24 +163,26 @@ public class HomogeneousTree<T> {
 	 *            the node we want to insert.
 	 * @return true if we inserted into the tree.
 	 */
-	private boolean insertNode(TreeElement<T> treeNode, TreeElement<T> nodeTobeInserted) {
-		if (treeNode.equals(nodeTobeInserted)) {
-			return false;
+	private void insertNode(TreeElement<T> treeNode, TreeElement<T> nodeTobeInserted) {
+		// Uses the equals method of the T Object to compare the values of the nodes.
+		if (treeNode.getElement().equals(nodeTobeInserted.getElement())) {
+			return;
 		}
-		if (treeNode.hashCode() > nodeTobeInserted.hashCode()) {
+		// Checks the hash code of the T Object value and compares it to the hash code value of the
+		// nodeTobeInserted element.
+		if (treeNode.getElement().hashCode() > nodeTobeInserted.getElement().hashCode()) {
+			// if the current tree element has a smaller hash code value then the value we want to
+			// insert the element is moved to the left side of the tree.
 			if (treeNode.getLeft() != null) {
-				return insertNode(treeNode.getLeft(), nodeTobeInserted);
-
+				insertNode(treeNode.getLeft(), nodeTobeInserted);
 			} else {
 				treeNode.setLeft(nodeTobeInserted);
-				return true;
 			}
 		} else {
 			if (treeNode.getRight() != null) {
-				return insertNode(treeNode.getRight(), nodeTobeInserted);
+				insertNode(treeNode.getRight(), nodeTobeInserted);
 			} else {
 				treeNode.setRight(nodeTobeInserted);
-				return true;
 			}
 		}
 	}

@@ -29,7 +29,6 @@ public class WriteFileFromConsole {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -71,7 +70,8 @@ public class WriteFileFromConsole {
 		String line = null;
 		do {
 			line = IOUtils.readLine();
-			bufferedWriter.write(line + "\n");
+			bufferedWriter.write(line);
+			bufferedWriter.newLine();
 		} while (!".".equals(line));
 
 	}

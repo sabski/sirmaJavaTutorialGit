@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.intro.task1.mathUtil.MathUtil;
-
 /**
  * Unit test for the MathUtil class.
  * 
@@ -18,8 +16,7 @@ public class MathUtilUnitTest {
 	 */
 	@Test
 	public void testGdc() {
-		MathUtil util = new MathUtil();
-		assertEquals(5, util.getGreatestCommonDivisor(10, 5));
+		assertEquals(5, com.sirma.itt.javacourse.MathUtil.getGreatestCommonDivisor(10, 5));
 	}
 
 	/**
@@ -27,8 +24,7 @@ public class MathUtilUnitTest {
 	 */
 	@Test
 	public void testLcd() {
-		MathUtil util = new MathUtil();
-		assertEquals(21, util.getLeastCommonDenominator(3, 7));
+		assertEquals(21, com.sirma.itt.javacourse.MathUtil.getLeastCommonDenominator(3, 7));
 	}
 
 }

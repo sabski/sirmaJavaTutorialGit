@@ -16,7 +16,6 @@ public class RunStringCalculator {
 	 *            for the main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		StringCalculator calculator = new StringCalculator();
 		String firstBigNumber = null;
 		String secondBigNumber = null;
@@ -31,10 +30,6 @@ public class RunStringCalculator {
 			IOUtils.printConsoleMessage("Result is"
 					+ calculator.sumStrings(firstBigNumber, secondBigNumber));
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

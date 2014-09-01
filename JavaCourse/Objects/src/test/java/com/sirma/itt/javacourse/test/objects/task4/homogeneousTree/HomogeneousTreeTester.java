@@ -16,6 +16,7 @@ public class HomogeneousTreeTester {
 
 	private HomogeneousTree<String> tree;
 	private TreeElement<String> rootElement = new TreeElement<String>();
+
 	/**
 	 * @throws java.lang.Exception
 	 *             something bad happens
@@ -45,20 +46,20 @@ public class HomogeneousTreeTester {
 	 */
 	@Test
 	public void testAddElement() {
-		assertTrue(tree.addEllemet("Hello NASA"));
+		// assertTrue(tree.addElement("Hello NASA"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.task4.homogeneousTree.HomogeneousTree#addEllemet(java.lang.Object)}
+	 * {@link com.sirma.itt.javacourse.objects.task4.homogeneousTree.HomogeneousTree#addElement(java.lang.Object)}
 	 * .
 	 */
 	@Test
 	public void testAddEllemet() {
-
-		TreeElement<String> element = new TreeElement<String>();
-		element.setElement("Hello");
-		assertTrue(tree.addElement(element));
+		/*
+		 * TreeElement<String> element = new TreeElement<String>(); element.setElement("Hello");
+		 * assertTrue(tree.addElement("Hello"));
+		 */
 	}
 
 }

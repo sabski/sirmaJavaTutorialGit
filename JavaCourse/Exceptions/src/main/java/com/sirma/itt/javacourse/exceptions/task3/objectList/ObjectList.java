@@ -24,7 +24,7 @@ public class ObjectList {
 	}
 
 	/**
-	 * Basic constructor for object list. 
+	 * Basic constructor for object list.
 	 */
 	public ObjectList() {
 		super();
@@ -55,6 +55,8 @@ public class ObjectList {
 	public boolean removeElement() {
 		index--;
 		if (index < 0) {
+			// Reset index value to Zero.
+			index = 0;
 			throw new NegativeIndexException();
 		}
 		array[index] = null;

@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile;
 
+import java.io.FileNotFoundException;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -19,7 +21,11 @@ public class RunFileReverser {
 		// TODO Auto-generated method stub
 		FileReverser reverser = new FileReverser();
 		IOUtils.printConsoleMessage("Input the name of the file you want to reverse.");
-		reverser.reverseFile(IOUtils.readLine());
+		try {
+			reverser.reverseFileContent(IOUtils.readLine());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

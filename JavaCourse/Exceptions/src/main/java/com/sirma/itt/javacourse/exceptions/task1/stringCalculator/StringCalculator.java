@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.exceptions.task1.stringCalculator;
 
-
 /**
  * Class for calculating big numbers using Strings.
  * 
@@ -17,17 +16,11 @@ public class StringCalculator {
 	 *            the second String
 	 * @return the String Sum of the given Strings
 	 */
-	public String sumStrings(String firstNumber, String secondNumber) throws NumberFormatException,
-			NullPointerException{
+	public String sumStrings(String firstNumber, String secondNumber) throws NumberFormatException {
 
 		StringBuilder result = new StringBuilder();
 		int lenght;
 		boolean isOverTen = false;
-/*
-		if (IOUtils.isNull(firstNumber) || IOUtils.isNull(secondNumber)) {
-			return result.toString();
-		}
-*/
 		String inverseFirstNumber = new StringBuilder(firstNumber).reverse().toString();
 		String inverseSecondNumber = new StringBuilder(secondNumber).reverse().toString();
 
@@ -48,7 +41,6 @@ public class StringCalculator {
 			if (i < inverseSecondNumber.length()) {
 				b = Character.getNumericValue(inverseSecondNumber.charAt(i));
 			}
-
 			c = a + b;
 			if (isOverTen) {
 				c++;

@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.exceptions.task2.readInputNumbers;
 
 import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.MathUtil;
 
 /**
  * Runner class that is designed to catch a NumericInputException
@@ -23,27 +24,15 @@ public class NumberInputRun {
 			while (true) {
 				int num = IOUtils.readInt();
 				IOUtils.printConsoleMessage("" + num);
-				runInput(num);
+				if (!MathUtil.runInput(0, 100, num)) {
+					throw new NumericInputException();
+				} else {
+					IOUtils.printConsoleMessage("Try again");
+				}
 			}
 		} catch (NumericInputException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Checks if the given value is within range otherwise throws an exception
-	 * 
-	 * @param num
-	 *            the number to be checked if it is specific range.
-	 * @throws NumericInputException
-	 */
-	public static void runInput(int num) throws NumericInputException {
-
-		if (0 > num || num > 100) {
-			throw new NumericInputException();
-		} else {
-			IOUtils.printConsoleMessage("Try again :P");
-		}
-	}
 }

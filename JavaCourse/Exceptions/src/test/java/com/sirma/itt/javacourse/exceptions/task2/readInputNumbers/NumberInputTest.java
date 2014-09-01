@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
+import com.sirma.itt.javacourse.MathUtil;
+
 public class NumberInputTest {
 
 	@Rule
@@ -25,7 +27,9 @@ public class NumberInputTest {
 	@Test
 	public void testRunInput() {
 		try {
-			NumberInputRun.runInput(5555);
+			if (!MathUtil.runInput(0, 100, 5555)) {
+				throw new NumericInputException();
+			}
 		} catch (NumericInputException e) {
 			// TODO Auto-generated catch block
 			assertTrue(e instanceof NumericInputException);
@@ -36,7 +40,9 @@ public class NumberInputTest {
 	public void testRunInputCorrectValues() {
 
 		try {
-			NumberInputRun.runInput(57);
+			if (!MathUtil.runInput(0, 100, 57)) {
+				throw new NumericInputException();
+			}
 			assertTrue(log.getLog().contains("Try again :P"));
 		} catch (NumericInputException e) {
 			e.printStackTrace();
@@ -49,7 +55,9 @@ public class NumberInputTest {
 	public void testRunInputNegativeValues() {
 
 		try {
-			NumberInputRun.runInput(-57);
+			if (!MathUtil.runInput(0, 100, -57)) {
+				throw new NumericInputException();
+			}
 		} catch (NumericInputException e) {
 			assertTrue(e instanceof NumericInputException);
 		} finally {

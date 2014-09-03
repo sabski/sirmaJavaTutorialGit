@@ -14,11 +14,13 @@ import com.sirma.itt.javacourse.objects.task5.heterogeneousTree.HeterogeneousTre
 import com.sirma.itt.javacourse.objects.task5.heterogeneousTree.NodeElement;
 
 /**
+ * JUnit test class for HeterogeneousTree.class.
+ * 
  * @author simeon
  */
 public class HeterogeneousTreeTest {
 
-	private HeterogeneousTree<Figure> squares;
+	private HeterogeneousTree<Figure> tree;
 
 	/**
 	 * @throws java.lang.Exception
@@ -26,11 +28,11 @@ public class HeterogeneousTreeTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		squares = new HeterogeneousTree<Figure>();
+		tree = new HeterogeneousTree<Figure>();
 		Point p = new Point(10, 10);
 		Square sqrt = new Square(p, 10);
 		NodeElement<Figure> root = new NodeElement<Figure>(sqrt);
-		squares.setRootEllement(root);
+		tree.setRootEllement(root);
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class HeterogeneousTreeTest {
 	 */
 	@Test
 	public void testPrintAllNames() {
-		assertEquals("Square", squares.printAllNames());
+		assertEquals("0 : Square ; \n", tree.printAllNames());
 	}
 
 	/**
@@ -51,19 +53,7 @@ public class HeterogeneousTreeTest {
 	@Test
 	public void testAddElement() {
 		Rectangle rect = new Rectangle(new Point(10, 10), 10, 10);
-		assertTrue(squares.addFigureEllemet(rect));
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.task5.heterogeneousTree.HeterogeneousTree#addFigureEllemet(com.sirma.itt.javacourse.objects.task2.shapes.Figure)}
-	 * .
-	 */
-	@Test
-	public void testAddFigureEllemet() {
-		Rectangle rect = new Rectangle(new Point(10, 10), 10, 10);
-		NodeElement<Figure> figure = new NodeElement<Figure>(rect);
-		//assertTrue(squares.addElement(figure));
+		assertTrue(tree.addFigureEllemet(rect));
 	}
 
 }

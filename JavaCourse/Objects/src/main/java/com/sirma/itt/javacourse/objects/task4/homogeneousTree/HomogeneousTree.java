@@ -47,6 +47,8 @@ public class HomogeneousTree<T> {
 				rootElement);
 		StringBuilder stringBuilder = new StringBuilder();
 		for (List<String> level : treeStructyre) {
+			// Calculate the space count (tabCount) and insert them before the
+			// current level value.
 			int tabCount = treeStructyre.size() - treeStructyre.indexOf(level) - 1;
 			for (int i = 0; i < tabCount; i++) {
 				stringBuilder.append(" ");
@@ -92,18 +94,18 @@ public class HomogeneousTree<T> {
 		List<String> currentLevel = getLevel(level, treeList);
 		currentLevel.add(element.getElement().toString());
 		if (element.getLeft() != null) {
-			// send the left element to be recursively processed.
+			// Send the left element to be recursively processed.
 			levelBulder(level + 1, treeList, element.getLeft());
 		} else {
 			// Generates null values for end tree elements for better visualization.
-			Levelgenerator(level + 1, treeList);
+			levelGenerator(level + 1, treeList);
 		}
 		if (element.getRight() != null) {
-			// send the right element to be recursively processed.
+			// Send the right element to be recursively processed.
 			levelBulder(level + 1, treeList, element.getRight());
 		} else {
 			// Generates null values for end tree elements for better visualization.
-			Levelgenerator(level + 1, treeList);
+			levelGenerator(level + 1, treeList);
 		}
 		return treeList;
 	}
@@ -116,7 +118,7 @@ public class HomogeneousTree<T> {
 	 * @param treeList
 	 *            the list that contains all the tree information.
 	 */
-	private void Levelgenerator(int level, List<List<String>> treeList) {
+	private void levelGenerator(int level, List<List<String>> treeList) {
 		List<String> tempLVL = getLevel(level, treeList);
 		tempLVL.add("null");
 	}
@@ -142,7 +144,7 @@ public class HomogeneousTree<T> {
 	}
 
 	/**
-	 * Add directly a figure element to the tree.
+	 * Add directly a T element to the tree.
 	 * 
 	 * @param element
 	 *            add element to the tree
@@ -171,7 +173,7 @@ public class HomogeneousTree<T> {
 		// Checks the hash code of the T Object value and compares it to the hash code value of the
 		// nodeTobeInserted element.
 		if (treeNode.getElement().hashCode() > nodeTobeInserted.getElement().hashCode()) {
-			// if the current tree element has a smaller hash code value then the value we want to
+			// If the current tree element has a smaller hash code value then the value we want to
 			// insert the element is moved to the left side of the tree.
 			if (treeNode.getLeft() != null) {
 				insertNode(treeNode.getLeft(), nodeTobeInserted);
@@ -185,5 +187,35 @@ public class HomogeneousTree<T> {
 				treeNode.setRight(nodeTobeInserted);
 			}
 		}
+	}
+
+	/**
+	 * Retries all the element in the tree as a list.
+	 * 
+	 * @return a list of elements that are in the tree.
+	 */
+	public List<T> getElementList() {
+		return elementExtractor(new ArrayList<T>(), rootElement);
+	}
+
+	/**
+	 * Extracts the elements of the tree.
+	 * 
+	 * @param list
+	 *            the list that contains all the elements.
+	 * @param element
+	 *            the current element we are searching.
+	 * @return the list of elements.
+	 */
+	private List<T> elementExtractor(List<T> list, TreeElement<T> element) {
+		list.add(element.getElement());
+		if (element.getLeft() != null) {
+			elementExtractor(list, element.getLeft());
+		}
+		if (element.getRight() != null) {
+			elementExtractor(list, element.getRight());
+		}
+
+		return list;
 	}
 }

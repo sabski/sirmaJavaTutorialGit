@@ -1,5 +1,8 @@
 package com.sirma.itt.javacourse.objects.task5.heterogeneousTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 
 /**
@@ -12,8 +15,7 @@ import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 public class NodeElement<T extends Figure> {
 
 	private Figure object;
-	private NodeElement<T> right;
-	private NodeElement<T> left;
+	private List<NodeElement<T>> childred;
 
 	/**
 	 * Getter method for object.
@@ -35,50 +37,15 @@ public class NodeElement<T extends Figure> {
 	}
 
 	/**
-	 * Getter method for right.
+	 * Basic constructor for node objects.
 	 * 
-	 * @return the right
-	 */
-	public NodeElement<T> getRight() {
-		return right;
-	}
-
-	/**
-	 * Setter method for right.
-	 * 
-	 * @param rigth
-	 *            the right to set
-	 */
-	public void setRight(NodeElement<T> rigth) {
-		this.right = rigth;
-	}
-
-	/**
-	 * Getter method for left.
-	 * 
-	 * @return the left
-	 */
-	public NodeElement<T> getLeft() {
-		return left;
-	}
-
-	/**
-	 * Setter method for left.
-	 * 
-	 * @param left
-	 *            the left to set
-	 */
-	public void setLeft(NodeElement<T> left) {
-		this.left = left;
-	}
-
-	/**
 	 * @param object
 	 *            The figure based object.
 	 */
 	public NodeElement(Figure object) {
 		super();
 		this.object = object;
+		this.childred = new ArrayList<NodeElement<T>>();
 	}
 
 	/**
@@ -86,6 +53,25 @@ public class NodeElement<T extends Figure> {
 	 */
 	public NodeElement() {
 		super();
+	}
+
+	/**
+	 * Getter method for childred.
+	 * 
+	 * @return the childred
+	 */
+	public List<NodeElement<T>> getChildred() {
+		return childred;
+	}
+
+	/**
+	 * Setter method for childred.
+	 * 
+	 * @param childred
+	 *            the childred to set
+	 */
+	public void setChildred(List<NodeElement<T>> childred) {
+		this.childred = childred;
 	}
 
 }

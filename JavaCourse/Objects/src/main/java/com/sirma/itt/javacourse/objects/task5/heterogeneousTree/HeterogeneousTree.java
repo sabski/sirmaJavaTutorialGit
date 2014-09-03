@@ -1,5 +1,9 @@
 package com.sirma.itt.javacourse.objects.task5.heterogeneousTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 
 /**
@@ -12,6 +16,7 @@ import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 public class HeterogeneousTree<T extends Figure> {
 
 	private NodeElement<T> rootEllement;
+	private int childCount;
 
 	/**
 	 * Getter method for rootEllement.
@@ -51,27 +56,16 @@ public class HeterogeneousTree<T extends Figure> {
 	private String printElementNode(NodeElement<T> node) {
 		StringBuilder builder = new StringBuilder();
 
-		System.out.println(node.getObject().getName());
-		builder.append(node.getObject().getName());
-		if (node.getLeft() != null) {
-			builder.append(printElementNode(node.getLeft()));
+		List<List<NodeElement<T>>> levels = levelBuilder(0, new ArrayList<List<NodeElement<T>>>(),
+				rootEllement);
+		for (List<NodeElement<T>> level : levels) {
+			for (NodeElement<T> element : level) {
+				builder.append(levels.indexOf(level) + " : " + element.getObject().getName()
+						+ " ; \n");
+			}
 		}
-		if (node.getRight() != null) {
-			builder.append(printElementNode(node.getRight()));
-		}
+
 		return builder.toString();
-	}
-
-	/**
-	 * Adds an element to the tree.
-	 * 
-	 * @param element
-	 *            the element to be added to the tree.
-	 * @return true if element was inserted
-	 */
-	public boolean addElement(NodeElement<T> element) {
-
-		return insertNode(rootEllement, element);
 	}
 
 	/**
@@ -83,7 +77,7 @@ public class HeterogeneousTree<T extends Figure> {
 	 */
 	public boolean addFigureEllemet(Figure f) {
 		NodeElement<T> node = new NodeElement<T>(f);
-		return addElement(node);
+		return insertNode(node);
 	}
 
 	/**
@@ -95,25 +89,96 @@ public class HeterogeneousTree<T extends Figure> {
 	 *            the node we want to insert.
 	 * @return true if we inserted into the tree.
 	 */
-	private boolean insertNode(NodeElement<T> treeNode, NodeElement<T> nodeTobeInserted) {
-		if (treeNode.getObject().equals(nodeTobeInserted.getObject())) {
-			return false;
+	private boolean insertNode(NodeElement<T> nodeTobeInserted) {
+		List<List<NodeElement<T>>> levels = levelBuilder(0, new ArrayList<List<NodeElement<T>>>(),
+				rootEllement);
+		// Loops the level Objects then loop the objects in the current level to see if any one of
+		// them contains the same valued object in its content node.
+		for (List<NodeElement<T>> level : levels) {
+			for (NodeElement<T> node : level) {
+				if (node.getObject().equals(nodeTobeInserted.getObject())) {
+					return false;
+				}
+			}
 		}
-		if (treeNode.getObject().hashCode() > nodeTobeInserted.getObject().hashCode()) {
-			if (treeNode.getLeft() != null) {
-				return insertNode(treeNode.getLeft(), nodeTobeInserted);
 
-			} else {
-				treeNode.setLeft(nodeTobeInserted);
-				return true;
-			}
+		// We select the last level that is in the level list and if the list has achieved maximum
+		// children for that level we add the new element to the first element of the last level.
+		List<NodeElement<T>> level = levels.get(levels.size() - 1);
+		IOUtils.printConsoleMessage("Last level size " + level.size());
+
+		if (levels.size() == 1) {
+			rootEllement.getChildred().add(nodeTobeInserted);
+			IOUtils.printConsoleMessage("Adding to root element");
+			return true;
+		} else if (level.size() == ((levels.size() - 1) * childCount)) {
+			level.get(0).getChildred().add(nodeTobeInserted);
+			return true;
 		} else {
-			if (treeNode.getRight() != null) {
-				return insertNode(treeNode.getRight(), nodeTobeInserted);
-			} else {
-				treeNode.setRight(nodeTobeInserted);
-				return true;
-			}
+			int index = level.size() / childCount;
+			level.get(index).getChildred().add(nodeTobeInserted);
+			IOUtils.printConsoleMessage("Inserting node at " + index);
+			return true;
 		}
 	}
+
+	/**
+	 * Creates the level schema of the tree.
+	 * 
+	 * @param level
+	 *            the current level we are building.
+	 * @param list
+	 *            the fill list of levels and elements in a level
+	 * @param nodeElement
+	 *            the current node element we are placing in the level.
+	 * @return the list of elements in the tree.
+	 */
+	private List<List<NodeElement<T>>> levelBuilder(int level, List<List<NodeElement<T>>> list,
+			NodeElement<T> nodeElement) {
+		IOUtils.printConsoleMessage("Creating level " + level);
+		// If the level we are is not present we create it.
+		if (level > list.size()) {
+			list.add(new ArrayList<NodeElement<T>>());
+			list.get(level).add(nodeElement);
+			IOUtils.printConsoleMessage("Creating new level, level is bigger then list"
+					+ list.size());
+		} else if (list.size() == 0) {
+			list.add(new ArrayList<NodeElement<T>>());
+			list.get(level).add(nodeElement);
+			IOUtils.printConsoleMessage("Creating new level");
+		} else {
+			IOUtils.printConsoleMessage("Adding element to level " + level);
+			if (level == list.size()) {
+				list.add(new ArrayList<NodeElement<T>>());
+			}
+			list.get(level).add(nodeElement);
+		}
+
+		// Add the children of the node to the next level.
+		for (NodeElement<T> node : nodeElement.getChildred()) {
+			levelBuilder((level + 1), list, node);
+		}
+
+		return list;
+	}
+
+	/**
+	 * Getter method for childCount.
+	 * 
+	 * @return the childCount
+	 */
+	public int getChildCount() {
+		return childCount;
+	}
+
+	/**
+	 * Setter method for childCount.
+	 * 
+	 * @param childCount
+	 *            the childCount to set
+	 */
+	public void setChildCount(int childCount) {
+		this.childCount = childCount;
+	}
+
 }

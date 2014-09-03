@@ -10,6 +10,8 @@ import com.sirma.itt.javacourse.IOUtils;
 public class TreeRunner {
 
 	/**
+	 * Main method for Running HomogeneousTree code.
+	 * 
 	 * @param args
 	 *            main method arguments
 	 */

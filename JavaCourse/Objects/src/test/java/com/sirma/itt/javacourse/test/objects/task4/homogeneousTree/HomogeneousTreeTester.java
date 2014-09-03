@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.test.objects.task4.homogeneousTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +12,8 @@ import com.sirma.itt.javacourse.objects.task4.homogeneousTree.HomogeneousTree;
 import com.sirma.itt.javacourse.objects.task4.homogeneousTree.TreeElement;
 
 /**
+ * JUnit test for Homogeneous Tree.
+ * 
  * @author simeon
  */
 public class HomogeneousTreeTester {
@@ -36,7 +40,7 @@ public class HomogeneousTreeTester {
 	@Test
 	public void testPrintAllValues() {
 
-		assertEquals("Hello worlds", tree.printAllValues());
+		assertEquals("Hello worlds\n", tree.printAllValues());
 	}
 
 	/**
@@ -46,20 +50,10 @@ public class HomogeneousTreeTester {
 	 */
 	@Test
 	public void testAddElement() {
-		// assertTrue(tree.addElement("Hello NASA"));
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.objects.task4.homogeneousTree.HomogeneousTree#addElement(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testAddEllemet() {
-		/*
-		 * TreeElement<String> element = new TreeElement<String>(); element.setElement("Hello");
-		 * assertTrue(tree.addElement("Hello"));
-		 */
+		String element = "Hello NASA";
+		tree.addElement(element);
+		List<String> list = tree.getElementList();
+		assertTrue(list.contains(element));
 	}
 
 }

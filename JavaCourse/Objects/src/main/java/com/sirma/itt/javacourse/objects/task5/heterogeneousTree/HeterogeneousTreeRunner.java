@@ -1,5 +1,6 @@
 package com.sirma.itt.javacourse.objects.task5.heterogeneousTree;
 
+import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 import com.sirma.itt.javacourse.objects.task2.shapes.Point;
 import com.sirma.itt.javacourse.objects.task2.shapes.rectangularShapes.Rectangle;
@@ -19,6 +20,7 @@ public class HeterogeneousTreeRunner {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		HeterogeneousTree<Figure> fig = new HeterogeneousTree<Figure>();
+		fig.setChildCount(3);
 		Point p = new Point(20, 20);
 		Rectangle rect = new Rectangle(p, 0, 0);
 		Rectangle rect2 = new Rectangle(p, 0, 0);
@@ -31,7 +33,7 @@ public class HeterogeneousTreeRunner {
 		fig.addFigureEllemet(rect3);
 		fig.addFigureEllemet(rect4);
 		fig.addFigureEllemet(sqrt);
-		fig.printAllNames();
+		IOUtils.printConsoleMessage("Ellement in the tree : \n" + fig.printAllNames());
 	}
 
 }

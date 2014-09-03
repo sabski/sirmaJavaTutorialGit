@@ -15,7 +15,8 @@ import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 public class NodeElement<T extends Figure> {
 
 	private Figure object;
-	private List<NodeElement<T>> childred;
+	private List<NodeElement<T>> children;
+	private NodeElement<T> parent;
 
 	/**
 	 * Getter method for object.
@@ -45,7 +46,21 @@ public class NodeElement<T extends Figure> {
 	public NodeElement(Figure object) {
 		super();
 		this.object = object;
-		this.childred = new ArrayList<NodeElement<T>>();
+		this.children = new ArrayList<NodeElement<T>>();
+	}
+
+	/**
+	 * Parent constructor.
+	 * 
+	 * @param object
+	 *            the value that is contained in the node.
+	 * @param parent
+	 *            parent of the current node
+	 */
+	public NodeElement(Figure object, NodeElement<T> parent) {
+		this.object = object;
+		this.parent = parent;
+		this.children = new ArrayList<NodeElement<T>>();
 	}
 
 	/**
@@ -56,22 +71,41 @@ public class NodeElement<T extends Figure> {
 	}
 
 	/**
-	 * Getter method for childred.
+	 * Getter method for children.
 	 * 
-	 * @return the childred
+	 * @return the children
 	 */
-	public List<NodeElement<T>> getChildred() {
-		return childred;
+	public List<NodeElement<T>> getChildren() {
+		return children;
 	}
 
 	/**
-	 * Setter method for childred.
+	 * Setter method for children.
 	 * 
-	 * @param childred
-	 *            the childred to set
+	 * @param children
+	 *            the children to set
 	 */
-	public void setChildred(List<NodeElement<T>> childred) {
-		this.childred = childred;
+	public void setChildren(List<NodeElement<T>> childred) {
+		this.children = childred;
+	}
+
+	/**
+	 * Getter method for parent.
+	 * 
+	 * @return the parent
+	 */
+	public NodeElement<T> getParent() {
+		return parent;
+	}
+
+	/**
+	 * Setter method for parent.
+	 * 
+	 * @param parent
+	 *            the parent to set
+	 */
+	public void setParent(NodeElement<T> parent) {
+		this.parent = parent;
 	}
 
 }

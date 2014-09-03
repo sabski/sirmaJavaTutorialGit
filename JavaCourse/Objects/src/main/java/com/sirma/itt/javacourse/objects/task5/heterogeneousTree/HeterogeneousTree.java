@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
+import com.sirma.itt.javacourse.objects.task4.binaryTree.Node;
 
 /**
  * This class represent a generic type collection that extend Figure.
@@ -108,16 +109,23 @@ public class HeterogeneousTree<T extends Figure> {
 		IOUtils.printConsoleMessage("Last level size " + level.size());
 
 		if (levels.size() == 1) {
-			rootEllement.getChildred().add(nodeTobeInserted);
+			rootEllement.getChildren().add(nodeTobeInserted);
 			IOUtils.printConsoleMessage("Adding to root element");
 			return true;
-		} else if (level.size() == ((levels.size() - 1) * childCount)) {
-			level.get(0).getChildred().add(nodeTobeInserted);
+		} else if (childCount > rootEllement.getChildren().size()) {
+			rootEllement.getChildren().add(nodeTobeInserted);
+			IOUtils.printConsoleMessage("Adding to root element");
+			return true;
+		} else if (level.size() == (levels.get(levels.indexOf(level) - 1).size() * childCount)) {
+			IOUtils.printConsoleMessage("row is full : "
+					+ (childCount * levels.get(levels.indexOf(level) - 1).size()));
+			NodeElement<T> node = level.get(0);
+			node.getChildren().add(nodeTobeInserted);
 			return true;
 		} else {
-			int index = level.size() / childCount;
-			level.get(index).getChildred().add(nodeTobeInserted);
-			IOUtils.printConsoleMessage("Inserting node at " + index);
+			int index = (level.size() / childCount);
+			IOUtils.printConsoleMessage("index : " + index + " level size " + level.size());
+			levels.get(levels.indexOf(level) - 1).get(index).getChildren().add(nodeTobeInserted);
 			return true;
 		}
 	}
@@ -135,19 +143,14 @@ public class HeterogeneousTree<T extends Figure> {
 	 */
 	private List<List<NodeElement<T>>> levelBuilder(int level, List<List<NodeElement<T>>> list,
 			NodeElement<T> nodeElement) {
-		IOUtils.printConsoleMessage("Creating level " + level);
 		// If the level we are is not present we create it.
 		if (level > list.size()) {
 			list.add(new ArrayList<NodeElement<T>>());
 			list.get(level).add(nodeElement);
-			IOUtils.printConsoleMessage("Creating new level, level is bigger then list"
-					+ list.size());
 		} else if (list.size() == 0) {
 			list.add(new ArrayList<NodeElement<T>>());
 			list.get(level).add(nodeElement);
-			IOUtils.printConsoleMessage("Creating new level");
 		} else {
-			IOUtils.printConsoleMessage("Adding element to level " + level);
 			if (level == list.size()) {
 				list.add(new ArrayList<NodeElement<T>>());
 			}
@@ -155,10 +158,9 @@ public class HeterogeneousTree<T extends Figure> {
 		}
 
 		// Add the children of the node to the next level.
-		for (NodeElement<T> node : nodeElement.getChildred()) {
-			levelBuilder((level + 1), list, node);
+		for (NodeElement<T> node : nodeElement.getChildren()) {
+			list = levelBuilder((level + 1), list, node);
 		}
-
 		return list;
 	}
 
@@ -180,5 +182,4 @@ public class HeterogeneousTree<T extends Figure> {
 	public void setChildCount(int childCount) {
 		this.childCount = childCount;
 	}
-
 }

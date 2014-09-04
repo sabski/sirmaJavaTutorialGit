@@ -1,17 +1,18 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting;
+
 /**
+ * Parent class with base value of the annotation.
  * 
  * @author simeon
  */
 @SortingAnotation(weight = 1)
-public class ParentClass implements Comparable<ParentClass>{
+public class ParrentClass implements Comparable<ParrentClass> {
 
-	
-	private int id =1;
+	private int id = 1;
 
 	/**
 	 * Getter method for id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public int getId() {
@@ -20,16 +21,21 @@ public class ParentClass implements Comparable<ParentClass>{
 
 	/**
 	 * Setter method for id.
-	 *
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	@Override
-	public int compareTo(ParentClass arg0) {
-		// TODO Auto-generated method stub
+	public int compareTo(ParrentClass parent) {
+		if (this.id > parent.getId()) {
+			return 1;
+		} else if (parent.getId() > this.id) {
+			return -1;
+		}
 		return 0;
 	}
 }

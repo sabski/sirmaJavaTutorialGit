@@ -1,41 +1,43 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task4.anotationSorting;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildAClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildBClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildCClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ClassSorter;
-import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ParentClass;
+import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ComparatorAnnotaion;
+import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ParrentClass;
 
 /**
- * Unit test for 
+ * Unit test for annotation Sorting.
+ * 
  * @author simeon
  */
 public class AnotationSortingTest {
 
-	private List<ParentClass> list;
+	private List<ParrentClass> list;
 	private ClassSorter sort;
 	private List<Object> result;
 
 	/**
-	 * Sets up  the variables for the test.
+	 * Sets up the variables for the test.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
-		list = new ArrayList<ParentClass>();
+		list = new ArrayList<ParrentClass>();
 		result = new ArrayList<Object>();
 
-		ParentClass p = new ParentClass();
+		ParrentClass p = new ParrentClass();
 		ChildAClass a = new ChildAClass();
 		ChildBClass b = new ChildBClass();
 		ChildCClass c = new ChildCClass();
@@ -60,7 +62,7 @@ public class AnotationSortingTest {
 	 */
 	@Test
 	public void testSort() {
-		List<Object> temp = sort.sort(list);
+		List<ParrentClass> temp = sort.sort(list, new ComparatorAnnotaion());
 		assertEquals(result.toString(), temp.toString());
 	}
 
@@ -71,6 +73,6 @@ public class AnotationSortingTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testSortWithNull() {
-		List<Object> temp = sort.sort(null);
+		List<Object> temp = sort.sort(null, null);
 	}
 }

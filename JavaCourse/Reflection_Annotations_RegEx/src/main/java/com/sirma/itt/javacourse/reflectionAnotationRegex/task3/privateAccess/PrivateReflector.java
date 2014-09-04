@@ -13,7 +13,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class PrivateReflector {
 
-	MyPrivateClass myPrivateVariable = new MyPrivateClass();
+	private MyPrivateClass myPrivateVariable;
 
 	/**
 	 * Method for displaying the private fields of a specific object.
@@ -21,16 +21,26 @@ public class PrivateReflector {
 	 * @param params
 	 *            the object which private fields should be displayed.
 	 * @throws IllegalArgumentException
+	 *             something went wrong.
 	 * @throws IllegalAccessException
+	 *             something went wrong.
 	 * @throws SecurityException
+	 *             something went wrong.
 	 * @throws NoSuchFieldException
+	 *             accessing invalid field.
 	 * @throws NoSuchMethodException
+	 *             invalid method Name.
 	 * @throws InvocationTargetException
+	 *             something went wrong.
+	 * @throws InstantiationException
+	 *             something went wrong.
 	 */
 	public void breakPrivateFields(Object... params) throws IllegalArgumentException,
 			IllegalAccessException, SecurityException, NoSuchFieldException, NoSuchMethodException,
-			InvocationTargetException {
+			InvocationTargetException, InstantiationException {
 
+		myPrivateVariable = MyPrivateClass.class.newInstance();
+		
 		Class<?> cl = myPrivateVariable.getClass();
 
 		for (Field f : cl.getDeclaredFields()) {

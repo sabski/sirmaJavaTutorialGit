@@ -14,7 +14,6 @@ public class RunFileWriter {
 	 *            the argument for the main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		WriteFileFromConsole writer = new WriteFileFromConsole();
 		writer.writeFile();
 	}

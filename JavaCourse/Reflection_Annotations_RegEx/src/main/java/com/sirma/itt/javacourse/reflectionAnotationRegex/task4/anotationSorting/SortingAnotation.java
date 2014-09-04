@@ -10,7 +10,9 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SortingAnotation {
-
+	/**
+	 * Annotation value that lets us weigh classes that are annotated with it.
+	 */
 	int weight();
 
 }

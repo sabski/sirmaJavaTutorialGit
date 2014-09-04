@@ -91,10 +91,10 @@ public class UserDefinedObject implements Serializable {
 	 */
 	public boolean saveObject(String path, UserDefinedObject o) {
 
-		if (o == null){
+		if (o == null) {
 			return false;
 		}
-		
+
 		File file = new File(path);
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -146,7 +146,7 @@ public class UserDefinedObject implements Serializable {
 	 *            the path to the file
 	 * @return the object that was stored in the file (one object)
 	 * @throws IOException
-	 *             if the file can`t be read 
+	 *             if the file can`t be read
 	 */
 	public UserDefinedObject getObject(String path) throws IOException {
 		UserDefinedObject result = null;
@@ -160,10 +160,8 @@ public class UserDefinedObject implements Serializable {
 			ois = new ObjectInputStream(fin);
 			result = (UserDefinedObject) ois.readObject();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (ois != null) {
@@ -171,7 +169,6 @@ public class UserDefinedObject implements Serializable {
 					IOUtils.printConsoleMessage("Closing streams");
 					ois.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

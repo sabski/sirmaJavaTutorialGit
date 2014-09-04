@@ -19,17 +19,14 @@ public class GreadyRegexTest {
 
 	private String result = "<x><b></b><x/>\n" + "<b>sdfsdf</b><x/><x/><x/>\n" + "</x>";
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	/**
-	 * Test that the RegEx Expression works properly. 
+	 * Test that the RegEx Expression works properly.
 	 */
 	@Test
-	public void test() {
-		
-		assertEquals(result, IOUtils.editStringWithRegex(input, IOUtils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
+	public void testVAlidRegexValues() {
+
+		assertEquals(result,
+				IOUtils.editStringWithRegex(input, IOUtils.REGEX_VALIDATOR_X_TAGS, "<x/>"));
 	}
 
 }

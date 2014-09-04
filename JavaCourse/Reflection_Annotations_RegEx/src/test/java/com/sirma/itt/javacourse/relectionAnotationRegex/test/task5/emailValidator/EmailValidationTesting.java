@@ -1,8 +1,8 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task5.emailValidator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.IOUtils;
@@ -14,10 +14,6 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class EmailValidationTesting {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	/**
 	 * Test with valid email address.
 	 */
@@ -27,9 +23,13 @@ public class EmailValidationTesting {
 				"simeon@mail.com"));
 	}
 
+	/**
+	 * Test email validation with invalid email.
+	 */
 	@Test
-	public void testEmailValidathionWithFalseMail(){
-		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS, "asdasdasda.lda.cko"));
+	public void testEmailValidathionWithFalseMail() {
+		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS,
+				"asdasdasda.lda.cko"));
 	}
-	
+
 }

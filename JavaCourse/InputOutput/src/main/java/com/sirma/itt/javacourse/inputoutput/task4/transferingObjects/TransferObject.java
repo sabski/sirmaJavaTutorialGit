@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.sirma.itt.javacourse.IOUtils;
-
 /**
- * Class for transferring objects.
+ * Class for transferring objects. By using the provided in the constructor input and output
+ * streams.
  * 
  * @author simeon
  */
@@ -69,7 +68,15 @@ public class TransferObject {
 	}
 
 	/**
-	 * Start the transfer from the output stream to the input stream.
+	 * Start the transfer from the output stream to the input stream. Reads up to numberOfBytes
+	 * bytes of data from the input stream into an array of bytes. An attempt is made to read as
+	 * many as numberOfBytes bytes, but a smaller number may be read. The number of bytes actually
+	 * read is returned as an integer. This method blocks until input data is available, end of file
+	 * is detected, or an exception is thrown. If numberOfBytes is zero, then no bytes are read and
+	 * 0 is returned; otherwise, there is an attempt to read at least one byte. If no byte is
+	 * available because the stream is at end of file, the value -1 is returned; otherwise, at least
+	 * one byte is read and stored into the OutputStream. The number of bytes read is, at most,
+	 * equal to numberOfBytes.
 	 * 
 	 * @param numberOfBytes
 	 *            the number of bytes to be transfered between the streams.
@@ -82,9 +89,8 @@ public class TransferObject {
 		try {
 			byte[] bytes = new byte[numberOfBytes];
 			result = input.read(bytes, offset, numberOfBytes);
-			output.write(bytes, 0, result-1);
+			output.write(bytes, 0, result - 1);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

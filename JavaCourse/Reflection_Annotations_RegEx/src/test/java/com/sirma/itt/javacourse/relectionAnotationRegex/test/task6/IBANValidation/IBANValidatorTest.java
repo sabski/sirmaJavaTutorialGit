@@ -34,13 +34,6 @@ public class IBANValidatorTest {
 			+ "<iban>****7843</iban></bankAccounts>";
 
 	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
 	 * Test IBAN validation with correct data.
 	 */
 	@Test

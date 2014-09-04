@@ -1,20 +1,20 @@
 package comsirma.itt.javacourse.inputOutput.test.task3.reverseTextFile;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 import com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser;
 
 /**
+ * JUnit test class for ReverseTextFiles.class
+ * 
  * @author simeon
  */
 public class TestReverseTextFiles {
@@ -26,7 +26,10 @@ public class TestReverseTextFiles {
 	private String fileName = "src/test/resources/reverseSource.txt";
 
 	/**
+	 * Set up method for the test.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -59,9 +62,10 @@ public class TestReverseTextFiles {
 	 * .
 	 * 
 	 * @throws FileNotFoundException
+	 *             the file was not found
 	 */
 	@Test(expected = FileNotFoundException.class)
 	public void testReverseFileWrongFileName() throws FileNotFoundException {
-			reverser.reverseFileContent("src");
+		reverser.reverseFileContent("src");
 	}
 }

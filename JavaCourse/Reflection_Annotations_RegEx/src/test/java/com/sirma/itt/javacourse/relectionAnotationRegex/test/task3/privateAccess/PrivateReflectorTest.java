@@ -22,6 +22,7 @@ public class PrivateReflectorTest {
 
 	/**
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -55,6 +56,9 @@ public class PrivateReflectorTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

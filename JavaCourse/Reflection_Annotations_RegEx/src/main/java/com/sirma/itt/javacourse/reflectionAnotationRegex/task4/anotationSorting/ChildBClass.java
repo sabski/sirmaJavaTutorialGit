@@ -6,7 +6,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
  * @author simeon
  */
 @SortingAnotation(weight = 3)
-public class ChildBClass extends ParentClass{
+public class ChildBClass extends ParrentClass{
 
 	private float pi = 3.14f;
 

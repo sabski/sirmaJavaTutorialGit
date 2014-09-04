@@ -6,7 +6,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
  * @author simeon
  */
 @SortingAnotation(weight = 2)
-public class ChildAClass extends ParentClass {
+public class ChildAClass extends ParrentClass {
 
 	private String msg = "ChildAClass";
 

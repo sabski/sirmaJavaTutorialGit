@@ -20,11 +20,11 @@ public class Reflector {
 	 * @throws IllegalAccessException
 	 *             exception that may be triggered if there is illegal access to some parameters.
 	 * @throws IllegalArgumentException
-	 *             IDK
+	 *             something went wrong
 	 * @throws NoSuchFieldException
 	 *             if we try to access a filed which is not there.
 	 * @throws SecurityException
-	 *             IDK
+	 *             something went wrong
 	 */
 	public void reflect(Object object) throws SecurityException, NoSuchFieldException,
 			IllegalArgumentException, IllegalAccessException {

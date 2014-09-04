@@ -1,10 +1,12 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting;
 
 /**
+ * Child class that has a weight of 4.
+ * 
  * @author simeon
  */
 @SortingAnotation(weight = 4)
-public class ChildCClass extends ParentClass {
+public class ChildCClass extends ParrentClass {
 
 	private float pi = 3.14f;
 

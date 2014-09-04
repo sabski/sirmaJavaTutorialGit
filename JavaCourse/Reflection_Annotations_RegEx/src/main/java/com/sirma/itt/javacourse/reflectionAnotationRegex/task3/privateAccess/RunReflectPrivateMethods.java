@@ -34,11 +34,14 @@ public class RunReflectPrivateMethods {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); 
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

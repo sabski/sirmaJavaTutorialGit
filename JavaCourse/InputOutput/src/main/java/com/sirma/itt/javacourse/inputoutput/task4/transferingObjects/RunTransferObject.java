@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.rmi.CORBA.Util;
-
 import com.sirma.itt.javacourse.IOUtils;
 
 /**

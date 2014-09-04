@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.test.objects.task5.heterogeneousTree;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -28,11 +29,10 @@ public class HeterogeneousTreeTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		tree = new HeterogeneousTree<Figure>();
+
 		Point p = new Point(10, 10);
 		Square sqrt = new Square(p, 10);
-		NodeElement<Figure> root = new NodeElement<Figure>(sqrt);
-		tree.setRootEllement(root);
+		tree = new HeterogeneousTree<Figure>(sqrt, 3);
 	}
 
 	/**
@@ -56,4 +56,45 @@ public class HeterogeneousTreeTest {
 		assertTrue(tree.addFigureEllemet(rect));
 	}
 
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.objects.task5.heterogeneousTree.HeterogeneousTree#addElement(com.sirma.itt.javacourse.objects.task5.heterogeneousTree.NodeElement)}
+	 * .
+	 */
+	@Test
+	public void testAddElementTwiceWillRetunFalse() {
+		Rectangle rect = new Rectangle(new Point(10, 10), 10, 10);
+		tree.addFigureEllemet(rect);
+		assertFalse(tree.addFigureEllemet(rect));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.objects.task5.heterogeneousTree.HeterogeneousTree#addElement(com.sirma.itt.javacourse.objects.task5.heterogeneousTree.NodeElement)}
+	 * .
+	 */
+	@Test
+	public void testAddingMultipleElementsInTheTree() {
+		Rectangle rect = new Rectangle(new Point(10, 10), 10, 10);
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		tree.addFigureEllemet(new Rectangle(new Point(10, 10), 10, 10));
+		assertTrue(tree.addFigureEllemet(rect));
+	}
 }

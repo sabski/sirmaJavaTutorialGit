@@ -16,7 +16,6 @@ public class NodeElement<T extends Figure> {
 
 	private Figure object;
 	private List<NodeElement<T>> children;
-	private NodeElement<T> parent;
 
 	/**
 	 * Getter method for object.
@@ -50,20 +49,6 @@ public class NodeElement<T extends Figure> {
 	}
 
 	/**
-	 * Parent constructor.
-	 * 
-	 * @param object
-	 *            the value that is contained in the node.
-	 * @param parent
-	 *            parent of the current node
-	 */
-	public NodeElement(Figure object, NodeElement<T> parent) {
-		this.object = object;
-		this.parent = parent;
-		this.children = new ArrayList<NodeElement<T>>();
-	}
-
-	/**
 	 * Empty node constructor.
 	 */
 	public NodeElement() {
@@ -87,25 +72,6 @@ public class NodeElement<T extends Figure> {
 	 */
 	public void setChildren(List<NodeElement<T>> childred) {
 		this.children = childred;
-	}
-
-	/**
-	 * Getter method for parent.
-	 * 
-	 * @return the parent
-	 */
-	public NodeElement<T> getParent() {
-		return parent;
-	}
-
-	/**
-	 * Setter method for parent.
-	 * 
-	 * @param parent
-	 *            the parent to set
-	 */
-	public void setParent(NodeElement<T> parent) {
-		this.parent = parent;
 	}
 
 }

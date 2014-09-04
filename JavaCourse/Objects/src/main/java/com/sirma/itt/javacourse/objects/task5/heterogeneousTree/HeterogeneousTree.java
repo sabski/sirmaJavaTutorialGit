@@ -182,4 +182,18 @@ public class HeterogeneousTree<T extends Figure> {
 	public void setChildCount(int childCount) {
 		this.childCount = childCount;
 	}
+
+	/**
+	 * Constructor with root node and child count.
+	 * 
+	 * @param rootEllement
+	 *            the root element of the tree.
+	 * @param childCount
+	 *            the maxim number of children a node in the tree can have.
+	 */
+	public HeterogeneousTree(T rootEllement, int childCount) {
+
+		this.rootEllement = new NodeElement<T>(rootEllement);
+		this.childCount = childCount;
+	}
 }

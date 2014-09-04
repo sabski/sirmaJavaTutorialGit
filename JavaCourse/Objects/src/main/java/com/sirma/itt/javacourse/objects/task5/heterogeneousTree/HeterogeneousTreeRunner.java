@@ -20,16 +20,14 @@ public class HeterogeneousTreeRunner {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		HeterogeneousTree<Figure> fig = new HeterogeneousTree<Figure>();
-		fig.setChildCount(3);
+		HeterogeneousTree<Figure> fig;
 		Point p = new Point(20, 20);
 		Rectangle rect = new Rectangle(p, 0, 0);
 		Rectangle rect2 = new Rectangle(p, 0, 0);
 		Rectangle rect3 = new Rectangle(p, 0, 0);
 		Rectangle rect4 = new Rectangle(p, 0, 0);
 		Square sqrt = new Square(p, 15);
-		NodeElement<Figure> element = new NodeElement<Figure>(rect, null);
-		fig.setRootEllement(element);
+		fig = new HeterogeneousTree<Figure>(sqrt, 3);
 		fig.addFigureEllemet(rect2);
 		fig.addFigureEllemet(rect3);
 		fig.addFigureEllemet(rect4);

@@ -1,9 +1,10 @@
 package com.sirma.itt.javacourse.collections.task1.hashDice;
 
-import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.MathUtil;
 
 /**
+ * Class that rolls a set of dice, and when rolled returns the pair that was thrown.
+ * 
  * @author simeon
  */
 public class DiceRoller {

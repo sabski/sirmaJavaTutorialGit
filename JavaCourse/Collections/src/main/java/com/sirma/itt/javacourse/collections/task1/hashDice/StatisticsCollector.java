@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.text.html.parser.Entity;
-
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -52,7 +50,7 @@ public class StatisticsCollector {
 	 * Setter method for diceMap.
 	 * 
 	 * @param diceMap
-	 *            the diceMap to set
+	 *            The diceMap to set
 	 */
 	public void setDiceMap(Map<DiceCombintionPair, List<Integer>> diceMap) {
 		this.diceMap = diceMap;
@@ -62,6 +60,7 @@ public class StatisticsCollector {
 	 * Collects the data about the dice.
 	 * 
 	 * @param numberOfRolls
+	 *            The number of rolls to roll the dice.
 	 */
 	public void collectData(int numberOfRolls) {
 		DiceCombintionPair pair;
@@ -69,7 +68,6 @@ public class StatisticsCollector {
 		for (int i = 0; i < numberOfRolls; i++) {
 			pair = roller.rollDice();
 			if (!diceMap.containsKey(pair)) {
-				IOUtils.printConsoleMessage("Addind pair " + pair.toString());
 				diceMap.put(pair, new ArrayList<Integer>());
 			}
 			List<Integer> map = diceMap.get(pair);
@@ -81,20 +79,33 @@ public class StatisticsCollector {
 	 * Creates a default static collector.
 	 * 
 	 * @param sides
-	 *            the sides of the dice that will be rolled.
+	 *            The sides of the dice that will be rolled.
 	 */
 	public StatisticsCollector(int sides) {
 		diceMap = new HashMap<DiceCombintionPair, List<Integer>>();
 		roller = new DiceRoller(sides);
+
 	}
 
 	/**
-	 * prints in the console the gathered statistics
+	 * Prints in the console the gathered statistics.
 	 */
 	public void printStatistics() {
+		IOUtils.printConsoleMessage(prepareStringData());
+	}
+
+	/**
+	 * Prepares the output string data for all the combinations.
+	 * 
+	 * @return The statistics of the dice combination throws.
+	 */
+	public String prepareStringData() {
+		StringBuilder builder = new StringBuilder();
 		for (Entry<DiceCombintionPair, List<Integer>> en : diceMap.entrySet()) {
-			IOUtils.printConsoleMessage("The combinathion " + en.getKey().getFirstNumber() + " "
-					+ en.getKey().getSecondNumber() + " was rolled in " + en.getValue().toString());
+			builder.append("The combination " + en.getKey().getFirstNumber() + " "
+					+ en.getKey().getSecondNumber() + " was rolled in " + en.getValue().toString()
+					+ "\n");
 		}
+		return builder.toString();
 	}
 }

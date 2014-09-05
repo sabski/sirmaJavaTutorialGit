@@ -125,7 +125,8 @@ public class Book {
 	}
 
 	/**
-	 * Retrieves a specific page.
+	 * Retrieves a specific page. And places the index pointer to the last page that was returned by
+	 * this method.
 	 * 
 	 * @param i
 	 *            the number of the page.
@@ -171,7 +172,7 @@ public class Book {
 	 * Updates the book content.
 	 */
 	public void updateContent() {
-		pages = new ArrayList<Page>();
+		pages = new ArrayList<Page>(content.size() / pageSize);
 		Page page;
 		for (int i = 1; i <= content.size() / pageSize; i++) {
 			page = new Page(content.subList((i * pageSize - pageSize), i * pageSize));

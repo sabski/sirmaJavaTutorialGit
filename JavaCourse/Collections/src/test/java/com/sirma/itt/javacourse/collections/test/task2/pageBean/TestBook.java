@@ -12,6 +12,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.collections.task2.pageBean.Book;
 
 /**
+ * JUnit test for book class.
+ * 
  * @author simeon
  */
 public class TestBook {
@@ -19,7 +21,10 @@ public class TestBook {
 	private Book book;
 
 	/**
+	 * Set up method for test.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -39,7 +44,20 @@ public class TestBook {
 	 */
 	@Test
 	public void testNext() {
-		// List<?> firstPage = book.next();
+		assertEquals("[1, 2]", book.next().toString());
+	}
+
+	/**
+	 * Test method for {@link com.sirma.itt.javacourse.collections.task2.pageBean.Book#next()}.
+	 */
+	@Test
+	public void testNextNullPage() {
+		book.next();
+		book.next();
+		book.next();
+		book.next();
+		book.next();
+		assertEquals(null, book.next());
 	}
 
 	/**
@@ -47,7 +65,17 @@ public class TestBook {
 	 */
 	@Test
 	public void testPrevious() {
-		// fail("Not yet implemented");
+		book.next();
+		book.next();
+		assertEquals("[1, 2]", book.previous().toString());
+	}
+
+	/**
+	 * Test method for {@link com.sirma.itt.javacourse.collections.task2.pageBean.Book#previous()}.
+	 */
+	@Test
+	public void testPreviousNullPage() {
+		assertEquals(null, book.previous());
 	}
 
 	/**
@@ -55,7 +83,21 @@ public class TestBook {
 	 */
 	@Test
 	public void testHasNext() {
-		// fail("Not yet implemented");
+		assertTrue(book.hasNext());
+	}
+
+	/**
+	 * Test method for {@link com.sirma.itt.javacourse.collections.task2.pageBean.Book#hasNext()}.
+	 */
+	@Test
+	public void testHasNextFalseTest() {
+		book.next();
+		book.next();
+		book.next();
+		book.next();
+		book.next();
+		book.next();
+		assertFalse(book.hasNext());
 	}
 
 	/**
@@ -64,7 +106,18 @@ public class TestBook {
 	 */
 	@Test
 	public void testHasPrevious() {
-		// fail("Not yet implemented");
+		book.next();
+		book.next();
+		assertTrue(book.hasPrevious());
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.collections.task2.pageBean.Book#hasPrevious()}.
+	 */
+	@Test
+	public void testHasPreviousFalseValue() {
+		assertFalse(book.hasPrevious());
 	}
 
 	/**
@@ -72,7 +125,7 @@ public class TestBook {
 	 */
 	@Test
 	public void testFirstPage() {
-		// fail("Not yet implemented");
+		assertEquals("[1, 2]", book.firstPage().toString());
 	}
 
 	/**
@@ -80,7 +133,7 @@ public class TestBook {
 	 */
 	@Test
 	public void testLastPage() {
-		// fail("Not yet implemented");
+		assertEquals("[7]", book.lastPage().toString());
 	}
 
 	/**
@@ -89,7 +142,8 @@ public class TestBook {
 	 */
 	@Test
 	public void testGetCurrentPageNumber() {
-		// fail("Not yet implemented");
+		book.next();
+		assertEquals(1, book.getCurrentPageNumber());
 	}
 
 	/**
@@ -98,7 +152,7 @@ public class TestBook {
 	 */
 	@Test
 	public void testGetPage() {
-		// fail("Not yet implemented");
+		assertEquals("[5, 6]", book.getPage(2).toString());
 	}
 
 }

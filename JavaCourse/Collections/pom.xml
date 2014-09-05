@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>JavaCourse</groupId>
-		<artifactId>JavaCourse</artifactId>
+		<artifactId>com.sirma.itt.javaCourse</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>Collections</artifactId>

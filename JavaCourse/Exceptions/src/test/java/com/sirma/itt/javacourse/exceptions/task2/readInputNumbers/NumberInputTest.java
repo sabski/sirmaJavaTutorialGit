@@ -11,6 +11,12 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import com.sirma.itt.javacourse.MathUtil;
 
+/**
+ * JUnit test class for
+ * {@link com.sirma.itt.javacourse.exceptions.task2.readInputNumbers.NumericInputException}
+ * 
+ * @author Simeon Iliev
+ */
 public class NumberInputTest {
 
 	@Rule
@@ -19,11 +25,21 @@ public class NumberInputTest {
 	@Rule
 	public final StandardOutputStreamLog log = new StandardOutputStreamLog();
 
+	/**
+	 * Sets up variables for test methods.
+	 * 
+	 * @throws Exception
+	 *             Something went wrong.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		log.clear();
 	}
 
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.exceptions.task2.readInputNumbers.NumericInputException}
+	 */
 	@Test
 	public void testRunInput() {
 		try {
@@ -31,26 +47,22 @@ public class NumberInputTest {
 				throw new NumericInputException();
 			}
 		} catch (NumericInputException e) {
-			// TODO Auto-generated catch block
 			assertTrue(e instanceof NumericInputException);
 		}
 	}
 
+	/**
+	 * Test method that validates we entered value in range.
+	 */
 	@Test
 	public void testRunInputCorrectValues() {
-
-		try {
-			if (!MathUtil.runInput(0, 100, 57)) {
-				throw new NumericInputException();
-			}
-			assertTrue(log.getLog().contains("Try again :P"));
-		} catch (NumericInputException e) {
-			e.printStackTrace();
-		} finally {
-			log.clear();
-		}
+		assertTrue(MathUtil.runInput(0, 100, 57));
 	}
 
+	/**
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.exceptions.task2.readInputNumbers.NumericInputException}
+	 */
 	@Test
 	public void testRunInputNegativeValues() {
 

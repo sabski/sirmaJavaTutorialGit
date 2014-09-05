@@ -8,7 +8,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.collections.task1.hashDice.StatisticsCollector;
 
 /**
- * JUnit test class for StatisticColector
+ * JUnit test class for
+ * {@link com.sirma.itt.javacourse.collections.task1.hashDice.StatisticsCollector}
  * 
  * @author simeon
  */
@@ -18,7 +19,10 @@ public class TestStatisticColector {
 	private String result;
 
 	/**
+	 * Sets up variables before each method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {

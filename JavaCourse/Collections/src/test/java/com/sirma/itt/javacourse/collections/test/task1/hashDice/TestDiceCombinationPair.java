@@ -8,6 +8,9 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.collections.task1.hashDice.DiceCombintionPair;
 
 /**
+ * JUnit test class for
+ * {@link com.sirma.itt.javacourse.collections.task1.hashDice.DiceCombintionPair}
+ * 
  * @author Simeon Iliev
  */
 public class TestDiceCombinationPair {
@@ -16,6 +19,8 @@ public class TestDiceCombinationPair {
 	private DiceCombintionPair pairtwo;
 
 	/**
+	 * Set up variables before each method.
+	 * 
 	 * @throws java.lang.Exception
 	 *             something went wrong.
 	 */

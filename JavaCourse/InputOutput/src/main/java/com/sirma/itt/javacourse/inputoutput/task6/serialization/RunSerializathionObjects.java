@@ -33,11 +33,11 @@ public class RunSerializathionObjects {
 		UserDefinedObject object = new UserDefinedObject(myNumber, say);
 		IOUtils.printConsoleMessage("Input path to file to save the object");
 		path = IOUtils.readLine();
-		object.saveObject(path, object);
+		object.saveObject("target/" + path, object);
 		UserDefinedObject object2 = null;
 		try {
-			object2 = object.getObject(path);
-			IOUtils.printConsoleMessage(object2.getSaySomething());
+			object2 = object.getObject("target/" + path);
+			IOUtils.printConsoleMessage("The object read says " + object2.getSaySomething());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -102,7 +102,6 @@ public class UserDefinedObject implements Serializable {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -111,7 +110,6 @@ public class UserDefinedObject implements Serializable {
 			oos = new ObjectOutputStream(fout);
 			oos.writeObject(o);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			IOUtils.printConsoleMessage("File not found");
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -122,7 +120,6 @@ public class UserDefinedObject implements Serializable {
 				try {
 					oos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -166,7 +163,6 @@ public class UserDefinedObject implements Serializable {
 		} finally {
 			if (ois != null) {
 				try {
-					IOUtils.printConsoleMessage("Closing streams");
 					ois.close();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -176,7 +172,6 @@ public class UserDefinedObject implements Serializable {
 				try {
 					fin.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -54,9 +54,9 @@ public class TestTransferObject {
 	 * {@link com.sirma.itt.javacourse.inputoutput.task4.transferingObjects.TransferObject#transfer(int, int)}
 	 * . Test when we use an overflowing offset.
 	 */
-	@Test(expected = IndexOutOfBoundsException.class)
+	@Test
 	public void testTransferOutOfrange() {
-		transporter.transfer(15, 10000);
+		assertEquals(-1, transporter.transfer(15, 10000));
 	}
 
 	/**

@@ -1,7 +1,5 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task3.privateAccess;
 
-import static org.junit.Assert.*;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Before;

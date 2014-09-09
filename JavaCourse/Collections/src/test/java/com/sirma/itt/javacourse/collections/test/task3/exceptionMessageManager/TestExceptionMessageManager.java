@@ -1,21 +1,19 @@
 package com.sirma.itt.javacourse.collections.test.task3.exceptionMessageManager;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.naming.directory.InvalidAttributesException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager.ExceptionsMessageManager;
 
 /**
- * @author simeon
+ * JUnit test case for
+ * {@link com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager.ExceptionsMessageManager}
+ * 
+ * @author Simeon Iliev
  */
 public class TestExceptionMessageManager {
 

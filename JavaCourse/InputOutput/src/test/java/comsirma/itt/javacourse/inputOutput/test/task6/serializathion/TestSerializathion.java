@@ -1,10 +1,9 @@
 package comsirma.itt.javacourse.inputOutput.test.task6.serializathion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.net.UnknownServiceException;
-import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,9 @@ import com.sirma.itt.javacourse.ReflectionUtil;
 import com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject;
 
 /**
- * @author simeon
+ * JUnit test for {@link com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject}
+ * 
+ * @author Simeon Iliev
  */
 public class TestSerializathion {
 
@@ -42,7 +43,6 @@ public class TestSerializathion {
 	 * Test method for
 	 * {@link com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject#getObject(java.lang.String)}
 	 * .
-	 * 
 	 */
 	@Test
 	public void testGetObject() {
@@ -68,8 +68,7 @@ public class TestSerializathion {
 	/**
 	 * Test method for
 	 * {@link com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject#saveObject(java.lang.String, com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject)}
-	 * .
-	 *Test with null object.
+	 * . Test with null object.
 	 */
 	@Test
 	public void testSaveObjectNull() {

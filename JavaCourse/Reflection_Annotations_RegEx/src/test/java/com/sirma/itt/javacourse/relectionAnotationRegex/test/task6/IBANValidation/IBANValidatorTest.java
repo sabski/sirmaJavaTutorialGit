@@ -1,8 +1,7 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task6.IBANValidation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.IOUtils;

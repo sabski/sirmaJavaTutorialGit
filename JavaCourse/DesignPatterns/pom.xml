@@ -1,7 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>Objects</artifactId>
+	<parent>
+		<groupId>com.sirma.itt.javacourse</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>JavaCourse</artifactId>
+	</parent>
+	<artifactId>DesignPatterns</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -17,17 +22,5 @@
 			<artifactId>system-rules</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>IntroTasks</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
-
-	<packaging>jar</packaging>
-	<parent>
-		<groupId>com.sirma.itt.javacourse</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-		<artifactId>JavaCourse</artifactId>
-	</parent>
 </project>

@@ -1,14 +1,16 @@
 package com.sirma.itt.javacourse.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.ReflectionUtil;
 
 /**
- * @author simeon
+ * JUnit test class for {@link com.sirma.itt.javacourse.ReflectionUtil} 
+ * 
+ * @author Simeon Iliev
  */
 public class TestReflection {
 

@@ -8,7 +8,7 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>JavaCourse</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>Common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -18,10 +18,9 @@
 		</dependency>
 
 	</dependencies>
-	<packaging>jar</packaging>
 	<parent>
-		<groupId>JavaCourse</groupId>
-		<artifactId>com.sirma.itt.javaCourse</artifactId>
+		<groupId>com.sirma.itt.javacourse</groupId>
+		<artifactId>JavaCourse</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 </project>

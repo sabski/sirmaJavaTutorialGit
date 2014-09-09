@@ -2,6 +2,7 @@ package comsirma.itt.javacourse.inputOutput.test.task3.reverseTextFile;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -35,6 +36,9 @@ public class TestReverseTextFiles {
 	public void setUp() throws Exception {
 		fileWriter = new WriteFileFromConsole();
 		reverser = new FileReverser();
+		if (new File(fileName).exists()) {
+			new File(fileName).delete();
+		}
 	}
 
 	/**
@@ -44,10 +48,10 @@ public class TestReverseTextFiles {
 	 */
 	@Test
 	public void testReverseFile() {
-		String content = fileName + "\n" + originalContent;
+		String content = originalContent;
 		Scanner scanner = new Scanner(content);
 		IOUtils.setScanner(scanner);
-		fileWriter.writeFile();
+		fileWriter.writeFile(fileName);
 		try {
 			reverser.reverseFileContent(fileName);
 			assertEquals(reverse, IOUtils.readFile(fileName).replaceAll("\n", ""));

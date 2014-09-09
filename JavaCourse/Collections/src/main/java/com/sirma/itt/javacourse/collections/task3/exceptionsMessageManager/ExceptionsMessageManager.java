@@ -32,23 +32,23 @@ public class ExceptionsMessageManager {
 	/**
 	 * Constant that contain a value in the manger.
 	 */
-	public static final String INVALID_POSTAL_CODE = "Невалиден пощенски код";
+	public static final String INVALID_POSTAL_CODE = "Invalid postal code";
 
 	/**
 	 * Constant that contain a value in the manger.
 	 */
 
-	public static final String INVALID_EGN = "Грешно ЕГН";
+	public static final String INVALID_EGN = "Invalid EGN";
 
 	/**
 	 * Constant that contain a value in the manger.
 	 */
-	public static final String INVALID_CARD_NUMBER = "Невалиден номер на дебитната карта";
+	public static final String INVALID_CARD_NUMBER = "Invalid card number";
 
 	/**
 	 * Constant that contain a value in the manger.
 	 */
-	public static final String SEPARATOR = System.getProperty("line.separator").toString();
+	public static final String SEPARATOR = System.getProperty("line.separator");
 
 	private Map<String, String> exceptions;
 

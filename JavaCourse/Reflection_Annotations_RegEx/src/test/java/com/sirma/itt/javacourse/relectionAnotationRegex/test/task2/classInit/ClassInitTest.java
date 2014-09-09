@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task2.classInit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -8,9 +8,11 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.rules.ExpectedException;
 
-import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit.ClassInit;
 
+/**
+ * @author Simeon Iliev
+ */
 public class ClassInitTest {
 
 	private ClassInit init;
@@ -23,6 +25,12 @@ public class ClassInitTest {
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 
+	/**
+	 * Set up method.
+	 * 
+	 * @throws Exception
+	 *             Something went wrong
+	 */
 	@Before
 	public void setUp() throws Exception {
 		init = new ClassInit();
@@ -54,7 +62,7 @@ public class ClassInitTest {
 	 * Test if method throws specific exception.
 	 */
 	@Test
-	public void GetClassHierhahyAndInterfacesWithError() {
+	public void getClassHierhahyAndInterfacesWithError() {
 		try {
 			init.getClassHierhahyAndInterfaces(error);
 		} catch (InstantiationException e) {

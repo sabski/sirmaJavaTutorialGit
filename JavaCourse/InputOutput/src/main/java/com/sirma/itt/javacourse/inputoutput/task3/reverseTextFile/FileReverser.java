@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.apache.commons.io.FileExistsException;
-
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -47,7 +45,7 @@ public class FileReverser {
 			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			IOUtils.printConsoleMessage("File couldn't be reversed : " + e.getMessage());
 		} finally {
 			if (reader != null) {
 				try {

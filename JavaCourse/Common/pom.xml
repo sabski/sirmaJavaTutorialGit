@@ -7,15 +7,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.github.stefanbirkner</groupId>
-			<artifactId>system-rules</artifactId>
-		</dependency>
 	</dependencies>
-	<packaging>jar</packaging>
 	<parent>
-		<groupId>JavaCourse</groupId>
-		<artifactId>com.sirma.itt.javaCourse</artifactId>
+		<groupId>com.sirma.itt.javacourse</groupId>
+		<artifactId>JavaCourse</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 </project>

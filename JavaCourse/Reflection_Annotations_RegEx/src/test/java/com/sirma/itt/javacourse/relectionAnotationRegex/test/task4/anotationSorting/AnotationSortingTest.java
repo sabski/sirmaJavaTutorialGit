@@ -73,6 +73,6 @@ public class AnotationSortingTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testSortWithNull() {
-		List<Object> temp = sort.sort(null, null);
+		sort.sort(null, null);
 	}
 }

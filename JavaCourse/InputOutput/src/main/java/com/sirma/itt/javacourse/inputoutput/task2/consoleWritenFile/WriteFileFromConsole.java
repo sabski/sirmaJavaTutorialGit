@@ -15,35 +15,30 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class WriteFileFromConsole {
 
+	public static final String DIR_LOCALE = "target/temp/";
+
 	/**
 	 * Writes a text to a file that the user specifies in the console input.
 	 */
-	public void writeFile() {
-		IOUtils.printConsoleMessage("Input file name : ");
-		String name = IOUtils.readLine();
-
-		File file;
-		file = new File(name);
-
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public void writeFile(String fileName) {
+		
+		File file = new File(DIR_LOCALE + fileName);
 		Writer fileWriter = null;
 		BufferedWriter bufferedWriter = null;
 
 		try {
+			if (!file.exists()) {
+				new File(DIR_LOCALE).mkdir();
+				file.createNewFile();
+			}
 
 			fileWriter = new FileWriter(file);
 			bufferedWriter = new BufferedWriter(fileWriter);
 			IOUtils.printConsoleMessage("Start input for file : ");
-			readInputForFile(bufferedWriter);
+			readAndWriteContentForFile(bufferedWriter);
+			IOUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
 		} catch (IOException e) {
-			System.err.println("Error writing the file : ");
-			e.printStackTrace();
+			System.err.println("Error writing the file : " + e.getMessage());
 		} finally {
 
 			if (bufferedWriter != null && fileWriter != null) {
@@ -51,7 +46,7 @@ public class WriteFileFromConsole {
 					bufferedWriter.close();
 					fileWriter.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					IOUtils.printConsoleMessage("Couldn't close streams : " + e.getMessage());
 				}
 			}
 		}
@@ -66,7 +61,7 @@ public class WriteFileFromConsole {
 	 * @throws IOException
 	 *             if there is a problem with the buffer.
 	 */
-	private void readInputForFile(BufferedWriter bufferedWriter) throws IOException {
+	private void readAndWriteContentForFile(BufferedWriter bufferedWriter) throws IOException {
 		String line = null;
 		do {
 			line = IOUtils.readLine();

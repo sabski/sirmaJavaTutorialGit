@@ -19,10 +19,17 @@ public class DirectoryBrowser {
 	 */
 	public void listContent(String path) {
 		File file = new File(path);
-		if (!file.isDirectory()) {
+		if (!file.isDirectory() && !file.isFile()) {
+			path = System.getProperty("user.home");
+			file = new File(path);
+
+		}
+
+		if (file.isFile()) {
 			IOUtils.printConsoleMessage("The path you entered leeds to a file " + path);
 			return;
 		}
+		IOUtils.printConsoleMessage("The content of folder " + path + " is :");
 		File[] list = file.listFiles();
 		for (File f : list) {
 			IOUtils.printConsoleMessage(f.getName());

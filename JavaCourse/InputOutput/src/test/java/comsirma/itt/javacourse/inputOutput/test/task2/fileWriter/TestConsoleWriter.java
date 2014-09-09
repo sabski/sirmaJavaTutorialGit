@@ -34,7 +34,7 @@ public class TestConsoleWriter {
 		writer = new WriteFileFromConsole();
 		fileName = "src/test/resources/test2.txt";
 		fileData = "hello word\n sad \n sad\n.";
-		line = fileName + "\n" + fileData;
+		line = fileData;
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class TestConsoleWriter {
 		IOUtils.setScanner(scanner);
 		File file = new File(fileName);
 		file.delete();
-		writer.writeFile();
+		writer.writeFile(fileName);
 		try {
 			assertEquals(fileData.replaceAll("\n", ""),
 					IOUtils.readFile(fileName).replaceAll("\n", ""));
@@ -69,7 +69,7 @@ public class TestConsoleWriter {
 		String tmp = null;
 		File file = new File(tmp);
 		file.delete();
-		writer.writeFile();
+		writer.writeFile(fileName);
 		try {
 			assertEquals(fileData.replaceAll("\n", ""),
 					IOUtils.readFile(fileName).replaceAll("\n", ""));

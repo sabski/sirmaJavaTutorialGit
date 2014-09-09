@@ -76,7 +76,7 @@ public class MathUtil {
 	 *            the number to be checked if it is specific range.
 	 * @return
 	 */
-	public static boolean runInput(int minValue, int maxValue, int value) {
+	public static boolean checkInputRange(int minValue, int maxValue, int value) {
 
 		if (minValue > value || value > maxValue) {
 			return false;

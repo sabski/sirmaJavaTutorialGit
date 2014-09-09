@@ -18,7 +18,7 @@ public class TestDirectoryBrowser {
 
 	private DirectoryBrowser browser;
 	private String path = "src/test/resources/";
-	private String result = "home\nsimeon\nSerializathion.txt\nDestination.txt\ntest2.txt\nOrigin.txt\nreverseSource.txt\n";
+	private String result = "The content of folder src/test/resources/ is :\nhome\nsimeon\nSerializathion.txt\nDestination.txt\nOrigin.txt\n";
 
 	private String directoryPath = "src/test/resources/Origin.txt";
 	private String resultForDirectory = "The path you entered leeds to a file " + directoryPath
@@ -54,7 +54,7 @@ public class TestDirectoryBrowser {
 	 * .
 	 */
 	@Test
-	public void testListContentWithDirectory() {
+	public void testListContentWithFile() {
 		browser.listContent(directoryPath);
 		assertEquals(resultForDirectory, log.getLog());
 	}

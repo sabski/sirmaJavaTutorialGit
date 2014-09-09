@@ -3,6 +3,7 @@ package com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile;
 import java.io.FileNotFoundException;
 
 import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
 /**
  * Class that runs the file reverser.
@@ -15,17 +16,19 @@ public class RunFileReverser {
 	 * Main method for FileReverser.
 	 * 
 	 * @param args
-	 *            argument for the main method.
+	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		FileReverser reverser = new FileReverser();
-		IOUtils.printConsoleMessage("Input the name of the file you want to reverse.");
+		WriteFileFromConsole writer = new WriteFileFromConsole();
 		try {
-			reverser.reverseFileContent(IOUtils.readLine());
+			IOUtils.printConsoleMessage("Input the name of the file you want to create and then reverse :");
+			String fileName = IOUtils.readLine();
+			writer.writeFile(fileName);
+			reverser.reverseFileContent(WriteFileFromConsole.DIR_LOCALE + fileName);
+			IOUtils.readFile(WriteFileFromConsole.DIR_LOCALE + fileName);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

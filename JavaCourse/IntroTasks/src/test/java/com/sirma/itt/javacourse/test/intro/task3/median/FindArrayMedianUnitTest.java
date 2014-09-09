@@ -19,10 +19,8 @@ public class FindArrayMedianUnitTest {
 	@Test
 	public void testFindMedian() {
 		int[] arr = { 1, 2, 3, 4, 5 };
-		int[] arr2 = { 4, 5, 99, -1, 5, 6 };
 		FindArrayMedian find = new FindArrayMedian();
 		assertEquals(4, find.findMedian(arr));
-		// assertEquals(3, find.findMedian(arr2));
 	}
 
 	/**
@@ -31,10 +29,8 @@ public class FindArrayMedianUnitTest {
 	@Test
 	public void testCalculateMedian() {
 		int[] arr = { 1, 2, 3, 4, 5 };
-		int[] arr2 = { 4, 5, 99, -1, 5, 6 };
 		FindArrayMedian find = new FindArrayMedian();
 		assertEquals(4, find.calculateMedian(arr));
-		// assertEquals(3, find.calculateMedian(arr2));
 	}
 
 }

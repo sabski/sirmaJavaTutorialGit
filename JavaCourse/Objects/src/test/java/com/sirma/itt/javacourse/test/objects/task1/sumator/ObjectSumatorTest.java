@@ -1,7 +1,6 @@
 package com.sirma.itt.javacourse.test.objects.task1.sumator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -11,7 +10,9 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.objects.task1.sumator.Sumator;
 
 /**
- * @author simeon
+ * Junit test case for {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator}
+ * 
+ * @author Simeon Iliev
  */
 public class ObjectSumatorTest {
 
@@ -27,7 +28,8 @@ public class ObjectSumatorTest {
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(float, float)}.
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.objects.task1.sumator.Sumator#sum(float, float)}.
 	 */
 	@Test
 	public void testSumFloatFloat() {

@@ -12,7 +12,6 @@ import com.sirma.itt.javacourse.objects.task2.shapes.Point;
 import com.sirma.itt.javacourse.objects.task2.shapes.rectangularShapes.Rectangle;
 import com.sirma.itt.javacourse.objects.task2.shapes.rectangularShapes.Square;
 import com.sirma.itt.javacourse.objects.task5.heterogeneousTree.HeterogeneousTree;
-import com.sirma.itt.javacourse.objects.task5.heterogeneousTree.NodeElement;
 
 /**
  * JUnit test class for HeterogeneousTree.class.

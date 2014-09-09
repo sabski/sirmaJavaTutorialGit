@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.sirma.itt.javacourse.IOUtils;
+
 /**
  * Class for transferring objects. By using the provided in the constructor input and output
  * streams.
@@ -91,7 +93,9 @@ public class TransferObject {
 			result = input.read(bytes, offset, numberOfBytes);
 			output.write(bytes, 0, result - 1);
 		} catch (IOException e) {
-			e.printStackTrace();
+			IOUtils.printConsoleMessage("The transfer has been broken : " + e.getMessage());
+		}catch (IndexOutOfBoundsException e) {
+			IOUtils.printConsoleMessage("The offset you entered or the number of bytes is too large " + e.getMessage());
 		}
 
 		return result;

@@ -1,8 +1,7 @@
 package com.sirma.itt.javacourse.exceptions.task1.stringCalculator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -43,7 +43,7 @@ public class NumberInputTest {
 	@Test
 	public void testRunInput() {
 		try {
-			if (!MathUtil.runInput(0, 100, 5555)) {
+			if (!MathUtil.checkInputRange(0, 100, 5555)) {
 				throw new NumericInputException();
 			}
 		} catch (NumericInputException e) {
@@ -56,7 +56,7 @@ public class NumberInputTest {
 	 */
 	@Test
 	public void testRunInputCorrectValues() {
-		assertTrue(MathUtil.runInput(0, 100, 57));
+		assertTrue(MathUtil.checkInputRange(0, 100, 57));
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class NumberInputTest {
 	public void testRunInputNegativeValues() {
 
 		try {
-			if (!MathUtil.runInput(0, 100, -57)) {
+			if (!MathUtil.checkInputRange(0, 100, -57)) {
 				throw new NumericInputException();
 			}
 		} catch (NumericInputException e) {

@@ -1,8 +1,8 @@
 package com.sirma.itt.javacourse.test.objects.task4.binaryTree;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -13,14 +13,11 @@ import com.sirma.itt.javacourse.objects.task4.binaryTree.Node;
 public class NodeTester {
 
 	private Node rootNode;
-	private Node firstNode;
-	private Node secondNode;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		rootNode = new Node(15);
-		firstNode = new Node(8);
-		secondNode = new Node(35);
+
 	}
 
 	@Test

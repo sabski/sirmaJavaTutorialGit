@@ -41,8 +41,7 @@ public class ArraySorting {
 		arr.add(4);
 		arr.add(1);
 		arr.add(7);
-		QuickSortImpl impl = new QuickSortImpl();
-		assertEquals(result, impl.quickSortArray(arr));
+		assertEquals(result, QuickSortImpl.quickSortArray(arr));
 	}
 
 }

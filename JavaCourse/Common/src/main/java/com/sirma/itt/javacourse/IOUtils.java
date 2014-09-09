@@ -18,10 +18,11 @@ public class IOUtils {
 
 	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
-	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z]*$";
+	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z\\s]*$";
 	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^\\s*?(.+)@(.+?)\\s*$";
 	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
 	public static final String REGEX_VALIDATOR_X_TAGS = "(<x>)([0-9a-zA-Z\\s]+)(</x>)";
+	public static final String REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA = "^4[0-9]{12}(?:[0-9]{3})?$";
 
 	/**
 	 * Getter method for scanner.
@@ -70,7 +71,7 @@ public class IOUtils {
 
 	/**
 	 * Reads the next integer value that is input in the console. If input is not a number an error
-	 * message will be printed in the console.
+	 * Message will be printed in the console.
 	 * 
 	 * @return the number that was inputed thru the console otherwise it returns -1.
 	 */
@@ -254,7 +255,6 @@ public class IOUtils {
 	 * @throws FileNotFoundException
 	 */
 	public static String readFile(String fileName) throws FileNotFoundException {
-		String content = null;
 		StringBuffer stringBuffer = null;
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
@@ -279,7 +279,6 @@ public class IOUtils {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

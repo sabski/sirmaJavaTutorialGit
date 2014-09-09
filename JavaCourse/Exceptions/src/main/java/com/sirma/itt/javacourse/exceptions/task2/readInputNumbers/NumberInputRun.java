@@ -24,7 +24,7 @@ public class NumberInputRun {
 			while (true) {
 				int num = IOUtils.readInt();
 				IOUtils.printConsoleMessage("" + num);
-				if (!MathUtil.runInput(0, 100, num)) {
+				if (!MathUtil.checkInputRange(0, 100, num)) {
 					throw new NumericInputException();
 				} else {
 					IOUtils.printConsoleMessage("Try again");

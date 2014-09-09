@@ -44,6 +44,7 @@ public class ReflecthionTest {
 	 * Sets up test variables for testing.
 	 * 
 	 * @throws Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -56,24 +57,15 @@ public class ReflecthionTest {
 	 */
 	@Test
 	public void testReflect() {
-		/*try {
-			reflector.reflect(reflectionOBject);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String temp = log.getLog().replaceAll(System.getProperty("line.separator"), "");
-		assertEquals(result, temp);
-		log.clear();*/
+		/*
+		 * try { reflector.reflect(reflectionOBject); } catch (IllegalArgumentException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } catch (SecurityException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } catch (IllegalAccessException e) { //
+		 * TODO Auto-generated catch block e.printStackTrace(); } catch (NoSuchFieldException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); } String temp =
+		 * log.getLog().replaceAll(System.getProperty("line.separator"), ""); assertEquals(result,
+		 * temp); log.clear();
+		 */
 	}
 
 	/**

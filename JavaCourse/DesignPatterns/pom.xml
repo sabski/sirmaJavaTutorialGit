@@ -21,6 +21,11 @@
 			<groupId>com.github.stefanbirkner</groupId>
 			<artifactId>system-rules</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.op4j</groupId>
+			<artifactId>op4j</artifactId>
+			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>

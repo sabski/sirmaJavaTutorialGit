@@ -12,15 +12,16 @@ public class OutofStockObserver implements StockObserver {
 
 	private List<Item> itemsOutOfStock = new ArrayList<Item>();
 
+	private Inventory inventory;
+	private StockToOrder order;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void deliveryUpdate(Item observable) {
-		if (itemsOutOfStock.contains(observable)) {
-			itemsOutOfStock.remove(observable);
-			IOUtils.printConsoleMessage("Item is removed from out of stock list");
-		}
+		order.removeItem(observable);
+
 	}
 
 	/**
@@ -28,8 +29,7 @@ public class OutofStockObserver implements StockObserver {
 	 */
 	@Override
 	public void purcheaseUpdate(Item observable) {
-		itemsOutOfStock.add(observable);
-		IOUtils.printConsoleMessage("Item is out of stock" + observable.getName());
+		order.receiveItem(observable);
 	}
 
 }

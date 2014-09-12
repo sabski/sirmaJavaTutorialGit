@@ -1,6 +1,8 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
 /**
+ * Item class that stores information about an item.
+ * 
  * @author Simeon Iliev
  */
 public class Item {

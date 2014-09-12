@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
-import java.util.Observable;
 
 /**
  * Observable item interface that can have different States.

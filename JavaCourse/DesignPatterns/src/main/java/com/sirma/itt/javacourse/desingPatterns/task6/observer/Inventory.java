@@ -1,5 +1,6 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sirma.itt.javacourse.IOUtils;
@@ -18,7 +19,7 @@ public class Inventory {
 	 */
 	public void printInventory() {
 		for (int i = 0; i < inventory.size(); i++) {
-			IOUtils.printConsoleMessage(i + ": " + inventory.get(i).getName() + "\n");
+			IOUtils.printConsoleMessage(i + ": " + inventory.get(i).getName());
 		}
 	}
 
@@ -49,6 +50,13 @@ public class Inventory {
 	 */
 	public void deliverdItems(Item item) {
 		inventory.add(item);
+	}
+
+	/**
+	 * Constructor.
+	 */
+	public Inventory() {
+		this.inventory = new ArrayList<Item>();
 	}
 
 	/**

@@ -12,6 +12,25 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class StockToOrder {
 
+	/**
+	 * Getter method for outOfStockItems.
+	 * 
+	 * @return the outOfStockItems
+	 */
+	public List<Item> getOutOfStockItems() {
+		return outOfStockItems;
+	}
+
+	/**
+	 * Setter method for outOfStockItems.
+	 * 
+	 * @param outOfStockItems
+	 *            the outOfStockItems to set
+	 */
+	public void setOutOfStockItems(List<Item> outOfStockItems) {
+		this.outOfStockItems = outOfStockItems;
+	}
+
 	private List<Item> outOfStockItems;
 
 	/**
@@ -48,8 +67,8 @@ public class StockToOrder {
 	 * Prints the contents of the out of stock item list.
 	 */
 	public void printMissingStock() {
-		for (Item item : outOfStockItems) {
-			IOUtils.printConsoleMessage("Item : " + item.getName());
+		for (int i = 0; i < outOfStockItems.size(); i++) {
+			IOUtils.printConsoleMessage(i + ": " + outOfStockItems.get(i).getName());
 		}
 	}
 }

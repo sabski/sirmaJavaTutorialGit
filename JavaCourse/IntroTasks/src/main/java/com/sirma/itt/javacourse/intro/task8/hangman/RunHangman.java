@@ -17,7 +17,7 @@ public class RunHangman {
 		// TODO Auto-generated method stub
 		Hangman hang = new Hangman();
 
-		hang.newGame();
+		hang.startGame();
 	}
 
 }

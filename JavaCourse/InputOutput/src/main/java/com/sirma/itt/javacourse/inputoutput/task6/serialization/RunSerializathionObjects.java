@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.inputoutput.task6.serialization;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -13,6 +15,8 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class RunSerializathionObjects {
 
+	private static Logger log = Logger.getLogger(RunSerializathionObjects.class.getName());
+
 	/**
 	 * Main method for the application
 	 * 
@@ -20,7 +24,6 @@ public class RunSerializathionObjects {
 	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		String path = null;
 		int myNumber;
@@ -39,8 +42,7 @@ public class RunSerializathionObjects {
 			object2 = object.getObject("target/" + path);
 			IOUtils.printConsoleMessage("The object read says " + object2.getSaySomething());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Something went wrong", e);
 		}
 
 	}

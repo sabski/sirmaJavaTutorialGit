@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -22,6 +24,8 @@ public class UserDefinedObject implements Serializable {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private Logger log = Logger.getLogger(UserDefinedObject.class.getName());
 
 	private int myNuber;
 
@@ -74,7 +78,6 @@ public class UserDefinedObject implements Serializable {
 	 *            say something to the programmer.
 	 */
 	public UserDefinedObject(int myNuber, String saySomething) {
-		super();
 		this.myNuber = myNuber;
 		this.saySomething = saySomething;
 	}
@@ -110,25 +113,22 @@ public class UserDefinedObject implements Serializable {
 			oos = new ObjectOutputStream(fout);
 			oos.writeObject(o);
 		} catch (FileNotFoundException e) {
-			IOUtils.printConsoleMessage("File not found");
-			e.printStackTrace();
+			log.error("File not found", e);
 		} catch (IOException e) {
-			IOUtils.printConsoleMessage("Input output error");
-			e.printStackTrace();
+			log.error("Input output error", e);
 		} finally {
 			if (oos != null) {
 				try {
 					oos.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Input output error", e);
 				}
 			}
 			if (fout != null) {
 				try {
 					fout.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error("Input output error", e);
 				}
 			}
 
@@ -157,22 +157,22 @@ public class UserDefinedObject implements Serializable {
 			ois = new ObjectInputStream(fin);
 			result = (UserDefinedObject) ois.readObject();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("File not found", e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			log.error("Class not found", e);
 		} finally {
 			if (ois != null) {
 				try {
 					ois.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Input output error", e);
 				}
 			}
 			if (fin != null) {
 				try {
 					fin.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Input output error", e);
 				}
 			}
 

@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager;
 
 import javax.naming.directory.InvalidAttributesException;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.MathUtil;
 
@@ -11,6 +13,8 @@ import com.sirma.itt.javacourse.MathUtil;
  * @author simeon
  */
 public class RunExceptionsMessageManager {
+
+	private static Logger log = Logger.getLogger(RunExceptionsMessageManager.class.getName());
 
 	/**
 	 * Main method for the application.
@@ -38,7 +42,7 @@ public class RunExceptionsMessageManager {
 			try {
 				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_POSTAL_CODE);
 			} catch (InvalidAttributesException e) {
-				e.printStackTrace();
+				log.error("Invalid postal code", e);
 			}
 		} else {
 			user.setPostalCode(postalCode);
@@ -52,7 +56,7 @@ public class RunExceptionsMessageManager {
 			try {
 				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER);
 			} catch (InvalidAttributesException e) {
-				e.printStackTrace();
+				log.error("Invalid credit card number", e);
 			}
 		} else {
 			user.setCreditCardNumber(cardNumber);
@@ -66,7 +70,7 @@ public class RunExceptionsMessageManager {
 			try {
 				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_EGN);
 			} catch (InvalidAttributesException e) {
-				e.printStackTrace();
+				log.error("Invalid EGN", e);
 			}
 		} else {
 			user.setEGN(Integer.parseInt(EGN));

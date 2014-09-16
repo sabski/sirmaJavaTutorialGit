@@ -17,16 +17,16 @@ public class RunConsoleInput {
 	 */
 	public static void main(String[] args) {
 
-		IOUtils.printConsoleMessage("This is only test plese input correct values.");
-		IOUtils.printConsoleMessage("This is only test  plese input number.");
+		IOUtils.printConsoleMessage("This is only test please input correct values.");
+		IOUtils.printConsoleMessage("This is only test  please input number.");
 		IOUtils.printConsoleMessage("Inputed int  = " + IOUtils.readInt());
-		IOUtils.printConsoleMessage("This is only test  plese input char.");
+		IOUtils.printConsoleMessage("This is only test  please input char.");
 		IOUtils.printConsoleMessage("Inputed char  = " + IOUtils.readChar());
-		IOUtils.printConsoleMessage("This is only test  plese input flaot.");
+		IOUtils.printConsoleMessage("This is only test  please input float.");
 		IOUtils.printConsoleMessage("Inputed float  = " + IOUtils.readFlaot());
-		IOUtils.printConsoleMessage("This is only test  plese input String.");
+		IOUtils.printConsoleMessage("This is only test  please input String.");
 		IOUtils.printConsoleMessage("Inputed string  = " + IOUtils.readString());
-		
+
 	}
 
 }

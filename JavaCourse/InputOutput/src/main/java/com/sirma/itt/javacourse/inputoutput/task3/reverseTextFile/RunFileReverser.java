@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile;
 
 import java.io.FileNotFoundException;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
@@ -11,6 +13,8 @@ import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFro
  * @author simeon
  */
 public class RunFileReverser {
+
+	private static Logger log = Logger.getLogger(RunFileReverser.class.getName());
 
 	/**
 	 * Main method for FileReverser.
@@ -28,7 +32,7 @@ public class RunFileReverser {
 			reverser.reverseFileContent(WriteFileFromConsole.DIR_LOCALE + fileName);
 			IOUtils.readFile(WriteFileFromConsole.DIR_LOCALE + fileName);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("File coudn't be found", e);
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.exceptions.task3.objectList;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -99,7 +98,6 @@ public class ObjectListTest {
 	 */
 	@Test
 	public void testEmptySearch() {
-
 		assertFalse(list.removeElementByObject(""));
 	}
 

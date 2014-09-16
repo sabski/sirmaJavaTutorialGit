@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -15,13 +17,14 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class WriteFileFromConsole {
 
+	private Logger log = Logger.getLogger(WriteFileFromConsole.class.getName());
 	public static final String DIR_LOCALE = "target/temp/";
 
 	/**
 	 * Writes a text to a file that the user specifies in the console input.
 	 */
 	public void writeFile(String fileName) {
-		
+		IOUtils.printConsoleMessage("The File will stop reading the input when you enter a \" . \"");
 		File file = new File(DIR_LOCALE + fileName);
 		Writer fileWriter = null;
 		BufferedWriter bufferedWriter = null;
@@ -34,11 +37,12 @@ public class WriteFileFromConsole {
 
 			fileWriter = new FileWriter(file);
 			bufferedWriter = new BufferedWriter(fileWriter);
+
 			IOUtils.printConsoleMessage("Start input for file : ");
 			readAndWriteContentForFile(bufferedWriter);
 			IOUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
 		} catch (IOException e) {
-			System.err.println("Error writing the file : " + e.getMessage());
+			log.error("Error writing the file : ", e);
 		} finally {
 
 			if (bufferedWriter != null && fileWriter != null) {
@@ -46,7 +50,7 @@ public class WriteFileFromConsole {
 					bufferedWriter.close();
 					fileWriter.close();
 				} catch (IOException e) {
-					IOUtils.printConsoleMessage("Couldn't close streams : " + e.getMessage());
+					log.error("Couldn't close streams : ", e);
 				}
 			}
 		}

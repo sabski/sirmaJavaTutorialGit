@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -16,6 +18,8 @@ import com.sirma.itt.javacourse.IOUtils;
  * @author simeon
  */
 public class FileReverser {
+
+	private Logger log = Logger.getLogger(FileReverser.class.getName());
 
 	/**
 	 * Reverses the contents of a specific text file.
@@ -45,24 +49,23 @@ public class FileReverser {
 			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));
 
 		} catch (IOException e) {
-			IOUtils.printConsoleMessage("File couldn't be reversed : " + e.getMessage());
+			log.error("File couldn't be reversed : ",e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Input output", e);
 				}
 			}
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Input output", e);
 				}
 			}
 		}
 
 	}
-
 }

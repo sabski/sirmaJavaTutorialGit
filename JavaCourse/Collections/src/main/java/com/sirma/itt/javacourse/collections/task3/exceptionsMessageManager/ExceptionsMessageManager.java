@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.naming.directory.InvalidAttributesException;
 
+import org.apache.log4j.Logger;
+
 /**
  * Class that Manages Exception messages.
  * 
@@ -53,6 +55,8 @@ public class ExceptionsMessageManager {
 	private Map<String, String> exceptions;
 
 	private String message = "";
+
+	private Logger log = Logger.getLogger(ExceptionsMessageManager.class.getName());
 
 	/**
 	 * Adds an exception message that is from the map, otherwise throws an exception.

@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.intro.task4.arraySorting;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.sirma.itt.javacourse.IOUtils;
@@ -19,7 +18,6 @@ public class RunQuickSort {
 	 *            for main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		List<Integer> arr = IOUtils.inputListOfIntegers();
 

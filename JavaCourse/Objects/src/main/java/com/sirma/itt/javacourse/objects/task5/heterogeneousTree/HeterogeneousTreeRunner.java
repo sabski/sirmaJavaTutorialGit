@@ -19,7 +19,6 @@ public class HeterogeneousTreeRunner {
 	 *            arrr
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		HeterogeneousTree<Figure> fig;
 		Point p = new Point(20, 20);
 		Rectangle rect = new Rectangle(p, 0, 0);

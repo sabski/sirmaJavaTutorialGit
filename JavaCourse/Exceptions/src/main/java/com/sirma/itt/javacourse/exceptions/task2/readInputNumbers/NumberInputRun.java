@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.exceptions.task2.readInputNumbers;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.MathUtil;
 
@@ -10,6 +12,8 @@ import com.sirma.itt.javacourse.MathUtil;
  */
 public class NumberInputRun {
 
+	private static Logger log = Logger.getLogger(NumberInputRun.class.getName());
+
 	/**
 	 * Main method to run the program.
 	 * 
@@ -17,7 +21,6 @@ public class NumberInputRun {
 	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		try {
 			IOUtils.printConsoleMessage("Input numbers in the interval 0 - 100");
 
@@ -32,6 +35,7 @@ public class NumberInputRun {
 			}
 		} catch (NumericInputException e) {
 			e.printStackTrace();
+			log.error("Input was not in valid range", e);
 		}
 	}
 

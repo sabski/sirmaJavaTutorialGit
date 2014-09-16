@@ -19,7 +19,6 @@ public class RunFindArrayMedian {
 	 *            for the main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		FindArrayMedian median = new FindArrayMedian();
 		List<Integer> list = new ArrayList<Integer>();
 

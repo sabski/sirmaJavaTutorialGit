@@ -35,7 +35,8 @@ public class StringCalculator {
 			int b = 0;
 			int c = 0;
 			if (i < inverseFirstNumber.length()) {
-				a = Integer.parseInt("" + inverseFirstNumber.charAt(i));
+				// a = Integer.parseInt("" + inverseFirstNumber.charAt(i));
+				a = Character.getNumericValue(inverseSecondNumber.charAt(i));
 			}
 
 			if (i < inverseSecondNumber.length()) {

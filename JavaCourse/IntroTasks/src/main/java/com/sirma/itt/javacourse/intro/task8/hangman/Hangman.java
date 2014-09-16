@@ -21,7 +21,7 @@ public class Hangman {
 	/**
 	 * Starts a new hang man game.
 	 */
-	public void newGame() {
+	public void startGame() {
 
 		IOUtils.printConsoleMessage(guesTheWord);
 

@@ -23,17 +23,19 @@ public class RunBook {
 	public static void main(String[] args) {
 
 		List<String> list = new ArrayList<String>();
-		IOUtils.printConsoleMessage("Input the number of ellement in the book");
+		IOUtils.printConsoleMessage("Input the number of element in the book");
 		int elCount = IOUtils.readInt();
 		for (int i = 0; i < elCount; i++) {
-			IOUtils.printConsoleMessage("Input ellement " + (i + 1));
+			IOUtils.printConsoleMessage("Input element " + (i + 1));
 			list.add(IOUtils.readLine());
 		}
 		IOUtils.printConsoleMessage("Input the number of objects per page");
 		int pageCount = IOUtils.readInt();
 		book = new Book(list, pageCount);
 		while (true) {
-			IOUtils.printConsoleMessage("Menu operations : \n1-nextPage\n2-previousPage \n3-firstPage\n4-lastPage\n5-hasNext\n6-hasPrevious\n0-Exit");
+			IOUtils.printConsoleMessage("Menu operations : \n" + "1-Next page\n"
+					+ "2-Previous page \n" + "3-First page\n" + "4-Last page\n" + "5-Has next\n"
+					+ "6-Has previous\n" + "0-Exit");
 			menu(IOUtils.readInt());
 		}
 	}
@@ -76,7 +78,7 @@ public class RunBook {
 				System.exit(0);
 				break;
 			default:
-				IOUtils.printConsoleMessage("Invalid code operathion !");
+				IOUtils.printConsoleMessage("Invalid code operation !");
 				break;
 		}
 	}

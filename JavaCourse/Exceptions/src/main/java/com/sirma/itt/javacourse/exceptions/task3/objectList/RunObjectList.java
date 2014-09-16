@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.exceptions.task3.objectList;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -8,6 +10,8 @@ import com.sirma.itt.javacourse.IOUtils;
  * @author simeon
  */
 public class RunObjectList {
+
+	private static Logger log = Logger.getLogger(RunObjectList.class.getName());
 
 	/**
 	 * Maim method for the application.
@@ -29,7 +33,7 @@ public class RunObjectList {
 						IOUtils.printConsoleMessage("Input value");
 						list.addElement(IOUtils.readLine());
 					} catch (OverFlodException e) {
-						IOUtils.printConsoleMessage("Too much elements in the array.");
+						log.error("Too much elements in the array.", e);
 					}
 					break;
 				case 2:
@@ -37,7 +41,7 @@ public class RunObjectList {
 						IOUtils.printConsoleMessage("Removing item");
 						list.removeElement();
 					} catch (NegativeIndexException e) {
-						IOUtils.printConsoleMessage("Negative Index.");
+						log.error("Negative Index.", e);
 					}
 					break;
 				case 3:

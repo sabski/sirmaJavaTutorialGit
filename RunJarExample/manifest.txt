@@ -1,0 +1,2 @@
+Main-Class: com.sirma.itt.javacourse.librariesAndClasspath.task2.pakegeJar.MainMenu
+Class-Path: lib/Task1.jar

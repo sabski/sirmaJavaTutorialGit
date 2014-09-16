@@ -1,0 +1,9 @@
+Go to the root directory of the project.
+Then create manifest.txt 
+In the manifest file write the folowing : 
+Main-Class: com.sirma.itt.javacourse.librariesAndClasspath.task2.pakegeJar.MainMenu
+Class-Path: lib/Task1.jar
+
+Now execute the commands as follows:
+jar cvfm TaskMaster.jar manifest.txt -C bin/ .
+java -jar TaskMaster.jar

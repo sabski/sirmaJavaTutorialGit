@@ -19,7 +19,6 @@ public class RunReverseArray {
 	 *            for the main method.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		List<Integer> arr = new ArrayList<Integer>();
 		ReverseArray reverse = new ReverseArray();
 		arr = IOUtils.inputListOfIntegers();

@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 
 import java.io.File;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -10,6 +12,8 @@ import com.sirma.itt.javacourse.IOUtils;
  * @author simeon
  */
 public class DirectoryBrowser {
+
+	private Logger log = Logger.getLogger(DirectoryBrowser.class.getName());
 
 	/**
 	 * Displays the structure of a given directory.
@@ -26,10 +30,10 @@ public class DirectoryBrowser {
 		}
 
 		if (file.isFile()) {
-			IOUtils.printConsoleMessage("The path you entered leeds to a file " + path);
+			log.info("The path you entered leads to a file " + path);
 			return;
 		}
-		IOUtils.printConsoleMessage("The content of folder " + path + " is :");
+		log.info("The content of folder " + path + " is :");
 		File[] list = file.listFiles();
 		for (File f : list) {
 			IOUtils.printConsoleMessage(f.getName());

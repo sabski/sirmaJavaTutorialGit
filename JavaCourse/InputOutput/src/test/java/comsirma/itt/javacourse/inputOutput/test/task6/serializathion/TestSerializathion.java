@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,7 @@ import com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObjec
  */
 public class TestSerializathion {
 
+	private Logger log = Logger.getLogger(TestSerializathion.class.getName());
 	private UserDefinedObject object;
 	private String path = "src/test/resources/Serializathion.txt";
 
@@ -49,19 +51,15 @@ public class TestSerializathion {
 		try {
 			assertTrue(ReflectionUtil.compareObjects(object, object.getObject(path)));
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 

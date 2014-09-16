@@ -1,0 +1,2 @@
+Main-Class: com.sirma.itt.javacourse.intro.task8.hangman.RunHangman
+

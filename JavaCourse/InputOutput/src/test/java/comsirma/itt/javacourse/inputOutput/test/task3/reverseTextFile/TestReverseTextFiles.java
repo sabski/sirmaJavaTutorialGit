@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,7 @@ import com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser;
  */
 public class TestReverseTextFiles {
 
+	private Logger log = Logger.getLogger(TestReverseTextFiles.class.getName());
 	private WriteFileFromConsole fileWriter;
 	private FileReverser reverser;
 	private String originalContent = "1\n2\n3\n4\n5\n6\n7\n8\n9\n.";
@@ -56,7 +58,7 @@ public class TestReverseTextFiles {
 			reverser.reverseFileContent(fileName);
 			assertEquals(reverse, IOUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("File not found", e);
 		}
 	}
 

@@ -21,6 +21,7 @@ public class TestExceptionMessageManager {
 
 	/**
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {

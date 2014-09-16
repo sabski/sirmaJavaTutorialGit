@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +20,7 @@ import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFro
  */
 public class TestConsoleWriter {
 
+	private Logger log = Logger.getLogger(TestConsoleWriter.class.getName());
 	private WriteFileFromConsole writer;
 	private String fileData;
 	private String fileName;
@@ -53,7 +55,7 @@ public class TestConsoleWriter {
 			assertEquals(fileData.replaceAll("\n", ""),
 					IOUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("File not found", e);
 		}
 	}
 
@@ -74,7 +76,7 @@ public class TestConsoleWriter {
 			assertEquals(fileData.replaceAll("\n", ""),
 					IOUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("File not found", e);
 		}
 	}
 

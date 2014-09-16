@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
@@ -17,6 +19,8 @@ import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFro
  * @author simeon
  */
 public class RunTransferObject {
+
+	private static Logger log = Logger.getLogger(RunTransferObject.class.getName());
 
 	/**
 	 * The main method for the application.
@@ -49,6 +53,7 @@ public class RunTransferObject {
 			IOUtils.printConsoleMessage("Number of transfered bytes = "
 					+ transfer.transfer(numberOfBites, offset));
 		} catch (FileNotFoundException e) {
+			log.error("File is missing.", e);
 			e.printStackTrace();
 		}
 

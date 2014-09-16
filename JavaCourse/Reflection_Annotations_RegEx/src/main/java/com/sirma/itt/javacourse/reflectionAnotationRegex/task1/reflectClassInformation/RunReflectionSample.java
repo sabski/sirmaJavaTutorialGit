@@ -12,10 +12,11 @@ public class RunReflectionSample {
 	 * 
 	 * @param args
 	 *            the arguments for the main method.
-	 * @throws NoSuchFieldException 
-	 * @throws SecurityException 
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
 	 */
-	public static void main(String[] args) throws IllegalAccessException, SecurityException, NoSuchFieldException {
+	public static void main(String[] args) throws IllegalAccessException, SecurityException,
+			NoSuchFieldException {
 
 		ReflectionClass reflect = new ReflectionClass();
 
@@ -23,7 +24,6 @@ public class RunReflectionSample {
 		try {
 			reflector.reflect(reflect);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

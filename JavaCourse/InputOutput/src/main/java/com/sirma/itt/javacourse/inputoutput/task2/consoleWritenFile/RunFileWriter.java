@@ -10,7 +10,7 @@ import com.sirma.itt.javacourse.IOUtils;
 public class RunFileWriter {
 
 	/**
-	 * Runs the console reder.
+	 * Runs the console reader.
 	 * 
 	 * @param args
 	 *            the argument for the main method.

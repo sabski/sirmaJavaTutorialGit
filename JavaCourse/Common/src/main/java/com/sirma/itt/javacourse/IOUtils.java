@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 /**
  * IOUtils class for the JavaCourse Project, this class contains various utility methods.
  * 
@@ -16,13 +18,15 @@ import java.util.Scanner;
  */
 public class IOUtils {
 
-	private static Scanner scanner = new Scanner(System.in);
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z\\s]*$";
 	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^\\s*?(.+)@(.+?)\\s*$";
 	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
 	public static final String REGEX_VALIDATOR_X_TAGS = "(<x>)([0-9a-zA-Z\\s]+)(</x>)";
 	public static final String REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA = "^4[0-9]{12}(?:[0-9]{3})?$";
+
+	private static Scanner scanner = new Scanner(System.in);
+	private static Logger log = Logger.getLogger(IOUtils.class.getName());
 
 	/**
 	 * Getter method for scanner.
@@ -152,7 +156,7 @@ public class IOUtils {
 	 *            the message to be printed sin the console.
 	 */
 	public static void printConsoleMessage(String message) {
-		System.out.println(message);
+		log.info(message);
 	}
 
 	/**
@@ -197,7 +201,7 @@ public class IOUtils {
 		try {
 			result = tmp.charAt(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Something went wrong -->", e);
 		}
 		return result;
 	}
@@ -258,7 +262,7 @@ public class IOUtils {
 		StringBuffer stringBuffer = null;
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
-			IOUtils.printConsoleMessage("Invalid file name");
+			printConsoleMessage("Invalid file name");
 			throw new FileNotFoundException();
 		}
 		BufferedReader reader = null;
@@ -268,18 +272,18 @@ public class IOUtils {
 			String line = null;
 			stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
-				IOUtils.printConsoleMessage(line);
+				printConsoleMessage(line);
 				stringBuffer.append(line + "\n");
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("Something happened during file transfer.", e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Couldn't properly close file. ", e);
 				}
 			}
 		}

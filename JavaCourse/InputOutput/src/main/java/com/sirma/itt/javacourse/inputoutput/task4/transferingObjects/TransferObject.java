@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -14,6 +16,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class TransferObject {
 
+	private Logger log = Logger.getLogger(TransferObject.class.getName());
 	private InputStream input;
 	private OutputStream output;
 
@@ -93,9 +96,9 @@ public class TransferObject {
 			result = input.read(bytes, offset, numberOfBytes);
 			output.write(bytes, 0, result - 1);
 		} catch (IOException e) {
-			IOUtils.printConsoleMessage("The transfer has been broken : " + e.getMessage());
-		}catch (IndexOutOfBoundsException e) {
-			IOUtils.printConsoleMessage("The offset you entered or the number of bytes is too large " + e.getMessage());
+			log.error("The transfer has been broken : ", e);
+		} catch (IndexOutOfBoundsException e) {
+			log.error("The offset you entered or the number of bytes is too large ", e);
 		}
 
 		return result;

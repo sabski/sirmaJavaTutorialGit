@@ -3,16 +3,19 @@ package com.sirma.itt.javacourse.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.ReflectionUtil;
 
 /**
- * JUnit test class for {@link com.sirma.itt.javacourse.ReflectionUtil} 
+ * JUnit test class for {@link com.sirma.itt.javacourse.ReflectionUtil}
  * 
  * @author Simeon Iliev
  */
 public class TestReflection {
+
+	private Logger log = Logger.getLogger(TestReflection.class.getName());
 
 	private String testOne = "aaa";
 	private String testTwo = null;
@@ -28,17 +31,13 @@ public class TestReflection {
 		try {
 			assertTrue(ReflectionUtil.compareObjects(testOne, testOne));
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Security error", e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal argument ", e);
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("No such field", e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal access", e);
 		}
 	}
 
@@ -52,17 +51,13 @@ public class TestReflection {
 		try {
 			assertFalse(ReflectionUtil.compareObjects(testOne, testTwo));
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Security error", e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal argument ", e);
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("No such field", e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal access", e);
 		}
 	}
 
@@ -76,17 +71,13 @@ public class TestReflection {
 		try {
 			assertFalse(ReflectionUtil.compareObjects(testOne, intTest));
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Security error", e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal argument ", e);
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("No such field", e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Illegal access", e);
 		}
 	}
 }

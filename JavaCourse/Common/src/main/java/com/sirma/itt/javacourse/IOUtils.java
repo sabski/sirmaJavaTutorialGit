@@ -228,7 +228,7 @@ public class IOUtils {
 	private static Float inputNextFlaot() {
 		Float result = null;
 		try {
-			result = Float.parseFloat(scanner.next());
+			result = Float.parseFloat(scanner.nextLine());
 		} catch (Exception e) {
 			printConsoleMessage("Input correct value");
 		}

@@ -24,8 +24,8 @@ public class ReflecthionTest {
 	private ReflectionClass reflectionOBject;
 	private String result = "com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInformation.ReflectionClass"
 			+ "public int intValue = 14"
-			+ "protected boolean lie = false"
-			+ "float pie = 3.14"
+			+ "protected boolean booleanValue = false"
+			+ "float floatValue = 3.14"
 			+ "private class java.lang.String string = Lendo galendo"
 			+ "public int com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInformation.ReflectionClass.getIntValue()"
 			+ "public void com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInformation.ReflectionClass.setIntValue(int)"

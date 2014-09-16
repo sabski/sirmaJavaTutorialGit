@@ -11,18 +11,17 @@ public class ReflectionClass {
 
 	public int intValue = 14;
 
-	protected boolean lie = false;
+	protected boolean booleanValue = false;
 
-	float pie = 3.14f;
+	float floatValue = 3f;
 
-	private String string = "Lendo galendo";
-	
+	private String stringValue = "Lendo galendo";
 
 	/**
 	 * Prints some of the elements..
 	 */
 	public void print() {
-		IOUtils.printConsoleMessage(string + pie + lie);
+		IOUtils.printConsoleMessage(stringValue + floatValue + booleanValue);
 
 	}
 
@@ -46,60 +45,60 @@ public class ReflectionClass {
 	}
 
 	/**
-	 * Getter method for lie.
+	 * Getter method for booleanValue.
 	 * 
-	 * @return the lie
+	 * @return the booleanValue
 	 */
-	public boolean isLie() {
-		return lie;
+	public boolean isBooleanValue() {
+		return booleanValue;
 	}
 
 	/**
-	 * Setter method for lie.
+	 * Setter method for booleanValue.
 	 * 
-	 * @param lie
-	 *            the lie to set
+	 * @param booleanValue
+	 *            the booleanValue to set
 	 */
-	public void setLie(boolean lie) {
-		this.lie = lie;
+	public void setBooleanValue(boolean lie) {
+		this.booleanValue = lie;
 	}
 
 	/**
-	 * Getter method for pie.
+	 * Getter method for floatValue.
 	 * 
-	 * @return the pie
+	 * @return the floatValue
 	 */
-	public float getPie() {
-		return pie;
+	public float getFloatValue() {
+		return floatValue;
 	}
 
 	/**
-	 * Setter method for pie.
+	 * Setter method for floatValue.
 	 * 
-	 * @param pie
-	 *            the pie to set
+	 * @param floatValue
+	 *            the floatValue to set
 	 */
-	public void setPie(float pie) {
-		this.pie = pie;
+	public void setFloatValue(float pie) {
+		this.floatValue = pie;
 	}
 
 	/**
-	 * Getter method for string.
+	 * Getter method for stringValue.
 	 * 
-	 * @return the string
+	 * @return the stringValue
 	 */
-	public String getString() {
-		return string;
+	public String getStringValue() {
+		return stringValue;
 	}
 
 	/**
-	 * Setter method for string.
+	 * Setter method for stringValue.
 	 * 
-	 * @param string
-	 *            the string to set
+	 * @param stringValue
+	 *            the stringValue to set
 	 */
-	public void setString(String string) {
-		this.string = string;
+	public void setStringValue(String string) {
+		this.stringValue = string;
 	}
 
 }

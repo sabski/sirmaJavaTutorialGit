@@ -20,7 +20,7 @@ public class IOUtils {
 
 	public static final String REGEX_VALIDATOR_NUMBERS_ONLY = "^[0-9]*$";
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z\\s]*$";
-	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^\\s*?(.+)@(.+?)\\s*$";
+	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^[a-zA-Z0-9]\\s*?(.+)@(.+?)\\s*$";
 	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
 	public static final String REGEX_VALIDATOR_X_TAGS = "(<x>)([0-9a-zA-Z\\s]+)(</x>)";
 	public static final String REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA = "^4[0-9]{12}(?:[0-9]{3})?$";

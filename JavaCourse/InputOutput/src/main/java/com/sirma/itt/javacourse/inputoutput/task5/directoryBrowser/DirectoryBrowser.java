@@ -21,7 +21,8 @@ public class DirectoryBrowser {
 	 * @param path
 	 *            the path to the directory.
 	 */
-	public void listContent(String path) {
+	public String listContent(String path) {
+		StringBuilder builder = new StringBuilder();
 		File file = new File(path);
 		if (!file.isDirectory() && !file.isFile()) {
 			path = System.getProperty("user.home");
@@ -31,12 +32,15 @@ public class DirectoryBrowser {
 
 		if (file.isFile()) {
 			log.info("The path you entered leads to a file " + path);
-			return;
+			builder.append(path);
+			return builder.toString();
 		}
 		log.info("The content of folder " + path + " is :");
 		File[] list = file.listFiles();
 		for (File f : list) {
 			IOUtils.printConsoleMessage(f.getName());
+			builder.append(f.getName() + "; ");
 		}
+		return builder.toString();
 	}
 }

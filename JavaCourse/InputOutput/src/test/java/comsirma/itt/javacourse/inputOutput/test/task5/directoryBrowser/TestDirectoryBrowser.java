@@ -1,11 +1,10 @@
 package comsirma.itt.javacourse.inputOutput.test.task5.directoryBrowser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 
 import com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser.DirectoryBrowser;
 
@@ -18,19 +17,16 @@ public class TestDirectoryBrowser {
 
 	private DirectoryBrowser browser;
 	private String path = "src/test/resources/";
-	private String result = "The content of folder src/test/resources/ is :\nhome\nsimeon\nSerializathion.txt\nDestination.txt\nOrigin.txt\n";
+	private String result = "home; simeon; Serializathion.txt; Destination.txt; Origin.txt; ";
 
 	private String directoryPath = "src/test/resources/Origin.txt";
-	private String resultForDirectory = "The path you entered leeds to a file " + directoryPath
-			+ "\n";
+	private String resultForDirectory = directoryPath;
 
 	private String nullPath = null;
 
-	@Rule
-	public final StandardOutputStreamLog log = new StandardOutputStreamLog();
-
 	/**
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -44,8 +40,7 @@ public class TestDirectoryBrowser {
 	 */
 	@Test
 	public void testListContent() {
-		browser.listContent(path);
-		assertEquals(result, log.getLog());
+		assertEquals(result, browser.listContent(path));
 	}
 
 	/**
@@ -55,8 +50,7 @@ public class TestDirectoryBrowser {
 	 */
 	@Test
 	public void testListContentWithFile() {
-		browser.listContent(directoryPath);
-		assertEquals(resultForDirectory, log.getLog());
+		assertEquals(resultForDirectory, browser.listContent(directoryPath));
 	}
 
 	/**

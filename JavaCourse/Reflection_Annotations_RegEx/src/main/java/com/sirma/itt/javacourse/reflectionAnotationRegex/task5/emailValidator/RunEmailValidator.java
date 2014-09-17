@@ -17,11 +17,11 @@ public class RunEmailValidator {
 	 */
 	public static void main(String[] args) {
 
-		IOUtils.printConsoleMessage("Please enter youre email address.");
+		IOUtils.printConsoleMessage("Please enter you're email address.");
 
 		String email = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS);
 
-		IOUtils.printConsoleMessage("Thank you for entaring youre email address." + email);
+		IOUtils.printConsoleMessage("Thank you for entering you're email address : " + email);
 
 	}
 

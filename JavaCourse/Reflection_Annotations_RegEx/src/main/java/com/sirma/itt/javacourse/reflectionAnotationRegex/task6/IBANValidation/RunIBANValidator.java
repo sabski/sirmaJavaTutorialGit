@@ -1,5 +1,8 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task6.IBANValidation;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -30,10 +33,12 @@ public class RunIBANValidator {
 		IOUtils.printConsoleMessage("This is a sample ouput of the program : "
 				+ IOUtils.editStringWithRegex(sampleData, IOUtils.REGEX_VALIDATOR_IBANS, "****"));
 		IOUtils.printConsoleMessage("Please input iban ");
-		String result = IOUtils.editStringWithRegex(IOUtils.readLine(), IOUtils.REGEX_VALIDATOR_IBANS,
-				"****");
-
-		IOUtils.printConsoleMessage("The result of the validation is " + result);
+		String result;
+		do {
+			result = IOUtils.readLine();
+		} while (!result.matches(IOUtils.REGEX_VALIDATOR_IBANS_ALL));
+		IOUtils.printConsoleMessage("The result of the validation is "
+				+ IOUtils.editStringWithRegex(result, IOUtils.REGEX_VALIDATOR_IBANS, "****"));
 	}
 
 }

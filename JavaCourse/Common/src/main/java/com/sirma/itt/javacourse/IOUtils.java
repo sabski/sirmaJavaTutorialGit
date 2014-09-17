@@ -22,6 +22,7 @@ public class IOUtils {
 	public static final String REGEX_VALIDATOR_LETHERS_ONLY = "^[a-zA-Z\\s]*$";
 	public static final String REGEX_VALIDATOR_EMAIL_ADDRESS = "^[a-zA-Z0-9]\\s*?(.+)@(.+?)\\s*$";
 	public static final String REGEX_VALIDATOR_IBANS = "((?!<iban>)BG[0-9]{2})([0-9A-Z\\s]+)(?<![0-9A-Z])(?!<iban>)";
+	public static final String REGEX_VALIDATOR_IBANS_ALL = "<iban>[A-Z]{2}[0-9]{2}[0-9A-Z\\s]+</iban>";
 	public static final String REGEX_VALIDATOR_X_TAGS = "(<x>)([0-9a-zA-Z\\s]+)(</x>)";
 	public static final String REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA = "^4[0-9]{12}(?:[0-9]{3})?$";
 
@@ -110,10 +111,10 @@ public class IOUtils {
 	public static List<Integer> inputListOfIntegers() {
 		List<Integer> input = new ArrayList<Integer>();
 
-		System.out.println("Plese input the lenght of the array");
+		System.out.println("Please input the length of the array");
 		int numbersCount = readInt();
 		for (int i = 0; i < numbersCount; i++) {
-			printConsoleMessage("Plese input value for " + (i + 1));
+			printConsoleMessage("Please input value for " + (i + 1));
 			input.add(readInt());
 		}
 		return input;
@@ -175,6 +176,11 @@ public class IOUtils {
 		return text.replaceAll(regex, replacement);
 	}
 
+	/**
+	 * Reads a single Character from the console.
+	 * 
+	 * @return the read Character.
+	 */
 	public static Character readChar() {
 		Character result = null;
 		result = inputChar();

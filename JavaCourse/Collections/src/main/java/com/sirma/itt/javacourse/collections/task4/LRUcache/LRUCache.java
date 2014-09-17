@@ -51,7 +51,7 @@ public class LRUCache {
 		history = new ArrayList<Integer>();
 	}
 
-	public boolean addCacheEllement(Object o) {
+	public boolean addCacheElement(Object o) {
 
 		if (lruStack.contains(o)) {
 			Integer tmp = lruStack.indexOf(o);
@@ -79,7 +79,7 @@ public class LRUCache {
 		return history.get(history.size() - 1);
 	}
 
-	public Object getEllement(Object o) {
+	public Object getElement(Object o) {
 
 		return o;
 	}

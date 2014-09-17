@@ -54,12 +54,12 @@ public class LRUTailCache<K, V> {
 			IOUtils.printConsoleMessage("Hit");
 			return false;
 		} else if (maxElementts > cache.size()) {
-			insertEllment(key, value);
+			insertElment(key, value);
 			IOUtils.printConsoleMessage("Miss");
 			return true;
 		} else {
 			removeElementByKey(queue.peek());
-			insertEllment(key, value);
+			insertElment(key, value);
 			IOUtils.printConsoleMessage("Miss");
 			return true;
 		}
@@ -73,7 +73,7 @@ public class LRUTailCache<K, V> {
 	 * @param value
 	 *            the value of the object;
 	 */
-	private void insertEllment(K key, V value) {
+	private void insertElment(K key, V value) {
 		cache.put(key, value);
 		queue.add(key);
 	}

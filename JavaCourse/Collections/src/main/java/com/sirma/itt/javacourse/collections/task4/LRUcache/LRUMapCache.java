@@ -34,7 +34,7 @@ public class LRUMapCache<K, V> {
 	 *            the value of the object.
 	 * @return true if the object was added to the cache.
 	 */
-	public boolean addCacheEllement(K key, V value) {
+	public boolean addCacheElement(K key, V value) {
 		if (cacheMap.containsKey(key)) {
 			elementHit(key);
 			IOUtils.printConsoleMessage("Hit");

@@ -23,19 +23,25 @@ public class RunStringCalculator {
 		StringCalculator calculator = new StringCalculator();
 		String firstBigNumber = null;
 		String secondBigNumber = null;
-		IOUtils.printConsoleMessage("Input only one number on a line. ");
+		String result = null;
+		do {
+			IOUtils.printConsoleMessage("Input only one number on a line. ");
 
-		try {
 			IOUtils.printConsoleMessage("Please input number value for the first number ");
 			firstBigNumber = IOUtils.readLine();
 
 			IOUtils.printConsoleMessage("Please input number value for the second number ");
 			secondBigNumber = IOUtils.readLine();
 
-			IOUtils.printConsoleMessage("Result is "
-					+ calculator.sumStrings(firstBigNumber, secondBigNumber));
-		} catch (NumberFormatException e) {
-			log.error("Invalid input for the application.", e);
-		}
+			try {
+				result = calculator.sumStrings(firstBigNumber, secondBigNumber);
+			} catch (NumberFormatException e) {
+				log.error(e.getMessage(), e);
+			} catch (IllegalArgumentException e) {
+				log.error(e.getMessage(), e);
+			}
+		} while (result == null);
+		IOUtils.printConsoleMessage("Result is " + result);
+
 	}
 }

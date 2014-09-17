@@ -16,7 +16,8 @@ public class StringCalculator {
 	 *            the second String
 	 * @return the String Sum of the given Strings
 	 */
-	public String sumStrings(String firstNumber, String secondNumber) throws NumberFormatException {
+	public String sumStrings(String firstNumber, String secondNumber) throws NumberFormatException,
+			IllegalArgumentException {
 
 		StringBuilder result = new StringBuilder();
 		int lenght;
@@ -35,12 +36,14 @@ public class StringCalculator {
 			int b = 0;
 			int c = 0;
 			if (i < inverseFirstNumber.length()) {
-				// a = Integer.parseInt("" + inverseFirstNumber.charAt(i));
-				a = Character.getNumericValue(inverseSecondNumber.charAt(i));
+				a = Integer.parseInt("" + inverseFirstNumber.charAt(i));
 			}
 
 			if (i < inverseSecondNumber.length()) {
 				b = Character.getNumericValue(inverseSecondNumber.charAt(i));
+				if (b > 9) {
+					throw new IllegalArgumentException();
+				}
 			}
 			c = a + b;
 			if (isOverTen) {

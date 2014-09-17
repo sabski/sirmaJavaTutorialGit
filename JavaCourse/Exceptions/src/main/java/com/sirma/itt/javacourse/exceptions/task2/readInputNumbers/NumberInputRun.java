@@ -21,22 +21,21 @@ public class NumberInputRun {
 	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		try {
-			IOUtils.printConsoleMessage("Input numbers in the interval 0 - 100");
-
-			while (true) {
-				int num = IOUtils.readInt();
+		IOUtils.printConsoleMessage("Input numbers in the interval 0 - 100\n Program will stop when you enter -1");
+		int num = 0;
+		do {
+			try {
+				num = IOUtils.readInt();
 				IOUtils.printConsoleMessage("" + num);
 				if (!MathUtil.checkInputRange(0, 100, num)) {
 					throw new NumericInputException();
 				} else {
 					IOUtils.printConsoleMessage("Try again");
 				}
-			}
-		} catch (NumericInputException e) {
-			e.printStackTrace();
-			log.error("Input was not in valid range", e);
-		}
-	}
 
+			} catch (NumericInputException e) {
+				log.error("Input was not in valid range", e);
+			}
+		} while (num != -1);
+	}
 }

@@ -14,7 +14,7 @@ public class NumericInputException extends IOException {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static String message = "Number input is not in valid range";
+	private static final String message = "Number input is not in valid range";
 
 	/**
 	 * Super constructor.

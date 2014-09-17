@@ -38,4 +38,17 @@ public class ParrentClass implements Comparable<ParrentClass> {
 		}
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+		return "ID : " + id;
+	}
+
+	/**
+	 * @param id
+	 *            the id of the element.
+	 */
+	public ParrentClass(int id) {
+		this.id = id;
+	}
 }

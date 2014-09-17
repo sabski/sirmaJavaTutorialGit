@@ -3,6 +3,7 @@ package com.sirma.itt.javacourse.relectionAnotationRegex.test.task4.anotationSor
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -11,7 +12,6 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildAClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildBClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ChildCClass;
-import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ClassSorter;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ComparatorAnnotaion;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ParrentClass;
 
@@ -23,7 +23,6 @@ import com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.
 public class AnotationSortingTest {
 
 	private List<ParrentClass> list;
-	private ClassSorter sort;
 	private List<Object> result;
 
 	/**
@@ -37,16 +36,15 @@ public class AnotationSortingTest {
 		list = new ArrayList<ParrentClass>();
 		result = new ArrayList<Object>();
 
-		ParrentClass p = new ParrentClass();
-		ChildAClass a = new ChildAClass();
-		ChildBClass b = new ChildBClass();
-		ChildCClass c = new ChildCClass();
+		ParrentClass p = new ParrentClass(1);
+		ChildAClass a = new ChildAClass(2, "sad");
+		ChildBClass b = new ChildBClass(3, 2.1f, "two");
+		ChildCClass c = new ChildCClass(4, 2.14d, "three");
 
 		list.add(a);
 		list.add(c);
 		list.add(b);
 		list.add(p);
-		sort = new ClassSorter();
 		// result adding
 		result.add(p);
 		result.add(a);
@@ -62,17 +60,8 @@ public class AnotationSortingTest {
 	 */
 	@Test
 	public void testSort() {
-		List<ParrentClass> temp = sort.sort(list, new ComparatorAnnotaion());
-		assertEquals(result.toString(), temp.toString());
+		Collections.sort(list, new ComparatorAnnotaion());
+		assertEquals(result.toString(), list.toString());
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting.ClassSorter#sort(java.util.List)}
-	 * .
-	 */
-	@Test(expected = NullPointerException.class)
-	public void testSortWithNull() {
-		sort.sort(null, null);
-	}
 }

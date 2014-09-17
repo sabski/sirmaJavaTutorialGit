@@ -6,27 +6,48 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
  * @author simeon
  */
 @SortingAnotation(weight = 3)
-public class ChildBClass extends ParrentClass{
+public class ChildBClass extends ParrentClass {
 
-	private float pi = 3.14f;
+	private float floatValue = (float) Math.PI;
+
+	private String stringValue = "";
 
 	/**
-	 * Getter method for pi.
+	 * Getter method for floatValue.
 	 * 
-	 * @return the pi
+	 * @return the floatValue
 	 */
-	public float getPi() {
-		return pi;
+	public float getFloatValue() {
+		return floatValue;
 	}
 
 	/**
-	 * Setter method for pi.
+	 * Setter method for floatValue.
 	 * 
-	 * @param pi
-	 *            the pi to set
+	 * @param floatValue
+	 *            the floatValue to set
 	 */
-	public void setPi(float pi) {
-		this.pi = pi;
+	public void setFloatValue(float floatValue) {
+		this.floatValue = floatValue;
 	}
 
+	/**
+	 * @param id
+	 *            of the object.
+	 * @param floatValue
+	 *            float value.
+	 * @param strngValue
+	 *            some string value
+	 */
+	public ChildBClass(int id, float floatValue, String strngValue) {
+		super(id);
+		this.floatValue = floatValue;
+		this.stringValue = strngValue;
+	}
+
+	@Override
+	public String toString() {
+		return "ID : " + getId() + " Float value : " + getFloatValue() + " String value "
+				+ stringValue + " ;";
+	}
 }

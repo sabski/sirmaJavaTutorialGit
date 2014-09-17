@@ -25,7 +25,7 @@ public class PrivateReflectorTest {
 	@Before
 	public void setUp() throws Exception {
 		reflector = new PrivateReflector();
-		privateClass = new MyPrivateClass();
+		privateClass = new MyPrivateClass(12, "", 123f);
 	}
 
 	/**

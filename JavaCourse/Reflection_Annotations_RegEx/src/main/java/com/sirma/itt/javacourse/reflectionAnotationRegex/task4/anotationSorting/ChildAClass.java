@@ -8,6 +8,17 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
 @SortingAnotation(weight = 2)
 public class ChildAClass extends ParrentClass {
 
+	/**
+	 * @param id
+	 *            id of the object.
+	 * @param msg
+	 *            message
+	 */
+	public ChildAClass(int id, String msg) {
+		super(id);
+		this.msg = msg;
+	}
+
 	private String msg = "ChildAClass";
 
 	/**
@@ -27,5 +38,10 @@ public class ChildAClass extends ParrentClass {
 	 */
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	@Override
+	public String toString() {
+		return "ID : " + getId() + " message : " + msg + " ;";
 	}
 }

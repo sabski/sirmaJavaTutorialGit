@@ -8,25 +8,65 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task4.anotationSorting
 @SortingAnotation(weight = 4)
 public class ChildCClass extends ParrentClass {
 
-	private float pi = 3.14f;
+	private double doubleValue = Math.PI;
+
+	private String stringValue = "";
 
 	/**
-	 * Getter method for pi.
+	 * Getter method for doubleValue.
 	 * 
-	 * @return the pi
+	 * @return the doubleValue
 	 */
-	public float getPi() {
-		return pi;
+	public double getDoubleValue() {
+		return doubleValue;
 	}
 
 	/**
-	 * Setter method for pi.
+	 * Setter method for doubleValue.
 	 * 
-	 * @param pi
-	 *            the pi to set
+	 * @param doubleValue
+	 *            the doubleValue to set
 	 */
-	public void setPi(float pi) {
-		this.pi = pi;
+	public void setDoubleValue(double doubleValue) {
+		this.doubleValue = doubleValue;
 	}
 
+	/**
+	 * Getter method for stringValue.
+	 * 
+	 * @return the stringValue
+	 */
+	public String getStringValue() {
+		return stringValue;
+	}
+
+	/**
+	 * Setter method for stringValue.
+	 * 
+	 * @param stringValue
+	 *            the stringValue to set
+	 */
+	public void setStringValue(String stringValue) {
+		this.stringValue = stringValue;
+	}
+
+	/**
+	 * @param id
+	 *            the id of the object.
+	 * @param doubleValue
+	 *            a double value for the object
+	 * @param stringValue
+	 *            some String
+	 */
+	public ChildCClass(int id, double doubleValue, String stringValue) {
+		super(id);
+		this.doubleValue = doubleValue;
+		this.stringValue = stringValue;
+	}
+
+	@Override
+	public String toString() {
+		return "ID : " + getId() + " String value " + stringValue + " Double value "
+				+ getDoubleValue() + " ; ";
+	}
 }

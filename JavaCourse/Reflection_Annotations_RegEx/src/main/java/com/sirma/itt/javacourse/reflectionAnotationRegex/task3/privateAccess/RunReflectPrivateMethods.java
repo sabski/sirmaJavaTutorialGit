@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess;
 
-import java.lang.reflect.InvocationTargetException;
+import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.IOUtils;
 
@@ -11,6 +11,8 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class RunReflectPrivateMethods {
 
+	private static Logger log = Logger.getLogger(RunReflectPrivateMethods.class.getName());
+
 	/**
 	 * Main method.
 	 * 
@@ -19,31 +21,25 @@ public class RunReflectPrivateMethods {
 	 */
 	public static void main(String[] args) {
 		PrivateReflector reflector = new PrivateReflector();
+		IOUtils.printConsoleMessage("Input String value : ");
+		String stringValue = IOUtils.readLine();
+		IOUtils.printConsoleMessage("Input number value : ");
+		int intValue = IOUtils.readInt();
+		IOUtils.printConsoleMessage("Input float value : ");
+		float floatValue = IOUtils.readFlaot();
+		MyPrivateClass privateObject = new MyPrivateClass(intValue, stringValue, floatValue);
 		try {
 			IOUtils.printConsoleMessage("Input parameter value ");
 			String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
-			reflector.breakPrivateFields(s);
+			reflector.breakPrivateFields(privateObject, s);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace(); 
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 

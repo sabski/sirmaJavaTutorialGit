@@ -1,9 +1,9 @@
 package com.sirma.itt.javacourse.relectionAnotationRegex.test.task3.privateAccess;
 
-import java.lang.reflect.InvocationTargetException;
-
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess.MyPrivateClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess.PrivateReflector;
@@ -15,6 +15,7 @@ import com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess.Pri
  */
 public class PrivateReflectorTest {
 
+	private static Logger log = Logger.getLogger(PrivateReflectorTest.class);
 	private PrivateReflector reflector;
 	private MyPrivateClass privateClass;
 
@@ -26,6 +27,8 @@ public class PrivateReflectorTest {
 	public void setUp() throws Exception {
 		reflector = new PrivateReflector();
 		privateClass = new MyPrivateClass(12, "", 123f);
+		// privateClass = Mockito.mock(MyPrivateClass.class);
+
 	}
 
 	/**
@@ -35,31 +38,15 @@ public class PrivateReflectorTest {
 	 */
 	@Test
 	public void testBreakPrivateFields() {
-
 		try {
-			reflector.breakPrivateFields(privateClass);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reflector.breakPrivateFields(privateClass, "Param");
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
+
+		// Mockito.verify(privateClass, Mockito.times(1));
 	}
 
 }

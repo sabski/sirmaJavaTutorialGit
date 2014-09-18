@@ -7,15 +7,15 @@ package com.sirma.itt.javacourse.collections.task3.exceptionsMessageManager;
  */
 public class User {
 
-	private int postalCode;
-	private String creditCardNumber;
-	private int EGN;
-	private String name;
-	private String address;
+	private int postalCode = 0;
+	private String creditCardNumber = null;
+	private double EGN = 0d;
+	private String name = null;
+	private String address = null;
 
 	/**
 	 * Getter method for name.
-	 *
+	 * 
 	 * @return the name
 	 */
 	public String getName() {
@@ -24,8 +24,9 @@ public class User {
 
 	/**
 	 * Setter method for name.
-	 *
-	 * @param name the name to set
+	 * 
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -33,7 +34,7 @@ public class User {
 
 	/**
 	 * Getter method for address.
-	 *
+	 * 
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -42,8 +43,9 @@ public class User {
 
 	/**
 	 * Setter method for address.
-	 *
-	 * @param address the address to set
+	 * 
+	 * @param address
+	 *            the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
@@ -92,7 +94,7 @@ public class User {
 	 * 
 	 * @return the EGN
 	 */
-	public int getEGN() {
+	public double getEGN() {
 		return EGN;
 	}
 
@@ -102,7 +104,7 @@ public class User {
 	 * @param EGN
 	 *            the EGN to set
 	 */
-	public void setEGN(int EGN) {
+	public void setEGN(double EGN) {
 		this.EGN = EGN;
 	}
 

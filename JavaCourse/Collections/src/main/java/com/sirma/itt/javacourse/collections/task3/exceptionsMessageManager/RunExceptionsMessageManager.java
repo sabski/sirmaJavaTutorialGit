@@ -35,46 +35,52 @@ public class RunExceptionsMessageManager {
 		user.setAddress(IOUtils.readLine());
 
 		// Start input for postal code
-		IOUtils.printConsoleMessage("Input postal code for the new user :");
-		int postalCode = IOUtils.readInt();
-		if (!MathUtil.checkInputRange(1000, 9999, postalCode)) {
-			IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_POSTAL_CODE);
-			try {
-				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_POSTAL_CODE);
-			} catch (InvalidAttributesException e) {
-				log.error("Invalid postal code", e);
+		do {
+			IOUtils.printConsoleMessage("Input postal code for the new user :");
+			int postalCode = IOUtils.readInt();
+			if (!MathUtil.checkInputRange(1000, 9999, postalCode)) {
+				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_POSTAL_CODE);
+				try {
+					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_POSTAL_CODE);
+				} catch (InvalidAttributesException e) {
+					log.error("Invalid postal code", e);
+				}
+			} else {
+				user.setPostalCode(postalCode);
 			}
-		} else {
-			user.setPostalCode(postalCode);
-		}
-
+		} while (user.getPostalCode() == 0);
 		// Start input for credit card number
-		IOUtils.printConsoleMessage("Input card number :");
-		String cardNumber = IOUtils.readLine();
-		if (!cardNumber.matches(IOUtils.REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA)) {
-			IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_CARD_NUMBER);
-			try {
-				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER);
-			} catch (InvalidAttributesException e) {
-				log.error("Invalid credit card number", e);
+		do {
+			IOUtils.printConsoleMessage("Input card number :");
+			String cardNumber = IOUtils.readLine();
+			if (!cardNumber.matches(IOUtils.REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA)) {
+				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_CARD_NUMBER);
+				try {
+					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER);
+				} catch (InvalidAttributesException e) {
+					log.error("Invalid credit card number", e);
+				}
+			} else {
+				user.setCreditCardNumber(cardNumber);
 			}
-		} else {
-			user.setCreditCardNumber(cardNumber);
-		}
+		} while (user.getCreditCardNumber() == null);
 
 		// Start input for EGN
-		IOUtils.printConsoleMessage("Input EGN : ");
-		String EGN = IOUtils.readLine();
-		if (EGN.length() != 10 || !EGN.matches(IOUtils.REGEX_VALIDATOR_NUMBERS_ONLY)) {
-			IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_EGN);
-			try {
-				manager.addExceptionMessage(ExceptionsMessageManager.INVALID_EGN);
-			} catch (InvalidAttributesException e) {
-				log.error("Invalid EGN", e);
+		do {
+			IOUtils.printConsoleMessage("Input EGN : ");
+			String EGN = IOUtils.readLine();
+			if (EGN.length() != 10 || !EGN.matches(IOUtils.REGEX_VALIDATOR_NUMBERS_ONLY)) {
+				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_EGN);
+				try {
+					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_EGN);
+				} catch (InvalidAttributesException e) {
+					log.error("Invalid EGN", e);
+				}
+			} else {
+				user.setEGN(Double.parseDouble(EGN));
 			}
-		} else {
-			user.setEGN(Integer.parseInt(EGN));
-		}
+		} while (user.getEGN() == 0);
+		IOUtils.printConsoleMessage("Errors durring input : " + manager.getMesage());
 	}
 
 }

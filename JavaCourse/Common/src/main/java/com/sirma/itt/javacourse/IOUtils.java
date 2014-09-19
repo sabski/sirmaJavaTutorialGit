@@ -68,7 +68,7 @@ public class IOUtils {
 		if (validateStringWithRegex(regex, tmp)) {
 			return tmp;
 		} else {
-			printConsoleMessage("Input correct statment");
+			printConsoleMessage("Input correct statement");
 			return readValidatedLine(regex);
 		}
 
@@ -294,5 +294,34 @@ public class IOUtils {
 			}
 		}
 		return stringBuffer.toString();
+	}
+
+	/**
+	 * Reads the console input and assures the return value is of the float type.
+	 * 
+	 * @return the double value that was inputed in the console.
+	 */
+	public static double readDouble() {
+		Double result = null;
+		result = inputNextDouble();
+		if (result == null) {
+			result = readDouble();
+		}
+		return result;
+	}
+
+	/**
+	 * Gets input from the console and prints an error message if the input is incorrect.
+	 * 
+	 * @return the number that was inputed via the console.
+	 */
+	private static Double inputNextDouble() {
+		Double temp = null;
+		try {
+			temp = Double.parseDouble(scanner.nextLine());
+		} catch (Exception e) {
+			printConsoleMessage("Please input number value");
+		}
+		return temp;
 	}
 }

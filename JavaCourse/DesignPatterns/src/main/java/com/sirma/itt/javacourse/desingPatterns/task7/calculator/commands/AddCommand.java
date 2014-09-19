@@ -14,7 +14,6 @@ public class AddCommand implements Command {
 	 */
 	@Override
 	public Double execute(Double firstNumber, Double secondNumber) {
-		// TODO Auto-generated method stub
 		return NumberOperations.additionNumbers(firstNumber, secondNumber);
 	}
 

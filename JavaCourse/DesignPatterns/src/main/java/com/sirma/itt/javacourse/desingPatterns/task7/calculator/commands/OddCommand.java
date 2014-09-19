@@ -14,7 +14,6 @@ public class OddCommand implements Command {
 	 */
 	@Override
 	public Double execute(Double firstNumber, Double secondNumber) {
-		// TODO Auto-generated method stub
 		return NumberOperations.oddFuncthion(firstNumber, secondNumber);
 	}
 

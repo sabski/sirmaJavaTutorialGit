@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task4.objectPool;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -8,6 +10,8 @@ import com.sirma.itt.javacourse.IOUtils;
  * @author Simeon Iliev
  */
 public class RunUserPool {
+
+	private static Logger log = Logger.getLogger(RunUserPool.class.getName());
 
 	/**
 	 * Main method.
@@ -29,8 +33,7 @@ public class RunUserPool {
 					try {
 						user = pool.aquareUser();
 					} catch (NoMoreResourcesException e) {
-						// TODO Auto-generated catch block
-						IOUtils.printConsoleMessage(e.getMessage());
+						log.error(e.getMessage(), e);
 					}
 					break;
 				case 2:
@@ -38,6 +41,7 @@ public class RunUserPool {
 						pool.releseUser(user);
 					} catch (NullPointerException e) {
 						IOUtils.printConsoleMessage("Please use operation code 1");
+						log.error(e.getMessage(), e);
 					}
 					break;
 				case 3:
@@ -46,6 +50,7 @@ public class RunUserPool {
 						user.setUserName(IOUtils.readLine());
 					} catch (NullPointerException e) {
 						IOUtils.printConsoleMessage("Please use operation code 1");
+						log.error(e.getMessage(), e);
 					}
 					break;
 				case 4:
@@ -53,6 +58,7 @@ public class RunUserPool {
 						IOUtils.printConsoleMessage("Current user name: " + user.getUserName());
 					} catch (NullPointerException e) {
 						IOUtils.printConsoleMessage("Please use operation code 1");
+						log.error(e.getMessage(), e);
 					}
 					break;
 				case 5:
@@ -61,6 +67,7 @@ public class RunUserPool {
 						user.setPassword(IOUtils.readLine());
 					} catch (NullPointerException e) {
 						IOUtils.printConsoleMessage("Please use operation code 1");
+						log.error(e.getMessage(), e);
 					}
 					break;
 				case 6:

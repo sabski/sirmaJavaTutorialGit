@@ -21,8 +21,8 @@ public class UserPool {
 	 * Private constructor.
 	 */
 	private UserPool() {
-		userPoolFreeInstances = new ArrayList<User>(capacaty);
-		userPoolUsedInstances = new ArrayList<User>(capacaty);
+		userPoolFreeInstances = new ArrayList<User>(capacaty + 1);
+		userPoolUsedInstances = new ArrayList<User>(capacaty + 1);
 	}
 
 	/**

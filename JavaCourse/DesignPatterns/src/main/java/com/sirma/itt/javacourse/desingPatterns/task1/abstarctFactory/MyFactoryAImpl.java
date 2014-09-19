@@ -5,14 +5,14 @@ package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
  * 
  * @author Simeon Iliev
  */
-public class MyFActoryAImpl extends MyFactory {
+public class MyFactoryAImpl extends MyFactory {
 
-	private static MyFActoryAImpl instance = null;
+	private static MyFactoryAImpl instance = null;
 
 	/**
 	 * Private constructor.
 	 */
-	private MyFActoryAImpl() {
+	private MyFactoryAImpl() {
 	}
 
 	@Override
@@ -41,9 +41,9 @@ public class MyFActoryAImpl extends MyFactory {
 		return null;
 	}
 
-	public static MyFActoryAImpl getInstance() {
+	public static MyFactoryAImpl getInstance() {
 		if (instance == null) {
-			instance = new MyFActoryAImpl();
+			instance = new MyFactoryAImpl();
 		}
 		return instance;
 	}

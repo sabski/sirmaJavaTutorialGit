@@ -17,7 +17,7 @@ public class RunAbstracFactory {
 	 */
 	public static void main(String[] args) {
 		MyFactory factory = MyFactoryImpl.getInstance();
-		MyFactory factoryA = MyFActoryAImpl.getInstance();
+		MyFactory factoryA = MyFactoryAImpl.getInstance();
 		while (true) {
 			IOUtils.printConsoleMessage("Create a new Factory product\n1 :  Create new product default Construntor "
 					+ "\n2 : Create new product using reflection"

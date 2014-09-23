@@ -1,4 +1,4 @@
-package comsirma.itt.javacourse.inputOutput.test.task2.fileWriter;
+package com.sirma.itt.javacourse.inputOutput.test.task2.fileWriter;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +34,7 @@ public class TestConsoleWriter {
 	@Before
 	public void setUp() throws Exception {
 		writer = new WriteFileFromConsole();
-		fileName = "src/test/resources/test2.txt";
+		fileName = getClass().getResource("/Origin.txt").getPath();
 		fileData = "hello word\n sad \n sad\n.";
 		line = fileData;
 	}

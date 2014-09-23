@@ -2,9 +2,7 @@ package com.sirma.itt.javacourse.collections.task4.LRUcache;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.sirma.itt.javacourse.IOUtils;
 
@@ -17,7 +15,6 @@ public class LRUCache {
 
 	private List<Object> lruStack;
 	private int pointer;
-	private int hitCount;
 	private List<Integer> history;
 	private int maxObjects;
 
@@ -47,7 +44,6 @@ public class LRUCache {
 		this.maxObjects = maxObjects;
 		pointer = 0;
 		lruStack = new ArrayList<Object>();
-		hitCount = 0;
 		history = new ArrayList<Integer>();
 	}
 

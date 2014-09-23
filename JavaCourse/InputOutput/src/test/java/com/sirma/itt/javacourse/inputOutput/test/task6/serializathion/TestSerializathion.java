@@ -1,4 +1,4 @@
-package comsirma.itt.javacourse.inputOutput.test.task6.serializathion;
+package com.sirma.itt.javacourse.inputOutput.test.task6.serializathion;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +21,7 @@ public class TestSerializathion {
 
 	private Logger log = Logger.getLogger(TestSerializathion.class.getName());
 	private UserDefinedObject object;
-	private String path = "src/test/resources/Serializathion.txt";
+	private String path = getClass().getResource("/Serializathion.txt").getPath();
 
 	/**
 	 * @throws java.lang.Exception

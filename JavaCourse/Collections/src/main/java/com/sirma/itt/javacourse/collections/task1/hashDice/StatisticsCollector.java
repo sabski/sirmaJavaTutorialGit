@@ -64,7 +64,6 @@ public class StatisticsCollector {
 	 */
 	public void collectData(int numberOfRolls) {
 		DiceCombintionPair pair;
-
 		for (int i = 0; i < numberOfRolls; i++) {
 			pair = roller.rollDice();
 			if (!diceMap.containsKey(pair)) {

@@ -1,4 +1,4 @@
-package comsirma.itt.javacourse.inputOutput.test.task4.transferingObject;
+package com.sirma.itt.javacourse.inputOutput.test.task4.transferingObject;
 
 import static org.junit.Assert.*;
 
@@ -25,16 +25,16 @@ public class TestTransferObject {
 	private InputStream input;
 	private OutputStream output;
 
-	private String fileSource = "src/test/resources/Origin.txt";
-	private String fileDestinathion = "src/test/resources/Destination.txt";
-
 	/**
+	 * Set up method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
-		input = new FileInputStream(fileSource);
-		output = new FileOutputStream(fileDestinathion);
+		input = new FileInputStream(getClass().getResource("/Origin.txt").getFile());
+		output = new FileOutputStream(getClass().getResource("/Destination.txt").getFile());
 		transporter = new TransferObject(input, output);
 		transporter2 = new TransferObject(input, null);
 	}

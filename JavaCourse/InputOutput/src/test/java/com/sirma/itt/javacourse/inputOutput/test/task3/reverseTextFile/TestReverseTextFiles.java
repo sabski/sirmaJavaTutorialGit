@@ -1,4 +1,4 @@
-package comsirma.itt.javacourse.inputOutput.test.task3.reverseTextFile;
+package com.sirma.itt.javacourse.inputOutput.test.task3.reverseTextFile;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +26,7 @@ public class TestReverseTextFiles {
 	private FileReverser reverser;
 	private String originalContent = "1\n2\n3\n4\n5\n6\n7\n8\n9\n.";
 	private String reverse = ".987654321";
-	private String fileName = "src/test/resources/reverseSource.txt";
+	private String fileName = "/reverseSource.txt";
 
 	/**
 	 * Set up method for the test.
@@ -38,7 +38,7 @@ public class TestReverseTextFiles {
 	public void setUp() throws Exception {
 		fileWriter = new WriteFileFromConsole();
 		reverser = new FileReverser();
-		if (new File(fileName).exists()) {
+		if (new File(getClass().getResource("").getPath() + fileName).exists()) {
 			new File(fileName).delete();
 		}
 	}
@@ -55,8 +55,9 @@ public class TestReverseTextFiles {
 		IOUtils.setScanner(scanner);
 		fileWriter.writeFile(fileName);
 		try {
-			reverser.reverseFileContent(fileName);
-			assertEquals(reverse, IOUtils.readFile(fileName).replaceAll("\n", ""));
+			reverser.reverseFileContent(getClass().getResource("").getPath() + fileName);
+			assertEquals(reverse, IOUtils.readFile(getClass().getResource("").getPath() + fileName)
+					.replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
 			log.error("File not found", e);
 		}

@@ -56,7 +56,8 @@ public class ExceptionsMessageManager {
 
 	private String message = "";
 
-	private Logger log = Logger.getLogger(ExceptionsMessageManager.class.getName());
+	@SuppressWarnings("unused")
+	private static Logger log = Logger.getLogger(ExceptionsMessageManager.class.getName());
 
 	/**
 	 * Adds an exception message that is from the map, otherwise throws an exception.

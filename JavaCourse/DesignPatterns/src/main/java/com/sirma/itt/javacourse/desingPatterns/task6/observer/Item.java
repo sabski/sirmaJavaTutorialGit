@@ -36,4 +36,11 @@ public class Item {
 		this.name = name;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return name + " ";
+	}
 }

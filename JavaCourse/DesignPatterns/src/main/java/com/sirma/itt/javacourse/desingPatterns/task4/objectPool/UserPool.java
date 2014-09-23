@@ -12,7 +12,7 @@ public class UserPool {
 
 	private static UserPool instance;
 
-	private int capacaty = 5;
+	private static int capacaty = 5;
 
 	private List<User> userPoolFreeInstances;
 	private List<User> userPoolUsedInstances;

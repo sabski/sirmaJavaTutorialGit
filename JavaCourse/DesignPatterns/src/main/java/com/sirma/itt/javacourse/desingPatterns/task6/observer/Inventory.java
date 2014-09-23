@@ -15,15 +15,6 @@ public class Inventory {
 	private List<Item> inventory;
 
 	/**
-	 * Prints the current items in inventory.
-	 */
-	public void printInventory() {
-		for (int i = 0; i < inventory.size(); i++) {
-			IOUtils.printConsoleMessage(i + ": " + inventory.get(i).getName());
-		}
-	}
-
-	/**
 	 * Getter method for inventory.
 	 * 
 	 * @return the inventory
@@ -71,4 +62,25 @@ public class Inventory {
 		}
 
 	}
+
+	/**
+	 * Prints the current items in inventory.
+	 */
+	public String printInventory() {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < inventory.size(); i++) {
+			builder.append(i + ": " + inventory.get(i).getName());
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return printInventory();
+	}
+	
+	
 }

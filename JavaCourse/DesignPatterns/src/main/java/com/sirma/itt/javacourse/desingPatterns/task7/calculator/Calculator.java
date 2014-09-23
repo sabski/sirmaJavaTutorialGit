@@ -15,10 +15,6 @@ public class Calculator {
 
 	private List<Command> listOfOperations = new ArrayList<Command>();
 
-	private double result = 0d;
-
-	private CommandBuilder builder = CommandBuilder.getInstance();
-
 	public void takeCommand(Command command) {
 		listOfOperations.add(command);
 	}

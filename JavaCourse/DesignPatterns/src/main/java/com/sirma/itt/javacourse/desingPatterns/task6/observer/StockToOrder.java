@@ -64,11 +64,22 @@ public class StockToOrder {
 	}
 
 	/**
-	 * Prints the contents of the out of stock item list.
+	 * Prints the current items in inventory.
 	 */
-	public void printMissingStock() {
+	public String printInventory() {
+		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < outOfStockItems.size(); i++) {
-			IOUtils.printConsoleMessage(i + ": " + outOfStockItems.get(i).getName());
+			builder.append(i + ": " + outOfStockItems.get(i).getName());
 		}
+		return builder.toString();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return printInventory();
+	}
+
 }

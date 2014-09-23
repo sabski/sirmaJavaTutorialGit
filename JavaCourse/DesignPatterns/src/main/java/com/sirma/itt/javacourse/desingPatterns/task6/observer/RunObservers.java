@@ -33,7 +33,7 @@ public class RunObservers {
 					break;
 				case 2:
 					IOUtils.printConsoleMessage("Input number of item to be delivered");
-					order.printMissingStock();
+					IOUtils.printConsoleMessage(order.toString());
 					int num = IOUtils.readInt();
 					try {
 						Item item2 = order.getOutOfStockItems().get(num);
@@ -44,7 +44,7 @@ public class RunObservers {
 					break;
 				case 3:
 					IOUtils.printConsoleMessage("Input number of the item to sell : ");
-					inventory.printInventory();
+					IOUtils.printConsoleMessage(inventory.toString());
 					int number = IOUtils.readInt();
 					try {
 						observer.purcheaseUpdate(inventory.getInventory().get(number));

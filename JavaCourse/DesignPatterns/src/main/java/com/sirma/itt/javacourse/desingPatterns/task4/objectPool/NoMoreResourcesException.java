@@ -39,7 +39,6 @@ public class NoMoreResourcesException extends Exception {
 	 */
 	public NoMoreResourcesException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -50,7 +49,6 @@ public class NoMoreResourcesException extends Exception {
 	 */
 	public NoMoreResourcesException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
 	}
 
 }

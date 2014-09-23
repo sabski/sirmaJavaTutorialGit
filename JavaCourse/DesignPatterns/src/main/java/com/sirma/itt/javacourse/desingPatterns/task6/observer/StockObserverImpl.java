@@ -1,9 +1,5 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Stock Observer implementation.

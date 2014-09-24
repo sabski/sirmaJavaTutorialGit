@@ -44,10 +44,4 @@ public class ChildBClass extends ParrentClass {
 		this.floatValue = floatValue;
 		this.stringValue = strngValue;
 	}
-
-	@Override
-	public String toString() {
-		return "ID : " + getId() + " Float value : " + getFloatValue() + " String value "
-				+ stringValue + " ;";
-	}
 }

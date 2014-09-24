@@ -64,9 +64,4 @@ public class ChildCClass extends ParrentClass {
 		this.stringValue = stringValue;
 	}
 
-	@Override
-	public String toString() {
-		return "ID : " + getId() + " String value " + stringValue + " Double value "
-				+ getDoubleValue() + " ; ";
-	}
 }

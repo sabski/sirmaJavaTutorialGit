@@ -26,19 +26,19 @@ public class Reflector {
 	 * @throws SecurityException
 	 *             something went wrong
 	 */
-	public void reflect(Object object) throws SecurityException, NoSuchFieldException,
+	public String reflect(Object object) throws SecurityException, NoSuchFieldException,
 			IllegalArgumentException, IllegalAccessException {
 
 		if (object == null) {
 			IOUtils.printConsoleMessage("Object is null");
-			return;
+			return "Object is null";
 		}
 
 		Class<?> reflecthionClass = object.getClass();
 		IOUtils.printConsoleMessage(reflecthionClass.getName());
-
+		StringBuilder sb = new StringBuilder();
 		for (Field f : reflecthionClass.getDeclaredFields()) {
-			StringBuilder sb = new StringBuilder();
+
 			Object c = "empty";
 			Field field = object.getClass().getDeclaredField(f.getName().toString());
 			switch (f.getModifiers()) {
@@ -76,8 +76,9 @@ public class Reflector {
 
 		for (Method m : reflecthionClass.getDeclaredMethods()) {
 			IOUtils.printConsoleMessage(m.toString());
+			sb.append(m.toString());
 		}
-
+		return sb.toString();
 	}
 
 }

@@ -27,7 +27,7 @@ public class TestConsoleWriter {
 	private String line;
 
 	/**
-	 * Sets up variables
+	 * Sets up variables.
 	 * 
 	 * @throws java.lang.Exception
 	 */

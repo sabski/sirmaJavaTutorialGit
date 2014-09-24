@@ -74,24 +74,19 @@ public class ReflecthionTest {
 	@Test
 	public void testReflectNullObject() {
 		Object obj = null;
+		String result = null;
 		try {
-			reflector.reflect(obj);
-
+			result = reflector.reflect(obj);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals("Object is null", log.getLog().replaceAll("\n", ""));
-		IOUtils.printConsoleMessage(log.getLog());
+		assertTrue(result.contains("Object is null"));
 		log.clear();
 	}
 }

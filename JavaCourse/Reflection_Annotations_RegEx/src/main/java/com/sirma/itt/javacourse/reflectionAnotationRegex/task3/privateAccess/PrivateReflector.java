@@ -27,11 +27,9 @@ public class PrivateReflector {
 	 *            the object which private fields should be displayed.
 	 * @throws IllegalAccessException
 	 *             something went wrong.
-	 * @throws InstantiationException
-	 *             something went wrong.
 	 */
 	public void breakPrivateFields(MyPrivateClass object, Object... params)
-			throws IllegalAccessException, InstantiationException {
+			throws IllegalAccessException {
 
 		myPrivateVariable = object;
 

@@ -3,7 +3,6 @@ package com.sirma.itt.javacourse.relectionAnotationRegex.test.task3.privateAcces
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess.MyPrivateClass;
 import com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess.PrivateReflector;
@@ -27,7 +26,6 @@ public class PrivateReflectorTest {
 	public void setUp() throws Exception {
 		reflector = new PrivateReflector();
 		privateClass = new MyPrivateClass(12, "", 123f);
-		// privateClass = Mockito.mock(MyPrivateClass.class);
 
 	}
 
@@ -42,11 +40,8 @@ public class PrivateReflectorTest {
 			reflector.breakPrivateFields(privateClass, "Param");
 		} catch (IllegalAccessException e) {
 			log.error(e.getMessage(), e);
-		} catch (InstantiationException e) {
-			log.error(e.getMessage(), e);
 		}
 
-		// Mockito.verify(privateClass, Mockito.times(1));
 	}
 
 }

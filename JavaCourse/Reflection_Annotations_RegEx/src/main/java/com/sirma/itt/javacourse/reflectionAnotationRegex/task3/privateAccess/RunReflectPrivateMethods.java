@@ -28,19 +28,14 @@ public class RunReflectPrivateMethods {
 		IOUtils.printConsoleMessage("Input float value : ");
 		float floatValue = IOUtils.readFlaot();
 		MyPrivateClass privateObject = new MyPrivateClass(intValue, stringValue, floatValue);
+		IOUtils.printConsoleMessage("Input parameter value ");
+		String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
 		try {
-			IOUtils.printConsoleMessage("Input parameter value ");
-			String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
 			reflector.breakPrivateFields(privateObject, s);
-		} catch (IllegalArgumentException e) {
-			log.error(e.getMessage(), e);
 		} catch (IllegalAccessException e) {
 			log.error(e.getMessage(), e);
-		} catch (SecurityException e) {
-			log.error(e.getMessage(), e);
-		} catch (InstantiationException e) {
-			log.error(e.getMessage(), e);
 		}
+
 	}
 
 }

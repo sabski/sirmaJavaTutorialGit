@@ -59,8 +59,8 @@ public class ReflectionClass {
 	 * @param booleanValue
 	 *            the booleanValue to set
 	 */
-	public void setBooleanValue(boolean lie) {
-		this.booleanValue = lie;
+	public void setBooleanValue(boolean booleanValue) {
+		this.booleanValue = booleanValue;
 	}
 
 	/**
@@ -78,8 +78,8 @@ public class ReflectionClass {
 	 * @param floatValue
 	 *            the floatValue to set
 	 */
-	public void setFloatValue(float pie) {
-		this.floatValue = pie;
+	public void setFloatValue(float floatValue) {
+		this.floatValue = floatValue;
 	}
 
 	/**
@@ -97,8 +97,8 @@ public class ReflectionClass {
 	 * @param stringValue
 	 *            the stringValue to set
 	 */
-	public void setStringValue(String string) {
-		this.stringValue = string;
+	public void setStringValue(String stringValue) {
+		this.stringValue = stringValue;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInfo
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import com.sirma.itt.javacourse.IOUtils;
 
@@ -25,6 +26,7 @@ public class Reflector {
 	 *             if we try to access a filed which is not there.
 	 * @throws SecurityException
 	 *             something went wrong
+	 * @return a string with the infromathion of the class.
 	 */
 	public String reflect(Object object) throws SecurityException, NoSuchFieldException,
 			IllegalArgumentException, IllegalAccessException {

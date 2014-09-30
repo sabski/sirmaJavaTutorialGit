@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
 
+import org.apache.log4j.Logger;
+
 /**
  * Factory for creating {@link MyFactoryProductAImpl} objects
  * 
@@ -7,6 +9,7 @@ package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
  */
 public class MyFactoryAImpl extends MyFactory {
 
+	private static Logger log = Logger.getLogger(MyFactoryAImpl.class.getName());
 	private static MyFactoryAImpl instance = null;
 
 	/**
@@ -22,21 +25,17 @@ public class MyFactoryAImpl extends MyFactory {
 
 	@Override
 	public MyFactoryProduct createInstanceByReflection() {
-		// TODO Auto-generated method stub
 		try {
 			return (MyFactoryProduct) Class
 					.forName(
 							"com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryProductAImpl")
 					.newInstance();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}

@@ -12,10 +12,13 @@ public class ClassInit {
 	/**
 	 * @param path
 	 *            the path to the object that is to be displayed its hierarchy.
-	 * @return
+	 * @return a new object instance.
 	 * @throws InstantiationException
+	 *             something went worng
 	 * @throws IllegalAccessException
+	 *             something went worng
 	 * @throws ClassNotFoundException
+	 *             something went wrong
 	 */
 	public Object getClassHierhahyAndInterfaces(String path) throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException {

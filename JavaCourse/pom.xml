@@ -63,6 +63,7 @@
 		<module>InputOutput</module>
 		<module>Collections</module>
 		<module>DesignPatterns</module>
+		<module>Threads</module>
 	</modules>
 	<artifactId>JavaCourse</artifactId>
 </project>

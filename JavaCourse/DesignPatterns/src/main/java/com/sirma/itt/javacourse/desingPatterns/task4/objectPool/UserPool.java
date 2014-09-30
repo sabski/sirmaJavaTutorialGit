@@ -69,6 +69,5 @@ public class UserPool {
 		user.setPassword(null);
 		user.setUserName(null);
 		userPoolFreeInstances.add(user);
-
 	}
 }

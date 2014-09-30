@@ -6,8 +6,6 @@ import java.io.OutputStream;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
-
 /**
  * Class for transferring objects. By using the provided in the constructor input and output
  * streams.

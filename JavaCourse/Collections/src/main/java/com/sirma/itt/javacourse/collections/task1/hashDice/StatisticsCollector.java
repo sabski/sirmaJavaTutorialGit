@@ -59,7 +59,7 @@ public class StatisticsCollector {
 	/**
 	 * Collects the data about the dice.
 	 * 
-	 * @param numberOfRolls
+	 *@param numberOfRolls
 	 *            The number of rolls to roll the dice.
 	 */
 	public void collectData(int numberOfRolls) {

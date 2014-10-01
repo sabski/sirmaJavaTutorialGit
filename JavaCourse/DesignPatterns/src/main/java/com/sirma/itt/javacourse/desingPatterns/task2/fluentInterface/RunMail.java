@@ -15,7 +15,7 @@ public class RunMail {
 	 */
 	public static void main(String[] args) {
 		MailFluentConstruct mailConstructor = new MailFluentConstruct();
-		Mail mail = mailConstructor.createNewMailFromTo("simeon", "hristo").attachFile(null).send();
+		mailConstructor.createNewMailFromTo("simeon", "hristo").attachFile(null).send();
 
 	}
 

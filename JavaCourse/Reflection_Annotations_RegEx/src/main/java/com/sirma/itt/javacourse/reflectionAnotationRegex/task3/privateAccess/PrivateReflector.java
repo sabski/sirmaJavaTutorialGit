@@ -28,7 +28,7 @@ public class PrivateReflector {
 	 * @throws IllegalAccessException
 	 *             something went wrong.
 	 */
-	public void breakPrivateFields(MyPrivateClass object, Object... params)
+	public void showPrivateFields(MyPrivateClass object, Object... params)
 			throws IllegalAccessException {
 
 		myPrivateVariable = object;
@@ -70,7 +70,6 @@ public class PrivateReflector {
 					log.error(e.getMessage(), e);
 				}
 			}
-
 		} catch (SecurityException e) {
 			log.error(e.getMessage(), e);
 		}

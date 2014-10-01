@@ -37,7 +37,7 @@ public class PrivateReflectorTest {
 	@Test
 	public void testBreakPrivateFields() {
 		try {
-			reflector.breakPrivateFields(privateClass, "Param");
+			reflector.showPrivateFields(privateClass, "Param");
 		} catch (IllegalAccessException e) {
 			log.error(e.getMessage(), e);
 		}

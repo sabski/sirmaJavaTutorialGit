@@ -7,14 +7,10 @@ import com.sirma.itt.javacourse.IOUtils;
  * 
  * @author Simeon Iliev
  */
-public class MyFactoryProductImpl implements MyFactoryProduct {
+public class MyProduct {
 
 	private String comment;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public String saySomething(String something) {
 		IOUtils.printConsoleMessage(something);
 		return something;
@@ -26,14 +22,14 @@ public class MyFactoryProductImpl implements MyFactoryProduct {
 	 * @param comment
 	 *            the comment we want to add.
 	 */
-	public MyFactoryProductImpl(String comment) {
+	public MyProduct(String comment) {
 		this.comment = comment;
 	}
 
 	/**
 	 * Default constructor.
 	 */
-	public MyFactoryProductImpl() {
+	public MyProduct() {
 	}
 
 	/**

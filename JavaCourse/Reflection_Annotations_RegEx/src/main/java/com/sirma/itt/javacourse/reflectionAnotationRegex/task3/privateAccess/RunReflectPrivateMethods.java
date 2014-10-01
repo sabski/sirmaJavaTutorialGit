@@ -31,7 +31,7 @@ public class RunReflectPrivateMethods {
 		IOUtils.printConsoleMessage("Input parameter value ");
 		String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
 		try {
-			reflector.breakPrivateFields(privateObject, s);
+			reflector.showPrivateFields(privateObject, s);
 		} catch (IllegalAccessException e) {
 			log.error(e.getMessage(), e);
 		}

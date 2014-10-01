@@ -1,55 +1,52 @@
 package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.InstanceOf;
 
-import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactory;
-import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryImpl;
-import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryProduct;
-import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryProductImpl;
+import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.AbstractFactory;
+import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.Factory;
+import com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyProduct;
 
 /**
- * Test case for class {@link MyFactoryImpl}
+ * Test case for class {@link Factory}
  * 
  * @author Simeon Iliev
  */
 public class TestFactoryImpl {
 
-	private MyFactory factory = MyFactoryImpl.getInstance();
+	private AbstractFactory factory = Factory.getInstance();
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryImpl#createInstance()}
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.Factory#createInstance()}
 	 * .
 	 */
 	@Test
 	public void testCreateInstance() {
-		MyFactoryProduct product = factory.createInstance();
-		assertTrue(product instanceof MyFactoryProductImpl);
+		MyProduct product = factory.createInstance();
+		assertTrue(product instanceof MyProduct);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryImpl#createInstanceByReflection()}
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.Factory#createInstanceByReflection()}
 	 * .
 	 */
 	@Test
 	public void testCreateInstanceByReflection() {
-		MyFactoryProduct product = factory.createInstanceByReflection();
-		assertTrue(product instanceof MyFactoryProductImpl);
+		MyProduct product = factory.createInstanceByReflection(MyProduct.class.getCanonicalName());
+		assertTrue(product instanceof MyProduct);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.MyFactoryImpl#getInstance()}
-	 * .
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory.Factory#getInstance()} .
 	 */
 	@Test
 	public void testGetInstance() {
-		assertEquals(factory, MyFactoryImpl.getInstance());
+		assertEquals(factory, Factory.getInstance());
 	}
 
 }

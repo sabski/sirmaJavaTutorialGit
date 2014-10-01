@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
- * Factory product implementation {@link MyFactoryProduct}
+ * Factory product implementation {@link MyProduct}
  * 
  * @author Simeon Iliev
  */

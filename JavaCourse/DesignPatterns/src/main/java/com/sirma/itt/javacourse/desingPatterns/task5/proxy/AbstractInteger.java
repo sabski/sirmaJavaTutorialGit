@@ -5,7 +5,7 @@ package com.sirma.itt.javacourse.desingPatterns.task5.proxy;
  * 
  * @author Simeon Iliev
  */
-public abstract class IntegerInterface {
+public abstract class AbstractInteger {
 
 	/**
 	 * Load an integer value from a proxy.

@@ -5,13 +5,13 @@ package com.sirma.itt.javacourse.desingPatterns.task5.proxy;
  * 
  * @author Simeon Iliev
  */
-public class IntegerProxy extends IntegerInterface {
+public class IntegerProxy extends AbstractInteger {
 
-	private IntegerFactory factory = IntegerFactory.getInstance();
 
 	@Override
 	public Integer loadInt() {
-		return factory.createInstance();
+
+		return null;
 	}
 
 }

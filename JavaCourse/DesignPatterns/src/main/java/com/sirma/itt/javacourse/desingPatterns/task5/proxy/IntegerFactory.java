@@ -19,7 +19,7 @@ public class IntegerFactory {
 	/**
 	 * Singleton method that returns the sole instance of the factory class.
 	 * 
-	 * @return
+	 * @return the instance of the {@link IntegerFactory}
 	 */
 	public static IntegerFactory getInstance() {
 		if (instance == null) {
@@ -33,7 +33,7 @@ public class IntegerFactory {
 	 * 
 	 * @return the new instance.
 	 */
-	public Integer createInstance() {
-		return new Integer(0);
+	public IntegerProxy createInstance() {
+		return new IntegerProxy();
 	}
 }

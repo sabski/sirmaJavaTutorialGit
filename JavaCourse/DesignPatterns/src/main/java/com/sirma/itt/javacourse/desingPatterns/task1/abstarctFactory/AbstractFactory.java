@@ -1,7 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
 
 /**
- * An abstract Factory Interface.
+ * An abstract Factory.
  * 
  * @author Simeon Iliev
  */

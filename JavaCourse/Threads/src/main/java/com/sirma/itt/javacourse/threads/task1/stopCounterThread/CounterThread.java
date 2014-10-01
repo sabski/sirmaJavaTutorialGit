@@ -14,7 +14,8 @@ public class CounterThread extends Thread {
 	private int maxCount;
 
 	/**
-	 * @param maxCount
+	 * Constructor .
+	 * @param maxCount the maximum number for the thread to count to.
 	 */
 	public CounterThread(int maxCount) {
 		this.maxCount = maxCount;

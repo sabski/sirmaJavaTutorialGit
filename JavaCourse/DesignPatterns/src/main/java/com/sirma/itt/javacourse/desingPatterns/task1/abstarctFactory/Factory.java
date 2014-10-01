@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
 import org.apache.log4j.Logger;
 
 /**
- * Concrete implementation of {@link MyFactorys}
+ * Concrete implementation of {@link AbstractFactory}
  * 
  * @author Simeon Iliev
  */

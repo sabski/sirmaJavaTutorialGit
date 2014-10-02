@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.desingPatterns.task4.objectPool;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Pool class that lets us get N user objects.
  * 
@@ -10,6 +12,7 @@ import java.util.List;
  */
 public class UserPool {
 
+	private static Logger log = Logger.getLogger(UserPool.class.getName());
 	private static UserPool instance;
 
 	private static int capacaty = 5;
@@ -45,7 +48,7 @@ public class UserPool {
 	 * @throws NoMoreResourcesExceptio
 	 *             When there are no more available resources to get.
 	 */
-	public User aquareUser() throws NoMoreResourcesException {
+	public User acquireUser() throws NoMoreResourcesException {
 		if (userPoolUsedInstances.size() > capacaty) {
 			throw new NoMoreResourcesException("Pool can't return instance");
 		}
@@ -65,9 +68,14 @@ public class UserPool {
 	 *            The user that is to released.
 	 */
 	public void releseUser(User user) {
+		if (user == null) {
+			try {
+				user = acquireUser();
+			} catch (NoMoreResourcesException e) {
+				log.error(e.getMessage(), e);
+			}
+		}
 		userPoolUsedInstances.remove(user);
-		user.setPassword(null);
-		user.setUserName(null);
 		userPoolFreeInstances.add(user);
 	}
 }

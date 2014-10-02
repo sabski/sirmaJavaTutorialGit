@@ -31,44 +31,24 @@ public class RunUserPool {
 			switch (key) {
 				case 1:
 					try {
-						user = pool.aquareUser();
+						user = pool.acquireUser();
 					} catch (NoMoreResourcesException e) {
 						log.error(e.getMessage(), e);
 					}
 					break;
 				case 2:
-					try {
-						pool.releseUser(user);
-					} catch (NullPointerException e) {
-						IOUtils.printConsoleMessage("Please use operation code 1");
-						log.error(e.getMessage(), e);
-					}
+					pool.releseUser(user);
 					break;
 				case 3:
-					try {
-						IOUtils.printConsoleMessage("Set user name : ");
-						user.setUserName(IOUtils.readLine());
-					} catch (NullPointerException e) {
-						IOUtils.printConsoleMessage("Please use operation code 1");
-						log.error(e.getMessage(), e);
-					}
+					IOUtils.printConsoleMessage("Set user name : ");
+					user.setUserName(IOUtils.readLine());
 					break;
 				case 4:
-					try {
-						IOUtils.printConsoleMessage("Current user name: " + user.getUserName());
-					} catch (NullPointerException e) {
-						IOUtils.printConsoleMessage("Please use operation code 1");
-						log.error(e.getMessage(), e);
-					}
+					IOUtils.printConsoleMessage("Current user name: " + user.getUserName());
 					break;
 				case 5:
-					try {
-						IOUtils.printConsoleMessage("Set user password : ");
-						user.setPassword(IOUtils.readLine());
-					} catch (NullPointerException e) {
-						IOUtils.printConsoleMessage("Please use operation code 1");
-						log.error(e.getMessage(), e);
-					}
+					IOUtils.printConsoleMessage("Set user password : ");
+					user.setPassword(IOUtils.readLine());
 					break;
 				case 6:
 					IOUtils.printConsoleMessage("Password should not be displayed.");

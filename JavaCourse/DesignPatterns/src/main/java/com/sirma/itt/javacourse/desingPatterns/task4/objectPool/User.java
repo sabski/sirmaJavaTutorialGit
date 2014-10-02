@@ -78,4 +78,13 @@ public class User {
 		this.importantConstantData = importantConstantData;
 	}
 
+	/**
+	 * Resets the current user data.
+	 */
+	public void reset() {
+		userName = null;
+		password = null;
+		importantConstantData = null;
+	}
+
 }

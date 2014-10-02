@@ -9,11 +9,18 @@ import com.sirma.itt.javacourse.desingPatterns.task7.calculator.NumberOperations
  */
 public class DivideCommand implements Command {
 
+	private static final String DIVIDE_COMMAND = "/";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Double execute(Double firstNumber, Double secondNumber) {
 		return NumberOperations.divideNumbers(firstNumber, secondNumber);
+	}
+
+	@Override
+	public boolean isMyCommand(String command) {
+		return command.equals(DIVIDE_COMMAND);
 	}
 }

@@ -9,6 +9,7 @@ import com.sirma.itt.javacourse.desingPatterns.task7.calculator.NumberOperations
  */
 public class SubtractCommand implements Command {
 
+	private final static String SUBSTRACT_COMMAND = "-";
 
 	/**
 	 * {@inheritDoc}
@@ -16,6 +17,11 @@ public class SubtractCommand implements Command {
 	@Override
 	public Double execute(Double firstNumber, Double secondNumber) {
 		return NumberOperations.subtractNumbers(firstNumber, secondNumber);
+	}
+
+	@Override
+	public boolean isMyCommand(String command) {
+		return command.equals(SUBSTRACT_COMMAND);
 	}
 
 }

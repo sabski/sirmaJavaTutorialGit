@@ -37,19 +37,9 @@ public class RunCalculator {
 
 			IOUtils.printConsoleMessage("Input operation you want to execute : ");
 			String operation = IOUtils.readValidatedLine("[\\*-/\\+/\\^=]");
-			Command command = null;
-			if (operation.equals("+")) {
-				command = builder.createAddCommand();
-			} else if (operation.equals("/")) {
-				command = builder.createDivideCommand();
-			} else if (operation.equals("-")) {
-				command = builder.createSubstractCommand();
-			} else if (operation.equals("*")) {
-				command = builder.createMultiplyCommand();
-			} else if (operation.equals("^")) {
-				command = builder.createOddCommand();
-			} else if (operation.equals("=")) {
-				System.exit(0);
+			Command command = builder.createCommand(operation);
+			if (command == null) {
+				break;
 			}
 			IOUtils.printConsoleMessage("Input number");
 			firstNumber = command.execute(firstNumber, IOUtils.readDouble());

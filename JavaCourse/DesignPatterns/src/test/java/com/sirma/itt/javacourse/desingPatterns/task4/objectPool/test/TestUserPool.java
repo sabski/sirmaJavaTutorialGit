@@ -21,19 +21,19 @@ public class TestUserPool {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#aquareUser()}.
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquireUser()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
 	@Test
 	public void testAquareUser() throws NoMoreResourcesException {
-		User user = pool.aquareUser();
+		User user = pool.acquireUser();
 		assertTrue(user instanceof User);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#aquareUser()}.
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquireUser()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
@@ -41,12 +41,12 @@ public class TestUserPool {
 	public void testAquareUserException() {
 		User userOne = null, userTwo = null, userThree = null, userFour = null, userFive = null;
 		try {
-			userOne = pool.aquareUser();
-			userTwo = pool.aquareUser();
-			userThree = pool.aquareUser();
-			userFour = pool.aquareUser();
-			userFive = pool.aquareUser();
-			pool.aquareUser();
+			userOne = pool.acquireUser();
+			userTwo = pool.acquireUser();
+			userThree = pool.acquireUser();
+			userFour = pool.acquireUser();
+			userFive = pool.acquireUser();
+			pool.acquireUser();
 		} catch (NoMoreResourcesException e) {
 			assertTrue(e instanceof NoMoreResourcesException);
 		} finally {
@@ -66,7 +66,7 @@ public class TestUserPool {
 	@Test
 	public void testReleseUser() {
 		try {
-			User user = pool.aquareUser();
+			User user = pool.acquireUser();
 			pool.releseUser(user);
 		} catch (NoMoreResourcesException e) {
 			log.error(e.getMessage(), e);

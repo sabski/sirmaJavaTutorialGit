@@ -1,5 +1,8 @@
 package com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Builder for Commands.
  * 
@@ -8,6 +11,15 @@ package com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands;
 public class CommandBuilder {
 
 	private static CommandBuilder instance;
+
+	private static final List<Command> commands = new ArrayList<Command>(5);
+	static {
+		commands.add(new AddCommand());
+		commands.add(new DivideCommand());
+		commands.add(new MultiplyCommand());
+		commands.add(new OddCommand());
+		commands.add(new SubtractCommand());
+	}
 
 	/**
 	 * Singleton type constructor
@@ -28,47 +40,15 @@ public class CommandBuilder {
 	}
 
 	/**
-	 * Creates a new {@link AddCommand}.
-	 * 
-	 * @return the new {@link AddCommand}.
+	 * @param command
+	 * @return
 	 */
-	public Command createAddCommand() {
-		return new AddCommand();
-	}
-
-	/**
-	 * Creates a new {@link DivideCommand}
-	 * 
-	 * @return new {@link DivideCommand}
-	 */
-	public Command createDivideCommand() {
-		return new DivideCommand();
-	}
-
-	/**
-	 * Creates a new {@link MultiplyCommand}
-	 * 
-	 * @return new {@link MultiplyCommand}
-	 */
-	public Command createMultiplyCommand() {
-		return new MultiplyCommand();
-	}
-
-	/**
-	 * Creates a new {@link OddCommand}
-	 * 
-	 * @return new {@link OddCommand}
-	 */
-	public Command createOddCommand() {
-		return new OddCommand();
-	}
-
-	/**
-	 * Creates a new {@link SubtractCommand}
-	 * 
-	 * @return new {@link SubtractCommand}
-	 */
-	public Command createSubstractCommand() {
-		return new SubtractCommand();
+	public Command createCommand(String command) {
+		for (Command com : commands) {
+			if (com.isMyCommand(command)) {
+				return com;
+			}
+		}
+		return null;
 	}
 }

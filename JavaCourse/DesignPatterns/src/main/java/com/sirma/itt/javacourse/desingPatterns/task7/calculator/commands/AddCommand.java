@@ -9,6 +9,8 @@ import com.sirma.itt.javacourse.desingPatterns.task7.calculator.NumberOperations
  */
 public class AddCommand implements Command {
 
+	private static final String ADD_COMMAND = "+";
+
 	/**
 	 * Executes the commands addition. {@inheritDoc}
 	 */
@@ -17,4 +19,8 @@ public class AddCommand implements Command {
 		return NumberOperations.additionNumbers(firstNumber, secondNumber);
 	}
 
+	@Override
+	public boolean isMyCommand(String command) {
+		return command.equals(ADD_COMMAND);
+	}
 }

@@ -9,12 +9,19 @@ import com.sirma.itt.javacourse.desingPatterns.task7.calculator.NumberOperations
  */
 public class OddCommand implements Command {
 
+	private static final String ODD_COMMAND = "^";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Double execute(Double firstNumber, Double secondNumber) {
 		return NumberOperations.oddFuncthion(firstNumber, secondNumber);
+	}
+
+	@Override
+	public boolean isMyCommand(String command) {
+		return command.equals(ODD_COMMAND);
 	}
 
 }

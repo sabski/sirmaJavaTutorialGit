@@ -26,7 +26,7 @@ public class TestCommandBuilder {
 	 */
 	@Test
 	public void testCreateAddCommand() {
-		Command command = builder.createAddCommand();
+		Command command = builder.createCommand("+");
 		assertTrue(command instanceof AddCommand);
 	}
 
@@ -37,7 +37,7 @@ public class TestCommandBuilder {
 	 */
 	@Test
 	public void testCreateDivideCommand() {
-		Command command = builder.createDivideCommand();
+		Command command = builder.createCommand("/");
 		assertTrue(command instanceof DivideCommand);
 	}
 
@@ -48,7 +48,7 @@ public class TestCommandBuilder {
 	 */
 	@Test
 	public void testCreateMultiplyCommand() {
-		Command command = builder.createMultiplyCommand();
+		Command command = builder.createCommand("*");
 		assertTrue(command instanceof MultiplyCommand);
 	}
 
@@ -59,7 +59,7 @@ public class TestCommandBuilder {
 	 */
 	@Test
 	public void testCreateOddCommand() {
-		Command command = builder.createOddCommand();
+		Command command = builder.createCommand("^");
 		assertTrue(command instanceof OddCommand);
 	}
 
@@ -70,7 +70,7 @@ public class TestCommandBuilder {
 	 */
 	@Test
 	public void testCreateSubstractCommand() {
-		Command command = builder.createSubstractCommand();
+		Command command = builder.createCommand("-");
 		assertTrue(command instanceof SubtractCommand);
 	}
 

@@ -13,4 +13,6 @@ public interface Command {
 	 * @return
 	 */
 	public Double execute(Double firstNumber, Double secondNumber);
+
+	boolean isMyCommand(String command);
 }

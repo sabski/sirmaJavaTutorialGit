@@ -40,8 +40,11 @@ public class CommandBuilder {
 	}
 
 	/**
+	 * Creates a specifick command given a String
+	 * 
 	 * @param command
-	 * @return
+	 *            the String value of the command.
+	 * @return the command that was given with the String.
 	 */
 	public Command createCommand(String command) {
 		for (Command com : commands) {

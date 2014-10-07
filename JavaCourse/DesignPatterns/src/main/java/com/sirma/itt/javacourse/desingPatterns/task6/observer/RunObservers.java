@@ -1,9 +1,12 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
 import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.Item;
+import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.ItemsInStock;
+import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.ItemsOutOfStock;
 
 /**
- * Runner class for observers.
+ * Runner class.
  * 
  * @author Simeon Iliev
  */
@@ -17,9 +20,9 @@ public class RunObservers {
 	 */
 	public static void main(String[] args) {
 
-		Inventory inventory = new Inventory();
-		StockToOrder order = new StockToOrder();
-		StockObserver observer = new StockObserverImpl(inventory, order);
+		StockObserver stock = new StockObserver();
+		OrderObesrver missingInventory = new OrderObesrver();
+		ItemObserverable item;
 		while (true) {
 			IOUtils.printConsoleMessage("Inventory operations : \n"
 					+ "1 : Create new Stock item \n" + "2 : Deliver item \n" + "3 : Sell Item \n"
@@ -28,26 +31,30 @@ public class RunObservers {
 			switch (key) {
 				case 1:
 					IOUtils.printConsoleMessage("Enter item name");
-					Item item = new Item(IOUtils.readLine());
-					observer.deliveryUpdate(item);
+					item = new ItemObserverable(IOUtils.readLine());
+					item.attachObserver(stock);
+					item.attachObserver(missingInventory);
+					IOUtils.printConsoleMessage("Observer count " + item.getObserverCount());
+					item.deliverItem();
 					break;
 				case 2:
 					IOUtils.printConsoleMessage("Input number of item to be delivered");
-					IOUtils.printConsoleMessage(order.toString());
+					IOUtils.printConsoleMessage(missingInventory.getList().toString());
 					int num = IOUtils.readInt();
 					try {
-						Item item2 = order.getOutOfStockItems().get(num);
-						observer.deliveryUpdate(item2);
+						ItemObserverable item2 = (ItemObserverable) missingInventory.getList().get(num);
+						item2.deliverItem();
 					} catch (IndexOutOfBoundsException e) {
 						IOUtils.printConsoleMessage("Number was not in valid range");
 					}
 					break;
 				case 3:
 					IOUtils.printConsoleMessage("Input number of the item to sell : ");
-					IOUtils.printConsoleMessage(inventory.toString());
+					IOUtils.printConsoleMessage(stock.getList().toString());
 					int number = IOUtils.readInt();
 					try {
-						observer.purcheaseUpdate(inventory.getInventory().get(number));
+						ItemObserverable item2 = (ItemObserverable) stock.getList().get(number);
+						item2.sellItem();
 					} catch (IndexOutOfBoundsException e) {
 						IOUtils.printConsoleMessage("Number was not in valid range");
 					}
@@ -60,6 +67,6 @@ public class RunObservers {
 					break;
 			}
 		}
-
 	}
+
 }

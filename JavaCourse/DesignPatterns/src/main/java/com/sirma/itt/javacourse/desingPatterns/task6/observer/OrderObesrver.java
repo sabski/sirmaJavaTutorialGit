@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Observer that show the current items in stock.
+ * Order list for items that went out of stock.
  * 
  * @author Simeon Iliev
  */
-public class StockObserver implements Observer {
+public class OrderObesrver implements Observer {
 
 	private List<Observerable> list;
 
@@ -21,7 +21,7 @@ public class StockObserver implements Observer {
 			return;
 		}
 		ItemObserverable temp = (ItemObserverable) obs;
-		if (temp.getInStock()) {
+		if (!temp.getInStock()) {
 			list.add(obs);
 		} else if (list.contains(obs)) {
 			list.remove(obs);
@@ -48,7 +48,7 @@ public class StockObserver implements Observer {
 	/**
 	 * Constructor.
 	 */
-	public StockObserver() {
+	public OrderObesrver() {
 		list = new ArrayList<Observerable>();
 	}
 

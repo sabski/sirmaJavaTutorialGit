@@ -22,8 +22,8 @@ public class StoperThread extends Thread {
 	public void run() {
 		while (isAlive() && count > currentCount) {
 			try {
-				Thread.sleep(1000);
-				IOUtils.printConsoleMessage("Current count is : " + currentCount);
+				sleep(1000);
+				printCount(currentCount);
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);
 			}
@@ -45,5 +45,9 @@ public class StoperThread extends Thread {
 	public void setUpThread(int count, Thread threadToStop) {
 		this.count = count;
 		this.threadToStop = threadToStop;
+	}
+
+	private static synchronized void printCount(int currentCount) {
+		IOUtils.printConsoleMessage("Current count is : " + currentCount);
 	}
 }

@@ -18,7 +18,10 @@ public class TestStoperThread {
 	private StoperThread threadTwo = null;
 
 	/**
+	 * Set up method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -26,15 +29,18 @@ public class TestStoperThread {
 		threadTwo = new StoperThread();
 	}
 
+	/**
+	 * Test if the first thread will stop the second thread.
+	 */
 	@Test
 	public void test() {
-		threadTwo.setUpThread(6, threadOne);
-		threadOne.setUpThread(5, threadTwo);
+		threadTwo.setUpThread(2, threadOne);
+		threadOne.setUpThread(1, threadTwo);
 
 		threadOne.start();
 		threadTwo.start();
 		try {
-			Thread.sleep(5150);
+			Thread.sleep(1350);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}

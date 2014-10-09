@@ -8,6 +8,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.threads.task1.stopCounterThread.CounterThread;
 
 /**
+ * Test class for {@link CounterThread}.
+ * 
  * @author Simeon Iliev
  */
 public class TestCounterThread {
@@ -15,13 +17,19 @@ public class TestCounterThread {
 	private CounterThread thread;
 
 	/**
+	 * Set up method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong
 	 */
 	@Before
 	public void setUp() throws Exception {
 		thread = new CounterThread(5);
 	}
 
+	/**
+	 * Test how far the count has gone.
+	 */
 	@Test
 	public void testWhenThreadIsStoped() {
 
@@ -31,10 +39,12 @@ public class TestCounterThread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		thread.stop();
 		assertEquals(4, thread.getCount());
 	}
 
+	/**
+	 * Test if the thread finnishes counting properly.
+	 */
 	@Test
 	public void testWhenThreadIsMaxedOut() {
 
@@ -44,7 +54,6 @@ public class TestCounterThread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		thread.stop();
 		assertEquals(5, thread.getCount());
 	}
 

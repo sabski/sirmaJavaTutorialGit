@@ -29,7 +29,7 @@ public interface Observerable {
 	 * @param obs
 	 *            the observerale that has changed state.
 	 */
-	public void notify(Observerable obs);
+	public void notifyObservers(Observerable obs);
 
 	/**
 	 * Shows how many observers are attached to the current observerable.

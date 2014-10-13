@@ -14,8 +14,8 @@ public class ObjectListSynchonized {
 	private Logger log = Logger.getLogger(ObjectListSynchonized.class);
 	private int capacity = 10;
 	private int index = 0;
-	private boolean canAdd = true;
-	private boolean canRemevo = false;
+	private boolean addFlag = true;
+	private boolean removeFlag = false;
 	private Object[] array;
 
 	/**
@@ -46,10 +46,10 @@ public class ObjectListSynchonized {
 		array[index] = obj;
 		index++;
 		if (index > capacity - 1) {
-			// Set canAdd to false here...
-			setCanAdd(false);
+			// Set addFlag to false here...
+			setAddFlag(false);
 		}
-		setCanRemevo(true);
+		setRemoveFlag(true);
 		return true;
 
 	}
@@ -62,13 +62,13 @@ public class ObjectListSynchonized {
 	public synchronized boolean removeElement() {
 		index--;
 		log.info("Removing element at index " + index);
-		setCanAdd(true);
+		setAddFlag(true);
 		array[index] = null;
 		if (index <= 0) {
 			// Reset index value to Zero.
 			index = 0;
-			// Set canAdd to true here...
-			setCanRemevo(false);
+			// Set remove flag to false here...
+			setRemoveFlag(false);
 		}
 		return true;
 	}
@@ -86,41 +86,41 @@ public class ObjectListSynchonized {
 	}
 
 	/**
-	 * Getter method for canAdd.
+	 * Getter method for addFlag.
 	 * 
-	 * @return the canAdd
+	 * @return the addFlag
 	 */
-	public boolean isCanAdd() {
-		return canAdd;
+	public boolean isAddFlag() {
+		return addFlag;
 	}
 
 	/**
-	 * Setter method for canAdd.
+	 * Setter method for addFlag.
 	 * 
-	 * @param canAdd
-	 *            the canAdd to set
+	 * @param addFlag
+	 *            the addFlag to set
 	 */
-	public void setCanAdd(boolean flag) {
-		this.canAdd = flag;
+	public void setAddFlag(boolean flag) {
+		this.addFlag = flag;
 	}
 
 	/**
-	 * Getter method for canRemevo.
+	 * Getter method for removeFlag.
 	 * 
-	 * @return the canRemevo
+	 * @return the removeFlag
 	 */
-	public boolean isCanRemevo() {
-		return canRemevo;
+	public boolean isRemoveFlag() {
+		return removeFlag;
 	}
 
 	/**
-	 * Setter method for canRemevo.
+	 * Setter method for removeFlag.
 	 * 
-	 * @param canRemevo
-	 *            the canRemevo to set
+	 * @param canRemove
+	 *            the canRemove to set
 	 */
-	public void setCanRemevo(boolean canRemevo) {
-		this.canRemevo = canRemevo;
+	public void setRemoveFlag(boolean canRemove) {
+		this.removeFlag = canRemove;
 	}
 
 }

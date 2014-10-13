@@ -58,6 +58,6 @@ public class AddingThread extends Thread {
 	 * @return the flag status.
 	 */
 	private boolean chekFlag() {
-		return list.isCanAdd();
+		return list.isAddFlag();
 	}
 }

@@ -47,7 +47,7 @@ public class RemovingThread extends Thread {
 	 * @return the lock status.
 	 */
 	private boolean chekFlag() {
-		return list.isCanRemevo();
+		return list.isRemoveFlag();
 	}
 
 }

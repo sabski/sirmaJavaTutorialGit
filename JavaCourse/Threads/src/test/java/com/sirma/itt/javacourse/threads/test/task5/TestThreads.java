@@ -48,7 +48,7 @@ public class TestThreads {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertFalse(list.isCanAdd());
+		assertFalse(list.isAddFlag());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class TestThreads {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertFalse(list.isCanRemevo());
+		assertFalse(list.isRemoveFlag());
 	}
 
 	/**

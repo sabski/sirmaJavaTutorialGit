@@ -1,43 +1,53 @@
 package com.sirma.itt.javacourse.threads.task5.synchronizedStack;
 
+import org.apache.log4j.Logger;
+
 /**
+ * Thread class that removes elements from {@link ObjectListSynchonized} object.
+ * 
  * @author Simeon Iliev
  */
 public class RemovingThread extends Thread {
 
-	private ObjectListSynchonized lock;
+	private final Logger log = Logger.getLogger(RemovingThread.class);
+	private ObjectListSynchonized list;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void run() {
-		synchronized (lock) {
-			while (!chekFlag()) {
-				lock.notify();
+		while (!chekFlag()) {
+			synchronized (list) {
+				list.notify();
 				try {
-					lock.wait();
+					list.wait();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
-			// work here
-			lock.removeElement();
-			// end work
-			lock.notifyAll();
-
 		}
+		// Remove element from the list
+		log.info("The element was removed " + list.removeElement());
 	}
 
 	/**
+	 * Constructor with {@link ObjectListSynchonized} that is used as a lock.
+	 * 
 	 * @param lock
+	 *            the object list that we are going to add and use as a lock object.
 	 */
 	public RemovingThread(ObjectListSynchonized lock) {
-		this.lock = lock;
+		this.list = lock;
 	}
 
+	/**
+	 * Cheks the flag of the current object.
+	 * 
+	 * @return the lock status.
+	 */
 	private boolean chekFlag() {
-		return lock.isFlag();
+		return list.isCanRemevo();
 	}
 
 }

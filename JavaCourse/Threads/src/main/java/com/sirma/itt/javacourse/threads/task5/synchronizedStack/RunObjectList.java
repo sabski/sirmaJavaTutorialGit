@@ -24,17 +24,22 @@ public class RunObjectList {
 		ObjectListSynchonized list;
 		IOUtils.printConsoleMessage("Input List size : ");
 		list = new ObjectListSynchonized(IOUtils.readInt());
+		AddingThread addThread;
+		RemovingThread removingThread;
 		while (true) {
 			IOUtils.printConsoleMessage("Menu operations :\n 1: Insert Item \n 2: Delete Item \n 3: Print all elements \n -1: Exit program ");
 			int code = IOUtils.readInt();
 			switch (code) {
 				case 1:
 					IOUtils.printConsoleMessage("Input value");
-					list.addElement(IOUtils.readLine());
+					addThread = new AddingThread(list);
+					addThread.setUpThread(IOUtils.readLine());
+					addThread.start();
 					break;
 				case 2:
 					IOUtils.printConsoleMessage("Removing item");
-					list.removeElement();
+					removingThread = new RemovingThread(list);
+					removingThread.start();
 					break;
 				case 3:
 					list.printAllElements();

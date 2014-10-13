@@ -13,7 +13,7 @@ public class CounterSynchronizrdThread extends Thread {
 
 	private static final Logger log = Logger.getLogger(CounterSynchronizrdThread.class.getName());
 	private static int threadNumber = 0;
-	private static Lock lock = new Lock();
+	private static final Lock lock = new Lock();
 
 	private int currentCount = 0;
 	private int count;
@@ -36,7 +36,7 @@ public class CounterSynchronizrdThread extends Thread {
 
 	/**
 	 * Getter method for currentCount.
-	 *
+	 * 
 	 * @return the currentCount
 	 */
 	public int getCurrentCount() {

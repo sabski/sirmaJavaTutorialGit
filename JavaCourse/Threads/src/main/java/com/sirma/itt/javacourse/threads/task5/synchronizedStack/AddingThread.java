@@ -1,47 +1,63 @@
 package com.sirma.itt.javacourse.threads.task5.synchronizedStack;
 
+import org.apache.log4j.Logger;
+
 /**
+ * Thread class that adds elements to a {@link ObjectListSynchonized} object.
+ * 
  * @author Simeon Iliev
  */
 public class AddingThread extends Thread {
 
-	private ObjectListSynchonized lock;
+	private Logger log = Logger.getLogger(AddingThread.class);
 	private Object objectToAdd;
+	private ObjectListSynchonized list;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void run() {
-		synchronized (lock) {
-			while (!chekFlag()) {
-				lock.notify();
+		while (!chekFlag()) {
+			synchronized (list) {
+				list.notify();
 				try {
-					lock.wait();
+					list.wait();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
-			// work here
-			lock.addElement(objectToAdd);
-			// end work
-			lock.notifyAll();
-
 		}
+		// Add the element to the list...
+		log.info("The element was added " + list.addElement(objectToAdd));
 	}
 
+	/**
+	 * Set up thread method.
+	 * 
+	 * @param objectToAdd
+	 *            the object that is t obe added by this thread.
+	 */
 	public void setUpThread(Object objectToAdd) {
 		this.objectToAdd = objectToAdd;
 	}
 
 	/**
+	 * Constructor with {@link ObjectListSynchonized} that is used as a lock.
+	 * 
 	 * @param lock
+	 *            the object list that we are going to add and use as a lock object.
 	 */
 	public AddingThread(ObjectListSynchonized lock) {
-		this.lock = lock;
+		this.list = lock;
 	}
 
+	/**
+	 * Cheks the flag of the lock object.
+	 * 
+	 * @return the flag status.
+	 */
 	private boolean chekFlag() {
-		return lock.isFlag();
+		return list.isCanAdd();
 	}
 }

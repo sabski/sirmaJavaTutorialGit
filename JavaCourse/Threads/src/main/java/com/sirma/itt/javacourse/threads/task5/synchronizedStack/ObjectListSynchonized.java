@@ -1,17 +1,21 @@
 package com.sirma.itt.javacourse.threads.task5.synchronizedStack;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that represents a list of items.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class ObjectListSynchonized {
 
+	private Logger log = Logger.getLogger(ObjectListSynchonized.class);
 	private int capacity = 10;
 	private int index = 0;
-	private boolean flag = false;
+	private boolean canAdd = true;
+	private boolean canRemevo = false;
 	private Object[] array;
 
 	/**
@@ -39,12 +43,13 @@ public class ObjectListSynchonized {
 	 * @return true if the insert was successful.
 	 */
 	public synchronized boolean addElement(Object obj) {
-		if (index > capacity - 1) {
-			// Make threads wait here..
-			setFlag(false);
-		}
 		array[index] = obj;
 		index++;
+		if (index > capacity - 1) {
+			// Set canAdd to false here...
+			setCanAdd(false);
+		}
+		setCanRemevo(true);
 		return true;
 
 	}
@@ -56,48 +61,16 @@ public class ObjectListSynchonized {
 	 */
 	public synchronized boolean removeElement() {
 		index--;
-		if (index < 0) {
+		log.info("Removing element at index " + index);
+		setCanAdd(true);
+		array[index] = null;
+		if (index <= 0) {
 			// Reset index value to Zero.
 			index = 0;
-			// Make threads wait here..
-			setFlag(true);
-
+			// Set canAdd to true here...
+			setCanRemevo(false);
 		}
-		array[index] = null;
 		return true;
-	}
-
-	/**
-	 * Removes an object at a specific index.
-	 * 
-	 * @param index
-	 *            the index of the object to be removed in the array.
-	 * @return true if the remove was successful.
-	 */
-	public boolean removeElementAtIndex(int index) {
-		if (index < 0 || index > this.index) {
-			return false;
-		}
-		array[index] = null;
-		return true;
-	}
-
-	/**
-	 * Removes a specific object in the array.
-	 * 
-	 * @param obj
-	 *            the object to be removed from the array.
-	 * @return true if the object was found in the array.
-	 */
-	public boolean removeElementByObject(Object obj) {
-		for (int i = 0; i < array.length; i++) {
-			Object arrObj = array[i];
-			if (arrObj != null && arrObj.equals(obj)) {
-				array[i] = null;
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -113,21 +86,41 @@ public class ObjectListSynchonized {
 	}
 
 	/**
-	 * Getter method for flag.
+	 * Getter method for canAdd.
 	 * 
-	 * @return the flag
+	 * @return the canAdd
 	 */
-	public boolean isFlag() {
-		return flag;
+	public boolean isCanAdd() {
+		return canAdd;
 	}
 
 	/**
-	 * Setter method for flag.
+	 * Setter method for canAdd.
 	 * 
-	 * @param flag
-	 *            the flag to set
+	 * @param canAdd
+	 *            the canAdd to set
 	 */
-	public synchronized void setFlag(boolean flag) {
-		this.flag = flag;
+	public void setCanAdd(boolean flag) {
+		this.canAdd = flag;
 	}
+
+	/**
+	 * Getter method for canRemevo.
+	 * 
+	 * @return the canRemevo
+	 */
+	public boolean isCanRemevo() {
+		return canRemevo;
+	}
+
+	/**
+	 * Setter method for canRemevo.
+	 * 
+	 * @param canRemevo
+	 *            the canRemevo to set
+	 */
+	public void setCanRemevo(boolean canRemevo) {
+		this.canRemevo = canRemevo;
+	}
+
 }

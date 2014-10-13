@@ -41,7 +41,7 @@ public class TestThreadSync {
 		threadOne.start();
 		threadTwo.start();
 		try {
-			Thread.sleep(100);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}

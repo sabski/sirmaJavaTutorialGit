@@ -3,6 +3,7 @@ package com.sirma.itt.javacourse.desingPatterns.task4.objectPool.test;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.desingPatterns.task4.objectPool.NoMoreResourcesException;
@@ -17,23 +18,34 @@ import com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool;
 public class TestUserPool {
 
 	private static Logger log = Logger.getLogger(TestUserPool.class.getName());
-	private UserPool pool = UserPool.getInstance();
+	private UserPool pool;
+
+	/**
+	 * Set up method.
+	 * 
+	 * @throws Exception
+	 *             something went wrong.
+	 */
+	@Before
+	public void setUp() throws Exception {
+		pool = new UserPool<User>(new User());
+	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquireUser()}.
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquire()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
 	@Test
 	public void testAquareUser() throws NoMoreResourcesException {
-		User user = pool.acquireUser();
+		User user = (User) pool.acquire();
 		assertTrue(user instanceof User);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquireUser()}.
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool#acquire()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
@@ -41,20 +53,20 @@ public class TestUserPool {
 	public void testAquareUserException() {
 		User userOne = null, userTwo = null, userThree = null, userFour = null, userFive = null;
 		try {
-			userOne = pool.acquireUser();
-			userTwo = pool.acquireUser();
-			userThree = pool.acquireUser();
-			userFour = pool.acquireUser();
-			userFive = pool.acquireUser();
-			pool.acquireUser();
+			userOne = (User) pool.acquire();
+			userTwo = (User) pool.acquire();
+			userThree = (User) pool.acquire();
+			userFour = (User) pool.acquire();
+			userFive = (User) pool.acquire();
+			pool.acquire();
 		} catch (NoMoreResourcesException e) {
 			assertTrue(e instanceof NoMoreResourcesException);
 		} finally {
-			pool.releseUser(userOne);
-			pool.releseUser(userTwo);
-			pool.releseUser(userThree);
-			pool.releseUser(userFour);
-			pool.releseUser(userFive);
+			pool.release(userOne);
+			pool.release(userTwo);
+			pool.release(userThree);
+			pool.release(userFour);
+			pool.release(userFive);
 		}
 	}
 
@@ -66,8 +78,8 @@ public class TestUserPool {
 	@Test
 	public void testReleseUser() {
 		try {
-			User user = pool.acquireUser();
-			pool.releseUser(user);
+			User user = (User) pool.acquire();
+			pool.release(user);
 		} catch (NoMoreResourcesException e) {
 			log.error(e.getMessage(), e);
 		}

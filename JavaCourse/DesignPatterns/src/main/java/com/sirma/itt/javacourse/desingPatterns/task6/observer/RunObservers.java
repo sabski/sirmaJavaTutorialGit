@@ -1,9 +1,6 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
 import com.sirma.itt.javacourse.IOUtils;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.Item;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.ItemsInStock;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.observation.ItemsOutOfStock;
 
 /**
  * Runner class.
@@ -22,7 +19,7 @@ public class RunObservers {
 
 		StockObserver stock = new StockObserver();
 		OrderObesrver missingInventory = new OrderObesrver();
-		ItemObserverable item;
+		ItemObservable item;
 		while (true) {
 			IOUtils.printConsoleMessage("Inventory operations : \n"
 					+ "1 : Create new Stock item \n" + "2 : Deliver item \n" + "3 : Sell Item \n"
@@ -31,7 +28,7 @@ public class RunObservers {
 			switch (key) {
 				case 1:
 					IOUtils.printConsoleMessage("Enter item name");
-					item = new ItemObserverable(IOUtils.readLine());
+					item = new ItemObservable(IOUtils.readLine());
 					item.attachObserver(stock);
 					item.attachObserver(missingInventory);
 					IOUtils.printConsoleMessage("Observer count " + item.getObserverCount());
@@ -42,7 +39,7 @@ public class RunObservers {
 					IOUtils.printConsoleMessage(missingInventory.getList().toString());
 					int num = IOUtils.readInt();
 					try {
-						ItemObserverable item2 = (ItemObserverable) missingInventory.getList().get(num);
+						ItemObservable item2 = (ItemObservable) missingInventory.getList().get(num);
 						item2.deliverItem();
 					} catch (IndexOutOfBoundsException e) {
 						IOUtils.printConsoleMessage("Number was not in valid range");
@@ -53,7 +50,7 @@ public class RunObservers {
 					IOUtils.printConsoleMessage(stock.getList().toString());
 					int number = IOUtils.readInt();
 					try {
-						ItemObserverable item2 = (ItemObserverable) stock.getList().get(number);
+						ItemObservable item2 = (ItemObservable) stock.getList().get(number);
 						item2.sellItem();
 					} catch (IndexOutOfBoundsException e) {
 						IOUtils.printConsoleMessage("Number was not in valid range");
@@ -63,7 +60,7 @@ public class RunObservers {
 					System.exit(0);
 					break;
 				default:
-					IOUtils.printConsoleMessage("");
+					IOUtils.printConsoleMessage("Invalid menu operation.");
 					break;
 			}
 		}

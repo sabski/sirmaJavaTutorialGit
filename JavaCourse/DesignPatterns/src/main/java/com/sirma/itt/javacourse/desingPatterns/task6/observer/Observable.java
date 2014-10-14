@@ -5,13 +5,13 @@ package com.sirma.itt.javacourse.desingPatterns.task6.observer;
  * 
  * @author Simeon Iliev
  */
-public interface Observerable {
+public interface Observable {
 
 	/**
 	 * Attaches an observer.
 	 * 
 	 * @param obs
-	 *            observer to be attached.
+	 *            Observer to be attached.
 	 */
 	public void attachObserver(Observer obs);
 
@@ -19,7 +19,7 @@ public interface Observerable {
 	 * Detaches an observer.
 	 * 
 	 * @param obs
-	 *            observer to be detached.
+	 *            Observer to be detached.
 	 */
 	public void dettachObserver(Observer obs);
 
@@ -27,12 +27,12 @@ public interface Observerable {
 	 * Notifies all observers.
 	 * 
 	 * @param obs
-	 *            the observerale that has changed state.
+	 *            The Observable that has changed state.
 	 */
-	public void notifyObservers(Observerable obs);
+	public void notifyObservers(Observable obs);
 
 	/**
-	 * Shows how many observers are attached to the current observerable.
+	 * Shows how many observers are attached to the current Observable.
 	 * 
 	 * @return the number of observers.
 	 */

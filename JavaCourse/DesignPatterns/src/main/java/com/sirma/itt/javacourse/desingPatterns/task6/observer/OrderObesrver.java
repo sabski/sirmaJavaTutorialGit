@@ -10,17 +10,17 @@ import java.util.List;
  */
 public class OrderObesrver implements Observer {
 
-	private List<Observerable> list;
+	private List<Observable> list;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void update(Observerable obs) {
-		if (!(obs instanceof ItemObserverable)) {
+	public void update(Observable obs) {
+		if (!(obs instanceof ItemObservable)) {
 			return;
 		}
-		ItemObserverable temp = (ItemObserverable) obs;
+		ItemObservable temp = (ItemObservable) obs;
 		if (!temp.getInStock()) {
 			list.add(obs);
 		} else if (list.contains(obs)) {
@@ -41,7 +41,7 @@ public class OrderObesrver implements Observer {
 	 * 
 	 * @return the list
 	 */
-	public List<Observerable> getList() {
+	public List<Observable> getList() {
 		return list;
 	}
 
@@ -49,7 +49,7 @@ public class OrderObesrver implements Observer {
 	 * Constructor.
 	 */
 	public OrderObesrver() {
-		list = new ArrayList<Observerable>();
+		list = new ArrayList<Observable>();
 	}
 
 }

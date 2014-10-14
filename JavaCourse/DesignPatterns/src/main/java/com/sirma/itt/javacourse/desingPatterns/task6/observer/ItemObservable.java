@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Simeon Iliev
  */
-public class ItemObserverable implements Observerable {
+public class ItemObservable implements Observable {
 
 	private List<Observer> observerList;
 	private String name;
@@ -76,7 +76,7 @@ public class ItemObserverable implements Observerable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void notifyObservers(Observerable obs) {
+	public void notifyObservers(Observable obs) {
 		for (Observer o : observerList) {
 			o.update(obs);
 		}
@@ -104,7 +104,7 @@ public class ItemObserverable implements Observerable {
 	 * @param name
 	 *            the name of the product.
 	 */
-	public ItemObserverable(String name) {
+	public ItemObservable(String name) {
 		this.name = name;
 		observerList = new ArrayList<Observer>();
 	}

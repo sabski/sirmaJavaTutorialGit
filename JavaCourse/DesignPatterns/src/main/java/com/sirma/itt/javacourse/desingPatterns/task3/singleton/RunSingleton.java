@@ -18,10 +18,9 @@ public class RunSingleton {
 	public static void main(String[] args) {
 
 		IOUtils.printConsoleMessage("Creating first object ");
-		MySingletonClass firstObject = MySingletonClass.getInstance();
+		MySingletonClass.getInstance();
 		IOUtils.printConsoleMessage("Creating second object ");
-		MySingletonClass secondObject = MySingletonClass.getInstance();
+		MySingletonClass.getInstance();
 
 	}
-
 }

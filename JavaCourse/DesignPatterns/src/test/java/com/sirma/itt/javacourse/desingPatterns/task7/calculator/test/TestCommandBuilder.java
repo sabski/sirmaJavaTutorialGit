@@ -1,8 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task7.calculator.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.AddCommand;
@@ -17,7 +16,7 @@ import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.Subtrac
  * @author Simeon Iliev
  */
 public class TestCommandBuilder {
-	private CommandBuilder builder = CommandBuilder.getInstance();
+	private final CommandBuilder builder = CommandBuilder.getInstance();
 
 	/**
 	 * Test method for

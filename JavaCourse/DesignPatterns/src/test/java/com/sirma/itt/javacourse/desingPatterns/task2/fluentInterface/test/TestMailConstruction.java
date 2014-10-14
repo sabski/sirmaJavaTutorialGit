@@ -1,12 +1,11 @@
 package com.sirma.itt.javacourse.desingPatterns.task2.fluentInterface.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.math.Fraction;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class TestMailConstruction {
 	private static final String CCCOPY = "Boqn";
 	private static final String TO = "hristo";
 	private static final String FROM = "simeon";
-	private MailFluentConstruct mailWriter = new MailFluentConstruct();
+	private final MailFluentConstruct mailWriter = new MailFluentConstruct();
 	private Mail mail;
 
 	/**

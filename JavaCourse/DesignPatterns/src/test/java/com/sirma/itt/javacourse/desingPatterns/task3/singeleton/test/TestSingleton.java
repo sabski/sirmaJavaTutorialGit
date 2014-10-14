@@ -1,8 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task3.singeleton.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.desingPatterns.task3.singleton.MySingletonClass;
@@ -14,7 +13,7 @@ import com.sirma.itt.javacourse.desingPatterns.task3.singleton.MySingletonClass;
  */
 public class TestSingleton {
 
-	private MySingletonClass singleton = MySingletonClass.getInstance();
+	private final MySingletonClass singleton = MySingletonClass.getInstance();
 
 	/**
 	 * Test method for

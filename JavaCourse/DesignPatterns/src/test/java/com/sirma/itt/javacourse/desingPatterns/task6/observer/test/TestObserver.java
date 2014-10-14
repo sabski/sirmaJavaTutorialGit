@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.ItemObserverable;
+import com.sirma.itt.javacourse.desingPatterns.task6.observer.ItemObservable;
 import com.sirma.itt.javacourse.desingPatterns.task6.observer.OrderObesrver;
 import com.sirma.itt.javacourse.desingPatterns.task6.observer.StockObserver;
 
 /**
- * Test {@link StockObserver}, {@link ItemObserverable}
+ * Test {@link StockObserver}, {@link ItemObservable}
  * 
  * @author Simeon Iliev
  */
@@ -18,7 +18,7 @@ public class TestObserver {
 
 	private StockObserver stock;
 	private OrderObesrver order;
-	private ItemObserverable item, itemOne, itemTwo;
+	private ItemObservable item, itemOne, itemTwo;
 	private String result = "[sirene, kashkaval, mlqko]";
 
 	/**
@@ -31,9 +31,9 @@ public class TestObserver {
 	public void setUp() throws Exception {
 		stock = new StockObserver();
 		order = new OrderObesrver();
-		item = new ItemObserverable("sirene");
-		itemOne = new ItemObserverable("kashkaval");
-		itemTwo = new ItemObserverable("mlqko");
+		item = new ItemObservable("sirene");
+		itemOne = new ItemObservable("kashkaval");
+		itemTwo = new ItemObservable("mlqko");
 		item.attachObserver(stock);
 		itemOne.attachObserver(stock);
 		itemTwo.attachObserver(stock);
@@ -47,7 +47,7 @@ public class TestObserver {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desingPatterns.task6.observer.StockObserver#update(com.sirma.itt.javacourse.desingPatterns.task6.observer.Observerable)}
+	 * {@link com.sirma.itt.javacourse.desingPatterns.task6.observer.StockObserver#update(com.sirma.itt.javacourse.desingPatterns.task6.observer.Observable)}
 	 * .
 	 */
 	@Test

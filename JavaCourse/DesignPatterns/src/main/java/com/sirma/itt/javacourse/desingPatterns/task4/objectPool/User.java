@@ -11,15 +11,6 @@ public class User {
 	private String password;
 	private String importantConstantData;
 
-	/**
-	 * Constructor that accepts important data that is hard to get.
-	 * 
-	 * @param importantConstantData
-	 *            Important data that is same for all user like IP or something
-	 */
-	public User(String importantConstantData) {
-		this.importantConstantData = importantConstantData;
-	}
 
 	/**
 	 * Getter method for userName.

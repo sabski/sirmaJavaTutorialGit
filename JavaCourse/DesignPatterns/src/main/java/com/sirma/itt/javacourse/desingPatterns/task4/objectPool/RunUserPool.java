@@ -20,7 +20,7 @@ public class RunUserPool {
 	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		UserPool pool = UserPool.getInstance();
+		UserPool pool = new UserPool<User>(new User());
 		User user = null;
 		while (true) {
 			IOUtils.printConsoleMessage("Pool and user operations\n" + " 1: Acquire user\n"
@@ -31,13 +31,13 @@ public class RunUserPool {
 			switch (key) {
 				case 1:
 					try {
-						user = pool.acquireUser();
+						user = (User) pool.acquire();
 					} catch (NoMoreResourcesException e) {
 						log.error(e.getMessage(), e);
 					}
 					break;
 				case 2:
-					pool.releseUser(user);
+					pool.release(user);
 					break;
 				case 3:
 					IOUtils.printConsoleMessage("Set user name : ");

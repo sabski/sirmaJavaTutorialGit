@@ -1,18 +1,13 @@
 package com.sirma.itt.javacourse.desingPatterns.task5.proxy.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
-import com.sirma.itt.javacourse.desingPatterns.task5.proxy.Car;
 import com.sirma.itt.javacourse.desingPatterns.task5.proxy.CarFactory;
 import com.sirma.itt.javacourse.desingPatterns.task5.proxy.CarInterface;
-import com.sirma.itt.javacourse.desingPatterns.task5.proxy.CarProxy;
 
 /**
  * Test class for proxy testing

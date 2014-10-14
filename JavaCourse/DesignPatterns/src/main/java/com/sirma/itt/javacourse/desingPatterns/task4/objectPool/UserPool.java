@@ -9,73 +9,63 @@ import org.apache.log4j.Logger;
  * Pool class that lets us get N user objects.
  * 
  * @author Simeon Iliev
+ * @param <T>
  */
-public class UserPool {
+public class UserPool<T> implements Pool<T> {
 
 	private static Logger log = Logger.getLogger(UserPool.class.getName());
-	private static UserPool instance;
 
 	private static int capacaty = 5;
-
-	private List<User> userPoolFreeInstances;
-	private List<User> userPoolUsedInstances;
+	private final T instance;
+	private final List<T> userPoolFreeInstances;
+	private final List<T> userPoolUsedInstances;
 
 	/**
 	 * Private constructor.
 	 */
-	private UserPool() {
-		userPoolFreeInstances = new ArrayList<User>(capacaty + 1);
-		userPoolUsedInstances = new ArrayList<User>(capacaty + 1);
+	public UserPool(T instance) {
+		userPoolFreeInstances = new ArrayList<T>(capacaty + 1);
+		userPoolUsedInstances = new ArrayList<T>(capacaty + 1);
+		this.instance = instance;
 	}
 
-	/**
-	 * Creates or Returns the existing instance of {@link UserPool}.
-	 * 
-	 * @return an instance of {@link UserPool}
-	 */
-	public static UserPool getInstance() {
-		if (instance == null) {
-			instance = new UserPool();
-		}
-
-		return instance;
-	}
-
-	/**
-	 * Creates or returns an existing instance of the {@link User} class object.
-	 * 
-	 * @return an {@link User} object instance
-	 * @throws NoMoreResourcesExceptio
-	 *             When there are no more available resources to get.
-	 */
-	public User acquireUser() throws NoMoreResourcesException {
+	@Override
+	public T acquire() throws NoMoreResourcesException {
 		if (userPoolUsedInstances.size() > capacaty) {
 			throw new NoMoreResourcesException("Pool can't return instance");
 		}
 		if (userPoolFreeInstances.size() == 0) {
-			userPoolFreeInstances.add(new User("This is important"));
+			try {
+				userPoolFreeInstances.add(initObject());
+			} catch (InstantiationException e) {
+				log.error(e.getMessage(), e);
+			} catch (IllegalAccessException e) {
+				log.error(e.getMessage(), e);
+			}
 		}
-		User user = userPoolFreeInstances.get(0);
+		T user = userPoolFreeInstances.get(0);
 		userPoolUsedInstances.add(user);
 		userPoolFreeInstances.remove(user);
 		return user;
 	}
 
-	/**
-	 * Releases the given user and moves him to the available resource pool
-	 * 
-	 * @param user
-	 *            The user that is to released.
-	 */
-	public void releseUser(User user) {
-		if (user == null) {
+	@Override
+	public void release(T object) {
+		if (object == null) {
 			try {
-				user = acquireUser();
+				object = acquire();
 			} catch (NoMoreResourcesException e) {
 				log.error(e.getMessage(), e);
 			}
 		}
-		userPoolUsedInstances.remove(user);
-		userPoolFreeInstances.add(user);
+		userPoolUsedInstances.remove(object);
+		userPoolFreeInstances.add(object);
 	}
+
+	@Override
+	public T initObject() throws InstantiationException, IllegalAccessException {
+		Class<T> object = (Class<T>) instance.getClass();
+		return object.newInstance();
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.threads.task6.TimeoutHashtable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,8 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class TimeoutHashtable {
 
-	private Map<String, Object> timeOutMap;
+	private final Map<String, Object> timeOutMap;
 	private long timeout = 10000L;
+	private final List<TimingThread> threads;
 
 	/**
 	 * Constructor for the table with given timeout.
@@ -23,6 +26,7 @@ public class TimeoutHashtable {
 	public TimeoutHashtable(long timeout) {
 		this.timeOutMap = new ConcurrentHashMap<String, Object>();
 		this.timeout = timeout;
+		threads = new ArrayList<TimingThread>();
 	}
 
 	/**
@@ -36,6 +40,19 @@ public class TimeoutHashtable {
 	 * @return the previous value of the key or null if there is none.
 	 */
 	public Object put(String key, Object value) {
+		TimingThread thread = null;
+		if (timeOutMap.containsKey(key)) {
+			for (TimingThread t : threads) {
+				if (t.getKey().equals(key)) {
+					t.updateTime();
+					break;
+				}
+			}
+		} else {
+			thread = new TimingThread(timeout, key, this);
+			threads.add(thread);
+			thread.start();
+		}
 		return timeOutMap.put(key, value);
 	}
 
@@ -48,6 +65,14 @@ public class TimeoutHashtable {
 	 * @return the object value in the map or null if there is no value.
 	 */
 	public Object get(String key) {
+		if (timeOutMap.containsKey(key)) {
+			for (TimingThread t : threads) {
+				if (t.getKey().equals(key)) {
+					t.updateTime();
+					break;
+				}
+			}
+		}
 		return timeOutMap.get(key);
 	}
 
@@ -62,6 +87,32 @@ public class TimeoutHashtable {
 	 * @return the object value in the map or null if there is no value.
 	 */
 	public Object remove(String key) {
+		if (timeOutMap.containsKey(key)) {
+			for (TimingThread t : threads) {
+				if (t.getKey().equals(key)) {
+					removeThread(t);
+					break;
+				}
+			}
+		}
 		return timeOutMap.remove(key);
 	}
+
+	/**
+	 * Removes threads that have timeout.
+	 * 
+	 * @param thread
+	 *            The thread that has timeout.
+	 */
+	public void removeThread(Thread thread) {
+		if (threads.contains(thread)) {
+			threads.remove(thread);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return timeOutMap.toString();
+	}
+
 }

@@ -14,12 +14,18 @@ public class TimingThread extends Thread {
 	private final Logger log = Logger.getLogger(TimingThread.class);
 	private final long timeout;
 	private long timeToLive;
+	private final String key;
+	private final TimeoutHashtable table;
 
 	/**
 	 * @param timeout
+	 * @param key
+	 * @param table
 	 */
-	public TimingThread(long timeout) {
+	public TimingThread(long timeout, String key, TimeoutHashtable table) {
 		this.timeout = timeout;
+		this.key = key;
+		this.table = table;
 		updateTime();
 	}
 
@@ -28,12 +34,17 @@ public class TimingThread extends Thread {
 	 */
 	@Override
 	public void run() {
-		try {
-			Thread.sleep(timeout);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while (timeToLive > new Date().getTime()) {
+			log.info("Thread is waiting");
+			try {
+				Thread.sleep(timeout);
+			} catch (InterruptedException e) {
+				log.error(e.getMessage(), e);
+			}
 		}
+		log.info("Removing object");
+		table.remove(key);
+		table.removeThread(this);
 	}
 
 	private long calculateTimeToLive(long timeout) {
@@ -42,6 +53,15 @@ public class TimingThread extends Thread {
 
 	public void updateTime() {
 		timeToLive = calculateTimeToLive(timeout);
+	}
+
+	/**
+	 * Getter method for key.
+	 * 
+	 * @return the key
+	 */
+	public String getKey() {
+		return key;
 	}
 
 }

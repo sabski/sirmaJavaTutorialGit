@@ -14,10 +14,10 @@ public class RunWarehouse {
 	public static void main(String[] args) {
 		// TODO Be great
 		Product product = new Product("Sirene");
-		Producer producer = new Producer(product, 500);
-		Consumer consumer = new Consumer(product, 450);
-		Producer producer1 = new Producer(product, 500);
-		Consumer consumer1 = new Consumer(product, 400);
+		Producer producer = new Producer(product, 500, 2);
+		Consumer consumer = new Consumer(product, 450, 1);
+		Producer producer1 = new Producer(product, 500, 7);
+		Consumer consumer1 = new Consumer(product, 400, 6);
 		producer.start();
 		consumer.start();
 		producer1.start();

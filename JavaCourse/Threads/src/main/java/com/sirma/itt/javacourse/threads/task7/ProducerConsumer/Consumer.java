@@ -12,16 +12,17 @@ public class Consumer extends Thread {
 	private static Logger log = Logger.getLogger(Consumer.class);
 	private final Product product;
 	private final long timeToBye;
-	
+	private final int demand;
+
 	/**
 	 * @param product
 	 * @param timeToBye
 	 */
-	public Consumer(Product product, long timeToBye) {
+	public Consumer(Product product, long timeToBye, int demand) {
 		this.product = product;
 		this.timeToBye = timeToBye;
+		this.demand = demand;
 	}
-
 
 	@Override
 	public void run() {
@@ -31,12 +32,9 @@ public class Consumer extends Thread {
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);
 			}
-			product.sellProduct(1);
+			product.sellProduct(demand);
 		}
-		
-		
+
 	}
-	
-	
-	
+
 }

@@ -10,19 +10,20 @@ import org.apache.log4j.Logger;
 public class Product extends AbstractProduct {
 
 	private final Logger log = Logger.getLogger(Product.class.getName());
-
-	private final boolean shoulProduce = true;
-	private final boolean canBye = false;
-	private int maxQuantity;
+	private final int maxQuantity;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param type
 	 *            Type of the product.
+	 * @param maxQuantity
+	 *            The maximum quantity of the product.
 	 */
-	public Product(String type) {
+	public Product(String type, int maxQuantity) {
 		super(type);
+		this.maxQuantity = maxQuantity;
+		setQuantity(0);
 	}
 
 	/**
@@ -32,6 +33,14 @@ public class Product extends AbstractProduct {
 	 *            Of the product that is to be bought.
 	 */
 	public synchronized void deliverProduct(int quantity) {
+		while (!shouldProduceQuantity(quantity)) {
+			this.notify();
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				log.error(e.getMessage(), e);
+			}
+		}
 		setQuantity(quantity + getQuantity());
 		log.info("New product value is " + getQuantity());
 	}
@@ -43,7 +52,37 @@ public class Product extends AbstractProduct {
 	 *            Of the product to be sold.
 	 */
 	public synchronized void sellProduct(int quantity) {
+		while (!canBye(quantity)) {
+			this.notify();
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				log.error(e.getMessage(), e);
+			}
+		}
 		setQuantity(getQuantity() - quantity);
 		log.info("New product value is " + getQuantity());
+	}
+
+	/**
+	 * Checks if more quantity of the product should be produced.
+	 * 
+	 * @param quantity
+	 *            The quantity that is to be produced.
+	 * @return true if the produced quantity does not go over the limit.
+	 */
+	public boolean shouldProduceQuantity(int quantity) {
+		return (getQuantity() + quantity) <= maxQuantity;
+	}
+
+	/**
+	 * Checks if there is enough quantity for the user to bye.
+	 * 
+	 * @param quantity
+	 *            The quantity that the user want to bye.
+	 * @return true if the quantity does not go bellow 0.
+	 */
+	public boolean canBye(int quantity) {
+		return (getQuantity() - quantity) >= 0;
 	}
 }

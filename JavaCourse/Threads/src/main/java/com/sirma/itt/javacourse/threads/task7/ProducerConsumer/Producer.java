@@ -35,6 +35,14 @@ public class Producer extends Thread {
 				log.error(e.getMessage(), e);
 			}
 			product.deliverProduct(suply);
+			synchronized (product) {
+				product.notify();
+				try {
+					product.wait();
+				} catch (InterruptedException e) {
+					log.error(e.getMessage(), e);
+				}
+			}
 		}
 	}
 

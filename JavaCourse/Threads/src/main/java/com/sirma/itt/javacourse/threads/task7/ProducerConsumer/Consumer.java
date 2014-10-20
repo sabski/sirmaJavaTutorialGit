@@ -26,6 +26,7 @@ public class Consumer extends Thread {
 
 	@Override
 	public void run() {
+
 		while (true) {
 			try {
 				Thread.sleep(timeToBye);
@@ -33,6 +34,15 @@ public class Consumer extends Thread {
 				log.error(e.getMessage(), e);
 			}
 			product.sellProduct(demand);
+			synchronized (product) {
+				product.notify();
+				try {
+					product.wait();
+				} catch (InterruptedException e) {
+					log.error(e.getMessage(), e);
+				}
+			}
+
 		}
 
 	}

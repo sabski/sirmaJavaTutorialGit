@@ -1,38 +1,42 @@
 package com.sirma.itt.javacourse.threads.task7.ProducerConsumer;
 
-
 /**
+ * Base product.
+ * 
  * @author Simeon Iliev
  */
 public abstract class AbstractProduct {
 
-	private String type;
+	private String name;
 	private int quantity;
 
 	/**
-	 * @param type
+	 * Constructor for the product.
+	 * 
+	 * @param name
+	 *            the type of the pro
 	 */
-	public AbstractProduct(String type) {
-		this.setType(type);
+	public AbstractProduct(String name) {
+		this.setName(name);
 	}
 
 	/**
-	 * Getter method for type.
+	 * Getter method for name.
 	 * 
-	 * @return the type
+	 * @return the name
 	 */
-	public String getType() {
-		return type;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * Setter method for type.
+	 * Setter method for name.
 	 * 
-	 * @param type
-	 *            the type to set
+	 * @param name
+	 *            the name to set
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.threads.test.task4;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -32,12 +32,12 @@ public class TestThreadSync {
 	}
 
 	/**
-	 * Test how long the threads hova counted.
+	 * Test how long the threads have counted.
 	 */
 	@Test
 	public void testNormalRun() {
-		threadOne.setUpThread(5);
-		threadTwo.setUpThread(5);
+		threadOne.setUpThread(2);
+		threadTwo.setUpThread(2);
 		threadOne.start();
 		threadTwo.start();
 		try {
@@ -53,7 +53,7 @@ public class TestThreadSync {
 	 */
 	@Test
 	public void testWaiting() {
-		threadOne.setUpThread(4);
+		threadOne.setUpThread(14);
 		threadOne.start();
 		assertEquals(Thread.State.RUNNABLE, threadOne.getState());
 	}

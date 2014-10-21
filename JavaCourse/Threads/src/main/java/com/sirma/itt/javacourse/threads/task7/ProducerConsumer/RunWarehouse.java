@@ -17,7 +17,7 @@ public class RunWarehouse {
 		// TODO Be great
 		Product product = new Product("Sirene",100);
 		Producer producer = new Producer(product, 500, 2);
-		Consumer consumer = new Consumer(product, 450, 1);
+		Consumer consumer = new Consumer(product, 450, 20);
 		Producer producer1 = new Producer(product, 500, 7);
 		Consumer consumer1 = new Consumer(product, 400, 5);
 		producer.start();

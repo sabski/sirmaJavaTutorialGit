@@ -52,7 +52,7 @@ public class Product extends AbstractProduct {
 	 *            Of the product to be sold.
 	 */
 	public synchronized void sellProduct(int quantity) {
-		while (!canBye(quantity)) {
+		while (!canBuy(quantity)) {
 			this.notify();
 			try {
 				this.wait();
@@ -82,7 +82,7 @@ public class Product extends AbstractProduct {
 	 *            The quantity that the user want to bye.
 	 * @return true if the quantity does not go bellow 0.
 	 */
-	public boolean canBye(int quantity) {
+	public boolean canBuy(int quantity) {
 		return (getQuantity() - quantity) >= 0;
 	}
 }

@@ -3,26 +3,37 @@ package com.sirma.itt.javacourse.threads.task7.ProducerConsumer;
 import org.apache.log4j.Logger;
 
 /**
- * Thread class that produces a resource and supplies it to a warehouse.
+ * Thread class that produces a resource and supplies it to a warehouse. The thread produces a
+ * specified quantity of the product at regular intervals if the product has reached maximum supply
+ * it waits for some of it to be consumed.
  * 
  * @author Simeon Iliev
  */
 public class Producer extends Thread {
 
 	private static Logger log = Logger.getLogger(Producer.class);
+
+	private static int numThreads = 0;
 	private final Product product;
 	private final long productionTime;
-	private final int suply;
+	private final int supply;
+	private final int threadNumber;
 
 	/**
+	 * Constructor for the thread.
+	 * 
 	 * @param product
+	 *            the product this thread produces.
 	 * @param productionTime
-	 * @param suply
+	 *            the time it takes the thread to produce the supply.
+	 * @param supply
+	 *            the supply that this thread can provide.
 	 */
-	public Producer(Product product, long productionTime, int suply) {
+	public Producer(Product product, long productionTime, int supply) {
 		this.product = product;
 		this.productionTime = productionTime;
-		this.suply = suply;
+		this.supply = supply;
+		threadNumber = numThreads++;
 	}
 
 	@Override
@@ -34,7 +45,8 @@ public class Producer extends Thread {
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);
 			}
-			product.deliverProduct(suply);
+			log.info(Producer.class.getName() + " : " + threadNumber);
+			product.deliverProduct(supply);
 			synchronized (product) {
 				product.notify();
 				try {

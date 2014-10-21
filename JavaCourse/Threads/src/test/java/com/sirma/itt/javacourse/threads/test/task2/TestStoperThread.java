@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.threads.test.task2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -13,9 +13,9 @@ import com.sirma.itt.javacourse.threads.task2.twoCounterThreads.StoperThread;
  */
 public class TestStoperThread {
 
-	private Logger log = Logger.getLogger(TestStoperThread.class.getName());
+	private final Logger log = Logger.getLogger(TestStoperThread.class.getName());
 	private StoperThread threadOne;
-	private StoperThread threadTwo = null;
+	private StoperThread threadTwo;
 
 	/**
 	 * Set up method.

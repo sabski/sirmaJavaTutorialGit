@@ -7,22 +7,21 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * @author Simeon Iliev
  */
-public class StoperThread extends Thread {
+public class StoperThreadWithWait extends Thread {
 
-	private Logger log = Logger.getLogger(StoperThread.class.getName());
+	private final Logger log = Logger.getLogger(StoperThreadWithWait.class.getName());
 
 	private int currentCount = 0;
 	private int count;
 	private Thread threadToStop;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		while (isAlive() && count > currentCount) {
 			try {
-				sleep(1000);
+				synchronized (this) {
+					wait(1000);
+				}
 				printCount(currentCount);
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);

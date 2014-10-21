@@ -11,15 +11,13 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class StoperThread extends Thread {
 
-	private Logger log = Logger.getLogger(StoperThread.class.getName());
+	private final Logger log = Logger.getLogger(StoperThread.class.getName());
 
 	private int currentCount = 0;
 	private int count;
 	private Thread threadToStop;
 
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	public void run() {
 		while (isAlive() && count > currentCount) {

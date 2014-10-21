@@ -5,7 +5,7 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * A class that contains various fields and methods.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class ReflectionClass {
 

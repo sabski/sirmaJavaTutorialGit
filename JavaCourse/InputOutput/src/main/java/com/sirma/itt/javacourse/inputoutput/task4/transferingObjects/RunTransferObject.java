@@ -53,8 +53,7 @@ public class RunTransferObject {
 			IOUtils.printConsoleMessage("Number of transfered bytes = "
 					+ transfer.transfer(numberOfBites, offset));
 		} catch (FileNotFoundException e) {
-			log.error("File is missing.", e);
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 
 	}

@@ -13,11 +13,11 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * Writes a file from the input in the console.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class WriteFileFromConsole {
 
-	private Logger log = Logger.getLogger(WriteFileFromConsole.class.getName());
+	private final Logger log = Logger.getLogger(WriteFileFromConsole.class.getName());
 	public static final String DIR_LOCALE = "target/temp/";
 
 	/**
@@ -42,7 +42,7 @@ public class WriteFileFromConsole {
 			readAndWriteContentForFile(bufferedWriter);
 			IOUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
 		} catch (IOException e) {
-			log.error("Error writing the file : ", e);
+			log.error(e.getMessage(), e);
 		} finally {
 
 			if (bufferedWriter != null && fileWriter != null) {
@@ -50,7 +50,7 @@ public class WriteFileFromConsole {
 					bufferedWriter.close();
 					fileWriter.close();
 				} catch (IOException e) {
-					log.error("Couldn't close streams : ", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 		}

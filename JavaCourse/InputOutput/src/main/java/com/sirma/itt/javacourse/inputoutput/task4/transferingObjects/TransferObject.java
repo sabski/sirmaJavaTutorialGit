@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
  */
 public class TransferObject {
 
-	private Logger log = Logger.getLogger(TransferObject.class.getName());
+	private final Logger log = Logger.getLogger(TransferObject.class.getName());
 	private InputStream input;
 	private OutputStream output;
 
@@ -27,7 +27,6 @@ public class TransferObject {
 	 *            the output stream from which the data will be read.
 	 */
 	public TransferObject(InputStream input, OutputStream output) {
-		super();
 		this.input = input;
 		this.output = output;
 	}
@@ -76,8 +75,8 @@ public class TransferObject {
 	 * many as numberOfBytes bytes, but a smaller number may be read. The number of bytes actually
 	 * read is returned as an integer. This method blocks until input data is available, end of file
 	 * is detected, or an exception is thrown. If numberOfBytes is zero, then no bytes are read and
-	 * 0 is returned; otherwise, there is an attempt to read at least one byte. If no byte is
-	 * available because the stream is at end of file, the value -1 is returned; otherwise, at least
+	 * 0 is returned. Otherwise, there is an attempt to read at least one byte. If no byte is
+	 * available because the stream is at end of file, the value -1 is returned. Otherwise, at least
 	 * one byte is read and stored into the OutputStream. The number of bytes read is, at most,
 	 * equal to numberOfBytes.
 	 * 
@@ -94,9 +93,9 @@ public class TransferObject {
 			result = input.read(bytes, offset, numberOfBytes);
 			output.write(bytes, 0, result - 1);
 		} catch (IOException e) {
-			log.error("The transfer has been broken : ", e);
+			log.error(e.getMessage(), e);
 		} catch (IndexOutOfBoundsException e) {
-			log.error("The offset you entered or the number of bytes is too large ", e);
+			log.error(e.getMessage(), e);
 		}
 
 		return result;

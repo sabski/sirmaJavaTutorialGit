@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Custom comparator for our annotation and our classes that extend ParrentClass.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class ComparatorAnnotaion implements Comparator<Object> {
 

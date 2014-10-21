@@ -2,14 +2,13 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInfo
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
  * Class that reflects a other class methods and fields.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class Reflector {
 
@@ -26,7 +25,7 @@ public class Reflector {
 	 *             if we try to access a filed which is not there.
 	 * @throws SecurityException
 	 *             something went wrong
-	 * @return a string with the infromathion of the class.
+	 * @return a string with the information of the class.
 	 */
 	public String reflect(Object object) throws SecurityException, NoSuchFieldException,
 			IllegalArgumentException, IllegalAccessException {
@@ -44,22 +43,12 @@ public class Reflector {
 			Object c = "empty";
 			Field field = object.getClass().getDeclaredField(f.getName().toString());
 			switch (f.getModifiers()) {
-				case 0:
-					sb.append("");
-					field.setAccessible(true);
-					c = field.get(object);
-					break;
 				case 1:
 					sb.append("public ");
 					c = f.get(object);
 					break;
 				case 2:
 					sb.append("private ");
-					field.setAccessible(true);
-					c = field.get(object);
-					break;
-				case 3:
-					sb.append("default ");
 					field.setAccessible(true);
 					c = field.get(object);
 					break;

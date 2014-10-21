@@ -7,11 +7,11 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
- * Class for running serialization example we create a new UserDefinedObject and save it to a file
- * and then we read the object and save it into a file then we read the file and retrieve the object
- * from it.
+ * Class for running serialization example we create a new {@link UserDefinedObject} and save it to
+ * a file and then we read the object and save it into a file then we read the file and retrieve the
+ * object from it.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class RunSerializathionObjects {
 
@@ -42,7 +42,7 @@ public class RunSerializathionObjects {
 			object2 = object.getObject("target/" + path);
 			IOUtils.printConsoleMessage("The object read says " + object2.getSaySomething());
 		} catch (IOException e) {
-			log.error("Something went wrong", e);
+			log.error(e.getMessage(), e);
 		}
 
 	}

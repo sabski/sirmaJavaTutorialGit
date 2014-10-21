@@ -14,11 +14,13 @@ public class ClassInit {
 	 *            the path to the object that is to be displayed its hierarchy.
 	 * @return a new object instance.
 	 * @throws InstantiationException
-	 *             something went worng
+	 *             if this Class represents an abstract class, an interface, an array class, a
+	 *             primitive type, or void; or if the class has no nullary constructor; or if the
+	 *             instantiation fails for some other reason.
 	 * @throws IllegalAccessException
-	 *             something went worng
+	 *             if the class or its nullary constructor is not accessible.
 	 * @throws ClassNotFoundException
-	 *             something went wrong
+	 *             if the class cannot be located
 	 */
 	public Object getClassHierhahyAndInterfaces(String path) throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException {

@@ -7,7 +7,7 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * Class for running reflection example.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class RunReflectionSample {
 
@@ -19,7 +19,9 @@ public class RunReflectionSample {
 	 * @param args
 	 *            the arguments for the main method.
 	 * @throws NoSuchFieldException
+	 *             something went wrong
 	 * @throws SecurityException
+	 *             something went wrong
 	 */
 	public static void main(String[] args) throws IllegalAccessException, SecurityException,
 			NoSuchFieldException {

@@ -11,8 +11,6 @@ import java.io.Serializable;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
-
 /**
  * Class that stores some data and can be serialized.
  * 
@@ -25,7 +23,7 @@ public class UserDefinedObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Logger log = Logger.getLogger(UserDefinedObject.class.getName());
+	private final Logger log = Logger.getLogger(UserDefinedObject.class.getName());
 
 	private int myNuber;
 
@@ -106,6 +104,7 @@ public class UserDefinedObject implements Serializable {
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
+				log.error(e.getMessage(), e);
 			}
 		}
 		try {
@@ -113,25 +112,24 @@ public class UserDefinedObject implements Serializable {
 			oos = new ObjectOutputStream(fout);
 			oos.writeObject(o);
 		} catch (FileNotFoundException e) {
-			log.error("File not found", e);
+			log.error(e.getMessage(), e);
 		} catch (IOException e) {
-			log.error("Input output error", e);
+			log.error(e.getMessage(), e);
 		} finally {
 			if (oos != null) {
 				try {
 					oos.close();
 				} catch (IOException e) {
-					log.error("Input output error", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 			if (fout != null) {
 				try {
 					fout.close();
 				} catch (IOException e) {
-					log.error("Input output error", e);
+					log.error(e.getMessage(), e);
 				}
 			}
-
 		}
 		return true;
 	}
@@ -157,27 +155,25 @@ public class UserDefinedObject implements Serializable {
 			ois = new ObjectInputStream(fin);
 			result = (UserDefinedObject) ois.readObject();
 		} catch (FileNotFoundException e) {
-			log.error("File not found", e);
+			log.error(e.getMessage(), e);
 		} catch (ClassNotFoundException e) {
-			log.error("Class not found", e);
+			log.error(e.getMessage(), e);
 		} finally {
 			if (ois != null) {
 				try {
 					ois.close();
 				} catch (IOException e) {
-					log.error("Input output error", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 			if (fin != null) {
 				try {
 					fin.close();
 				} catch (IOException e) {
-					log.error("Input output error", e);
+					log.error(e.getMessage(), e);
 				}
 			}
-
 		}
-
 		return result;
 	}
 }

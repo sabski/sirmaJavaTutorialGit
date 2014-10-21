@@ -15,7 +15,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class PrivateReflector {
 
-	private Logger log = Logger.getLogger(PrivateReflector.class.getName());
+	private final Logger log = Logger.getLogger(PrivateReflector.class.getName());
 	private MyPrivateClass myPrivateVariable;
 
 	/**
@@ -26,7 +26,7 @@ public class PrivateReflector {
 	 * @param params
 	 *            the object which private fields should be displayed.
 	 * @throws IllegalAccessException
-	 *             something went wrong.
+	 *             if the underlying field is inaccessible.
 	 */
 	public void showPrivateFields(MyPrivateClass object, Object... params)
 			throws IllegalAccessException {
@@ -60,8 +60,8 @@ public class PrivateReflector {
 					Method method = myPrivateVariable.getClass().getDeclaredMethod(m.getName(),
 							parameterTypes);
 					method.setAccessible(true);
-					String s = (String) method.invoke(myPrivateVariable, params);
-					IOUtils.printConsoleMessage(s);
+					Object s = method.invoke(myPrivateVariable, params);
+					IOUtils.printConsoleMessage(s.toString());
 				} catch (IllegalArgumentException ex) {
 					log.error(ex.getMessage(), ex);
 				} catch (NoSuchMethodException e) {

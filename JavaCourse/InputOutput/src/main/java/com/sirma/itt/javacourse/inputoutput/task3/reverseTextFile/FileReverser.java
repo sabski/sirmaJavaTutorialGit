@@ -10,16 +10,14 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
-
 /**
  * Reverses the contents of a specific file.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class FileReverser {
 
-	private Logger log = Logger.getLogger(FileReverser.class.getName());
+	private final Logger log = Logger.getLogger(FileReverser.class.getName());
 
 	/**
 	 * Reverses the contents of a specific text file.
@@ -49,20 +47,20 @@ public class FileReverser {
 			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));
 
 		} catch (IOException e) {
-			log.error("File couldn't be reversed : ",e);
+			log.error(e.getMessage(), e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					log.error("Input output", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException e) {
-					log.error("Input output", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 		}

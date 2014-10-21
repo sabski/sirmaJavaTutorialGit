@@ -207,7 +207,7 @@ public class IOUtils {
 		try {
 			result = tmp.charAt(0);
 		} catch (Exception e) {
-			log.error("Something went wrong -->", e);
+			log.error(e.getMessage(), e);
 		}
 		return result;
 	}
@@ -283,13 +283,13 @@ public class IOUtils {
 			}
 
 		} catch (IOException e) {
-			log.error("Something happened during file transfer.", e);
+			log.error(e.getMessage(), e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					log.error("Couldn't properly close file. ", e);
+					log.error(e.getMessage(), e);
 				}
 			}
 		}

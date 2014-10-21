@@ -3,9 +3,9 @@ package com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser;
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
- * Class for displaing the structure of a directory.
+ * Class for displaying the structure of a directory.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class RunDirectoryBrowser {
 

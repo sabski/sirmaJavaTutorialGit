@@ -9,11 +9,11 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * Class that display the structure of a given directory.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class DirectoryBrowser {
 
-	private Logger log = Logger.getLogger(DirectoryBrowser.class.getName());
+	private final Logger log = Logger.getLogger(DirectoryBrowser.class.getName());
 
 	/**
 	 * Displays the structure of a given directory.

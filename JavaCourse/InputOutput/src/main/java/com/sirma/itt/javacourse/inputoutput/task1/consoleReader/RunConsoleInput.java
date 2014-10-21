@@ -5,7 +5,7 @@ import com.sirma.itt.javacourse.IOUtils;
 /**
  * Class that accepts console input with different variations.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class RunConsoleInput {
 

@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess;
 /**
  * A very private class contains much private methods and fields.
  * 
- * @author simeon
+ * @author Simeon Iliev
  */
 public class MyPrivateClass {
 
@@ -12,6 +12,8 @@ public class MyPrivateClass {
 	private float floatValue = 1.2f;
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param integerValue
 	 *            the private user number.
 	 * @param stringValue

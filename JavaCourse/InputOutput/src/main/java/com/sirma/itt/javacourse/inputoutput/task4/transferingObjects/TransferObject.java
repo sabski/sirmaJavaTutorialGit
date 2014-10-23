@@ -77,8 +77,7 @@ public class TransferObject {
 	 * is detected, or an exception is thrown. If numberOfBytes is zero, then no bytes are read and
 	 * 0 is returned. Otherwise, there is an attempt to read at least one byte. If no byte is
 	 * available because the stream is at end of file, the value -1 is returned. Otherwise, at least
-	 * one byte is read and stored into the OutputStream. The number of bytes read is, at most,
-	 * equal to numberOfBytes.
+	 * one byte is read and stored into the OutputStream.
 	 * 
 	 * @param numberOfBytes
 	 *            the number of bytes to be transfered between the streams.
@@ -92,9 +91,7 @@ public class TransferObject {
 			byte[] bytes = new byte[numberOfBytes];
 			result = input.read(bytes, offset, numberOfBytes);
 			output.write(bytes, 0, result - 1);
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-		} catch (IndexOutOfBoundsException e) {
+		} catch (IOException | IndexOutOfBoundsException e) {
 			log.error(e.getMessage(), e);
 		}
 

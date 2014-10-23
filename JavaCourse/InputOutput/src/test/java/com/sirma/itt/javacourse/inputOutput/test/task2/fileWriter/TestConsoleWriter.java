@@ -20,7 +20,7 @@ import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFro
  */
 public class TestConsoleWriter {
 
-	private Logger log = Logger.getLogger(TestConsoleWriter.class.getName());
+	private final Logger log = Logger.getLogger(TestConsoleWriter.class.getName());
 	private WriteFileFromConsole writer;
 	private String fileData;
 	private String fileName;

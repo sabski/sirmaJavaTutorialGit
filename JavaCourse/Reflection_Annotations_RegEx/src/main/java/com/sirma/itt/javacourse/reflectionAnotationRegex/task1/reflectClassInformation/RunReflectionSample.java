@@ -41,9 +41,9 @@ public class RunReflectionSample {
 		} else {
 			reflect.setBooleanValue(false);
 		}
-		Reflector reflector = new Reflector();
+		ClassInformer classInformer = new ClassInformer();
 		try {
-			reflector.reflect(reflect);
+			classInformer.getObjectFieldsAndMethods(reflect);
 		} catch (IllegalArgumentException e) {
 			log.error(e);
 		}

@@ -26,33 +26,17 @@ public class WriteFileFromConsole {
 	public void writeFile(String fileName) {
 		IOUtils.printConsoleMessage("The File will stop reading the input when you enter a \" . \"");
 		File file = new File(DIR_LOCALE + fileName);
-		Writer fileWriter = null;
-		BufferedWriter bufferedWriter = null;
-
-		try {
+		try (Writer fileWriter = new FileWriter(file);
+				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
 			if (!file.exists()) {
 				new File(DIR_LOCALE).mkdir();
 				file.createNewFile();
 			}
-
-			fileWriter = new FileWriter(file);
-			bufferedWriter = new BufferedWriter(fileWriter);
-
 			IOUtils.printConsoleMessage("Start input for file : ");
 			readAndWriteContentForFile(bufferedWriter);
 			IOUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-		} finally {
-
-			if (bufferedWriter != null && fileWriter != null) {
-				try {
-					bufferedWriter.close();
-					fileWriter.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
 		}
 	}
 

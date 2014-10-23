@@ -85,51 +85,28 @@ public class UserDefinedObject implements Serializable {
 	 * 
 	 * @param path
 	 *            the path to the file the user wants to save the object.
-	 * @param o
+	 * @param object
 	 *            object to be saved into the file.
 	 * @throws IOException
 	 *             throw exception if file is not accessible.
 	 */
-	public boolean saveObject(String path, UserDefinedObject o) {
-
-		if (o == null) {
+	public boolean saveObject(String path, UserDefinedObject object) {
+		if (object == null) {
 			return false;
 		}
-
 		File file = new File(path);
-		FileOutputStream fout = null;
-		ObjectOutputStream oos = null;
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
 				log.error(e.getMessage(), e);
 			}
 		}
-		try {
-			fout = new FileOutputStream(file);
-			oos = new ObjectOutputStream(fout);
-			oos.writeObject(o);
-		} catch (FileNotFoundException e) {
-			log.error(e.getMessage(), e);
+		try (FileOutputStream fout = new FileOutputStream(file);
+				ObjectOutputStream oos = new ObjectOutputStream(fout);) {
+			oos.writeObject(object);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-		} finally {
-			if (oos != null) {
-				try {
-					oos.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-			if (fout != null) {
-				try {
-					fout.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
 		}
 		return true;
 	}
@@ -146,33 +123,11 @@ public class UserDefinedObject implements Serializable {
 	public UserDefinedObject getObject(String path) throws IOException {
 		UserDefinedObject result = null;
 		File file = new File(path);
-
-		FileInputStream fin = null;
-		ObjectInputStream ois = null;
-
-		try {
-			fin = new FileInputStream(file);
-			ois = new ObjectInputStream(fin);
+		try (FileInputStream fin = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fin);) {
 			result = (UserDefinedObject) ois.readObject();
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
-		} catch (ClassNotFoundException e) {
-			log.error(e.getMessage(), e);
-		} finally {
-			if (ois != null) {
-				try {
-					ois.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-			if (fin != null) {
-				try {
-					fin.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
 		}
 		return result;
 	}

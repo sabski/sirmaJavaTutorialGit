@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.IOUtils;
 
 /**
@@ -9,25 +11,23 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class ClassInit {
 
+	private static Logger log = Logger.getLogger(ClassInit.class);
+
 	/**
 	 * @param path
 	 *            the path to the object that is to be displayed its hierarchy.
 	 * @return a new object instance.
-	 * @throws InstantiationException
-	 *             if this Class represents an abstract class, an interface, an array class, a
-	 *             primitive type, or void; or if the class has no nullary constructor; or if the
-	 *             instantiation fails for some other reason.
-	 * @throws IllegalAccessException
-	 *             if the class or its nullary constructor is not accessible.
-	 * @throws ClassNotFoundException
-	 *             if the class cannot be located
 	 */
-	public Object getClassHierhahyAndInterfaces(String path) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException {
-		Object obj = null;
+	public Object getClassHierhahyAndInterfaces(String path) {
+		Object object = null;
+		Class<?> init = null;
 
-		Class<?> init = Class.forName(path);
-		obj = init.newInstance();
+		try {
+			init = Class.forName(path);
+			object = init.newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			log.error(e.getMessage(), e);
+		}
 		for (Class<?> c : init.getDeclaredClasses()) {
 			IOUtils.printConsoleMessage(c.getName());
 		}
@@ -36,6 +36,6 @@ public class ClassInit {
 			IOUtils.printConsoleMessage(c.getName());
 		}
 
-		return obj;
+		return object;
 	}
 }

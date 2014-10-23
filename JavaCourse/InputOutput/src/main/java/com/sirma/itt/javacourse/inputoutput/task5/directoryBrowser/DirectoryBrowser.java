@@ -29,7 +29,6 @@ public class DirectoryBrowser {
 			file = new File(path);
 
 		}
-
 		if (file.isFile()) {
 			log.info("The path you entered leads to a file " + path);
 			builder.append(path);
@@ -37,9 +36,9 @@ public class DirectoryBrowser {
 		}
 		log.info("The content of folder " + path + " is :");
 		File[] list = file.listFiles();
-		for (File f : list) {
-			IOUtils.printConsoleMessage(f.getName());
-			builder.append(f.getName() + "; ");
+		for (File fileF : list) {
+			IOUtils.printConsoleMessage(fileF.getName());
+			builder.append(fileF.getName() + "; ");
 		}
 		return builder.toString();
 	}

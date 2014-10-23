@@ -20,15 +20,7 @@ public class RunClassInit {
 	public static void main(String[] args) {
 
 		ClassInit init = new ClassInit();
-		try {
-			init.getClassHierhahyAndInterfaces("java.lang.String");
-		} catch (InstantiationException e) {
-			log.error(e);
-		} catch (IllegalAccessException e) {
-			log.error(e);
-		} catch (ClassNotFoundException e) {
-			log.error(e);
-		}
+		init.getClassHierhahyAndInterfaces("java.lang.String");
 	}
 
 }

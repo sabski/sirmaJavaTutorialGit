@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
@@ -99,7 +101,9 @@ public class IOUtils {
 	 * @return true if the String matches the regex otherwise returns false.
 	 */
 	public static boolean validateStringWithRegex(String regex, String inputToverify) {
-		return inputToverify.matches(regex);
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(inputToverify);
+		return matcher.matches();
 	}
 
 	/**
@@ -138,15 +142,14 @@ public class IOUtils {
 	/**
 	 * Checks if given object is null.
 	 * 
-	 * @param o
+	 * @param object
 	 *            the object we want to check for null
 	 * @return true if object is null
 	 */
-	public static boolean isNull(Object o) {
-		if (o == null) {
+	public static boolean isNull(Object object) {
+		if (object == null) {
 			return true;
 		}
-
 		return false;
 	}
 

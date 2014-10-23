@@ -28,41 +28,20 @@ public class FileReverser {
 	 *             if the name of the given file is not valid.
 	 */
 	public void reverseFileContent(String fileName) throws FileNotFoundException {
-
 		File file = new File(fileName);
 		if (!file.exists() || file.isDirectory()) {
 			throw new FileNotFoundException();
 		}
-		BufferedReader reader = null;
-		BufferedWriter writer = null;
-		try {
-
-			reader = new BufferedReader(new FileReader(file));
+		try (BufferedReader reader = new BufferedReader(new FileReader(file));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(file));) {
 			String line = null;
 			StringBuffer stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
 				stringBuffer.append(line + "\n");
 			}
-			writer = new BufferedWriter(new FileWriter(file));
 			writer.write(stringBuffer.reverse().toString().replaceFirst("\n", ""));
-
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-			if (writer != null) {
-				try {
-					writer.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
 		}
 	}
 }

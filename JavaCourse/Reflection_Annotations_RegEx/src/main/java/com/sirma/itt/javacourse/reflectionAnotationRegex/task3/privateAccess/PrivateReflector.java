@@ -30,44 +30,34 @@ public class PrivateReflector {
 	 */
 	public void showPrivateFields(MyPrivateClass object, Object... params)
 			throws IllegalAccessException {
-
 		myPrivateVariable = object;
-
-		Class<?> cl = myPrivateVariable.getClass();
-
+		Class<?> classObject = myPrivateVariable.getClass();
 		try {
-
-			for (Field f : cl.getDeclaredFields()) {
+			for (Field f : classObject.getDeclaredFields()) {
 				try {
-					Field field = myPrivateVariable.getClass().getDeclaredField(
+					Field field = classObject.getDeclaredField(
 							f.getName().toString());
 					field.setAccessible(true);
 					Object obj = field.get(myPrivateVariable);
 					IOUtils.printConsoleMessage(obj.toString());
-				} catch (IllegalArgumentException ex) {
-					log.error(ex.getMessage(), ex);
-				} catch (NoSuchFieldException ex) {
+				} catch (IllegalArgumentException | NoSuchFieldException ex) {
 					log.error(ex.getMessage(), ex);
 				}
 			}
-
-			for (Method m : cl.getDeclaredMethods()) {
+			for (Method m : classObject.getDeclaredMethods()) {
 				try {
 					IOUtils.printConsoleMessage(m.getName());
 					int paramCount = m.getModifiers();
 					IOUtils.printConsoleMessage("Parameter count = " + paramCount);
 					Class<?>[] parameterTypes = m.getParameterTypes();
-					Method method = myPrivateVariable.getClass().getDeclaredMethod(m.getName(),
+					Method method = classObject.getDeclaredMethod(m.getName(),
 							parameterTypes);
 					method.setAccessible(true);
-					Object s = method.invoke(myPrivateVariable, params);
-					IOUtils.printConsoleMessage(s.toString());
-				} catch (IllegalArgumentException ex) {
+					Object objectTwo = method.invoke(myPrivateVariable, params);
+					IOUtils.printConsoleMessage(objectTwo.toString());
+				} catch (IllegalArgumentException | NoSuchMethodException
+						| InvocationTargetException ex) {
 					log.error(ex.getMessage(), ex);
-				} catch (NoSuchMethodException e) {
-					log.error(e.getMessage(), e);
-				} catch (InvocationTargetException e) {
-					log.error(e.getMessage(), e);
 				}
 			}
 		} catch (SecurityException e) {

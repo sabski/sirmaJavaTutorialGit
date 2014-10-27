@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
+
+import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.Command;
+import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.CommandBuilder;
 
 /**
  * @author Simeon Iliev
@@ -47,12 +52,16 @@ public class CalculatorGui extends JFrame {
 	private JTextField textFiled;
 
 	private ActionListener numberButtonListener;
+	private ActionListener operationListener;
+	private final CommandBuilder builder;
+	private Double firstNumber, secondNumber;
 
 	/**
 	 * 
 	 */
 	public CalculatorGui() {
 		starBuildingGUI();
+		builder = CommandBuilder.getInstance();
 	}
 
 	/**
@@ -67,20 +76,21 @@ public class CalculatorGui extends JFrame {
 
 		// Do more cool stuff here...
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		frame.setLayout(new GridLayout(2, 1));
+		frame.setLayout(new BorderLayout());
 		frame.setTitle("Calculator");
 
 		// Top frame
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new FlowLayout());
 		setUpTopPanel(topPanel);
-		frame.add(topPanel);
+		frame.add(topPanel, BorderLayout.NORTH);
 		// Button frame
-		JPanel buttonFrame = new JPanel();
-		buttonFrame.setLayout(new GridLayout(4, 4));
-		setupButtons(buttonFrame);
-		frame.add(buttonFrame);
-
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(6, 3));
+		setupButtons(buttonPanel);
+		buttonPanel.validate();
+		frame.add(buttonPanel, BorderLayout.CENTER);
+		frame.pack();
 		// NO MORE CODE BELLOW THIS LINE...
 		frame.setVisible(true);
 	}
@@ -89,7 +99,8 @@ public class CalculatorGui extends JFrame {
 		// TODO Something something something...
 		textFiled = new JTextField();
 		textFiled.setEditable(false);
-		textFiled.setText("0");
+		textFiled.setText("");
+		textFiled.setPreferredSize(new Dimension(300, 20));
 		topPanel.add(textFiled);
 
 	}
@@ -138,33 +149,88 @@ public class CalculatorGui extends JFrame {
 		numberSevenButton.addActionListener(numberButtonListener);
 		numberEightButton.addActionListener(numberButtonListener);
 		numberNineButton.addActionListener(numberButtonListener);
-		plusButton.addActionListener(numberButtonListener);
-		minusButton.addActionListener(numberButtonListener);
-		divideButton.addActionListener(numberButtonListener);
-		multiplyButton.addActionListener(numberButtonListener);
-		decimalDotButton.addActionListener(numberButtonListener);
 
 		// TODO add missing action listeners... do not forget John Snow
 
+		operationListener = new ActionListener() {
+			Command command;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				log.info(e.getActionCommand());
+				if (e.getActionCommand() != "=") {
+					if (firstNumber == null) {
+						firstNumber = Double.valueOf(textFiled.getText());
+						command = builder.createCommand(e.getActionCommand());
+					} else {
+						if (command == null) {
+							command = builder.createCommand(e.getActionCommand());
+						} else {
+							secondNumber = Double.valueOf(textFiled.getText().substring(
+									(firstNumber + " ").length(), textFiled.getText().length()));
+							firstNumber = command.execute(firstNumber, secondNumber);
+							command = builder.createCommand(e.getActionCommand());
+							firstNumber = null;
+						}
+					}
+					textFiled.setText(firstNumber + e.getActionCommand());
+				} else {
+					int lenght = (firstNumber + " ").length();
+					secondNumber = Double.valueOf(textFiled.getText().substring(lenght,
+							textFiled.getText().length()));
+					firstNumber = command.execute(firstNumber, secondNumber);
+					textFiled.setText(firstNumber + "");
+					command = null;
+					firstNumber = null;
+				}
+				textFiled.validate();
+			}
+		};
+
+		equalsButton.addActionListener(operationListener);
+		plusButton.addActionListener(operationListener);
+		minusButton.addActionListener(operationListener);
+		divideButton.addActionListener(operationListener);
+		multiplyButton.addActionListener(operationListener);
+		decimalDotButton.addActionListener(operationListener);
+
+		// Clear Buttons
+		clearAllButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textFiled.setText("");
+				firstNumber = null;
+			}
+		});
+
+		clearLastSymbollButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textFiled.setText(textFiled.getText()
+						.substring(0, textFiled.getText().length() - 1));
+			}
+		});
+
+		// Buttons added to the panel.
 		panel.add(clearAllButton);
-		panel.add(clearLastSymbollButton);
-		panel.add(decimalDotButton);
 		panel.add(divideButton);
 		panel.add(plusButton);
 		panel.add(minusButton);
 		panel.add(multiplyButton);
 		panel.add(equalsButton);
-		panel.add(numberNineButton);
-		panel.add(numberEightButton);
 		panel.add(numberSevenButton);
-		panel.add(numberSixButton);
-		panel.add(numberFiveButton);
+		panel.add(numberEightButton);
+		panel.add(numberNineButton);
 		panel.add(numberFourButton);
-		panel.add(numberThreeButton);
-		panel.add(numberTwoButton);
+		panel.add(numberFiveButton);
+		panel.add(numberSixButton);
 		panel.add(numberOneButton);
+		panel.add(numberTwoButton);
+		panel.add(numberThreeButton);
 		panel.add(numberZeroButton);
-
+		panel.add(decimalDotButton);
+		panel.add(clearLastSymbollButton);
 	}
-
 }

@@ -16,15 +16,15 @@ public class StockObserver implements Observer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void update(Observable obs) {
-		if (!(obs instanceof ItemObservable)) {
+	public void update(Observable observable) {
+		if (!(observable instanceof ItemObservable)) {
 			return;
 		}
-		ItemObservable temp = (ItemObservable) obs;
+		ItemObservable temp = (ItemObservable) observable;
 		if (temp.getInStock()) {
-			list.add(obs);
-		} else if (list.contains(obs)) {
-			list.remove(obs);
+			list.add(observable);
+		} else if (list.contains(observable)) {
+			list.remove(observable);
 		}
 	}
 

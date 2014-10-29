@@ -9,12 +9,15 @@ public class CarFactory {
 
 	private static CarFactory instance;
 
+	/**
+	 * Private constructor.
+	 */
 	private CarFactory() {
 
 	}
 
 	/**
-	 * Singelton method that retuns the sole instance of the class.
+	 * Singleton method that returns the sole instance of the class.
 	 * 
 	 * @return the class instance.
 	 */

@@ -35,13 +35,7 @@ public class UserPool<T> implements Pool<T> {
 			throw new NoMoreResourcesException("Pool can't return instance");
 		}
 		if (userPoolFreeInstances.size() == 0) {
-			try {
-				userPoolFreeInstances.add(initObject());
-			} catch (InstantiationException e) {
-				log.error(e.getMessage(), e);
-			} catch (IllegalAccessException e) {
-				log.error(e.getMessage(), e);
-			}
+			userPoolFreeInstances.add(initObject());
 		}
 		T user = userPoolFreeInstances.get(0);
 		userPoolUsedInstances.add(user);
@@ -63,9 +57,14 @@ public class UserPool<T> implements Pool<T> {
 	}
 
 	@Override
-	public T initObject() throws InstantiationException, IllegalAccessException {
+	public T initObject() {
 		Class<T> object = (Class<T>) instance.getClass();
-		return object.newInstance();
+		try {
+			return object.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
 	}
 
 }

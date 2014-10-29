@@ -20,7 +20,7 @@ public class RunReflectPrivateMethods {
 	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
-		PrivateReflector reflector = new PrivateReflector();
+		ClassInformer reflector = new ClassInformer();
 		IOUtils.printConsoleMessage("Input String value : ");
 		String stringValue = IOUtils.readLine();
 		IOUtils.printConsoleMessage("Input number value : ");

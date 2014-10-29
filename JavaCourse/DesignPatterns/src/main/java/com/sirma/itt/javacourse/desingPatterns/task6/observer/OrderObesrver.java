@@ -10,21 +10,21 @@ import java.util.List;
  */
 public class OrderObesrver implements Observer {
 
-	private List<Observable> list;
+	private final List<Observable> list;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void update(Observable obs) {
-		if (!(obs instanceof ItemObservable)) {
+	public void update(Observable observable) {
+		if (!(observable instanceof ItemObservable)) {
 			return;
 		}
-		ItemObservable temp = (ItemObservable) obs;
+		ItemObservable temp = (ItemObservable) observable;
 		if (!temp.getInStock()) {
-			list.add(obs);
-		} else if (list.contains(obs)) {
-			list.remove(obs);
+			list.add(observable);
+		} else if (list.contains(observable)) {
+			list.remove(observable);
 		}
 	}
 

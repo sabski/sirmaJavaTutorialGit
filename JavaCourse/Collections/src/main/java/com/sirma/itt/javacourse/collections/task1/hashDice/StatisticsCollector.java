@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.sirma.itt.javacourse.IOUtils;
+import org.apache.log4j.Logger;
 
 /**
  * Class that collects the statistics off the dice rollers.
@@ -15,6 +15,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class StatisticsCollector {
 
+	private static Logger log = Logger.getLogger(StatisticsCollector.class);
 	private DiceRoller roller;
 	private Map<DiceCombintionPair, List<Integer>> diceMap;
 
@@ -59,7 +60,7 @@ public class StatisticsCollector {
 	/**
 	 * Collects the data about the dice.
 	 * 
-	 *@param numberOfRolls
+	 * @param numberOfRolls
 	 *            The number of rolls to roll the dice.
 	 */
 	public void collectData(int numberOfRolls) {
@@ -90,7 +91,7 @@ public class StatisticsCollector {
 	 * Prints in the console the gathered statistics.
 	 */
 	public void printStatistics() {
-		IOUtils.printConsoleMessage(prepareStringData());
+		log.info(prepareStringData());
 	}
 
 	/**

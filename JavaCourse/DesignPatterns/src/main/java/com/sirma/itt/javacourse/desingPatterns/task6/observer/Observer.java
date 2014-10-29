@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task6.observer;
 
 /**
+ * Interface that will be used for Observer classes to update the state of the observable item.
  * 
  * @author Simeon Iliev
  */

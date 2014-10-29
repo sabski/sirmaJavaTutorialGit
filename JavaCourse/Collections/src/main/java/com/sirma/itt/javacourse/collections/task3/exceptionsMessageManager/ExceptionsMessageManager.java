@@ -52,11 +52,10 @@ public class ExceptionsMessageManager {
 	 */
 	public static final String SEPARATOR = System.getProperty("line.separator");
 
-	private Map<String, String> exceptions;
+	private final Map<String, String> exceptions;
 
 	private String message = "";
 
-	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(ExceptionsMessageManager.class.getName());
 
 	/**

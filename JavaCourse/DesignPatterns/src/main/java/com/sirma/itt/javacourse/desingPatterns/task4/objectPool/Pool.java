@@ -29,9 +29,7 @@ public interface Pool<T> {
 	/**
 	 * Created a new object of <T>
 	 * 
-	 * @return the new instance.
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
+	 * @return the new instance, or null if there was an exception in creating the object.
 	 */
-	public T initObject() throws InstantiationException, IllegalAccessException;
+	public T initObject();
 }

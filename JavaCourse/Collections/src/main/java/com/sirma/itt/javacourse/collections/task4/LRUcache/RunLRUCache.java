@@ -20,9 +20,9 @@ public class RunLRUCache {
 		LRUTailCache<Integer, Integer> tailCache = new LRUTailCache<Integer, Integer>(100);
 
 		for (int i = 0; i < 100220; i++) {
-			Integer tmp = MathUtil.generateRandomNumberWithRange(1, 500);
-			IOUtils.printConsoleMessage("Random generated number " + tmp);
-			tailCache.addElement(tmp, tmp);
+			Integer randomNumber = MathUtil.generateRandomNumberWithRange(1, 500);
+			IOUtils.printConsoleMessage("Random generated number " + randomNumber);
+			tailCache.addElement(randomNumber, randomNumber);
 		}
 		IOUtils.printConsoleMessage(tailCache.getAllElements().toString());
 		IOUtils.printConsoleMessage(tailCache.getAllElements().size() + "");

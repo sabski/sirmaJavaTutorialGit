@@ -13,9 +13,9 @@ import com.sirma.itt.javacourse.IOUtils;
  * 
  * @author simeon
  */
-public class PrivateReflector {
+public class ClassInformer {
 
-	private final Logger log = Logger.getLogger(PrivateReflector.class.getName());
+	private final Logger log = Logger.getLogger(ClassInformer.class.getName());
 	private MyPrivateClass myPrivateVariable;
 
 	/**

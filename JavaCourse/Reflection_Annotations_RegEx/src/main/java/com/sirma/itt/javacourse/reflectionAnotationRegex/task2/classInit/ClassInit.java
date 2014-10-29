@@ -20,19 +20,19 @@ public class ClassInit {
 	 */
 	public Object getClassHierhahyAndInterfaces(String path) {
 		Object object = null;
-		Class<?> init = null;
+		Class<?> classToBeInitieted = null;
 
 		try {
-			init = Class.forName(path);
-			object = init.newInstance();
+			classToBeInitieted = Class.forName(path);
+			object = classToBeInitieted.newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
 		}
-		for (Class<?> c : init.getDeclaredClasses()) {
+		for (Class<?> c : classToBeInitieted.getDeclaredClasses()) {
 			IOUtils.printConsoleMessage(c.getName());
 		}
 
-		for (Class<?> c : init.getInterfaces()) {
+		for (Class<?> c : classToBeInitieted.getInterfaces()) {
 			IOUtils.printConsoleMessage(c.getName());
 		}
 

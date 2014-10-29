@@ -44,7 +44,8 @@ public class CommandBuilder {
 	 * 
 	 * @param command
 	 *            the String value of the command.
-	 * @return the command that was given with the String.
+	 * @return the command that was given with the String or null if no command has confirmed the
+	 *         command.
 	 */
 	public Command createCommand(String command) {
 		for (Command com : commands) {

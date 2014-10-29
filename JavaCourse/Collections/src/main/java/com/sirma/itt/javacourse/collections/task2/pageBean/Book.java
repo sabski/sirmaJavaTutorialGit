@@ -56,7 +56,7 @@ public class Book {
 	/**
 	 * Retries the next page if there is one otherwise returns null.
 	 * 
-	 * @return the next page
+	 * @return the next page or null if there is no next page.
 	 */
 	public List<?> next() {
 		if (!hasNext()) {
@@ -68,7 +68,7 @@ public class Book {
 	/**
 	 * Retries the previous page if there is one otherwise returns null.
 	 * 
-	 * @return the previous page.
+	 * @return the previous page or null if there is no previous page.
 	 */
 	public List<?> previous() {
 		if (!hasPrevious()) {
@@ -80,7 +80,7 @@ public class Book {
 	/**
 	 * Checks if there is a next page.
 	 * 
-	 * @return true if there is a next page
+	 * @return true if there is a next page, false otherwise.
 	 */
 	public boolean hasNext() {
 		return pages.size() > (index + 1);
@@ -89,7 +89,7 @@ public class Book {
 	/**
 	 * Checks if there is a previous page.
 	 * 
-	 * @return true if there is a previous page
+	 * @return true if there is a previous page, false otherwise.
 	 */
 	public boolean hasPrevious() {
 		return index >= 1;

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import com.sirma.itt.javacourse.IOUtils;
+import org.apache.log4j.Logger;
 
 /**
  * LRU implementation class.
@@ -19,9 +19,10 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class LRUTailCache<K, V> {
 
-	private Map<K, V> cache;
-	private Queue<K> queue;
-	private int maxElementts;
+	private final Logger log = Logger.getLogger(LRUTailCache.class);
+	private final Map<K, V> cache;
+	private final Queue<K> queue;
+	private final int maxElementts;
 
 	/**
 	 * Constructor for LRUTailCache class.
@@ -51,16 +52,16 @@ public class LRUTailCache<K, V> {
 	public boolean addElement(K key, V value) {
 		if (cache.containsKey(key)) {
 			hitElement(key);
-			IOUtils.printConsoleMessage("Hit");
+			log.info("Hit");
 			return false;
 		} else if (maxElementts > cache.size()) {
 			insertElement(key, value);
-			IOUtils.printConsoleMessage("Miss");
+			log.info("Miss");
 			return true;
 		} else {
 			removeElementByKey(queue.peek());
 			insertElement(key, value);
-			IOUtils.printConsoleMessage("Miss");
+			log.info("Miss");
 			return true;
 		}
 	}

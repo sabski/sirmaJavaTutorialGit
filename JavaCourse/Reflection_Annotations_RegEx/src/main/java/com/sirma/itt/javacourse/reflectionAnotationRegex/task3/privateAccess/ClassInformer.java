@@ -33,10 +33,10 @@ public class ClassInformer {
 		myPrivateVariable = object;
 		Class<?> classObject = myPrivateVariable.getClass();
 		try {
-			for (Field f : classObject.getDeclaredFields()) {
+			for (Field declearedField : classObject.getDeclaredFields()) {
 				try {
 					Field field = classObject.getDeclaredField(
-							f.getName().toString());
+							declearedField.getName().toString());
 					field.setAccessible(true);
 					Object obj = field.get(myPrivateVariable);
 					IOUtils.printConsoleMessage(obj.toString());
@@ -44,13 +44,13 @@ public class ClassInformer {
 					log.error(ex.getMessage(), ex);
 				}
 			}
-			for (Method m : classObject.getDeclaredMethods()) {
+			for (Method methodM : classObject.getDeclaredMethods()) {
 				try {
-					IOUtils.printConsoleMessage(m.getName());
-					int paramCount = m.getModifiers();
+					IOUtils.printConsoleMessage(methodM.getName());
+					int paramCount = methodM.getModifiers();
 					IOUtils.printConsoleMessage("Parameter count = " + paramCount);
-					Class<?>[] parameterTypes = m.getParameterTypes();
-					Method method = classObject.getDeclaredMethod(m.getName(),
+					Class<?>[] parameterTypes = methodM.getParameterTypes();
+					Method method = classObject.getDeclaredMethod(methodM.getName(),
 							parameterTypes);
 					method.setAccessible(true);
 					Object objectTwo = method.invoke(myPrivateVariable, params);

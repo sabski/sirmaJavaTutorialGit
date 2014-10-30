@@ -274,28 +274,18 @@ public class IOUtils {
 			printConsoleMessage("Invalid file name");
 			throw new FileNotFoundException();
 		}
-		BufferedReader reader = null;
-		try {
-
-			reader = new BufferedReader(new FileReader(file));
+		
+		try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
 			String line = null;
 			stringBuffer = new StringBuffer();
 			while ((line = reader.readLine()) != null) {
 				printConsoleMessage(line);
 				stringBuffer.append(line + "\n");
 			}
-
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
 		}
+
 		return stringBuffer.toString();
 	}
 

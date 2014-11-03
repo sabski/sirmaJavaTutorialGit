@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -18,13 +17,15 @@ import javax.swing.JTextField;
 import org.apache.log4j.Logger;
 
 /**
+ * 
+ * 
  * @author Simeon Iliev
  */
 public class DownloadAgentGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(DownloadAgentGui.class);
-
+	public static final String SAVE_LOCATION = System.getProperty("user.home") + "/Downloads";
 	private JTextField urlAddreddField;
 	private JTextField saveLocationTextField;
 
@@ -33,7 +34,7 @@ public class DownloadAgentGui extends JFrame {
 	private JFileChooser downloadDirChoser;
 	private JProgressBar progresBar;
 	private JLabel urlLabel;
-	private final DownloadAgent agent = new DownloadAgent();
+	private DownloadUITask task;
 
 	public DownloadAgentGui() {
 		setUp();
@@ -75,7 +76,7 @@ public class DownloadAgentGui extends JFrame {
 	private void initFields() {
 		urlAddreddField = new JTextField();
 		urlAddreddField.setPreferredSize(new Dimension(150, 20));
-		saveLocationTextField = new JTextField(agent.SAVE_LOCATION);
+		saveLocationTextField = new JTextField(SAVE_LOCATION);
 		saveLocationTextField.setEditable(false);
 
 		progresBar = new JProgressBar();
@@ -87,11 +88,7 @@ public class DownloadAgentGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				log.info(e.getActionCommand());
 				log.info(urlAddreddField.getText());
-				try {
-					agent.downloadFile(urlAddreddField.getText(), saveLocationTextField.getText());
-				} catch (IOException e1) {
-					log.error(e1.getMessage(), e1);
-				}
+				taskCreator();
 			}
 		});
 		urlLabel = new JLabel("URL");
@@ -103,10 +100,9 @@ public class DownloadAgentGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				log.info(e.getActionCommand());
 				JFrame frame = new JFrame("Hello");
-				downloadDirChoser = new JFileChooser(agent.SAVE_LOCATION);
+				downloadDirChoser = new JFileChooser(SAVE_LOCATION);
 				downloadDirChoser.setVisible(true);
 				downloadDirChoser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				// downloadDirChoser.showOpenDialog(DownloadAgentGui.this);
 				int returnVal = downloadDirChoser.showOpenDialog(frame);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					String selected = downloadDirChoser.getSelectedFile().getAbsolutePath();
@@ -115,8 +111,16 @@ public class DownloadAgentGui extends JFrame {
 				} else {
 					log.info("Canceled");
 				}
-
 			}
 		});
+	}
+
+	/**
+	 * 
+	 */
+	private void taskCreator() {
+		task = new DownloadUITask();
+		task.setUp(urlAddreddField.getText(), saveLocationTextField.getText(), progresBar);
+		task.execute();
 	}
 }

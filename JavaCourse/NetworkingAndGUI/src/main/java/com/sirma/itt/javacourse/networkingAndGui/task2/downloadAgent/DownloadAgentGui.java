@@ -17,15 +17,17 @@ import javax.swing.JTextField;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * This class represents the front interface of a download GUI application.
  * 
  * @author Simeon Iliev
  */
 public class DownloadAgentGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
 	private static Logger log = Logger.getLogger(DownloadAgentGui.class);
 	public static final String SAVE_LOCATION = System.getProperty("user.home") + "/Downloads";
+
 	private JTextField urlAddreddField;
 	private JTextField saveLocationTextField;
 
@@ -116,11 +118,11 @@ public class DownloadAgentGui extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Creates task that are to be executed.
 	 */
 	private void taskCreator() {
-		task = new DownloadUITask();
-		task.setUp(urlAddreddField.getText(), saveLocationTextField.getText(), progresBar);
+		task = new DownloadUITask(urlAddreddField.getText(), saveLocationTextField.getText(),
+				progresBar);
 		task.execute();
 	}
 }

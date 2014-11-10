@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -15,27 +16,25 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * This class extends {@link SwingWorker} to allow the download of files in a background thread.
  * 
  * @author Simeon Iliev
  */
 public class DownloadUITask extends SwingWorker<Void, Void> {
 
 	private static Logger log = Logger.getLogger(DownloadUITask.class);
-	private String url;
-	private String saveLocation;
-	private JProgressBar progresBar;
+	private final String url;
+	private final String saveLocation;
+	private final JProgressBar progressBar;
 	private long downloaded = 0;
 	private long fileSize = 0;
 	private URL downloadURL;
 	private URLConnection connection;
 
-
 	@Override
 	protected Void doInBackground() throws Exception {
-		progresBar.setValue(0);
-		downloadURL = new URL(url);
-		connection = downloadURL.openConnection();
+		progressBar.setValue(0);
+		connection = openConnection();
 		log.info("The length of the content : "
 				+ humanReadableByteCount(connection.getContentLengthLong()));
 		fileSize = connection.getContentLengthLong();
@@ -53,7 +52,7 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 			while ((count = in.read(data, 0, 1024)) != -1) {
 				fileWriter.write(data, 0, count);
 				downloaded += count;
-				progresBar.setValue(getPogress());
+				progressBar.setValue(getPogress());
 			}
 			log.info("Writing finished");
 		} catch (IOException e) {
@@ -62,16 +61,25 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 		return null;
 	}
 
+	protected URLConnection openConnection() throws MalformedURLException, IOException {
+		downloadURL = new URL(url);
+		return downloadURL.openConnection();
+	}
+
 	/**
+	 * Constructor.
 	 * 
 	 * @param url
+	 *            the URL of the resource.
 	 * @param saveLocation
-	 * @param progresBar
+	 *            the location in which to download the specified file.
+	 * @param progressBar
+	 *            the progress bar this task is associated with.
 	 */
-	public void setUp(String url, String saveLocation, JProgressBar progresBar) {
+	public DownloadUITask(String url, String saveLocation, JProgressBar progressBar) {
 		this.url = url;
 		this.saveLocation = saveLocation;
-		this.progresBar = progresBar;
+		this.progressBar = progressBar;
 	}
 
 	/**
@@ -93,7 +101,7 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 	public static String humanReadableByteCount(long bytes) {
 		int unit = 1024;
 		int exp = (int) (Math.log(bytes) / Math.log(unit));
-		String pre = ("KMGTPE").charAt(exp - 1) + ("i");
-		return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+		String prefix = ("KMGTPE").charAt(exp - 1) + ("i");
+		return String.format("%.1f %sB", bytes / Math.pow(unit, exp), prefix);
 	}
 }

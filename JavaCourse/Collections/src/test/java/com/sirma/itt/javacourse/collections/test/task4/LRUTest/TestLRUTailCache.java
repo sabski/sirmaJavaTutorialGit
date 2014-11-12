@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.collections.task4.LRUcache.LRUTailCache;
 
 /**

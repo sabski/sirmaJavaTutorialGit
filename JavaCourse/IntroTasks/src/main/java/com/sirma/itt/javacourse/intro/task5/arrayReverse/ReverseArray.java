@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.intro.task5.arrayReverse;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for reversing arrays of Integers.
@@ -21,7 +21,7 @@ public class ReverseArray {
 	 */
 	public List<Integer> reverseArray(List<Integer> arrayOfInts) {
 
-		if (IOUtils.isNull(arrayOfInts)) {
+		if (InputUtils.isNull(arrayOfInts)) {
 			List<Integer> res = new ArrayList<Integer>();
 			res.add(-1);
 			return res;

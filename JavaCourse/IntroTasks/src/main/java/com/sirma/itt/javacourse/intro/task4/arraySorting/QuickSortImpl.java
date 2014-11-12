@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.intro.task4.arraySorting;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class that implements the Quick Sort algorithm for arrays.
@@ -23,7 +23,7 @@ public class QuickSortImpl {
 		List<Integer> left = new ArrayList<Integer>();
 		List<Integer> right = new ArrayList<Integer>();
 		List<Integer> sortedArray = new ArrayList<Integer>();
-		if (IOUtils.isNull(arrayToBeSorted)) {
+		if (InputUtils.isNull(arrayToBeSorted)) {
 			sortedArray.add(-1);
 			return sortedArray;
 		}

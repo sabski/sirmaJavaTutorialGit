@@ -9,7 +9,7 @@ public class Car implements CarInterface {
 
 	private String model;
 	private String brand;
-	private int hoursePower;
+	private int horsePower;
 	private int fuellUssage;
 
 	/**
@@ -51,22 +51,22 @@ public class Car implements CarInterface {
 	}
 
 	/**
-	 * Getter method for hoursePower.
+	 * Getter method for horsePower.
 	 * 
-	 * @return the hoursePower
+	 * @return the horsePower
 	 */
-	public int getHoursePower() {
-		return hoursePower;
+	public int getHorsePower() {
+		return horsePower;
 	}
 
 	/**
-	 * Setter method for hoursePower.
+	 * Setter method for horsePower.
 	 * 
-	 * @param hoursePower
-	 *            the hoursePower to set
+	 * @param horsePower
+	 *            the horsePower to set
 	 */
-	public void setHoursePower(int hoursePower) {
-		this.hoursePower = hoursePower;
+	public void setHorsePower(int hoursePower) {
+		this.horsePower = hoursePower;
 	}
 
 	/**
@@ -89,10 +89,10 @@ public class Car implements CarInterface {
 	}
 
 	@Override
-	public void setUpCar(String model, String brand, int hoursePower, int fuellUssage) {
+	public void setUpCar(String model, String brand, int horsePower, int fuellUssage) {
 		setBrand(brand);
 		setFuellUsaage(fuellUssage);
-		setHoursePower(hoursePower);
+		setHorsePower(horsePower);
 		setModel(model);
 	}
 

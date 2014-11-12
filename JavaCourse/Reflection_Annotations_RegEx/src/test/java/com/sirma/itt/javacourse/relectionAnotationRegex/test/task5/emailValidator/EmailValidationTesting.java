@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.StringUtil;
 
 /**
  * Test class for email validation regex.
@@ -19,7 +19,7 @@ public class EmailValidationTesting {
 	 */
 	@Test
 	public void testEmailValidathion() {
-		assertTrue(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS,
+		assertTrue(StringUtil.validateStringWithRegex(StringUtil.REGEX_VALIDATOR_EMAIL_ADDRESS,
 				"simeon@mail.com"));
 	}
 
@@ -28,7 +28,7 @@ public class EmailValidationTesting {
 	 */
 	@Test
 	public void testEmailValidathionWithFalseMail() {
-		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_EMAIL_ADDRESS,
+		assertFalse(StringUtil.validateStringWithRegex(StringUtil.REGEX_VALIDATOR_EMAIL_ADDRESS,
 				"asdasdasda.lda.cko"));
 	}
 

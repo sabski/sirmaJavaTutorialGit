@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.objects.task4.homogeneousTree;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running homogeneous tree example.
@@ -35,7 +35,7 @@ public class TreeRunner {
 		tree.addElement(38);
 		tree.addElement(9);
 
-		IOUtils.printConsoleMessage(tree.testPrintTreeStructure());
+		InputUtils.printConsoleMessage(tree.testPrintTreeStructure());
 	}
 
 }

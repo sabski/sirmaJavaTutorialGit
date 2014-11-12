@@ -14,12 +14,12 @@ public interface CarInterface {
 	 *            the model of the car.
 	 * @param brand
 	 *            the brand of the car.
-	 * @param hoursePower
-	 *            the hourse power of the car.
+	 * @param horsePower
+	 *            the horse power of the car.
 	 * @param fuellUssage
-	 *            the fuel ussage of the car
+	 *            the fuel usage of the car
 	 */
-	public void setUpCar(String model, String brand, int hoursePower, int fuellUssage);
+	public void setUpCar(String model, String brand, int horsePower, int fuellUssage);
 
 	/**
 	 * Retuns the car brand and model.

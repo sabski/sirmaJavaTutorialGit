@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
 /**
@@ -47,13 +47,13 @@ public class TestConsoleWriter {
 	@Test
 	public void testWriteFile() {
 		Scanner scanner = new Scanner(line);
-		IOUtils.setScanner(scanner);
+		InputUtils.setScanner(scanner);
 		File file = new File(fileName);
 		file.delete();
 		writer.writeFile(fileName);
 		try {
 			assertEquals(fileData.replaceAll("\n", ""),
-					IOUtils.readFile(fileName).replaceAll("\n", ""));
+					InputUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
 			log.error("File not found", e);
 		}
@@ -67,14 +67,14 @@ public class TestConsoleWriter {
 	@Test(expected = NullPointerException.class)
 	public void testWriteFileWithNullValues() {
 		Scanner scanner = new Scanner(line);
-		IOUtils.setScanner(scanner);
+		InputUtils.setScanner(scanner);
 		String tmp = null;
 		File file = new File(tmp);
 		file.delete();
 		writer.writeFile(fileName);
 		try {
 			assertEquals(fileData.replaceAll("\n", ""),
-					IOUtils.readFile(fileName).replaceAll("\n", ""));
+					InputUtils.readFile(fileName).replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
 			log.error("File not found", e);
 		}

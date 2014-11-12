@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.threads.task3.sleepingCounterThreads;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * @author Simeon Iliev
@@ -47,6 +47,6 @@ public class StoperThreadWithWait extends Thread {
 	}
 
 	private static synchronized void printCount(int currentCount) {
-		IOUtils.printConsoleMessage("Current count is : " + currentCount);
+		InputUtils.printConsoleMessage("Current count is : " + currentCount);
 	}
 }

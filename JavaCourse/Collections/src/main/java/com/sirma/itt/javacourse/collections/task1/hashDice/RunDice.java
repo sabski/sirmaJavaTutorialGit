@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.collections.task1.hashDice;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for rolling of the dice 
@@ -17,10 +17,10 @@ public class RunDice {
 	 */
 	public static void main(String[] args) {
 
-		IOUtils.printConsoleMessage("Input dice sides.");
-		StatisticsCollector collector = new StatisticsCollector(IOUtils.readInt());
-		IOUtils.printConsoleMessage("Input number of rows");
-		collector.collectData(IOUtils.readInt());
+		InputUtils.printConsoleMessage("Input dice sides.");
+		StatisticsCollector collector = new StatisticsCollector(InputUtils.readInt());
+		InputUtils.printConsoleMessage("Input number of rows");
+		collector.collectData(InputUtils.readInt());
 		collector.printStatistics();
 	}
 

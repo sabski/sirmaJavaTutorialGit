@@ -11,7 +11,8 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
+import com.sirma.itt.javacourse.StringUtil;
 
 /**
  * Unit test for IOUtil.class
@@ -20,7 +21,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class IOUtilTest {
 
-	private String testString = "ThisIsATest";
+	private final String testString = "ThisIsATest";
 
 	private List<Integer> testList;
 
@@ -35,63 +36,65 @@ public class IOUtilTest {
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readLine()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#readLine()}.
 	 */
 	@Test
 	public void testReadLine() {
 		String input = "10\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		assertEquals("10", IOUtils.readLine());
+		InputUtils.setScanner(scanner);
+		assertEquals("10", InputUtils.readLine());
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readValidatedLine(java.lang.String)}.
+	 * Test method for
+	 * {@link com.sirma.itt.javacourse.InputUtils#readValidatedLine(java.lang.String)}.
 	 */
 	@Test
 	public void testReadValidatedLine() {
 		String input = "abcd" + "\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		String result = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
+		InputUtils.setScanner(scanner);
+		String result = InputUtils.readValidatedLine(StringUtil.REGEX_VALIDATOR_LETHERS_ONLY);
 		assertEquals("abcd", result);
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readInt()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#readInt()}.
 	 */
 	@Test
 	public void testReadInt() {
 		String input = "5\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		int result = IOUtils.readInt();
+		InputUtils.setScanner(scanner);
+		int result = InputUtils.readInt();
 		assertEquals(5, result);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.IOUtils#validateStringWithRegex(java.lang.String, java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.InputUtils#validateStringWithRegex(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public void testValidateStringWithRegex() {
-		assertTrue(IOUtils
-				.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY, testString));
+		assertTrue(StringUtil.validateStringWithRegex(StringUtil.REGEX_VALIDATOR_LETHERS_ONLY,
+				testString));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.IOUtils#validateStringWithRegex(java.lang.String, java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.InputUtils#validateStringWithRegex(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public void testValidateStringWithRegexFalseValue() {
-		assertFalse(IOUtils.validateStringWithRegex(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY, "5a3a1"));
+		assertFalse(StringUtil.validateStringWithRegex(StringUtil.REGEX_VALIDATOR_LETHERS_ONLY,
+				"5a3a1"));
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#inputListOfIntegers()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#inputListOfIntegers()}.
 	 */
 	@Test
 	public void testInputArrayListOfIntegers() {
@@ -101,72 +104,72 @@ public class IOUtilTest {
 			input += ((i + 1) + "\n");
 		}
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		assertEquals(testList, IOUtils.inputListOfIntegers());
+		InputUtils.setScanner(scanner);
+		assertEquals(testList, InputUtils.inputListOfIntegers());
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#isNull(java.lang.Object)}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#isNull(java.lang.Object)}.
 	 */
 	@Test
 	public void testIsNull() {
-		assertTrue(IOUtils.isNull(null));
+		assertTrue(InputUtils.isNull(null));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.IOUtils#printConsoleMessage(java.lang.String)}.
+	 * {@link com.sirma.itt.javacourse.InputUtils#printConsoleMessage(java.lang.String)}.
 	 */
 	@Test
 	public void testPrintConsoleMessage() {
-		IOUtils.printConsoleMessage(testString);
+		InputUtils.printConsoleMessage(testString);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.IOUtils#editStringWithRegex(java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.InputUtils#editStringWithRegex(java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public void testEditStringWithRegex() {
-		String result = IOUtils.editStringWithRegex(testString, testString, "25");
+		String result = StringUtil.editStringWithRegex(testString, testString, "25");
 		assertEquals("25", result);
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readChar()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#readChar()}.
 	 */
 	@Test
 	public void testReadChar() {
 		String input = "a\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		Character actial = IOUtils.readChar();
+		InputUtils.setScanner(scanner);
+		Character actial = InputUtils.readChar();
 		Character expected = "a".charAt(0);
 		assertTrue(expected.equals(actial));
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readFlaot()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#readFlaot()}.
 	 */
 	@Test
 	public void testReadFlaot() {
 		String input = "1.5\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		float number = IOUtils.readFlaot();
+		InputUtils.setScanner(scanner);
+		float number = InputUtils.readFlaot();
 		assertEquals(1.5, number, 1.0);
 	}
 
 	/**
-	 * Test method for {@link com.sirma.itt.javacourse.IOUtils#readString()}.
+	 * Test method for {@link com.sirma.itt.javacourse.InputUtils#readString()}.
 	 */
 	@Test
 	public void testReadString() {
 		String input = "hello\n";
 		scanner = new Scanner(input);
-		IOUtils.setScanner(scanner);
-		assertEquals("hello", IOUtils.readString());
+		InputUtils.setScanner(scanner);
+		assertEquals("hello", InputUtils.readString());
 
 	}
 

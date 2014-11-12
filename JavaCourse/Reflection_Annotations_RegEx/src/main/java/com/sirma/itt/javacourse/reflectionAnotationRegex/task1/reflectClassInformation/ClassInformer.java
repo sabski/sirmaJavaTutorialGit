@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class that reflects a other class methods and fields.
@@ -26,7 +26,7 @@ public class ClassInformer {
 	public String getObjectFieldsAndMethods(Object object) {
 		
 		Class<?> reflecthionClass = object.getClass();
-		IOUtils.printConsoleMessage(reflecthionClass.getName());
+		InputUtils.printConsoleMessage(reflecthionClass.getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Field filedF : reflecthionClass.getDeclaredFields()) {
 			Object tempObject = "empty";

@@ -40,7 +40,7 @@ public class CommandBuilder {
 	}
 
 	/**
-	 * Creates a specifick command given a String
+	 * Creates a specific command given a String
 	 * 
 	 * @param command
 	 *            the String value of the command.
@@ -48,9 +48,9 @@ public class CommandBuilder {
 	 *         command.
 	 */
 	public Command createCommand(String command) {
-		for (Command com : commands) {
-			if (com.isMyCommand(command)) {
-				return com;
+		for (Command commandFromList : commands) {
+			if (commandFromList.isMyCommand(command)) {
+				return commandFromList;
 			}
 		}
 		return null;

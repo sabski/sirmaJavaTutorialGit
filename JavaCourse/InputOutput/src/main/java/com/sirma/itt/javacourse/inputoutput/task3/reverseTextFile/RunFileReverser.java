@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
 /**
@@ -26,11 +26,11 @@ public class RunFileReverser {
 		FileReverser reverser = new FileReverser();
 		WriteFileFromConsole writer = new WriteFileFromConsole();
 		try {
-			IOUtils.printConsoleMessage("Input the name of the file you want to create and then reverse :");
-			String fileName = IOUtils.readLine();
+			InputUtils.printConsoleMessage("Input the name of the file you want to create and then reverse :");
+			String fileName = InputUtils.readLine();
 			writer.writeFile(fileName);
 			reverser.reverseFileContent(WriteFileFromConsole.DIR_LOCALE + fileName);
-			IOUtils.readFile(WriteFileFromConsole.DIR_LOCALE + fileName);
+			InputUtils.readFile(WriteFileFromConsole.DIR_LOCALE + fileName);
 		} catch (FileNotFoundException e) {
 			log.error("File coudn't be found", e);
 		}

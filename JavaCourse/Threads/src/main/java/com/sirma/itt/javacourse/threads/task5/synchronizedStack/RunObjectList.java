@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.threads.task5.synchronizedStack;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Run class for ObjectListSynchonized task.
@@ -22,22 +22,22 @@ public class RunObjectList {
 	public static void main(String[] args) {
 
 		ObjectListSynchonized list;
-		IOUtils.printConsoleMessage("Input List size : ");
-		list = new ObjectListSynchonized(IOUtils.readInt());
+		InputUtils.printConsoleMessage("Input List size : ");
+		list = new ObjectListSynchonized(InputUtils.readInt());
 		AddingThread addThread;
 		RemovingThread removingThread;
 		while (true) {
-			IOUtils.printConsoleMessage("Menu operations :\n 1: Insert Item \n 2: Delete Item \n 3: Print all elements \n -1: Exit program ");
-			int code = IOUtils.readInt();
+			InputUtils.printConsoleMessage("Menu operations :\n 1: Insert Item \n 2: Delete Item \n 3: Print all elements \n -1: Exit program ");
+			int code = InputUtils.readInt();
 			switch (code) {
 				case 1:
-					IOUtils.printConsoleMessage("Input value");
+					InputUtils.printConsoleMessage("Input value");
 					addThread = new AddingThread(list);
-					addThread.setUpThread(IOUtils.readLine());
+					addThread.setUpThread(InputUtils.readLine());
 					addThread.start();
 					break;
 				case 2:
-					IOUtils.printConsoleMessage("Removing item");
+					InputUtils.printConsoleMessage("Removing item");
 					removingThread = new RemovingThread(list);
 					removingThread.start();
 					break;
@@ -48,7 +48,7 @@ public class RunObjectList {
 					System.exit(0);
 					break;
 				default:
-					IOUtils.printConsoleMessage("Wrong menu code ");
+					InputUtils.printConsoleMessage("Wrong menu code ");
 					break;
 			}
 		}

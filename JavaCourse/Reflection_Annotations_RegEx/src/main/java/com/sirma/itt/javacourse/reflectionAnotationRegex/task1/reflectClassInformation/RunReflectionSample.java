@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task1.reflectClassInfo
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running reflection example.
@@ -28,14 +28,14 @@ public class RunReflectionSample {
 
 		ReflectionClass reflect = new ReflectionClass();
 
-		IOUtils.printConsoleMessage("Set String value for the reflection object");
-		reflect.setStringValue(IOUtils.readLine());
-		IOUtils.printConsoleMessage("Set integer value for the reflection object");
-		reflect.setIntValue(IOUtils.readInt());
-		IOUtils.printConsoleMessage("Set float value for the reflection object");
-		reflect.setFloatValue(IOUtils.readFlaot());
-		IOUtils.printConsoleMessage("Set boolean value for the reflection object 1 - false 0 - true");
-		int value = Integer.parseInt(IOUtils.readValidatedLine("[0-1]{1}"));
+		InputUtils.printConsoleMessage("Set String value for the reflection object");
+		reflect.setStringValue(InputUtils.readLine());
+		InputUtils.printConsoleMessage("Set integer value for the reflection object");
+		reflect.setIntValue(InputUtils.readInt());
+		InputUtils.printConsoleMessage("Set float value for the reflection object");
+		reflect.setFloatValue(InputUtils.readFlaot());
+		InputUtils.printConsoleMessage("Set boolean value for the reflection object 1 - false 0 - true");
+		int value = Integer.parseInt(InputUtils.readValidatedLine("[0-1]{1}"));
 		if (value == 0) {
 			reflect.setBooleanValue(true);
 		} else {

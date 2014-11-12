@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Array utility class which contains some basic utility methods.
@@ -22,7 +22,7 @@ public class ArrayUtil {
 			build.append(i + " ");
 		}
 		build.append("]");
-		IOUtils.printConsoleMessage(build.toString());
+		InputUtils.printConsoleMessage(build.toString());
 	}
 
 	/**

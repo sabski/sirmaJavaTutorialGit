@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task8.hangman;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for playing the hang man game.
@@ -23,32 +23,32 @@ public class Hangman {
 	 */
 	public void startGame() {
 
-		IOUtils.printConsoleMessage(guesTheWord);
+		InputUtils.printConsoleMessage(guesTheWord);
 
 		while (counter != 5) {
-			IOUtils.printConsoleMessage(inputword);
-			String line = IOUtils.readLine();
+			InputUtils.printConsoleMessage(inputword);
+			String line = InputUtils.readLine();
 			if (line.length() > 1) {
 				if (checkWord(line, word)) {
-					IOUtils.printConsoleMessage(winGame);
+					InputUtils.printConsoleMessage(winGame);
 					break;
 				} else {
 					counter++;
-					IOUtils.printConsoleMessage("You have " + (5 - counter) + " tries left");
+					InputUtils.printConsoleMessage("You have " + (5 - counter) + " tries left");
 				}
 			} else {
 				if (!chekLether(line, word)) {
 					counter++;
-					IOUtils.printConsoleMessage("You have " + (5 - counter) + " tries left");
+					InputUtils.printConsoleMessage("You have " + (5 - counter) + " tries left");
 				}
 				if (checkWord(view, word)) {
-					IOUtils.printConsoleMessage(winGame);
+					InputUtils.printConsoleMessage(winGame);
 					break;
 				}
 			}
 		}
 		if (counter == 5) {
-			IOUtils.printConsoleMessage(youLose);
+			InputUtils.printConsoleMessage(youLose);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class Hangman {
 			}
 		}
 		view = new String(temp);
-		IOUtils.printConsoleMessage(view);
+		InputUtils.printConsoleMessage(view);
 		return word.contains(leather);
 	}
 

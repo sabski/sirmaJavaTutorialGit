@@ -47,7 +47,7 @@ public class LRUTailCache<K, V> {
 	 *            the key for the object that is to placed in the map.
 	 * @param value
 	 *            the value of the object.
-	 * @return true if the object was added to the cache.
+	 * @return true if the object was added to the cache, false otherwise.
 	 */
 	public boolean addElement(K key, V value) {
 		if (cache.containsKey(key)) {
@@ -86,7 +86,7 @@ public class LRUTailCache<K, V> {
 	 * @param key
 	 *            the key of the object.
 	 * @return the object which is associated with the key, if there is no object with the specific
-	 *         key @return null.
+	 *         key or @return null.
 	 */
 	public V getElement(K key) {
 		if (cache.containsKey(key)) {

@@ -2,7 +2,8 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
+import com.sirma.itt.javacourse.StringUtil;
 
 /**
  * Class that runs private method reflector.
@@ -21,15 +22,15 @@ public class RunReflectPrivateMethods {
 	 */
 	public static void main(String[] args) {
 		ClassInformer reflector = new ClassInformer();
-		IOUtils.printConsoleMessage("Input String value : ");
-		String stringValue = IOUtils.readLine();
-		IOUtils.printConsoleMessage("Input number value : ");
-		int intValue = IOUtils.readInt();
-		IOUtils.printConsoleMessage("Input float value : ");
-		float floatValue = IOUtils.readFlaot();
+		InputUtils.printConsoleMessage("Input String value : ");
+		String stringValue = InputUtils.readLine();
+		InputUtils.printConsoleMessage("Input number value : ");
+		int intValue = InputUtils.readInt();
+		InputUtils.printConsoleMessage("Input float value : ");
+		float floatValue = InputUtils.readFlaot();
 		MyPrivateClass privateObject = new MyPrivateClass(intValue, stringValue, floatValue);
-		IOUtils.printConsoleMessage("Input parameter value ");
-		String s = IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY);
+		InputUtils.printConsoleMessage("Input parameter value ");
+		String s = InputUtils.readValidatedLine(StringUtil.REGEX_VALIDATOR_LETHERS_ONLY);
 		try {
 			reflector.showPrivateFields(privateObject, s);
 		} catch (IllegalAccessException e) {

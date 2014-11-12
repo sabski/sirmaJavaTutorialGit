@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.exceptions.task3.objectList;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Run class for ObjectList task.
@@ -22,23 +22,23 @@ public class RunObjectList {
 	public static void main(String[] args) {
 
 		ObjectList list;
-		IOUtils.printConsoleMessage("Input List size : ");
-		list = new ObjectList(IOUtils.readInt());
+		InputUtils.printConsoleMessage("Input List size : ");
+		list = new ObjectList(InputUtils.readInt());
 		while (true) {
-			IOUtils.printConsoleMessage("Menu operations :\n 1: Insert Item \n 2: Delete Item \n 3: Print all elements \n -1: Exit program ");
-			int code = IOUtils.readInt();
+			InputUtils.printConsoleMessage("Menu operations :\n 1: Insert Item \n 2: Delete Item \n 3: Print all elements \n -1: Exit program ");
+			int code = InputUtils.readInt();
 			switch (code) {
 				case 1:
 					try {
-						IOUtils.printConsoleMessage("Input value");
-						list.addElement(IOUtils.readLine());
+						InputUtils.printConsoleMessage("Input value");
+						list.addElement(InputUtils.readLine());
 					} catch (OverFlodException e) {
 						log.error("Too much elements in the array.", e);
 					}
 					break;
 				case 2:
 					try {
-						IOUtils.printConsoleMessage("Removing item");
+						InputUtils.printConsoleMessage("Removing item");
 						list.removeElement();
 					} catch (NegativeIndexException e) {
 						log.error("Negative Index.", e);
@@ -51,7 +51,7 @@ public class RunObjectList {
 					System.exit(0);
 					break;
 				default:
-					IOUtils.printConsoleMessage("Wrong menu code ");
+					InputUtils.printConsoleMessage("Wrong menu code ");
 					break;
 			}
 		}

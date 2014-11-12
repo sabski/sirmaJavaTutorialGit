@@ -23,8 +23,10 @@ public interface Pool<T> {
 	 * 
 	 * @param object
 	 *            The object to be released from the pool.
+	 * @throws NoMoreResourcesException
+	 *             if there are no more recourses to be released.
 	 */
-	public void release(T object);
+	public void release(T object) throws NoMoreResourcesException;
 
 	/**
 	 * Created a new object of <T>

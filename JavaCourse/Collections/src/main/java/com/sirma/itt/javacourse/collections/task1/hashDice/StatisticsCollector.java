@@ -60,7 +60,7 @@ public class StatisticsCollector {
 	/**
 	 * Collects the data about the dice.
 	 * 
-	 * @param numberOfRolls
+	 *@param numberOfRolls
 	 *            The number of rolls to roll the dice.
 	 */
 	public void collectData(int numberOfRolls) {
@@ -70,8 +70,8 @@ public class StatisticsCollector {
 			if (!diceMap.containsKey(pair)) {
 				diceMap.put(pair, new ArrayList<Integer>());
 			}
-			List<Integer> map = diceMap.get(pair);
-			map.add(i);
+			List<Integer> listOfThrows = diceMap.get(pair);
+			listOfThrows.add(i);
 		}
 	}
 

@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.desingPatterns.task1.abstarctFactory;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Factory product implementation {@link MyProduct}
@@ -12,7 +12,7 @@ public class MyProduct {
 	private String comment;
 
 	public String saySomething(String something) {
-		IOUtils.printConsoleMessage(something);
+		InputUtils.printConsoleMessage(something);
 		return something;
 	}
 

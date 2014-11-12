@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.intro.task2.arrayUtil;
 
 import java.util.List;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running the ArrayUtil class.
@@ -21,17 +21,17 @@ public class RunArrayUtil {
 		int[] arr;
 		ArrayUtil util = new ArrayUtil();
 
-		List<Integer> list = IOUtils.inputListOfIntegers();
+		List<Integer> list = InputUtils.inputListOfIntegers();
 
 		arr = new int[list.size()];
 		for (int i = 0; i < list.size(); i++) {
 			arr[i] = list.get(i);
 		}
 
-		IOUtils.printConsoleMessage("The smallest ellement in the array is "
+		InputUtils.printConsoleMessage("The smallest ellement in the array is "
 				+ util.getMinElement(arr));
-		IOUtils.printConsoleMessage("The sum of the array is " + util.sum(arr));
-		IOUtils.printConsoleMessage("The array will be printed in the line bellow. ");
+		InputUtils.printConsoleMessage("The sum of the array is " + util.sum(arr));
+		InputUtils.printConsoleMessage("The array will be printed in the line bellow. ");
 		util.print(arr);
 	}
 

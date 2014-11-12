@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Runner class for sorting Annotation task.
@@ -35,11 +35,11 @@ public class RunSortingAnnotaions {
 		list.add(new ParrentClass(11));
 		list.add(new ParrentClass(12));
 		list.add(new ParrentClass(13));
-		IOUtils.printConsoleMessage("Before Sorting");
-		IOUtils.printConsoleMessage(list.toString());
-		IOUtils.printConsoleMessage("After Sorting");
+		InputUtils.printConsoleMessage("Before Sorting");
+		InputUtils.printConsoleMessage(list.toString());
+		InputUtils.printConsoleMessage("After Sorting");
 		Collections.sort(list, new ComparatorAnnotaion());
-		IOUtils.printConsoleMessage(list.toString());
+		InputUtils.printConsoleMessage(list.toString());
 	}
 
 }

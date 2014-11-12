@@ -57,17 +57,17 @@ public class ItemObservable implements Observable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void attachObserver(Observer obs) {
-		observerList.add(obs);
+	public void attachObserver(Observer observer) {
+		observerList.add(observer);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void dettachObserver(Observer obs) {
-		if (observerList.contains(obs)) {
-			observerList.remove(obs);
+	public void dettachObserver(Observer observer) {
+		if (observerList.contains(observer)) {
+			observerList.remove(observer);
 		}
 
 	}

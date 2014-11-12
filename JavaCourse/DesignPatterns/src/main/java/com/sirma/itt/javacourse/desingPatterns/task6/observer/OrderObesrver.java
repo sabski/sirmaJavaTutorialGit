@@ -12,25 +12,19 @@ public class OrderObesrver implements Observer {
 
 	private final List<Observable> list;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void update(Observable observable) {
 		if (!(observable instanceof ItemObservable)) {
 			return;
 		}
-		ItemObservable temp = (ItemObservable) observable;
-		if (!temp.getInStock()) {
+		ItemObservable observableItem = (ItemObservable) observable;
+		if (!observableItem.getInStock()) {
 			list.add(observable);
 		} else if (list.contains(observable)) {
 			list.remove(observable);
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return list.toString();

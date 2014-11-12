@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.intro.task1.mathUtil;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.MathUtil;
 
 /**
@@ -19,18 +19,18 @@ public class MathRun {
 	public static void main(String[] args) {
 		int count = 0;
 		int[] numbers = new int[2];
-		IOUtils.printConsoleMessage("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator \n"
+		InputUtils.printConsoleMessage("Input 2 numbers for calculating the Greatest Common Divisor and Least Common Denominator \n"
 				+ "input one number on a line.");
 		while (count != 2) {
-			IOUtils.printConsoleMessage("Please input number value for the " + (count + 1)
+			InputUtils.printConsoleMessage("Please input number value for the " + (count + 1)
 					+ " number");
-			numbers[count] = IOUtils.readInt();
+			numbers[count] = InputUtils.readInt();
 			count++;
 		}
 
-		IOUtils.printConsoleMessage("The Greatest Common Divisor of the numbers is "
+		InputUtils.printConsoleMessage("The Greatest Common Divisor of the numbers is "
 				+ MathUtil.getGreatestCommonDivisor(numbers[0], numbers[1]));
-		IOUtils.printConsoleMessage("The Least Common Denominator of the numbers is "
+		InputUtils.printConsoleMessage("The Least Common Denominator of the numbers is "
 				+ MathUtil.getLeastCommonDenominator(numbers[0], numbers[1]));
 
 	}

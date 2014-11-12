@@ -10,9 +10,9 @@ public interface Observer {
 	/**
 	 * Updates the current state of the Observable object.
 	 * 
-	 * @param obs
+	 * @param observable
 	 *            the object that has changed state.
 	 */
-	public void update(Observable obs);
+	public void update(Observable observable);
 
 }

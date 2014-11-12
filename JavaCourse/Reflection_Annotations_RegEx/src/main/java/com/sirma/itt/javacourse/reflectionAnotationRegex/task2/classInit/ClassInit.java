@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Inits a class by its name and shows his parents.
@@ -29,11 +29,11 @@ public class ClassInit {
 			log.error(e.getMessage(), e);
 		}
 		for (Class<?> c : classToBeInitieted.getDeclaredClasses()) {
-			IOUtils.printConsoleMessage(c.getName());
+			InputUtils.printConsoleMessage(c.getName());
 		}
 
 		for (Class<?> c : classToBeInitieted.getInterfaces()) {
-			IOUtils.printConsoleMessage(c.getName());
+			InputUtils.printConsoleMessage(c.getName());
 		}
 
 		return object;

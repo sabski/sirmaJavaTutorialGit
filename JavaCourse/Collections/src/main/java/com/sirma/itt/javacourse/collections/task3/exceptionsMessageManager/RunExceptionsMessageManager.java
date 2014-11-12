@@ -4,8 +4,9 @@ import javax.naming.directory.InvalidAttributesException;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.MathUtil;
+import com.sirma.itt.javacourse.StringUtil;
 
 /**
  * Class that runs a sample of ExceptionsMessageManager.
@@ -27,19 +28,19 @@ public class RunExceptionsMessageManager {
 		User user = new User();
 
 		// Start input for user name
-		IOUtils.printConsoleMessage("Input user name :");
-		user.setName(IOUtils.readValidatedLine(IOUtils.REGEX_VALIDATOR_LETHERS_ONLY));
+		InputUtils.printConsoleMessage("Input user name :");
+		user.setName(InputUtils.readValidatedLine(StringUtil.REGEX_VALIDATOR_LETHERS_ONLY));
 
 		// Start input for user address
-		IOUtils.printConsoleMessage("Input user address :");
-		user.setAddress(IOUtils.readLine());
+		InputUtils.printConsoleMessage("Input user address :");
+		user.setAddress(InputUtils.readLine());
 
 		// Start input for postal code
 		do {
-			IOUtils.printConsoleMessage("Input postal code for the new user :");
-			int postalCode = IOUtils.readInt();
+			InputUtils.printConsoleMessage("Input postal code for the new user :");
+			int postalCode = InputUtils.readInt();
 			if (!MathUtil.checkInputRange(1000, 9999, postalCode)) {
-				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_POSTAL_CODE);
+				InputUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_POSTAL_CODE);
 				try {
 					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_POSTAL_CODE);
 				} catch (InvalidAttributesException e) {
@@ -51,10 +52,10 @@ public class RunExceptionsMessageManager {
 		} while (user.getPostalCode() == 0);
 		// Start input for credit card number
 		do {
-			IOUtils.printConsoleMessage("Input card number :");
-			String cardNumber = IOUtils.readLine();
-			if (!cardNumber.matches(IOUtils.REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA)) {
-				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_CARD_NUMBER);
+			InputUtils.printConsoleMessage("Input card number :");
+			String cardNumber = InputUtils.readLine();
+			if (!cardNumber.matches(StringUtil.REGEX_VALIDATOR_CREDIT_CARD_NUMBERS_VISA)) {
+				InputUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_CARD_NUMBER);
 				try {
 					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_CARD_NUMBER);
 				} catch (InvalidAttributesException e) {
@@ -67,10 +68,10 @@ public class RunExceptionsMessageManager {
 
 		// Start input for EGN
 		do {
-			IOUtils.printConsoleMessage("Input EGN : ");
-			String EGN = IOUtils.readLine();
-			if (EGN.length() != 10 || !EGN.matches(IOUtils.REGEX_VALIDATOR_NUMBERS_ONLY)) {
-				IOUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_EGN);
+			InputUtils.printConsoleMessage("Input EGN : ");
+			String EGN = InputUtils.readLine();
+			if (EGN.length() != 10 || !EGN.matches(StringUtil.REGEX_VALIDATOR_NUMBERS_ONLY)) {
+				InputUtils.printConsoleMessage("" + ExceptionsMessageManager.INVALID_EGN);
 				try {
 					manager.addExceptionMessage(ExceptionsMessageManager.INVALID_EGN);
 				} catch (InvalidAttributesException e) {
@@ -80,7 +81,7 @@ public class RunExceptionsMessageManager {
 				user.setEGN(Double.parseDouble(EGN));
 			}
 		} while (user.getEGN() == 0);
-		IOUtils.printConsoleMessage("Errors durring input : " + manager.getMesage());
+		InputUtils.printConsoleMessage("Errors durring input : " + manager.getMesage());
 	}
 
 }

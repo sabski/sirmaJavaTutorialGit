@@ -8,7 +8,7 @@ import java.io.Writer;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Writes a file from the input in the console.
@@ -24,7 +24,7 @@ public class WriteFileFromConsole {
 	 * Writes a text to a file that the user specifies in the console input.
 	 */
 	public void writeFile(String fileName) {
-		IOUtils.printConsoleMessage("The File will stop reading the input when you enter a \" . \"");
+		InputUtils.printConsoleMessage("The File will stop reading the input when you enter a \" . \"");
 		File file = new File(DIR_LOCALE + fileName);
 		try (Writer fileWriter = new FileWriter(file);
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
@@ -32,9 +32,9 @@ public class WriteFileFromConsole {
 				new File(DIR_LOCALE).mkdir();
 				file.createNewFile();
 			}
-			IOUtils.printConsoleMessage("Start input for file : ");
+			InputUtils.printConsoleMessage("Start input for file : ");
 			readAndWriteContentForFile(bufferedWriter);
-			IOUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
+			InputUtils.printConsoleMessage("File path is  : " + file.getAbsolutePath());
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -52,7 +52,7 @@ public class WriteFileFromConsole {
 	private void readAndWriteContentForFile(BufferedWriter bufferedWriter) throws IOException {
 		String line = null;
 		do {
-			line = IOUtils.readLine();
+			line = InputUtils.readLine();
 			bufferedWriter.write(line);
 			bufferedWriter.newLine();
 		} while (!".".equals(line));

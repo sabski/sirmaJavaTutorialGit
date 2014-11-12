@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class that display the structure of a given directory.
@@ -37,7 +37,7 @@ public class DirectoryBrowser {
 		log.info("The content of folder " + path + " is :");
 		File[] list = file.listFiles();
 		for (File fileF : list) {
-			IOUtils.printConsoleMessage(fileF.getName());
+			InputUtils.printConsoleMessage(fileF.getName());
 			builder.append(fileF.getName() + "; ");
 		}
 		return builder.toString();

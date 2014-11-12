@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.desingPatterns.task3.singleton;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running singleton use example
@@ -17,9 +17,9 @@ public class RunSingleton {
 	 */
 	public static void main(String[] args) {
 
-		IOUtils.printConsoleMessage("Creating first object ");
+		InputUtils.printConsoleMessage("Creating first object ");
 		MySingletonClass.getInstance();
-		IOUtils.printConsoleMessage("Creating second object ");
+		InputUtils.printConsoleMessage("Creating second object ");
 		MySingletonClass.getInstance();
 
 	}

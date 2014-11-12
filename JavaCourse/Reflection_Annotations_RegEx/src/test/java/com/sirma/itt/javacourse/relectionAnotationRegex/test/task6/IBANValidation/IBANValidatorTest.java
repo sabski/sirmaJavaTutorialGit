@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.StringUtil;
 
 /**
  * Test class for testing IBAN validation.
@@ -13,7 +13,7 @@ import com.sirma.itt.javacourse.IOUtils;
  */
 public class IBANValidatorTest {
 
-	private String iban = "<bankAccounts>" + "<iban>GR16 0110 1050 0000 1054 7023 795</iban>"
+	private final String iban = "<bankAccounts>" + "<iban>GR16 0110 1050 0000 1054 7023 795</iban>"
 			+ "<iban>GB35 MIBG 4025 3432 1446 70</iban>\n"
 			+ "<iban>SA80 8000 0375 6080 1019 0160</iban>\n"
 			+ "<iban>CH51 0868 6001 2565 1500 1</iban>\n"
@@ -23,7 +23,7 @@ public class IBANValidatorTest {
 			+ "<iban>AZ21 NABZ 0000 0000 1370 1000 1944</iban>\n"
 			+ "<iban>BG80 BNBG 9661 1020 3456 7843</iban>" + "</bankAccounts>";
 
-	private String result = "<bankAccounts><iban>GR16 0110 1050 0000 1054 7023 795</iban>"
+	private final String result = "<bankAccounts><iban>GR16 0110 1050 0000 1054 7023 795</iban>"
 			+ "<iban>GB35 MIBG 4025 3432 1446 70</iban>\n"
 			+ "<iban>SA80 8000 0375 6080 1019 0160</iban>\n"
 			+ "<iban>CH51 0868 6001 2565 1500 1</iban>\n" + "<iban>****7840</iban>\n"
@@ -37,7 +37,8 @@ public class IBANValidatorTest {
 	 */
 	@Test
 	public void test() {
-		assertEquals(result, IOUtils.editStringWithRegex(iban, IOUtils.REGEX_VALIDATOR_IBANS, "****"));
+		assertEquals(result,
+				StringUtil.editStringWithRegex(iban, StringUtil.REGEX_VALIDATOR_IBANS, "****"));
 	}
 
 }

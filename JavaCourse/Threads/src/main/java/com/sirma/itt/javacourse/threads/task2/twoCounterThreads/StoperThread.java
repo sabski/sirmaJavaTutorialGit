@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.threads.task2.twoCounterThreads;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * A Thread class that count to a specific value and stops other thread.
@@ -23,7 +23,7 @@ public class StoperThread extends Thread {
 		while (isAlive() && count > currentCount) {
 			try {
 				Thread.sleep(1000);
-				IOUtils.printConsoleMessage("Current count is : " + currentCount);
+				InputUtils.printConsoleMessage("Current count is : " + currentCount);
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);
 			}

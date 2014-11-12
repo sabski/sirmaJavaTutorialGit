@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running serialization example we create a new {@link UserDefinedObject} and save it to
@@ -28,19 +28,19 @@ public class RunSerializathionObjects {
 		String path = null;
 		int myNumber;
 		String say;
-		IOUtils.printConsoleMessage("Input number and String to say something");
-		IOUtils.printConsoleMessage("Input my number ");
-		myNumber = IOUtils.readInt();
-		IOUtils.printConsoleMessage("Input say something for the object");
-		say = IOUtils.readLine();
+		InputUtils.printConsoleMessage("Input number and String to say something");
+		InputUtils.printConsoleMessage("Input my number ");
+		myNumber = InputUtils.readInt();
+		InputUtils.printConsoleMessage("Input say something for the object");
+		say = InputUtils.readLine();
 		UserDefinedObject object = new UserDefinedObject(myNumber, say);
-		IOUtils.printConsoleMessage("Input path to file to save the object");
-		path = IOUtils.readLine();
+		InputUtils.printConsoleMessage("Input path to file to save the object");
+		path = InputUtils.readLine();
 		object.saveObject("target/" + path, object);
 		UserDefinedObject object2 = null;
 		try {
 			object2 = object.getObject("target/" + path);
-			IOUtils.printConsoleMessage("The object read says " + object2.getSaySomething());
+			InputUtils.printConsoleMessage("The object read says " + object2.getSaySomething());
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}

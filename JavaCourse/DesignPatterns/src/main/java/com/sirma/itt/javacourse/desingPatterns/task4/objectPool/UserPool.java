@@ -8,52 +8,52 @@ import org.apache.log4j.Logger;
 /**
  * Pool class that lets us get N user objects.
  * 
- * @author Simeon Iliev
  * @param <T>
+ *            The type parameter this class will use.
+ * @author Simeon Iliev
  */
 public class UserPool<T> implements Pool<T> {
 
 	private static Logger log = Logger.getLogger(UserPool.class.getName());
 
-	private static int capacaty = 5;
+	private static int capacaty = 10;
 	private final T instance;
-	private final List<T> userPoolFreeInstances;
-	private final List<T> userPoolUsedInstances;
+	private final List<T> freeInstances;
+	private final List<T> usedInstances;
 
 	/**
 	 * Private constructor.
 	 */
 	public UserPool(T instance) {
-		userPoolFreeInstances = new ArrayList<T>(capacaty + 1);
-		userPoolUsedInstances = new ArrayList<T>(capacaty + 1);
+		freeInstances = new ArrayList<T>(capacaty + 1);
+		usedInstances = new ArrayList<T>(capacaty + 1);
 		this.instance = instance;
 	}
 
 	@Override
 	public T acquire() throws NoMoreResourcesException {
-		if (userPoolUsedInstances.size() > capacaty) {
+		if (usedInstances.size() > capacaty) {
 			throw new NoMoreResourcesException("Pool can't return instance");
 		}
-		if (userPoolFreeInstances.size() == 0) {
-			userPoolFreeInstances.add(initObject());
+		T user;
+		if (freeInstances.size() != 0) {
+			user = freeInstances.get(0);
+			usedInstances.add(user);
+			freeInstances.remove(0);
+		} else {
+			user = initObject();
+			usedInstances.add(user);
 		}
-		T user = userPoolFreeInstances.get(0);
-		userPoolUsedInstances.add(user);
-		userPoolFreeInstances.remove(user);
 		return user;
 	}
 
 	@Override
-	public void release(T object) {
-		if (object == null) {
-			try {
-				object = acquire();
-			} catch (NoMoreResourcesException e) {
-				log.error(e.getMessage(), e);
-			}
+	public void release(T object) throws NoMoreResourcesException {
+		if (freeInstances.size() == capacaty) {
+			throw new NoMoreResourcesException("All instances are free");
 		}
-		userPoolUsedInstances.remove(object);
-		userPoolFreeInstances.add(object);
+		usedInstances.remove(object);
+		freeInstances.add(object);
 	}
 
 	@Override

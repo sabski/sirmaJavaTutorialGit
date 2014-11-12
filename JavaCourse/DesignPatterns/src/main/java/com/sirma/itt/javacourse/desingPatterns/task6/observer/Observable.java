@@ -10,26 +10,26 @@ public interface Observable {
 	/**
 	 * Attaches an observer.
 	 * 
-	 * @param obs
+	 * @param observer
 	 *            Observer to be attached.
 	 */
-	public void attachObserver(Observer obs);
+	public void attachObserver(Observer observer);
 
 	/**
 	 * Detaches an observer.
 	 * 
-	 * @param obs
+	 * @param observer
 	 *            Observer to be detached.
 	 */
-	public void dettachObserver(Observer obs);
+	public void dettachObserver(Observer observer);
 
 	/**
 	 * Notifies all observers.
 	 * 
-	 * @param obs
+	 * @param observer
 	 *            The Observable that has changed state.
 	 */
-	public void notifyObservers(Observable obs);
+	public void notifyObservers(Observable observer);
 
 	/**
 	 * Shows how many observers are attached to the current Observable.

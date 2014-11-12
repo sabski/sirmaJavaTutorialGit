@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.objects.task5.heterogeneousTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 import com.sirma.itt.javacourse.objects.task4.binaryTree.Node;
 
@@ -106,25 +106,25 @@ public class HeterogeneousTree<T extends Figure> {
 		// We select the last level that is in the level list and if the list has achieved maximum
 		// children for that level we add the new element to the first element of the last level.
 		List<NodeElement<T>> level = levels.get(levels.size() - 1);
-		IOUtils.printConsoleMessage("Last level size " + level.size());
+		InputUtils.printConsoleMessage("Last level size " + level.size());
 
 		if (levels.size() == 1) {
 			rootEllement.getChildren().add(nodeTobeInserted);
-			IOUtils.printConsoleMessage("Adding to root element");
+			InputUtils.printConsoleMessage("Adding to root element");
 			return true;
 		} else if (childCount > rootEllement.getChildren().size()) {
 			rootEllement.getChildren().add(nodeTobeInserted);
-			IOUtils.printConsoleMessage("Adding to root element");
+			InputUtils.printConsoleMessage("Adding to root element");
 			return true;
 		} else if (level.size() == (levels.get(levels.indexOf(level) - 1).size() * childCount)) {
-			IOUtils.printConsoleMessage("row is full : "
+			InputUtils.printConsoleMessage("row is full : "
 					+ (childCount * levels.get(levels.indexOf(level) - 1).size()));
 			NodeElement<T> node = level.get(0);
 			node.getChildren().add(nodeTobeInserted);
 			return true;
 		} else {
 			int index = (level.size() / childCount);
-			IOUtils.printConsoleMessage("index : " + index + " level size " + level.size());
+			InputUtils.printConsoleMessage("index : " + index + " level size " + level.size());
 			levels.get(levels.indexOf(level) - 1).get(index).getChildren().add(nodeTobeInserted);
 			return true;
 		}

@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.desingPatterns.task7.calculator;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.Command;
 import com.sirma.itt.javacourse.desingPatterns.task7.calculator.commands.CommandBuilder;
 
@@ -25,24 +25,24 @@ public class RunCalculator {
 		double firstNumber = 0d;
 		Calculator calculator = new Calculator();
 		CommandBuilder builder = CommandBuilder.getInstance();
-		IOUtils.printConsoleMessage("Calculator operations\n +,- ,*,/,^,= (Exits program) ");
-		IOUtils.printConsoleMessage("Input number");
+		InputUtils.printConsoleMessage("Calculator operations\n +,- ,*,/,^,= (Exits program) ");
+		InputUtils.printConsoleMessage("Input number");
 
 		while (true) {
 			if (firstNumber == 0d) {
-				firstNumber = IOUtils.readDouble();
+				firstNumber = InputUtils.readDouble();
 			} else {
 				log.info(firstNumber + "");
 			}
 
-			IOUtils.printConsoleMessage("Input operation you want to execute : ");
-			String operation = IOUtils.readValidatedLine("[\\*-/\\+/\\^=]");
+			InputUtils.printConsoleMessage("Input operation you want to execute : ");
+			String operation = InputUtils.readValidatedLine("[\\*-/\\+/\\^=]");
 			Command command = builder.createCommand(operation);
 			if (command == null) {
 				break;
 			}
-			IOUtils.printConsoleMessage("Input number");
-			firstNumber = command.execute(firstNumber, IOUtils.readDouble());
+			InputUtils.printConsoleMessage("Input number");
+			firstNumber = command.execute(firstNumber, InputUtils.readDouble());
 			calculator.takeCommand(command);
 		}
 

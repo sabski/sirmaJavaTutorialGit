@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 import com.sirma.itt.javacourse.inputoutput.task3.reverseTextFile.FileReverser;
 
@@ -52,11 +52,11 @@ public class TestReverseTextFiles {
 	public void testReverseFile() {
 		String content = originalContent;
 		Scanner scanner = new Scanner(content);
-		IOUtils.setScanner(scanner);
+		InputUtils.setScanner(scanner);
 		fileWriter.writeFile(fileName);
 		try {
 			reverser.reverseFileContent(getClass().getResource("").getPath() + fileName);
-			assertEquals(reverse, IOUtils.readFile(getClass().getResource("").getPath() + fileName)
+			assertEquals(reverse, InputUtils.readFile(getClass().getResource("").getPath() + fileName)
 					.replaceAll("\n", ""));
 		} catch (FileNotFoundException e) {
 			log.error("File not found", e);

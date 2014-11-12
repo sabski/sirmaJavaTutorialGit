@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFromConsole;
 
 /**
@@ -33,24 +33,24 @@ public class RunTransferObject {
 	public static void main(String[] args) throws IOException {
 
 		try {
-			IOUtils.printConsoleMessage("Input the name of the file to be created to start transferring bytes");
-			String fileName = IOUtils.readLine();
+			InputUtils.printConsoleMessage("Input the name of the file to be created to start transferring bytes");
+			String fileName = InputUtils.readLine();
 			WriteFileFromConsole writer = new WriteFileFromConsole();
 			writer.writeFile(fileName);
 			InputStream input = new FileInputStream(WriteFileFromConsole.DIR_LOCALE + fileName);
-			IOUtils.printConsoleMessage("Input file name to write data.");
-			String targetFile = IOUtils.readLine();
+			InputUtils.printConsoleMessage("Input file name to write data.");
+			String targetFile = InputUtils.readLine();
 			File temp = new File(WriteFileFromConsole.DIR_LOCALE + targetFile);
 			if (!temp.exists()) {
 				temp.createNewFile();
 			}
 			OutputStream output = new FileOutputStream(WriteFileFromConsole.DIR_LOCALE + targetFile);
 			TransferObject transfer = new TransferObject(input, output);
-			IOUtils.printConsoleMessage("Input the number of bytes to transfer from the files");
-			int numberOfBites = IOUtils.readInt();
-			IOUtils.printConsoleMessage("Input offset for the stream.");
-			int offset = IOUtils.readInt();
-			IOUtils.printConsoleMessage("Number of transfered bytes = "
+			InputUtils.printConsoleMessage("Input the number of bytes to transfer from the files");
+			int numberOfBites = InputUtils.readInt();
+			InputUtils.printConsoleMessage("Input offset for the stream.");
+			int offset = InputUtils.readInt();
+			InputUtils.printConsoleMessage("Number of transfered bytes = "
 					+ transfer.transfer(numberOfBites, offset));
 		} catch (FileNotFoundException e) {
 			log.error(e.getMessage(), e);

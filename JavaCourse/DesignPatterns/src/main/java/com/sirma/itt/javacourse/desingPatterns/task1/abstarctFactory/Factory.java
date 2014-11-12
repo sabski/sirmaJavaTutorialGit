@@ -19,17 +19,13 @@ public class Factory extends AbstractFactory {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	public MyProduct createInstance() {
 		return new MyProduct();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	public MyProduct createInstanceByReflection(String className) {
 		try {
@@ -45,7 +41,7 @@ public class Factory extends AbstractFactory {
 	}
 
 	/**
-	 * Retruns a single instance of {@link Factory}.
+	 * Returns a single instance of {@link Factory}.
 	 * 
 	 * @return an instance of {@link Factory}
 	 */
@@ -54,6 +50,5 @@ public class Factory extends AbstractFactory {
 			instance = new Factory();
 		}
 		return instance;
-
 	}
 }

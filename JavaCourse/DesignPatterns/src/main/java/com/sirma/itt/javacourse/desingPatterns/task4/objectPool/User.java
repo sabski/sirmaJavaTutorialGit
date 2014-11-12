@@ -1,7 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task4.objectPool;
 
 /**
- * Sample user object to be used as test for the object pool patern;
+ * Sample user object to be used as test for the object pool pattern;
  * 
  * @author Simeon Iliev
  */

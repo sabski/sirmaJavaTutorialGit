@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.objects.task5.heterogeneousTree;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
 import com.sirma.itt.javacourse.objects.task2.shapes.Point;
 import com.sirma.itt.javacourse.objects.task2.shapes.rectangularShapes.Parallelogram;
@@ -67,7 +67,7 @@ public class HeterogeneousTreeRunner {
 		fig.addFigureEllemet(new Rectangle(p, 0, 0));
 		fig.addFigureEllemet(new Parallelogram(p, p, 0, 0));
 
-		IOUtils.printConsoleMessage("Ellement in the tree : \n" + fig.printAllNames());
+		InputUtils.printConsoleMessage("Ellement in the tree : \n" + fig.printAllNames());
 	}
 
 }

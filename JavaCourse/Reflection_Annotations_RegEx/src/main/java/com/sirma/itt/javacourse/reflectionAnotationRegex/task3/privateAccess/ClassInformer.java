@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class that violates private methods via reflection.
@@ -39,22 +39,22 @@ public class ClassInformer {
 							declearedField.getName().toString());
 					field.setAccessible(true);
 					Object obj = field.get(myPrivateVariable);
-					IOUtils.printConsoleMessage(obj.toString());
+					InputUtils.printConsoleMessage(obj.toString());
 				} catch (IllegalArgumentException | NoSuchFieldException ex) {
 					log.error(ex.getMessage(), ex);
 				}
 			}
 			for (Method methodM : classObject.getDeclaredMethods()) {
 				try {
-					IOUtils.printConsoleMessage(methodM.getName());
+					InputUtils.printConsoleMessage(methodM.getName());
 					int paramCount = methodM.getModifiers();
-					IOUtils.printConsoleMessage("Parameter count = " + paramCount);
+					InputUtils.printConsoleMessage("Parameter count = " + paramCount);
 					Class<?>[] parameterTypes = methodM.getParameterTypes();
 					Method method = classObject.getDeclaredMethod(methodM.getName(),
 							parameterTypes);
 					method.setAccessible(true);
 					Object objectTwo = method.invoke(myPrivateVariable, params);
-					IOUtils.printConsoleMessage(objectTwo.toString());
+					InputUtils.printConsoleMessage(objectTwo.toString());
 				} catch (IllegalArgumentException | NoSuchMethodException
 						| InvocationTargetException ex) {
 					log.error(ex.getMessage(), ex);

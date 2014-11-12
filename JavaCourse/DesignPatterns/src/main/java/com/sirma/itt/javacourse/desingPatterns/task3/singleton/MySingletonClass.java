@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.desingPatterns.task3.singleton;
 
+import org.apache.log4j.Logger;
+
 /**
  * Singleton pattern class.
  * 
@@ -7,13 +9,14 @@ package com.sirma.itt.javacourse.desingPatterns.task3.singleton;
  */
 public class MySingletonClass {
 
+	private static Logger log = Logger.getLogger(MySingletonClass.class);
 	private static MySingletonClass instance = null;
 
 	/**
 	 * Private constructor.
 	 */
 	private MySingletonClass() {
-		System.out.println("Singleton created");
+		log.info("Singleton created");
 	}
 
 	/**

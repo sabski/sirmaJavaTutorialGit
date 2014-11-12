@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.threads.task4.synchronizedThreads;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * A Thread class that count to a specific value and stops other thread.
@@ -73,7 +73,7 @@ public class CounterSynchronizrdThread extends Thread {
 		 */
 		public void printCount(int currentCount, int currentNumber) {
 			synchronized (this) {
-				IOUtils.printConsoleMessage("Thread : " + currentNumber + "  Current count is : "
+				InputUtils.printConsoleMessage("Thread : " + currentNumber + "  Current count is : "
 						+ currentCount);
 				this.notify();
 				try {

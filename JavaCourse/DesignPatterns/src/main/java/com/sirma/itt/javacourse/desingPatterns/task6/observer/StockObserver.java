@@ -20,8 +20,8 @@ public class StockObserver implements Observer {
 		if (!(observable instanceof ItemObservable)) {
 			return;
 		}
-		ItemObservable temp = (ItemObservable) observable;
-		if (temp.getInStock()) {
+		ItemObservable observableItem = (ItemObservable) observable;
+		if (observableItem.getInStock()) {
 			list.add(observable);
 		} else if (list.contains(observable)) {
 			list.remove(observable);

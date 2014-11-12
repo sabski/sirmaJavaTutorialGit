@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.exceptions.task1.stringCalculator;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Class for running the String calculator.
@@ -25,13 +25,13 @@ public class RunStringCalculator {
 		String secondBigNumber = null;
 		String result = null;
 		do {
-			IOUtils.printConsoleMessage("Input only one number on a line. ");
+			InputUtils.printConsoleMessage("Input only one number on a line. ");
 
-			IOUtils.printConsoleMessage("Please input number value for the first number ");
-			firstBigNumber = IOUtils.readLine();
+			InputUtils.printConsoleMessage("Please input number value for the first number ");
+			firstBigNumber = InputUtils.readLine();
 
-			IOUtils.printConsoleMessage("Please input number value for the second number ");
-			secondBigNumber = IOUtils.readLine();
+			InputUtils.printConsoleMessage("Please input number value for the second number ");
+			secondBigNumber = InputUtils.readLine();
 
 			try {
 				result = calculator.sumStrings(firstBigNumber, secondBigNumber);
@@ -41,7 +41,7 @@ public class RunStringCalculator {
 				log.error(e.getMessage(), e);
 			}
 		} while (result == null);
-		IOUtils.printConsoleMessage("Result is " + result);
+		InputUtils.printConsoleMessage("Result is " + result);
 
 	}
 }

@@ -18,7 +18,7 @@ import com.sirma.itt.javacourse.desingPatterns.task4.objectPool.UserPool;
 public class TestUserPool {
 
 	private static Logger log = Logger.getLogger(TestUserPool.class.getName());
-	private UserPool pool;
+	private UserPool<User> pool;
 
 	/**
 	 * Set up method.
@@ -39,7 +39,7 @@ public class TestUserPool {
 	 */
 	@Test
 	public void testAquareUser() throws NoMoreResourcesException {
-		User user = (User) pool.acquire();
+		User user = pool.acquire();
 		assertTrue(user instanceof User);
 	}
 
@@ -53,20 +53,24 @@ public class TestUserPool {
 	public void testAquareUserException() {
 		User userOne = null, userTwo = null, userThree = null, userFour = null, userFive = null;
 		try {
-			userOne = (User) pool.acquire();
-			userTwo = (User) pool.acquire();
-			userThree = (User) pool.acquire();
-			userFour = (User) pool.acquire();
-			userFive = (User) pool.acquire();
+			userOne = pool.acquire();
+			userTwo = pool.acquire();
+			userThree = pool.acquire();
+			userFour = pool.acquire();
+			userFive = pool.acquire();
 			pool.acquire();
 		} catch (NoMoreResourcesException e) {
 			assertTrue(e instanceof NoMoreResourcesException);
 		} finally {
-			pool.release(userOne);
-			pool.release(userTwo);
-			pool.release(userThree);
-			pool.release(userFour);
-			pool.release(userFive);
+			try {
+				pool.release(userOne);
+				pool.release(userTwo);
+				pool.release(userThree);
+				pool.release(userFour);
+				pool.release(userFive);
+			} catch (NoMoreResourcesException e) {
+				log.error(e.getMessage(), e);
+			}
 		}
 	}
 
@@ -78,7 +82,7 @@ public class TestUserPool {
 	@Test
 	public void testReleseUser() {
 		try {
-			User user = (User) pool.acquire();
+			User user = pool.acquire();
 			pool.release(user);
 		} catch (NoMoreResourcesException e) {
 			log.error(e.getMessage(), e);

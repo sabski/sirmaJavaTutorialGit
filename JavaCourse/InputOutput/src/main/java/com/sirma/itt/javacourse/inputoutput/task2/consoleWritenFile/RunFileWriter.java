@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Runs the file writer class.
@@ -17,8 +17,8 @@ public class RunFileWriter {
 	 */
 	public static void main(String[] args) {
 		WriteFileFromConsole writer = new WriteFileFromConsole();
-		IOUtils.printConsoleMessage("Input file name : ");
-		writer.writeFile(IOUtils.readLine());
+		InputUtils.printConsoleMessage("Input file name : ");
+		writer.writeFile(InputUtils.readLine());
 	}
 
 }

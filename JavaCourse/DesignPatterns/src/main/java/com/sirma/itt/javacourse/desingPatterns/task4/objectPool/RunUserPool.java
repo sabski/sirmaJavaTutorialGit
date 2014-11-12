@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.desingPatterns.task4.objectPool;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.IOUtils;
+import com.sirma.itt.javacourse.InputUtils;
 
 /**
  * Runner class for ObjectPool sesinf pattern example.
@@ -20,44 +20,48 @@ public class RunUserPool {
 	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		UserPool pool = new UserPool<User>(new User());
+		UserPool<User> pool = new UserPool<User>(new User());
 		User user = null;
 		while (true) {
-			IOUtils.printConsoleMessage("Pool and user operations\n" + " 1: Acquire user\n"
+			InputUtils.printConsoleMessage("Pool and user operations\n" + " 1: Acquire user\n"
 					+ " 2 : release User \n" + " 3 : Set user name\n" + " 4 : Get User name\n"
 					+ " 5 : Set Password\n" + " 6 : Get Password\n" + "-1 : Exit");
-			int key = IOUtils.readInt();
+			int key = InputUtils.readInt();
 
 			switch (key) {
 				case 1:
 					try {
-						user = (User) pool.acquire();
+						user = pool.acquire();
 					} catch (NoMoreResourcesException e) {
 						log.error(e.getMessage(), e);
 					}
 					break;
 				case 2:
-					pool.release(user);
+					try {
+						pool.release(user);
+					} catch (NoMoreResourcesException e) {
+						log.error(e.getMessage(), e);
+					}
 					break;
 				case 3:
-					IOUtils.printConsoleMessage("Set user name : ");
-					user.setUserName(IOUtils.readLine());
+					InputUtils.printConsoleMessage("Set user name : ");
+					user.setUserName(InputUtils.readLine());
 					break;
 				case 4:
-					IOUtils.printConsoleMessage("Current user name: " + user.getUserName());
+					InputUtils.printConsoleMessage("Current user name: " + user.getUserName());
 					break;
 				case 5:
-					IOUtils.printConsoleMessage("Set user password : ");
-					user.setPassword(IOUtils.readLine());
+					InputUtils.printConsoleMessage("Set user password : ");
+					user.setPassword(InputUtils.readLine());
 					break;
 				case 6:
-					IOUtils.printConsoleMessage("Password should not be displayed.");
+					InputUtils.printConsoleMessage("Password should not be displayed.");
 					break;
 				case -1:
 					System.exit(0);
 					break;
 				default:
-					IOUtils.printConsoleMessage("Input valid code");
+					InputUtils.printConsoleMessage("Input valid code");
 					break;
 			}
 		}

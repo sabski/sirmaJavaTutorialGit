@@ -2,8 +2,6 @@ package com.sirma.itt.javacourse.threads.task2.twoCounterThreads;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.InputUtils;
-
 /**
  * A Thread class that count to a specific value and stops other thread.
  * 
@@ -15,23 +13,20 @@ public class StoperThread extends Thread {
 
 	private int currentCount = 0;
 	private int count;
-	private Thread threadToStop;
-
+	private volatile static boolean flag = true;
 
 	@Override
 	public void run() {
-		while (isAlive() && count > currentCount) {
+		while (flag && count > currentCount) {
 			try {
 				Thread.sleep(1000);
-				InputUtils.printConsoleMessage("Current count is : " + currentCount);
+				log.info("Current count is : " + currentCount);
 			} catch (InterruptedException e) {
 				log.error(e.getMessage(), e);
 			}
 			currentCount++;
 		}
-		if (threadToStop.isAlive() && threadToStop != null) {
-			threadToStop.stop();
-		}
+		flag = false;
 	}
 
 	/**
@@ -39,12 +34,18 @@ public class StoperThread extends Thread {
 	 * 
 	 * @param count
 	 *            the count for the tread to count to.
-	 * @param threadToStop
-	 *            the other thread to stop counting.
 	 */
-	public void setUpThread(int count, Thread threadToStop) {
+	public void setUpThread(int count) {
 		this.count = count;
-		this.threadToStop = threadToStop;
 	}
+
+	/**
+	 * Reset the flag value so that thread may be executed.
+	 */
+	public void resetFlag() {
+		flag = true;
+	}
+
+
 
 }

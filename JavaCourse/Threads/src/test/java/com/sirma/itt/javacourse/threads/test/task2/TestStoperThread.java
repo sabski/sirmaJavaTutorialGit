@@ -34,13 +34,13 @@ public class TestStoperThread {
 	 */
 	@Test
 	public void test() {
-		threadTwo.setUpThread(2, threadOne);
-		threadOne.setUpThread(1, threadTwo);
+		threadTwo.setUpThread(2);
+		threadOne.setUpThread(1);
 
 		threadOne.start();
 		threadTwo.start();
 		try {
-			Thread.sleep(1350);
+			Thread.sleep(2350);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}

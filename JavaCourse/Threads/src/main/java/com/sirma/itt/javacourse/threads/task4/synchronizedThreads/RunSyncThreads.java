@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.threads.task4.synchronizedThreads;
 import com.sirma.itt.javacourse.InputUtils;
 
 /**
- * Runner class for synconized counting.
+ * Runner class for synchronized counting.
  * 
  * @author Simeon Iliev
  */
@@ -16,8 +16,8 @@ public class RunSyncThreads {
 	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
-		CounterSynchronizrdThread threadOne = new CounterSynchronizrdThread();
-		CounterSynchronizrdThread threadTwo = new CounterSynchronizrdThread();
+		CounterSynchronizedThread threadOne = new CounterSynchronizedThread();
+		CounterSynchronizedThread threadTwo = new CounterSynchronizedThread();
 		InputUtils.printConsoleMessage("Input number for the threads to count to.");
 		int temp = InputUtils.readInt();
 		threadOne.setUpThread(temp);

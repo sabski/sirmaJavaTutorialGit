@@ -6,18 +6,18 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task4.synchronizedThreads.CounterSynchronizrdThread;
+import com.sirma.itt.javacourse.threads.task4.synchronizedThreads.CounterSynchronizedThread;
 
 /**
- * Test for {@link CounterSynchronizrdThread}
+ * Test for {@link CounterSynchronizedThread}
  * 
  * @author Simeon Iliev
  */
 public class TestThreadSync {
 
 	private static Logger log = Logger.getLogger(TestThreadSync.class);
-	private CounterSynchronizrdThread threadOne;
-	private CounterSynchronizrdThread threadTwo;
+	private CounterSynchronizedThread threadOne;
+	private CounterSynchronizedThread threadTwo;
 
 	/**
 	 * Set up method.
@@ -27,8 +27,8 @@ public class TestThreadSync {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		threadOne = new CounterSynchronizrdThread();
-		threadTwo = new CounterSynchronizrdThread();
+		threadOne = new CounterSynchronizedThread();
+		threadTwo = new CounterSynchronizedThread();
 	}
 
 	/**

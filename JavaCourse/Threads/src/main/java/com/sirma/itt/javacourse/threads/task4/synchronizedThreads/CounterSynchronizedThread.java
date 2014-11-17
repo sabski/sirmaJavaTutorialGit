@@ -2,16 +2,14 @@ package com.sirma.itt.javacourse.threads.task4.synchronizedThreads;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.InputUtils;
-
 /**
  * A Thread class that count to a specific value and stops other thread.
  * 
  * @author Simeon Iliev
  */
-public class CounterSynchronizrdThread extends Thread {
+public class CounterSynchronizedThread extends Thread {
 
-	private static final Logger log = Logger.getLogger(CounterSynchronizrdThread.class.getName());
+	private static final Logger log = Logger.getLogger(CounterSynchronizedThread.class.getName());
 	private static int threadNumber = 0;
 	private static final Lock lock = new Lock();
 
@@ -28,7 +26,7 @@ public class CounterSynchronizrdThread extends Thread {
 			currentCount++;
 			lock.printCount(currentCount, currentNumber);
 		}
-		// Notifies waiting threads and allows the thread to stop normaly.
+		// Notifies waiting threads and allows the thread to stop normally.
 		synchronized (lock) {
 			lock.notify();
 		}
@@ -57,14 +55,17 @@ public class CounterSynchronizrdThread extends Thread {
 	}
 
 	/**
-	 * Class used for loking thread instances and printingout console messages.
+	 * Class used for locking thread instances and printing out console messages.
 	 * 
 	 * @author Simeon Iliev
 	 */
 	static class Lock {
 
+		private static final Logger log = Logger.getLogger(CounterSynchronizedThread.class
+				.getName());
+
 		/**
-		 * Synchonized method for printing the coutdown of a thread.
+		 * Synchronized method for printing the countdown of a thread.
 		 * 
 		 * @param currentCount
 		 *            the number the thread has counted to.
@@ -73,8 +74,8 @@ public class CounterSynchronizrdThread extends Thread {
 		 */
 		public void printCount(int currentCount, int currentNumber) {
 			synchronized (this) {
-				InputUtils.printConsoleMessage("Thread : " + currentNumber + "  Current count is : "
-						+ currentCount);
+				log.info("Thread : " + currentNumber
+						+ "  Current count is : " + currentCount);
 				this.notify();
 				try {
 					this.wait(500);

@@ -1,9 +1,9 @@
 package com.sirma.itt.javacourse.threads.task6.TimeoutHashtable;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class that will store objects with a key value to them. The object will be stored for a specific
@@ -24,7 +24,7 @@ public class TimeoutHashtable {
 	 *            the time for the objects to live in milliseconds.
 	 */
 	public TimeoutHashtable(long timeout) {
-		this.timeOutMap = new ConcurrentHashMap<String, Object>();
+		this.timeOutMap = new Hashtable<String, Object>();
 		this.timeout = timeout;
 		threads = new ArrayList<TimingThread>();
 	}

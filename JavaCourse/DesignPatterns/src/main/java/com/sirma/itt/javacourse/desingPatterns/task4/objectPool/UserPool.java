@@ -21,9 +21,6 @@ public class UserPool<T> implements Pool<T> {
 	private final List<T> freeInstances;
 	private final List<T> usedInstances;
 
-	/**
-	 * Private constructor.
-	 */
 	public UserPool(T instance) {
 		freeInstances = new ArrayList<T>(capacaty + 1);
 		usedInstances = new ArrayList<T>(capacaty + 1);

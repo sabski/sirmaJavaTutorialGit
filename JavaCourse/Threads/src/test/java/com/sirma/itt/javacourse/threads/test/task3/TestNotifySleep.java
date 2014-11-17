@@ -29,8 +29,8 @@ public class TestNotifySleep {
 	public void setUp() throws Exception {
 		threadOne = new StoperThread();
 		threadTwo = new StoperThreadWithWait();
-		threadOne.setUpThread(1, threadTwo);
-		threadTwo.setUpThread(2, threadOne);
+		threadOne.setUpThread(1);
+		threadTwo.setUpThread(2);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TestNotifySleep {
 		threadOne.start();
 		threadTwo.start();
 		try {
-			Thread.sleep(1350);
+			Thread.sleep(2350);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}

@@ -19,8 +19,8 @@ public class RunThread {
 		StoperThread threadOne = new StoperThread();
 		StoperThreadWithWait threadTwo = new StoperThreadWithWait();
 
-		threadOne.setUpThread(15, threadTwo);
-		threadTwo.setUpThread(10, threadOne);
+		threadOne.setUpThread(15);
+		threadTwo.setUpThread(10);
 		threadOne.start();
 		threadTwo.start();
 	}

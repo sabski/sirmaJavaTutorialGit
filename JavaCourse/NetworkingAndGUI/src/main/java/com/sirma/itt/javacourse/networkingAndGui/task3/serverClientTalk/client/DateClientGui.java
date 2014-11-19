@@ -1,37 +1,46 @@
 package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client;
 
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-public class ClientGui extends JFrame {
+import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.DateServer;
+
+/**
+ * User interface for the {@link DateServer} client {@link DateClient}.
+ * 
+ * @author Simeon Iliev
+ */
+public class DateClientGui extends JFrame {
 
 	/**
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = 3497964934272245742L;
-	private static Logger log = Logger.getLogger(ClientGui.class);
+	private static Logger log = Logger.getLogger(DateClientGui.class);
 
-	private JTextField messageWingow;
+	private JTextArea messageWingow;
 	private JLabel messageLabel;
-	private ClientSoket client;
+	private DateClient client;
 
 	/**
-	 * @throws HeadlessException
+	 * Start the window frame and opens the connection to the server.
 	 */
-	public ClientGui() throws HeadlessException {
+	public DateClientGui() {
 		setUp();
 		startConnection();
 	}
 
+	/**
+	 * Sets up the window elements.
+	 */
 	private void setUp() {
 		JFrame mainWindow = this;
-		messageWingow = new JTextField();
+		messageWingow = new JTextArea();
 		messageLabel = new JLabel("Actions");
 		messageWingow.setEditable(false);
 		mainWindow.setLayout(new GridLayout(2, 1));
@@ -42,11 +51,13 @@ public class ClientGui extends JFrame {
 		mainWindow.setVisible(true);
 	}
 
+	/**
+	 * Opens the connection to the server and extracts the message data and closes the connection.
+	 */
 	private void startConnection() {
-		client = new ClientSoket();
-
+		client = new DateClient();
 		messageWingow.setText(client.connect());
-		messageWingow.setText(messageWingow.getText() + "\n" + client.message());
+		messageWingow.setText(messageWingow.getText() + "\n" + client.getMessage());
 		messageWingow.setText(messageWingow.getText() + "\n" + client.disconnect());
 	}
 }

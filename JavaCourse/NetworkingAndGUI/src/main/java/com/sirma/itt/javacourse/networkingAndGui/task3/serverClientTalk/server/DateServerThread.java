@@ -8,6 +8,8 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 /**
+ * Thread that accepts a Socket as its parameter so that it can send a message to it.
+ * 
  * @author Simeon Iliev
  */
 public class DateServerThread extends Thread {
@@ -32,12 +34,13 @@ public class DateServerThread extends Thread {
 	}
 
 	/**
+	 * Basic constructor.
+	 * 
 	 * @param clientSocket
+	 *            the socket to which we want to send the date.
 	 */
 	public DateServerThread(Socket clientSocket) {
 		this.clientSocket = clientSocket;
 	}
-
-	
 
 }

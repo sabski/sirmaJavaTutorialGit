@@ -26,10 +26,10 @@ public interface Observable {
 	/**
 	 * Notifies all observers.
 	 * 
-	 * @param observer
+	 * @param observable
 	 *            The Observable that has changed state.
 	 */
-	public void notifyObservers(Observable observer);
+	public void notifyObservers(Observable observable);
 
 	/**
 	 * Shows how many observers are attached to the current Observable.

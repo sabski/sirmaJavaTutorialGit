@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client;
 import org.apache.log4j.Logger;
 
 /**
+ * Runner class for the {@link DateClientGui}.
+ * 
  * @author Simeon Iliev
  */
 public class RunClient {
@@ -18,11 +20,7 @@ public class RunClient {
 	public static void main(String[] args) {
 		// TODO Have a nice day;
 
-/*		ClientSoket client = new ClientSoket();
-		log.info(client.connect());
-		log.info(client.message());
-		log.info(client.disconnect());*/
-		new ClientGui();
+		new DateClientGui();
 	}
 
 }

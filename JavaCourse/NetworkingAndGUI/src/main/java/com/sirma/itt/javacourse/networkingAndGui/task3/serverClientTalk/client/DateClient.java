@@ -6,17 +6,23 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.DateServer;
+
 /**
+ * Client that connects to the {@link DateServer} and receives a message from it.
+ * 
  * @author Simeon Iliev
  */
-public class ClientSoket {
+public class DateClient {
 
-	private static Logger log = Logger.getLogger(ClientSoket.class);
+	private static Logger log = Logger.getLogger(DateClient.class);
 
 	private Socket clientSideSocket;
 
 	/**
-	 * @return
+	 * Connects the server.
+	 * 
+	 * @return a message whether or not the connection was established.
 	 */
 	public String connect() {
 		try {
@@ -29,7 +35,9 @@ public class ClientSoket {
 	}
 
 	/**
-	 * @return
+	 * Disconnects the client from the server.
+	 * 
+	 * @return a disconnect message if the client was properly disconnected.
 	 */
 	public String disconnect() {
 		if (clientSideSocket != null) {
@@ -45,9 +53,12 @@ public class ClientSoket {
 	}
 
 	/**
-	 * @return
+	 * Retrieves the message from the server.
+	 * 
+	 * @return the message that was sent from the server or an error message if the server message
+	 *         Can't Be retrieved.
 	 */
-	public String message() {
+	public String getMessage() {
 		try (DataInputStream reader = new DataInputStream(clientSideSocket.getInputStream());) {
 			return "Server time is " + reader.readUTF();
 		} catch (IOException e) {

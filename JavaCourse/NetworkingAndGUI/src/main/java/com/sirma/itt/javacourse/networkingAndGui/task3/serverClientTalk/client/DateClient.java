@@ -60,7 +60,7 @@ public class DateClient {
 	 */
 	public String getMessage() {
 		try (DataInputStream reader = new DataInputStream(clientSideSocket.getInputStream());) {
-			return "Server time is " + reader.readUTF();
+			return reader.readUTF();
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 			return e.getMessage();

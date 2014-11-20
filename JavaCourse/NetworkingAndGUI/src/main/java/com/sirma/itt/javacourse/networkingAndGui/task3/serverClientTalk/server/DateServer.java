@@ -1,9 +1,11 @@
 package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,7 +26,7 @@ public class DateServer implements Observable {
 
 	private ServerSocket server;
 	private Socket client;
-	private boolean flag;
+	private boolean isRunning;
 	private final List<Observer> observers;
 	private String lastMassage;
 
@@ -42,7 +44,7 @@ public class DateServer implements Observable {
 	public void startServer() {
 		try {
 			server = new ServerSocket(7000);
-			flag = true;
+			isRunning = true;
 			lastMassage = "Server started";
 			notifyObservers(null);
 		} catch (IOException e) {
@@ -59,7 +61,7 @@ public class DateServer implements Observable {
 	public void stopServer() {
 		if (server != null) {
 			try {
-				flag = false;
+				isRunning = false;
 				server.close();
 				lastMassage = "Server stopped";
 				notifyObservers(null);
@@ -75,20 +77,38 @@ public class DateServer implements Observable {
 	 * Allows the acceptance of connections for the server. Before this method is called make sure
 	 * that the startServer() method is called.
 	 */
-	public void accepConnection() {
-		while (flag) {
+	public void acceptConnection() {
+		while (isRunning) {
 			try {
 				client = server.accept();
 			} catch (IOException e) {
 				lastMassage = e.getMessage();
 				notifyObservers(null);
 			}
-			if (flag) {
-				new DateServerThread(client).start();
-				lastMassage = "New client";
-				notifyObservers(null);
+			if (isRunning) {
+				sendUserMessage(client);
 			}
 		}
+	}
+
+	/**
+	 * Send the client the server date message;
+	 * 
+	 * @param clientSocket
+	 *            the client to which the message will be sent.
+	 */
+	protected String sendUserMessage(Socket clientSocket) {
+		String date = new Date().toString();
+		try (DataOutputStream outputStream = new DataOutputStream(clientSocket.getOutputStream())) {
+			outputStream.writeUTF("Server time is " + date);
+			outputStream.flush();
+			clientSocket.close();
+			lastMassage = "New client at date : " + date;
+			notifyObservers(null);
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+		return date;
 	}
 
 	/**

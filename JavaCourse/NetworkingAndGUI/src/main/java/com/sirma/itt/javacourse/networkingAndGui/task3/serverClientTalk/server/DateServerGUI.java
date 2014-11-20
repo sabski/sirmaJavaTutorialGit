@@ -51,9 +51,10 @@ public class DateServerGUI extends JFrame implements Observer {
 		messageArea = new JTextArea();
 		server = new DateServer();
 		server.attachObserver(this);
-		mainWindow.setSize(300, 200);
+		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new GridLayout(2, 1));
 
+		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
@@ -81,7 +82,7 @@ public class DateServerGUI extends JFrame implements Observer {
 
 					@Override
 					public void run() {
-						server.accepConnection();
+						server.acceptConnection();
 					}
 				}).start();
 			}

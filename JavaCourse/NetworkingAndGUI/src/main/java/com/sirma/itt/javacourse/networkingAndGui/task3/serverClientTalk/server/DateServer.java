@@ -28,7 +28,7 @@ public class DateServer implements Observable {
 	private Socket client;
 	private boolean isRunning;
 	private final List<Observer> observers;
-	private String lastMassage;
+	private String lastMessage;
 
 	/**
 	 * Basic constructor.
@@ -45,11 +45,11 @@ public class DateServer implements Observable {
 		try {
 			server = new ServerSocket(7000);
 			isRunning = true;
-			lastMassage = "Server started";
+			lastMessage = "Server started";
 			notifyObservers(null);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-			lastMassage = e.getMessage();
+			lastMessage = e.getMessage();
 			notifyObservers(null);
 		}
 	}
@@ -63,11 +63,11 @@ public class DateServer implements Observable {
 			try {
 				isRunning = false;
 				server.close();
-				lastMassage = "Server stopped";
+				lastMessage = "Server stopped";
 				notifyObservers(null);
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
-				lastMassage = e.getMessage();
+				lastMessage = e.getMessage();
 				notifyObservers(null);
 			}
 		}
@@ -82,7 +82,7 @@ public class DateServer implements Observable {
 			try {
 				client = server.accept();
 			} catch (IOException e) {
-				lastMassage = e.getMessage();
+				lastMessage = e.getMessage();
 				notifyObservers(null);
 			}
 			if (isRunning) {
@@ -97,37 +97,36 @@ public class DateServer implements Observable {
 	 * @param clientSocket
 	 *            the client to which the message will be sent.
 	 */
-	protected String sendUserMessage(Socket clientSocket) {
+	protected void sendUserMessage(Socket clientSocket) {
 		String date = new Date().toString();
 		try (DataOutputStream outputStream = new DataOutputStream(clientSocket.getOutputStream())) {
 			outputStream.writeUTF("Server time is " + date);
 			outputStream.flush();
 			clientSocket.close();
-			lastMassage = "New client at date : " + date;
+			lastMessage = "New client at date : " + date;
 			notifyObservers(null);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
-		return date;
 	}
 
 	/**
-	 * Getter method for lastMassage.
+	 * Getter method for lastMessage.
 	 * 
-	 * @return the lastMassage
+	 * @return the lastMessage
 	 */
-	public String getLastMassage() {
-		return lastMassage;
+	public String getLastMessage() {
+		return lastMessage;
 	}
 
 	/**
-	 * Setter method for lastMassage.
+	 * Setter method for lastMessage.
 	 * 
-	 * @param lastMassage
-	 *            the lastMassage to set
+	 * @param lastMessage
+	 *            the lastMessage to set
 	 */
-	public void setLastMassage(String lastMassage) {
-		this.lastMassage = lastMassage;
+	public void setLastMessage(String lastMassage) {
+		this.lastMessage = lastMassage;
 	}
 
 	@Override

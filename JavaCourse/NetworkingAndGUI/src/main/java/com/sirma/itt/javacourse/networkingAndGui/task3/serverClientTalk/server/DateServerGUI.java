@@ -33,7 +33,7 @@ public class DateServerGUI extends JFrame implements Observer {
 	private DateServer server;
 
 	/**
-	 * Constructor that visualizes the frame;
+	 * Constructor that visualizes the frame.
 	 */
 	public DateServerGUI() {
 		setUp();
@@ -99,7 +99,7 @@ public class DateServerGUI extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable observable) {
-		messageArea.setText(messageArea.getText() + "\n" + server.getLastMassage());
+		messageArea.setText(messageArea.getText() + "\n" + server.getLastMessage());
 	}
 
 }

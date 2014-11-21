@@ -1,20 +1,22 @@
 package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
-
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observable;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observer;
 
 /**
  * @author Simeon Iliev
  */
-public class InfromationServer implements Observable {
+public class InfromationServer extends Thread {
 
 	private static Logger log = Logger.getLogger(InfromationServer.class);
 
@@ -22,16 +24,16 @@ public class InfromationServer implements Observable {
 	private Socket client;
 	private int clientNumber;
 	private boolean isRunning;
-	private final List<Socket> clientList;
-	private final List<Observer> observers;
+	private final Map<Socket, OutputStream> clientList;
+	private final JTextArea messageArea;
 
 	/**
 	 * 
 	 */
-	public InfromationServer() {
+	public InfromationServer(JTextArea messageArea) {
 		this.clientNumber = 0;
-		this.clientList = new ArrayList<Socket>();
-		observers = new ArrayList<Observer>();
+		this.clientList = new HashMap<Socket, OutputStream>();
+		this.messageArea = messageArea;
 
 	}
 
@@ -39,33 +41,81 @@ public class InfromationServer implements Observable {
 		try {
 			server = new ServerSocket(7000);
 			setRunning(true);
+			sendMessage("Server is starting.");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
 
+	private void sendMessage(String message) {
+		messageArea.setText(messageArea.getText() + "\n" + message);
+	}
+
 	public void stopServer() {
+		interrupt();
 		if (server != null) {
 			try {
 				server.close();
 				clientNumber = 0;
 				clientList.clear();
+				sendMessage("Server is stoped");
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
+				sendMessage(e.getMessage());
 			}
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void run() {
+		startServer();
+		acceptConnetion();
+	}
+
 	public void acceptConnetion() {
-		while (isRunning()) {
+		while (!isInterrupted()) {
 			try {
 				client = server.accept();
 				clientNumber++;
+				sendUserMessage(client);
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+				sendMessage(e.getMessage());
+			}
+
+		}
+
+	}
+
+	/**
+	 * Send the client the server date message;
+	 * 
+	 * @param clientSocket
+	 *            the client to which the message will be sent.
+	 */
+	protected void sendUserMessage(Socket clientSocket) {
+		ObjectOutputStream outputStream;
+		try {
+			outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+			outputStream.writeObject("You are Number " + clientNumber);
+			outputStream.flush();
+			clientList.put(clientSocket, outputStream);
+			sendMessage("New client has connected : " + clientNumber);
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+			sendMessage(e.getMessage());
+		}
+		for (Entry<Socket, OutputStream> clientPair : clientList.entrySet()) {
+			try {
+				ObjectOutputStream oStream = (ObjectOutputStream) clientPair.getValue();
+				oStream.writeObject("Client number " + clientNumber + " has connected.");
+				oStream.flush();
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 			}
-			new InformationThread(clientList, clientNumber).start();
-			clientList.add(client);
 		}
 	}
 
@@ -88,25 +138,4 @@ public class InfromationServer implements Observable {
 		this.isRunning = isRunning;
 	}
 
-	@Override
-	public void attachObserver(Observer observer) {
-		observers.add(observer);
-	}
-
-	@Override
-	public void dettachObserver(Observer observer) {
-		observers.remove(observer);
-	}
-
-	@Override
-	public void notifyObservers(Observable observable) {
-		for (Observer observer : observers) {
-			observer.update(this);
-		}
-	}
-
-	@Override
-	public int getObserverCount() {
-		return observers.size();
-	}
 }

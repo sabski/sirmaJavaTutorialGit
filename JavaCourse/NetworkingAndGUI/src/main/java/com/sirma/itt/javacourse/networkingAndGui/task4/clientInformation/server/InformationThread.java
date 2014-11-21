@@ -1,7 +1,5 @@
 package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 
@@ -27,16 +25,7 @@ public class InformationThread extends Thread {
 
 	@Override
 	public void run() {
-		for (Socket clientSocket : clientList) {
-			try (DataOutputStream outputStream = new DataOutputStream(
-					clientSocket.getOutputStream())) {
-				outputStream.writeUTF("Client number " + newClientNumber + " has connected.");
-				outputStream.flush();
-				clientSocket.close();
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-			}
-		}
+
 	}
 
 }

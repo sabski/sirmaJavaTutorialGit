@@ -63,7 +63,6 @@ public class InformationClient extends Thread {
 	 * Stops the thread and closes the client socket.
 	 */
 	public void stopClient() {
-		interrupt();
 		try {
 			client.close();
 			displayMessage("Client is stopping !!!");
@@ -71,7 +70,7 @@ public class InformationClient extends Thread {
 			log.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
-
+		interrupt();
 	}
 
 	/**

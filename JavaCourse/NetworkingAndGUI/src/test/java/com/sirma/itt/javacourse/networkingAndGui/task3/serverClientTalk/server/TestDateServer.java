@@ -37,6 +37,7 @@ public class TestDateServer {
 	public void testStartServer() {
 		server.startServer();
 		Mockito.verify(server, Mockito.atLeastOnce()).startServer();
+		server.stopServer();
 	}
 
 	/**

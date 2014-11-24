@@ -12,6 +12,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
 /**
+ * UI for the Information Server.
+ * 
  * @author Simeon Iliev
  */
 public class InformationServerGUI extends JFrame {
@@ -25,7 +27,7 @@ public class InformationServerGUI extends JFrame {
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;
-	private InfromationServer server;
+	private InformationServer server;
 
 	/**
 	 * Constructor that visualizes the frame.
@@ -44,7 +46,7 @@ public class InformationServerGUI extends JFrame {
 		startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
-		server = new InfromationServer(messageArea);
+		server = new InformationServer(messageArea);
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new GridLayout(2, 1));
 

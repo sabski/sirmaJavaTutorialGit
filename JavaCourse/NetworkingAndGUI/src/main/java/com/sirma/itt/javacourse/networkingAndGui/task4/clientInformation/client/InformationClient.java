@@ -9,6 +9,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
 /**
+ * Information client this class connects to a server, and receives messages.
+ * 
  * @author Simeon Iliev
  */
 public class InformationClient extends Thread {
@@ -19,52 +21,66 @@ public class InformationClient extends Thread {
 	private ObjectInputStream reader;
 
 	/**
+	 * Basic constructor for the information client.
 	 * 
+	 * @param messageArea
+	 *            the message area that the server will send messages.
 	 */
 	public InformationClient(JTextArea messageArea) {
 		this.messageArea = messageArea;
 	}
 
+	/**
+	 * Connects the client to the server.
+	 */
 	public void connect() {
 		try {
 			client = new Socket("localhost", 7000);
 			reader = new ObjectInputStream(client.getInputStream());
-			sendMessage("Attempting to connect to server.");
+			displayMessage("Attempting to connect to server.");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-			sendMessage(e.getMessage());
+			displayMessage(e.getMessage());
 		}
 
 	}
 
+	/**
+	 * Reads messages from the server.
+	 */
 	public void readFromServer() {
-
-		
-
 		try {
 			String message;
 			while ((message = (String) reader.readObject()) != null) {
-				sendMessage(message);
-				System.err.println();
+				displayMessage(message);
 			}
-
 		} catch (IOException | ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
 
+	/**
+	 * Stops the thread and closes the client socket.
+	 */
 	public void stopClient() {
+		interrupt();
 		try {
 			client.close();
-			sendMessage("Client is stopping !!!");
+			displayMessage("Client is stopping !!!");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-			sendMessage(e.getMessage());
+			displayMessage(e.getMessage());
 		}
 
 	}
 
-	private void sendMessage(String message) {
+	/**
+	 * Sends a message to UI message area.
+	 * 
+	 * @param message
+	 *            the message to be send to the UI.
+	 */
+	private void displayMessage(String message) {
 		log.info(message);
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}

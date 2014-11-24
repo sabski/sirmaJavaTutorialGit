@@ -14,54 +14,76 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
 /**
+ * Server class whose job is to receive client connections and send user the number there are on the
+ * server.
+ * 
  * @author Simeon Iliev
  */
-public class InfromationServer extends Thread {
+public class InformationServer extends Thread {
 
-	private static Logger log = Logger.getLogger(InfromationServer.class);
+	private static Logger log = Logger.getLogger(InformationServer.class);
 
 	private ServerSocket server;
 	private Socket client;
 	private int clientNumber;
-	private boolean isRunning;
 	private final Map<Socket, OutputStream> clientList;
 	private final JTextArea messageArea;
 
 	/**
-	 * 
+	 * Basic constructor.
 	 */
-	public InfromationServer(JTextArea messageArea) {
+	public InformationServer(JTextArea messageArea) {
 		this.clientNumber = 0;
 		this.clientList = new HashMap<Socket, OutputStream>();
 		this.messageArea = messageArea;
 
 	}
 
+	/**
+	 * Start the server on local port 7000.
+	 */
 	public void startServer() {
 		try {
 			server = new ServerSocket(7000);
-			setRunning(true);
-			sendMessage("Server is starting.");
+			displayMessage("Server is starting.");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
 
-	private void sendMessage(String message) {
+	/**
+	 * Sends a message in the UI message area.
+	 * 
+	 * @param message
+	 *            the message that is to written in the UI.
+	 */
+	private void displayMessage(String message) {
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 
+	/**
+	 * Stops the thread and closes the server socket.
+	 */
 	public void stopServer() {
-		interrupt();
+		for (Entry<Socket, OutputStream> clientPair : clientList.entrySet()) {
+			try {
+				ObjectOutputStream oStream = (ObjectOutputStream) clientPair.getValue();
+				oStream.writeObject("Server is stopping");
+				oStream.flush();
+				oStream.close();
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+			}
+		}
 		if (server != null) {
 			try {
 				server.close();
 				clientNumber = 0;
 				clientList.clear();
-				sendMessage("Server is stoped");
+				displayMessage("Server is stopped");
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
-				sendMessage(e.getMessage());
+				displayMessage(e.getMessage());
 			}
 		}
 	}
@@ -75,19 +97,21 @@ public class InfromationServer extends Thread {
 		acceptConnetion();
 	}
 
+	/**
+	 * This method allows the server to continuously accept connections to the server until the
+	 * thread is interrupted.
+	 */
 	public void acceptConnetion() {
-		while (!isInterrupted()) {
+		while (!server.isClosed()) {
 			try {
 				client = server.accept();
 				clientNumber++;
 				sendUserMessage(client);
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
-				sendMessage(e.getMessage());
+				displayMessage(e.getMessage());
 			}
-
 		}
-
 	}
 
 	/**
@@ -97,16 +121,18 @@ public class InfromationServer extends Thread {
 	 *            the client to which the message will be sent.
 	 */
 	protected void sendUserMessage(Socket clientSocket) {
-		ObjectOutputStream outputStream;
-		try {
-			outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-			outputStream.writeObject("You are Number " + clientNumber);
-			outputStream.flush();
-			clientList.put(clientSocket, outputStream);
-			sendMessage("New client has connected : " + clientNumber);
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			sendMessage(e.getMessage());
+		ObjectOutputStream outputStream = null;
+		if (clientSocket != null) {
+			try {
+				outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+				outputStream.writeObject("You are client number " + clientNumber);
+				log.info("New client has connected : " + clientNumber);
+				outputStream.flush();
+				displayMessage("New client has connected : " + clientNumber);
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+				displayMessage(e.getMessage());
+			}
 		}
 		for (Entry<Socket, OutputStream> clientPair : clientList.entrySet()) {
 			try {
@@ -117,25 +143,7 @@ public class InfromationServer extends Thread {
 				log.error(e.getMessage(), e);
 			}
 		}
-	}
-
-	/**
-	 * Getter method for isRunning.
-	 * 
-	 * @return the isRunning
-	 */
-	public boolean isRunning() {
-		return isRunning;
-	}
-
-	/**
-	 * Setter method for isRunning.
-	 * 
-	 * @param isRunning
-	 *            the isRunning to set
-	 */
-	public void setRunning(boolean isRunning) {
-		this.isRunning = isRunning;
+		clientList.put(clientSocket, outputStream);
 	}
 
 }

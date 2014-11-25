@@ -11,8 +11,8 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observable;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observer;
+import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observable;
+import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observer;
 
 /**
  * User interface for the {@link DateServer} class.

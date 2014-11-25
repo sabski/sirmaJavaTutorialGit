@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task7.ProducerConsumer.Consumer;
-import com.sirma.itt.javacourse.threads.task7.ProducerConsumer.Producer;
-import com.sirma.itt.javacourse.threads.task7.ProducerConsumer.Product;
+import com.sirma.itt.javacourse.threads.task7.producer_consumer.Consumer;
+import com.sirma.itt.javacourse.threads.task7.producer_consumer.Producer;
+import com.sirma.itt.javacourse.threads.task7.producer_consumer.Product;
 
 /**
  * @author Simeon Iliev

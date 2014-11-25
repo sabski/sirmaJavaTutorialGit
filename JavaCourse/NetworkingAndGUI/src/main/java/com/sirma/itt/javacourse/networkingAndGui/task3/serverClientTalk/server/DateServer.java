@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observable;
-import com.sirma.itt.javacourse.desingPatterns.task6.observer.Observer;
+import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observable;
+import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observer;
 
 /**
  * Date server class that is opened on port 7000. This class accepts connections from new clients

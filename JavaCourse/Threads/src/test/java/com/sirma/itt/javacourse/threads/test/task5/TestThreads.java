@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task5.synchronizedStack.AddingThread;
-import com.sirma.itt.javacourse.threads.task5.synchronizedStack.ObjectListSynchonized;
-import com.sirma.itt.javacourse.threads.task5.synchronizedStack.RemovingThread;
+import com.sirma.itt.javacourse.threads.task5.synchronized_stack.AddingThread;
+import com.sirma.itt.javacourse.threads.task5.synchronized_stack.ObjectListSynchonized;
+import com.sirma.itt.javacourse.threads.task5.synchronized_stack.RemovingThread;
 
 /**
  * This is a complex test that will include the following classes. {@link AddingThread},

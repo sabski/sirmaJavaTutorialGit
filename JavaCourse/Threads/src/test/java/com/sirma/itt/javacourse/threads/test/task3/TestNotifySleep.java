@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task2.twoCounterThreads.StoperThread;
-import com.sirma.itt.javacourse.threads.task3.sleepingCounterThreads.StoperThreadWithWait;
+import com.sirma.itt.javacourse.threads.task2.two_counter_threads.StoperThread;
+import com.sirma.itt.javacourse.threads.task3.sleeping_counter_threads.StoperThreadWithWait;
 
 /**
  * Test for waiting threads.

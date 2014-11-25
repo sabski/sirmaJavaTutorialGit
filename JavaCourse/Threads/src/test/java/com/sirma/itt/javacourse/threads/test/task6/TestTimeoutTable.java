@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task6.TimeoutHashtable.TimeoutHashtable;
+import com.sirma.itt.javacourse.threads.task6.timeout_hashtable.TimeoutHashtable;
 
 /**
  * Test for {@link TimeoutHashtable}
@@ -26,7 +26,7 @@ public class TestTimeoutTable {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.threads.task6.TimeoutHashtable.TimeoutHashtable#put(java.lang.String, java.lang.Object)}
+	 * {@link com.sirma.itt.javacourse.threads.task6.timeout_hashtable.TimeoutHashtable#put(java.lang.String, java.lang.Object)}
 	 * .
 	 */
 	@Test
@@ -37,7 +37,7 @@ public class TestTimeoutTable {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.threads.task6.TimeoutHashtable.TimeoutHashtable#get(java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.threads.task6.timeout_hashtable.TimeoutHashtable#get(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -48,7 +48,7 @@ public class TestTimeoutTable {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.threads.task6.TimeoutHashtable.TimeoutHashtable#remove(java.lang.String)}
+	 * {@link com.sirma.itt.javacourse.threads.task6.timeout_hashtable.TimeoutHashtable#remove(java.lang.String)}
 	 * .
 	 */
 	@Test

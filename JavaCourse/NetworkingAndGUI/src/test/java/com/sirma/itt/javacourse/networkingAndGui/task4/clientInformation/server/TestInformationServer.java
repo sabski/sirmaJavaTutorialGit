@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClient;
+import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClientGUI;
 
 /**
  * @author Simeon Iliev
@@ -20,8 +21,8 @@ public class TestInformationServer {
 	private InformationClient clientTwo;
 	private InformationServer server;
 	private JTextArea serverArea;
-	private JTextArea clientOneArea;
-	private JTextArea clientTwoArea;
+	private InformationClientGUI clientOneArea;
+	private InformationClientGUI clientTwoArea;
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,8 +30,8 @@ public class TestInformationServer {
 	@Before
 	public void setUp() throws Exception {
 		serverArea = new JTextArea();
-		clientOneArea = new JTextArea();
-		clientTwoArea = new JTextArea();
+		clientOneArea = new InformationClientGUI();
+		clientTwoArea = new InformationClientGUI();
 		server = new InformationServer(serverArea);
 		clientOne = new InformationClient(clientOneArea);
 		clientTwo = new InformationClient(clientTwoArea);
@@ -45,7 +46,7 @@ public class TestInformationServer {
 	public void testStartServer() {
 		server.start();
 		try {
-			Thread.sleep(200);
+			Thread.sleep(400);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -62,7 +63,7 @@ public class TestInformationServer {
 	public void testStopServer() {
 		server.start();
 		try {
-			Thread.sleep(200);
+			Thread.sleep(400);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -80,7 +81,7 @@ public class TestInformationServer {
 		server.start();
 		clientOne.start();
 		try {
-			Thread.sleep(200);
+			Thread.sleep(400);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}

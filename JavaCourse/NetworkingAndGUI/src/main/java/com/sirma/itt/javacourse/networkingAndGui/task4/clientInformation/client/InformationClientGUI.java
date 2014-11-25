@@ -26,7 +26,7 @@ public class InformationClientGUI extends JFrame {
 	private InformationClient client;
 
 	/**
-	 *
+	 * Constructor for GUI class.
 	 */
 	public InformationClientGUI() {
 		setUp();
@@ -37,7 +37,7 @@ public class InformationClientGUI extends JFrame {
 		connectButton = new JButton("Connect");
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
-		client = new InformationClient(messageWingow);
+		client = new InformationClient(this);
 		mainWindow.setLayout(new GridLayout(2, 1));
 		connectButton.addActionListener(new ActionListener() {
 
@@ -54,5 +54,33 @@ public class InformationClientGUI extends JFrame {
 		mainWindow.setVisible(true);
 	}
 
-	//
+	/**
+	 * Getter method for messageWingow.
+	 * 
+	 * @return the messageWingow
+	 */
+	public JTextArea getMessageWingow() {
+		return messageWingow;
+	}
+
+	/**
+	 * Setter method for messageWingow.
+	 * 
+	 * @param messageWingow
+	 *            the messageWingow to set
+	 */
+	public void setMessageWingow(JTextArea messageWingow) {
+		this.messageWingow = messageWingow;
+	}
+
+	/**
+	 * Main method
+	 * 
+	 * @param args
+	 *            arguments for the main method.
+	 */
+	public static void main(String[] args) {
+		new InformationClientGUI();
+	}
+
 }

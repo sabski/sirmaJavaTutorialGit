@@ -84,4 +84,13 @@ public class InformationServerGUI extends JFrame {
 		});
 	}
 
+	/**
+	 * Main method.
+	 * @param args
+	 *            arguments for the main method.
+	 */
+	public static void main(String[] args) {
+		new InformationServerGUI();
+	}
+
 }

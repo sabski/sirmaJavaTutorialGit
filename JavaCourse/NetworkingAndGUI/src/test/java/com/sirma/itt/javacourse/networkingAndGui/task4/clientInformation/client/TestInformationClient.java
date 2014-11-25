@@ -20,8 +20,8 @@ public class TestInformationClient {
 	private InformationClient clientTwo;
 	private InformationServer server;
 	private JTextArea serverArea;
-	private JTextArea clientOneArea;
-	private JTextArea clientTwoArea;
+	private InformationClientGUI clientOneArea;
+	private InformationClientGUI clientTwoArea;
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,8 +29,8 @@ public class TestInformationClient {
 	@Before
 	public void setUp() throws Exception {
 		serverArea = new JTextArea();
-		clientOneArea = new JTextArea();
-		clientTwoArea = new JTextArea();
+		clientOneArea = new InformationClientGUI();
+		clientTwoArea = new InformationClientGUI();
 		server = new InformationServer(serverArea);
 		clientOne = new InformationClient(clientOneArea);
 		clientTwo = new InformationClient(clientTwoArea);
@@ -51,7 +51,7 @@ public class TestInformationClient {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(clientOneArea.getText().contains("You are "));
+		assertTrue(clientOneArea.getMessageWingow().getText().contains("You are "));
 		server.stopServer();
 	}
 
@@ -70,7 +70,7 @@ public class TestInformationClient {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(clientOneArea.getText().contains("Client number"));
+		assertTrue(clientOneArea.getMessageWingow().getText().contains("Client number"));
 		server.stopServer();
 	}
 
@@ -89,7 +89,7 @@ public class TestInformationClient {
 			log.error(e.getMessage(), e);
 		}
 		clientOne.stopClient();
-		assertTrue(clientOneArea.getText().contains("Client is"));
+		assertTrue(clientOneArea.getMessageWingow().getText().contains("Client is"));
 		server.stopServer();
 	}
 

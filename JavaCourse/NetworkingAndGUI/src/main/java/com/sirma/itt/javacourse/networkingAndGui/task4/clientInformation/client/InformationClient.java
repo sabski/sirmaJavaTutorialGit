@@ -1,5 +1,6 @@
 package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client;
 
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -19,6 +20,7 @@ public class InformationClient extends Thread {
 	private Socket client;
 	private final JTextArea messageArea;
 	private ObjectInputStream reader;
+	private final InformationClientGUI clientGUI;
 
 	/**
 	 * Basic constructor for the information client.
@@ -26,8 +28,9 @@ public class InformationClient extends Thread {
 	 * @param messageArea
 	 *            the message area that the server will send messages.
 	 */
-	public InformationClient(JTextArea messageArea) {
-		this.messageArea = messageArea;
+	public InformationClient(InformationClientGUI clientGUI) {
+		this.messageArea = clientGUI.getMessageWingow();
+		this.clientGUI = clientGUI;
 	}
 
 	/**
@@ -56,6 +59,7 @@ public class InformationClient extends Thread {
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
+			stopClient();
 		}
 	}
 
@@ -66,6 +70,7 @@ public class InformationClient extends Thread {
 		try {
 			client.close();
 			displayMessage("Client is stopping !!!");
+			clientGUI.dispatchEvent(new WindowEvent(clientGUI, WindowEvent.WINDOW_CLOSING));
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 			displayMessage(e.getMessage());

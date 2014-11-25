@@ -46,6 +46,7 @@ public class InformationServer extends Thread {
 		try {
 			server = new ServerSocket(7000);
 			displayMessage("Server is starting.");
+			log.info("Server is starting");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -70,7 +71,7 @@ public class InformationServer extends Thread {
 				ObjectOutputStream oStream = (ObjectOutputStream) clientPair.getValue();
 				oStream.writeObject("Server is stopping");
 				oStream.flush();
-				oStream.close();
+				clientPair.getKey().close();
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 			}
@@ -81,6 +82,7 @@ public class InformationServer extends Thread {
 				clientNumber = 0;
 				clientList.clear();
 				displayMessage("Server is stopped");
+				log.info("Server is stopping");
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 				displayMessage(e.getMessage());

@@ -54,8 +54,11 @@ public class InformationClient extends Thread {
 	public void readFromServer() {
 		try {
 			String message;
-			while ((message = (String) reader.readObject()) != null) {
-				displayMessage(message);
+			while (!client.isClosed()) {
+				message = (String) reader.readObject();
+				if (message != null) {
+					displayMessage(message);
+				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
@@ -70,8 +73,9 @@ public class InformationClient extends Thread {
 		try {
 			client.close();
 			displayMessage("Client is stopping !!!");
+			Thread.sleep(5 * 1000);
 			clientGUI.dispatchEvent(new WindowEvent(clientGUI, WindowEvent.WINDOW_CLOSING));
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			log.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}

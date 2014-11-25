@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -46,7 +48,6 @@ public class InformationServerGUI extends JFrame {
 		startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
-		server = new InformationServer(messageArea);
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new GridLayout(2, 1));
 
@@ -61,6 +62,18 @@ public class InformationServerGUI extends JFrame {
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 
+		mainWindow.addWindowListener(new WindowAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void windowClosing(WindowEvent e) {
+				server.stopServer();
+				System.exit(0);
+			}
+
+		});
 	}
 
 	/**
@@ -71,6 +84,7 @@ public class InformationServerGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				server = new InformationServer(messageArea);
 				server.start();
 			}
 		});
@@ -86,6 +100,7 @@ public class InformationServerGUI extends JFrame {
 
 	/**
 	 * Main method.
+	 * 
 	 * @param args
 	 *            arguments for the main method.
 	 */

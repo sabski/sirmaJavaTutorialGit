@@ -54,10 +54,11 @@ public class CalculatorGui extends JFrame {
 	private ActionListener numberButtonListener;
 	private ActionListener operationListener;
 	private final CommandBuilder builder;
-	private Double firstNumber, secondNumber;
+	private Double firstNumber;
+	private Double secondNumber;
 
 	/**
-	 * 
+	 * Constructor for the calculator UI.
 	 */
 	public CalculatorGui() {
 		starBuildingGUI();
@@ -95,6 +96,12 @@ public class CalculatorGui extends JFrame {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Creates the top half off the panel.
+	 * 
+	 * @param topPanel
+	 *            the panel where the numbers and result will appear.
+	 */
 	private void setUpTopPanel(JPanel topPanel) {
 		// TODO Something something something...
 		textFiled = new JTextField();
@@ -105,6 +112,13 @@ public class CalculatorGui extends JFrame {
 
 	}
 
+	/**
+	 * Creates the buttons for the calculator and sets their actions listeners also orders them in
+	 * an orderly fashion.
+	 * 
+	 * @param panel
+	 *            the panel to add the buttons to.
+	 */
 	private void setupButtons(JPanel panel) {
 		// TODO set up Jenson Button...
 		plusButton = new JButton("+");

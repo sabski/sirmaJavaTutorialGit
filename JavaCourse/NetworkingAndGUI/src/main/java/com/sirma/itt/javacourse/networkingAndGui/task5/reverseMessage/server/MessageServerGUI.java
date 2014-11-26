@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.server;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -37,14 +38,15 @@ public class MessageServerGUI extends JFrame {
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
-		mainWindow.setLayout(new GridLayout(2, 1));
+		mainWindow.setLayout(new BorderLayout());
 
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
+		buttonPanel.setPreferredSize(new Dimension(300, 35));
 		createButtonListners();
-		mainWindow.add(buttonPanel);
+		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);
 
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +59,9 @@ public class MessageServerGUI extends JFrame {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				server.stopServer();
+				if (server != null) {
+					server.stopServer();
+				}
 				System.exit(0);
 			}
 
@@ -66,12 +70,12 @@ public class MessageServerGUI extends JFrame {
 	}
 
 	private void createButtonListners() {
-		// TODO Auto-generated method stub
+
 		startButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				server = new MessageServer(MessageServerGUI.this);
+				server = new MessageServer(getMessageArea());
 				server.start();
 			}
 		});

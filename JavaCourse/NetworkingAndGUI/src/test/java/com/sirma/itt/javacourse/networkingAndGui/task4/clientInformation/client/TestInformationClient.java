@@ -7,6 +7,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server.InformationServer;
 
@@ -20,8 +22,13 @@ public class TestInformationClient {
 	private InformationClient clientTwo;
 	private InformationServer server;
 	private JTextArea serverArea;
-	private InformationClientGUI clientOneArea;
-	private InformationClientGUI clientTwoArea;
+
+	@Mock
+	private InformationClientGUI clientOneUI;
+	@Mock
+	private InformationClientGUI clientTwoUI;
+
+	private JTextArea messageOneArea;
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,12 +36,14 @@ public class TestInformationClient {
 	@Before
 	public void setUp() throws Exception {
 		serverArea = new JTextArea();
-		clientOneArea = new InformationClientGUI();
-		clientTwoArea = new InformationClientGUI();
+		clientOneUI = Mockito.mock(InformationClientGUI.class);
+		clientTwoUI = Mockito.mock(InformationClientGUI.class);
 		server = new InformationServer(serverArea);
-		clientOne = new InformationClient(clientOneArea);
-		clientTwo = new InformationClient(clientTwoArea);
-
+		messageOneArea = new JTextArea();
+		Mockito.when(clientOneUI.getMessageWingow()).thenReturn(messageOneArea);
+		Mockito.when(clientTwoUI.getMessageWingow()).thenReturn(messageOneArea);
+		clientOne = new InformationClient(clientOneUI);
+		clientTwo = new InformationClient(clientTwoUI);
 	}
 
 	/**
@@ -51,7 +60,8 @@ public class TestInformationClient {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(clientOneArea.getMessageWingow().getText().contains("You are "));
+		assertTrue(messageOneArea.getText().contains("You are "));
+		clientOne.stopClient();
 		server.stopServer();
 	}
 
@@ -70,8 +80,11 @@ public class TestInformationClient {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(clientOneArea.getMessageWingow().getText().contains("Client number"));
+		assertTrue(messageOneArea.getText().contains("Client number"));
+		clientOne.stopClient();
+		clientTwo.stopClient();
 		server.stopServer();
+
 	}
 
 	/**
@@ -89,7 +102,7 @@ public class TestInformationClient {
 			log.error(e.getMessage(), e);
 		}
 		clientOne.stopClient();
-		assertTrue(clientOneArea.getMessageWingow().getText().contains("Client is"));
+		assertTrue(messageOneArea.getText().contains("Client is"));
 		server.stopServer();
 	}
 

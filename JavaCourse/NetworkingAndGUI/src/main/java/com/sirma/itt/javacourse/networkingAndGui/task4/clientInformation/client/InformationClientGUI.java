@@ -39,7 +39,7 @@ public class InformationClientGUI extends JFrame {
 		connectButton = new JButton("Connect");
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
-		client = new InformationClient(this);
+	
 		mainWindow.setLayout(new GridLayout(2, 1));
 		connectButton.addActionListener(new ActionListener() {
 
@@ -54,7 +54,7 @@ public class InformationClientGUI extends JFrame {
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(300, 200);
 		mainWindow.setVisible(true);
-
+		client = new InformationClient(this);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			/**

@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client;
 
 import static org.junit.Assert.assertTrue;
 
+import javax.swing.JTextArea;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +24,7 @@ public class TestDateClient {
 	@Before
 	public void setUp() throws Exception {
 		client = new DateClient();
-		server = new DateServer();
+		server = new DateServer(new JTextArea());
 
 	}
 

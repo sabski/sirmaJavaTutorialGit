@@ -19,7 +19,7 @@ import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observer;
  * 
  * @author Simeon Iliev
  */
-public class DateServerGUI extends JFrame implements Observer {
+public class DateServerGUI extends JFrame {
 
 	/**
 	 * Comment for serialVersionUID.
@@ -40,8 +40,8 @@ public class DateServerGUI extends JFrame implements Observer {
 	}
 
 	/**
-	 * Set up method for the interface initiates the values and set the setting for the window
-	 * frame.
+	 * Set up method for the interface initiates the values and set the setting
+	 * for the window frame.
 	 */
 	private void setUp() {
 		// TODO Have a nice day;
@@ -49,8 +49,7 @@ public class DateServerGUI extends JFrame implements Observer {
 		startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
-		server = new DateServer();
-		server.attachObserver(this);
+		server = new DateServer(messageArea);
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new GridLayout(2, 1));
 
@@ -68,7 +67,8 @@ public class DateServerGUI extends JFrame implements Observer {
 	}
 
 	/**
-	 * Method for setting up the buttons. Creating and adding there action listeners.
+	 * Method for setting up the buttons. Creating and adding there action
+	 * listeners.
 	 */
 	private void createButtonListners() {
 		// TODO Press all the buttons...
@@ -95,11 +95,6 @@ public class DateServerGUI extends JFrame implements Observer {
 				server.stopServer();
 			}
 		});
-	}
-
-	@Override
-	public void update(Observable observable) {
-		messageArea.setText(messageArea.getText() + "\n" + server.getLastMessage());
 	}
 
 }

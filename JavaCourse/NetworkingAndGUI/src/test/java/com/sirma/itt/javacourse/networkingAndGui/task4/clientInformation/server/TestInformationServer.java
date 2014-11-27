@@ -7,6 +7,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClient;
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClientGUI;
@@ -21,6 +23,7 @@ public class TestInformationServer {
 	private InformationClient clientTwo;
 	private InformationServer server;
 	private JTextArea serverArea;
+	@Mock
 	private InformationClientGUI clientOneArea;
 	private InformationClientGUI clientTwoArea;
 
@@ -30,11 +33,11 @@ public class TestInformationServer {
 	@Before
 	public void setUp() throws Exception {
 		serverArea = new JTextArea();
-		clientOneArea = new InformationClientGUI();
-		clientTwoArea = new InformationClientGUI();
 		server = new InformationServer(serverArea);
+		clientOneArea = Mockito.mock(InformationClientGUI.class);
+		Mockito.when(clientOneArea.getMessageWingow()).thenReturn(
+				new JTextArea());
 		clientOne = new InformationClient(clientOneArea);
-		clientTwo = new InformationClient(clientTwoArea);
 	}
 
 	/**
@@ -79,14 +82,15 @@ public class TestInformationServer {
 	@Test
 	public void testAcceptConnetion() {
 		server.start();
+	
 		clientOne.start();
 		try {
-			Thread.sleep(400);
+			Thread.sleep(600);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(serverArea.getText().contains("New client has connected"));
 		clientOne.stopClient();
 		server.stopServer();
+		assertTrue(serverArea.getText().contains("New client has connected"));
 	}
 }

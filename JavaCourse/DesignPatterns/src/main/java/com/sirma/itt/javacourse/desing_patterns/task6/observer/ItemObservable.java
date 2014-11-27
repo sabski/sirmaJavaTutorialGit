@@ -50,7 +50,7 @@ public class ItemObservable implements Observable {
 	 */
 	public void setInStock(Boolean inStock) {
 		this.inStock = inStock;
-		notifyObservers(this);
+		displayMessage(this);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class ItemObservable implements Observable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void notifyObservers(Observable obs) {
+	public void displayMessage(Observable obs) {
 		for (Observer o : observerList) {
 			o.update(obs);
 		}

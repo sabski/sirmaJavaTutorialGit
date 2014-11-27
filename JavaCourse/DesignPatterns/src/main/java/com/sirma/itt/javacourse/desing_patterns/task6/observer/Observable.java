@@ -29,7 +29,7 @@ public interface Observable {
 	 * @param observable
 	 *            The Observable that has changed state.
 	 */
-	public void notifyObservers(Observable observable);
+	public void displayMessage(Observable observable);
 
 	/**
 	 * Shows how many observers are attached to the current Observable.

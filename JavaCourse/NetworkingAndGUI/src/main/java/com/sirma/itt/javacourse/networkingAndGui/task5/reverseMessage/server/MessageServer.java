@@ -11,7 +11,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
 /**
- * Message server class accepts a user connection receives and sends user messages.
+ * Message server class accepts a user connection receives and sends user
+ * messages.
  * 
  * @author Simeon Iliev
  */
@@ -31,7 +32,7 @@ public class MessageServer extends Thread {
 		String line = null;
 		try {
 			while ((line = (String) inputStream.readObject()) != null) {
-				sendUserMessage(writeRevеrsedMessage(line));
+				sendUserMessage(writeReversedMessage(line));
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			log.error(e.getMessage(), e);
@@ -45,7 +46,7 @@ public class MessageServer extends Thread {
 	 *            the message to be reverted
 	 * @return the reverted String.
 	 */
-	public String writeRevеrsedMessage(String message) {
+	public String writeReversedMessage(String message) {
 		StringBuilder reversedMessage = new StringBuilder(message);
 		return "The reverse of " + message + " is " + reversedMessage.reverse();
 	}
@@ -137,10 +138,11 @@ public class MessageServer extends Thread {
 	}
 
 	/**
-	 * Constructor for the server, that takes a {@link MessageServerGUI} as a parameter.
+	 * Constructor for the server, that takes a {@link MessageServerGUI} as a
+	 * parameter.
 	 * 
-	 * @param serverGUI
-	 *            the UI of the server.
+	 * @param messageArea
+	 *            the UI area to display messages.
 	 */
 	public MessageServer(JTextArea messageArea) {
 		this.messageArea = messageArea;

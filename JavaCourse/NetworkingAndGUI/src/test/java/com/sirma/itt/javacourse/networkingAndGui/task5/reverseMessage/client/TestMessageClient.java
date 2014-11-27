@@ -7,19 +7,27 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.server.MessageServer;
 
 /**
+ * Test class for {@link MessageClient}.
+ * 
+ * 
  * @author Simeon Iliev
  */
 public class TestMessageClient {
 
 	private static Logger log = Logger.getLogger(TestMessageClient.class);
+
 	private MessageClient client;
-	private MessageServer server;
+	@Mock
 	private MessageClientGUI clientUI;
+	private MessageServer server;
 	private JTextArea serverTextArea;
+	private JTextArea clientTextArea;
 
 	/**
 	 * Set up method.
@@ -29,9 +37,12 @@ public class TestMessageClient {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		clientUI = Mockito.mock(MessageClientGUI.class);
+		clientTextArea = new JTextArea();
+		Mockito.when(clientUI.getMessageArea()).thenReturn(clientTextArea);
+		client = new MessageClient(clientUI);
 		serverTextArea = new JTextArea();
 		server = new MessageServer(serverTextArea);
-		clientUI = null;
 	}
 
 	/**
@@ -42,16 +53,15 @@ public class TestMessageClient {
 	@Test
 	public void testStartClient() {
 		server.start();
-		clientUI = new MessageClientGUI();
-		client = new MessageClient(clientUI);
-
+		client.start();
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		assertTrue(clientUI.getMessageArea().getText().contains("Welcome"));
+		client.stopClient();
 		server.stopServer();
+		assertTrue(clientTextArea.getText().contains("Welcome"));
 	}
 
 	/**
@@ -62,16 +72,15 @@ public class TestMessageClient {
 	@Test
 	public void testStopClient() {
 		server.start();
-		clientUI = new MessageClientGUI();
-		client = new MessageClient(clientUI);
-
+		client.start();
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
+		client.stopClient();
 		server.stopServer();
-		assertTrue(clientUI.getMessageArea().getText().contains("Client is stopping"));
+		assertTrue(clientTextArea.getText().contains("Client is stopping"));
 	}
 
 	/**
@@ -82,21 +91,23 @@ public class TestMessageClient {
 	@Test
 	public void testSendMessageToServer() {
 		server.start();
-		clientUI = new MessageClientGUI();
-		try {
-			Thread.sleep(700);
-		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
-		}
-		
-		clientUI.sendMessage("This is a test");
-		try {
-			Thread.sleep(700);
-		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
-		}
-		assertTrue(clientUI.getMessageArea().getText().contains("This is a test"));
-		server.stopServer();
-	}
+		client.start();
 
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			log.error(e.getMessage(), e);
+		}
+
+		client.sendMessageToServer("This is a test");
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			log.error(e.getMessage(), e);
+		}
+
+		client.stopClient();
+		server.stopServer();
+		assertTrue(clientTextArea.getText().contains("This is a test"));
+	}
 }

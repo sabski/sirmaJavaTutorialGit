@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server;
 
 import static org.junit.Assert.assertTrue;
 
+import javax.swing.JTextArea;
+
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class TestDateServer {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		server = Mockito.spy(new DateServer());
+		server = Mockito.spy(new DateServer(new JTextArea()));
 	}
 
 	/**

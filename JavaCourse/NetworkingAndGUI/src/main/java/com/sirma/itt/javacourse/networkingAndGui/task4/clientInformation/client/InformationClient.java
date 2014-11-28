@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import javax.net.SocketFactory;
 import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
@@ -39,6 +40,8 @@ public class InformationClient extends Thread {
 	public void connect() {
 		try {
 			client = new Socket("localhost", 7000);
+			SocketFactory factory = SocketFactory.getDefault();
+			
 			reader = new ObjectInputStream(client.getInputStream());
 			displayMessage("Attempting to connect to server.");
 		} catch (IOException e) {

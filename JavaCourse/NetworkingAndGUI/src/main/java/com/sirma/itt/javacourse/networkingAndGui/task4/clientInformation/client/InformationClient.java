@@ -39,9 +39,7 @@ public class InformationClient extends Thread {
 	 */
 	public void connect() {
 		try {
-			client = new Socket("localhost", 7000);
-			SocketFactory factory = SocketFactory.getDefault();
-			
+			client = new Socket("localhost", 7000);	
 			reader = new ObjectInputStream(client.getInputStream());
 			displayMessage("Attempting to connect to server.");
 		} catch (IOException e) {

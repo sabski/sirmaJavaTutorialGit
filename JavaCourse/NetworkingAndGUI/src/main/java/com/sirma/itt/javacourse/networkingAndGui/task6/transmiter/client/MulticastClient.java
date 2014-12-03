@@ -1,9 +1,14 @@
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.client;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
@@ -14,38 +19,91 @@ import org.apache.log4j.Logger;
 public class MulticastClient extends Thread {
 
 	private static Logger log = Logger.getLogger(MulticastClient.class);
-	private MulticastSocket client;
+	private MulticastSocket multicastClient;
+	private Socket client;
 	private String group = "225.4.5.6";
+	private JTextArea messageArea;
 
 	public void readPackegeData() {
-		while (!client.isConnected()) {
+		try {
+			multicastClient = new MulticastSocket(7005);
+			multicastClient.joinGroup(InetAddress.getByName(group));
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+		while (!multicastClient.isConnected()) {
 			byte[] buffer = new byte[1024];
 			DatagramPacket pack = new DatagramPacket(buffer, buffer.length);
 			try {
-				client.receive(pack);
+				multicastClient.receive(pack);
 				log.info("reseived " + pack.toString());
+
+				displayMessage("packege reseived " + pack.toString());
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 			}
 		}
 	}
 
-	@Override
-	public void run() {
-		log.info("Client started");
-		readPackegeData();
+	private void readMulticastAddress() {
+		try {
+			ObjectInputStream reader = new ObjectInputStream(
+					client.getInputStream());
+			String message = (String) reader.readObject();
+			if (message != null) {
+				// displayMessage(message);
+				log.info(message);
+				group = message;
+				displayMessage("Multicast listeing addres is " + message);
+
+			}
+
+		} catch (IOException | ClassNotFoundException e) {
+			log.error(e.getMessage(), e);
+			stopClient();
+		}
+	}
+
+	void stopClient() {
+		if (multicastClient != null && multicastClient.isConnected()) {
+			multicastClient.close();
+		}
+
 	}
 
 	/**
+	 * Sends a message to UI message area.
 	 * 
+	 * @param message
+	 *            the message to be send to the UI.
 	 */
-	public MulticastClient() {
+	private void displayMessage(String message) {
+		log.info(message);
+		messageArea.setText(messageArea.getText() + "\n" + message);
+	}
+
+	@Override
+	public void run() {
+		log.info("Client started");
+		connect();
+		readMulticastAddress();
+		readPackegeData();
+	}
+
+	private void connect() {
 		try {
-			client = new MulticastSocket(7005);
-			client.joinGroup(InetAddress.getByName(group));
+			client = new Socket("localhost", 7015);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
 
+	/**
+	 * @param multicastClientUI
+	 * 
+	 */
+	public MulticastClient(MulticastClientUI multicastClientUI) {
+
+		messageArea = multicastClientUI.getMessageWingow();
+	}
 }

@@ -1,17 +1,18 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.server;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.JTextArea;
+
+import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MessageDispacher;
+import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MulticastAddressSupplier;
 
 /**
  * @author siliev
@@ -22,42 +23,63 @@ public class MulticastServer extends Thread {
 	private static org.apache.log4j.Logger log = org.apache.log4j.Logger
 			.getLogger(MulticastServer.class);
 
-	private MulticastSocket server;
+	private ServerSocket server;
 	private Socket client;
-	private Map<Socket, Object> clientMap;
-	private String multicastAddress = "225.4.5.6";
+	private MulticastAddressSupplier supplier;
+	private MessageDispacher dispacher;
+	private Map<InetAddress, MulticastSocket> activeAddresses;
+
+	private JTextArea messageArea;
 
 	public void startServer() {
 		try {
-			server = new MulticastSocket(7005);
-			server.joinGroup(InetAddress.getByName(multicastAddress));
+			server = new ServerSocket(7015);
+			log.info("Server started");
+			displayMessage("Server started");
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
+			displayMessage(e.getMessage());
 		}
-
 	}
 
 	public void stopServer() {
+		activeAddresses.clear();
+		dispacher.interrupt();
 		interrupt();
 	}
 
 	public void acceptConnections() {
 		while (!server.isClosed()) {
-			generatePackege();
 			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
+				client = server.accept();
+				InetAddress clientAddress = supplier.getRandomAddress();
+				dispacher.addChanell(clientAddress);
+				sendClientMulticastAddress(client, clientAddress);
+			} catch (IOException e) {
 				log.error(e.getMessage(), e);
+				displayMessage(e.getMessage());
 			}
 		}
-	}
-
-	public void sendMulticastMessage() {
 
 	}
 
-	public void readClientMessages() {
-
+	public void sendClientMulticastAddress(Socket clientSocket,
+			InetAddress address) {
+		ObjectOutputStream outputStream = null;
+		if (clientSocket != null) {
+			try {
+				outputStream = new ObjectOutputStream(
+						clientSocket.getOutputStream());
+				outputStream.writeObject(address.getCanonicalHostName());
+				log.info(address.toString());
+				displayMessage("Address given to client :"
+						+ address.getCanonicalHostName());
+				outputStream.flush();
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+				displayMessage(e.getMessage());
+			}
+		}
 	}
 
 	@Override
@@ -67,26 +89,26 @@ public class MulticastServer extends Thread {
 	}
 
 	/**
-	 * Basic constructor.
+	 * Sends a message in the UI message area.
+	 * 
+	 * @param message
+	 *            the message that is to written in the UI.
 	 */
-	public MulticastServer() {
-		this.clientMap = new HashMap<Socket, Object>();
+	private void displayMessage(String message) {
+		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 
-	public void generatePackege() {
-		Date date = new Date();
-		byte[] buffer = date.toString().getBytes();
-		InetAddress group;
-		try {
-			group = InetAddress.getByName(multicastAddress);
-			DatagramPacket packet = new DatagramPacket(buffer, buffer.length,
-					group, 7005);
-			server.send(packet);
-			log.info("Date send " + date.toString());
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-		}
-
+	/**
+	 * Basic constructor.
+	 * 
+	 * @param messageArea
+	 */
+	public MulticastServer(JTextArea messageArea) {
+		supplier = new MulticastAddressSupplier();
+		activeAddresses = new HashMap<InetAddress, MulticastSocket>();
+		dispacher = new MessageDispacher();
+		dispacher.start();
+		this.messageArea = messageArea;
 	}
 
 }

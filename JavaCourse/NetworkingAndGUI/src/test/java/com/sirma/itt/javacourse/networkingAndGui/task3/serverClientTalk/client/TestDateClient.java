@@ -10,6 +10,8 @@ import org.junit.Test;
 import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.DateServer;
 
 /**
+ * Test class for {@link DateClient}
+ * 
  * @author Simeon Iliev
  */
 public class TestDateClient {
@@ -19,7 +21,10 @@ public class TestDateClient {
 	private DateServer server;
 
 	/**
+	 * Set up method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             something went wrong.
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -35,19 +40,9 @@ public class TestDateClient {
 	 */
 	@Test
 	public void testConnect() {
-		server.startServer();
+		server.start();
 		assertTrue(client.connect().contains("Connected to server"));
 		server.stopServer();
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client.DateClient#connect()}
-	 * .
-	 */
-	@Test
-	public void testConnectFail() {
-		assertTrue(client.connect().contains("Connection refused"));
 	}
 
 	/**
@@ -57,7 +52,7 @@ public class TestDateClient {
 	 */
 	@Test
 	public void testDisconnect() {
-		server.startServer();
+		server.start();
 		client.connect();
 		assertTrue(client.disconnect().contains("Disconnected"));
 		server.stopServer();
@@ -70,7 +65,8 @@ public class TestDateClient {
 	 */
 	@Test
 	public void testDisconnectNoActiveConnection() {
-		assertTrue(client.disconnect().contains("There is no active connection"));
+		assertTrue(client.disconnect()
+				.contains("There is no active connection"));
 	}
 
 	/**
@@ -80,13 +76,7 @@ public class TestDateClient {
 	 */
 	@Test
 	public void testGetMessage() {
-		server.startServer();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				server.acceptConnection();
-			}
-		}).start();
+		server.start();
 		client.connect();
 		assertTrue(client.getMessage().contains("Server time is "));
 		client.disconnect();

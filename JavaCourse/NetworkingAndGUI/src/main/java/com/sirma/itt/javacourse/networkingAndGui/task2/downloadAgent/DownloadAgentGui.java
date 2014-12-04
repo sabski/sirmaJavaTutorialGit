@@ -26,7 +26,8 @@ public class DownloadAgentGui extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger log = Logger.getLogger(DownloadAgentGui.class);
-	public static final String SAVE_LOCATION = System.getProperty("user.home") + "/Downloads";
+	public static final String SAVE_LOCATION = System.getProperty("user.home")
+			+ System.getProperty("file.separator") + "Downloads";
 
 	private JTextField urlAddreddField;
 	private JTextField saveLocationTextField;
@@ -104,10 +105,12 @@ public class DownloadAgentGui extends JFrame {
 				JFrame frame = new JFrame("Hello");
 				downloadDirChoser = new JFileChooser(SAVE_LOCATION);
 				downloadDirChoser.setVisible(true);
-				downloadDirChoser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				downloadDirChoser
+						.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int returnVal = downloadDirChoser.showOpenDialog(frame);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					String selected = downloadDirChoser.getSelectedFile().getAbsolutePath();
+					String selected = downloadDirChoser.getSelectedFile()
+							.getAbsolutePath();
 					log.info(selected);
 					saveLocationTextField.setText(selected);
 				} else {
@@ -121,8 +124,8 @@ public class DownloadAgentGui extends JFrame {
 	 * Creates task that are to be executed.
 	 */
 	private void taskCreator() {
-		task = new DownloadUITask(urlAddreddField.getText(), saveLocationTextField.getText(),
-				progresBar);
+		task = new DownloadUITask(urlAddreddField.getText(),
+				saveLocationTextField.getText(), progresBar);
 		task.execute();
 	}
 }

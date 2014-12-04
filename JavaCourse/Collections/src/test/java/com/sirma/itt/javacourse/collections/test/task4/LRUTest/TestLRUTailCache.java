@@ -1,6 +1,9 @@
 package com.sirma.itt.javacourse.collections.test.task4.LRUTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,7 +11,6 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.collections.task4.LRUcache.LRUTailCache;
 
 /**

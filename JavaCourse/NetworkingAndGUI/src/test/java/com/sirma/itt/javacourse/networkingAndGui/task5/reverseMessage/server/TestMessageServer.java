@@ -3,7 +3,7 @@
  */
 package com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.server;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JTextArea;
 
@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client.MessageClient;
 import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client.MessageClientGUI;
-import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client.TestMessageClient;
 
 /**
  * @author siliev

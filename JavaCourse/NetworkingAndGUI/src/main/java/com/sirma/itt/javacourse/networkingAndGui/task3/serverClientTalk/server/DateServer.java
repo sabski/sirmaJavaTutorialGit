@@ -4,29 +4,26 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observable;
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observer;
+import com.sirma.itt.javacourse.SocketGenerator;
 
 /**
  * Date server class that is opened on port 7000. This class accepts connections
- * from new clients And sends them the server Date. The class implements the
- * {@link Observable} interface to send Messages to the UI.
+ * from new clients And sends them the server Date.
  * 
  * @author Simeon Iliev
  */
-public class DateServer {
+public class DateServer extends Thread {
 
 	private static Logger log = Logger.getLogger(DateServer.class);
 
 	private ServerSocket server;
+
 	private Socket client;
 	private boolean isRunning;
 	private JTextArea messageArea;
@@ -46,14 +43,9 @@ public class DateServer {
 	 * server is started the observers are notified.
 	 */
 	public void startServer() {
-		try {
-			server = new ServerSocket(7000);
-			isRunning = true;
-			displayMessage("Server started");
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			displayMessage(e.getMessage());
-		}
+		server = SocketGenerator.createServerSocket();
+		isRunning = true;
+		displayMessage("Server started");
 	}
 
 	/**
@@ -121,4 +113,10 @@ public class DateServer {
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 
+	@Override
+	public void run() {
+
+		startServer();
+		acceptConnection();
+	}
 }

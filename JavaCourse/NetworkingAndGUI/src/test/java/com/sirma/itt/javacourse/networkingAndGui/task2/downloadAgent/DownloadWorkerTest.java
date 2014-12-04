@@ -42,8 +42,10 @@ public class DownloadWorkerTest {
 	public void setUp() throws Exception {
 		progressBar = Mockito.mock(JProgressBar.class);
 		connection = Mockito.mock(URLConnection.class);
-		testFile = new File(getClass().getResource("/test.png").getFile());
-		spyTask = Mockito.spy(new DownloadUITask(testFile.toURI().toURL().toString(),"target", progressBar));
+		log.info(getClass().getResource("/test.png"));
+		testFile = new File(getClass().getResource("/test.png").toURI());
+		spyTask = Mockito.spy(new DownloadUITask(testFile.toURI().toURL()
+				.toString(), "target", progressBar));
 	}
 
 	/**
@@ -58,14 +60,16 @@ public class DownloadWorkerTest {
 	public void testDoInBackground() throws MalformedURLException, IOException {
 		Mockito.when(spyTask.openConnection()).thenReturn(connection);
 		Mockito.when(connection.getContentLengthLong()).thenReturn(154952L);
-		Mockito.when(connection.getInputStream()).thenReturn(new FileInputStream(testFile));
+		Mockito.when(connection.getInputStream()).thenReturn(
+				new FileInputStream(testFile));
 		try {
 			spyTask.doInBackground();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
 		Mockito.verify(progressBar, Mockito.atLeastOnce()).setValue(0);
-		Mockito.verify(connection, Mockito.atLeastOnce()).getContentLengthLong();
+		Mockito.verify(connection, Mockito.atLeastOnce())
+				.getContentLengthLong();
 		Mockito.verify(connection, Mockito.atLeastOnce()).getInputStream();
 
 	}

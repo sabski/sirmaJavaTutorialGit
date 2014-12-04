@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server;
 
-import org.apache.log4j.Logger;
 
 /**
  * Runner class for {@link DateServerGUI}.
@@ -9,7 +8,7 @@ import org.apache.log4j.Logger;
  */
 public class RunServer {
 
-	private static Logger log = Logger.getLogger(RunServer.class);
+	//private static Logger log = Logger.getLogger(RunServer.class);
 
 	/**
 	 * Main method.

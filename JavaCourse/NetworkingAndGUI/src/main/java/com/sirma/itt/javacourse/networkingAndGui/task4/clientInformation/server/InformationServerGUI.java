@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
 /**
  * UI for the Information Server.
  * 
@@ -25,7 +23,7 @@ public class InformationServerGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 2732996645737413793L;
 
-	private static Logger log = Logger.getLogger(InformationServerGUI.class);
+	//private static Logger log = Logger.getLogger(InformationServerGUI.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;

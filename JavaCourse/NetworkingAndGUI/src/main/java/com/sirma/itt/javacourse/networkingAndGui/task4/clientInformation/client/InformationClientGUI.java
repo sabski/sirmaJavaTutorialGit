@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
 /**
  * @author Simeon Iliev
  */
@@ -21,7 +19,7 @@ public class InformationClientGUI extends JFrame {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = -6264959974014685722L;
-	private static Logger log = Logger.getLogger(InformationClientGUI.class);
+	//private static Logger log = Logger.getLogger(InformationClientGUI.class);
 
 	private JTextArea messageWingow;
 	private JButton connectButton;

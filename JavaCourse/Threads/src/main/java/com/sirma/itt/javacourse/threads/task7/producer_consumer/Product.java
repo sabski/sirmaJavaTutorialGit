@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class Product extends AbstractProduct {
 
-	private final Logger log = Logger.getLogger(Product.class.getName());
+	private final static Logger log = Logger.getLogger(Product.class.getName());
 	private final int maxQuantity;
 
 	/**
@@ -27,7 +27,7 @@ public class Product extends AbstractProduct {
 	}
 
 	/**
-	 * Bye method for product.
+	 * Buy method for product.
 	 * 
 	 * @param quantity
 	 *            Of the product that is to be bought.
@@ -76,10 +76,10 @@ public class Product extends AbstractProduct {
 	}
 
 	/**
-	 * Checks if there is enough quantity for the user to bye.
+	 * Checks if there is enough quantity for the user to buy.
 	 * 
 	 * @param quantity
-	 *            The quantity that the user want to bye.
+	 *            The quantity that the user want to buy.
 	 * @return true if the quantity does not go bellow 0.
 	 */
 	public boolean canBuy(int quantity) {

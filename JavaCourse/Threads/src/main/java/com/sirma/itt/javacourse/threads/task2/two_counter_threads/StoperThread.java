@@ -3,7 +3,8 @@ package com.sirma.itt.javacourse.threads.task2.two_counter_threads;
 import org.apache.log4j.Logger;
 
 /**
- * A Thread class that count to a specific value and stops other thread.
+ * A Thread class that count to a specific value and stops other thread of this
+ * class.
  * 
  * @author Simeon Iliev
  */
@@ -45,7 +46,5 @@ public class StoperThread extends Thread {
 	public void resetFlag() {
 		flag = true;
 	}
-
-
 
 }

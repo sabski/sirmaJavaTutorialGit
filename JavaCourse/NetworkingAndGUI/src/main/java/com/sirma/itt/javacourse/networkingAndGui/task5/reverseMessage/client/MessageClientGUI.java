@@ -18,8 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
-import org.apache.log4j.Logger;
-
 /**
  * UI for the {@link MessageClient} client class.
  * 
@@ -31,7 +29,7 @@ public class MessageClientGUI extends JFrame {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(MessageClientGUI.class);
+	//private static Logger log = Logger.getLogger(MessageClientGUI.class);
 	private MessageOriginator originator;
 	private List<MessageMemento> mementos;
 	private int index;
@@ -108,6 +106,8 @@ public class MessageClientGUI extends JFrame {
 
 		Action keyDown = new AbstractAction() {
 
+			private static final long serialVersionUID = 11L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				index--;
@@ -120,6 +120,8 @@ public class MessageClientGUI extends JFrame {
 		};
 
 		Action keyUp = new AbstractAction() {
+
+			private static final long serialVersionUID = 10L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

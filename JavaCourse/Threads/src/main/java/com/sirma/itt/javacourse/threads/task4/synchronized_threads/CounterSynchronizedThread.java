@@ -26,10 +26,6 @@ public class CounterSynchronizedThread extends Thread {
 			currentCount++;
 			lock.printCount(currentCount, currentNumber);
 		}
-		// Notifies waiting threads and allows the thread to stop normally.
-		synchronized (lock) {
-			lock.notify();
-		}
 	}
 
 	/**

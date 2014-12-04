@@ -19,12 +19,13 @@ public class TransferObject {
 	private OutputStream output;
 
 	/**
-	 * Constructor for the TransferObject which contains the input and output streams of files.
+	 * Constructor for the TransferObject which contains the input and output
+	 * streams of files.
 	 * 
 	 * @param input
-	 *            the input stream to which data will be.
+	 *            the input stream to which data will be read.
 	 * @param output
-	 *            the output stream from which the data will be read.
+	 *            the output stream from which the data will be written to.
 	 */
 	public TransferObject(InputStream input, OutputStream output) {
 		this.input = input;
@@ -90,7 +91,7 @@ public class TransferObject {
 		try {
 			byte[] bytes = new byte[numberOfBytes];
 			result = input.read(bytes, offset, numberOfBytes);
-			output.write(bytes, 0, result - 1);
+			output.write(bytes, 0, result);
 		} catch (IOException | IndexOutOfBoundsException e) {
 			log.error(e.getMessage(), e);
 		}

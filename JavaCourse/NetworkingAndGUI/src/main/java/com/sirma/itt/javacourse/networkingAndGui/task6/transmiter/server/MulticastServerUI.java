@@ -14,8 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
 /**
  * @author siliev
  * 
@@ -26,7 +24,7 @@ public class MulticastServerUI extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -1804980056427035663L;
-	private static Logger log = Logger.getLogger(MulticastServerUI.class);
+	//private static Logger log = Logger.getLogger(MulticastServerUI.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;

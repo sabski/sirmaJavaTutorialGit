@@ -9,11 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observable;
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.Observer;
-
 /**
  * User interface for the {@link DateServer} class.
  * 
@@ -26,7 +21,7 @@ public class DateServerGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 2519152785419071442L;
 
-	private static Logger log = Logger.getLogger(DateServerGUI.class);
+	// private static Logger log = Logger.getLogger(DateServerGUI.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;

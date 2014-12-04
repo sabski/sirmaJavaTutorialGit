@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
 import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.DateServer;
 
 /**
@@ -21,7 +19,7 @@ public class DateClientGui extends JFrame {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = 3497964934272245742L;
-	private static Logger log = Logger.getLogger(DateClientGui.class);
+	//private static Logger log = Logger.getLogger(DateClientGui.class);
 
 	private JTextArea messageWingow;
 	private JLabel messageLabel;

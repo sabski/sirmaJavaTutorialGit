@@ -13,10 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
-import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClient;
-
 /**
  * @author siliev
  * 
@@ -28,7 +24,7 @@ public class MulticastClientUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 4084729024170473482L;
 
-	private static Logger log = Logger.getLogger(MulticastClientUI.class);
+	// private static Logger log = Logger.getLogger(MulticastClientUI.class);
 
 	private JTextArea messageWingow;
 	private JButton connectButton;

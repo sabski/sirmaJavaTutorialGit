@@ -53,7 +53,7 @@ public class CalculatorGui extends JFrame {
 
 	private ActionListener numberButtonListener;
 	private ActionListener operationListener;
-	private final CommandBuilder builder;
+	private final CommandBuilder builder; 
 	private Double firstNumber;
 	private Double secondNumber;
 

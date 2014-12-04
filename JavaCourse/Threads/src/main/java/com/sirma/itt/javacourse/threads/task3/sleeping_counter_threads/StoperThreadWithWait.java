@@ -3,11 +3,16 @@ package com.sirma.itt.javacourse.threads.task3.sleeping_counter_threads;
 import org.apache.log4j.Logger;
 
 /**
+ * Thread class that counts to a specific value and stops all other threads of
+ * this class.
+ * 
+ * 
  * @author Simeon Iliev
  */
 public class StoperThreadWithWait extends Thread {
 
-	private final static Logger log = Logger.getLogger(StoperThreadWithWait.class.getName());
+	private final static Logger log = Logger
+			.getLogger(StoperThreadWithWait.class.getName());
 
 	private int currentCount = 0;
 	private int count;

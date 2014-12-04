@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -13,17 +12,22 @@ import org.mockito.Spy;
 import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client.DateClient;
 
 /**
+ * Test class for {@link DateServer}.
+ * 
  * @author Simeon Iliev
  */
 public class TestDateServer {
 
-	private static Logger log = Logger.getLogger(TestDateServer.class);
+	// private static Logger log = Logger.getLogger(TestDateServer.class);
 
 	@Spy
 	private DateServer server;
 
 	/**
+	 * Set up method.
+	 * 
 	 * @throws java.lang.Exception
+	 *             sometshing went wrong.
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -62,13 +66,8 @@ public class TestDateServer {
 	@Test
 	public void testAccepConnection() {
 		DateClient client = Mockito.spy(new DateClient());
-		server.startServer();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				server.acceptConnection();
-			}
-		}).start();
+		server.start();
+
 		client.connect();
 		assertTrue(client.getMessage().contains("Server time is "));
 		client.disconnect();

@@ -1,6 +1,5 @@
 package com.sirma.itt.javacourse.networkingAndGui.task2.downloadAgent;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,8 +14,11 @@ import javax.swing.SwingWorker;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.inputoutput.task4.transferingObjects.TransferObject;
+
 /**
- * This class extends {@link SwingWorker} to allow the download of files in a background thread.
+ * This class extends {@link SwingWorker} to allow the download of files in a
+ * background thread.
  * 
  * @author Simeon Iliev
  */
@@ -30,27 +32,29 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 	private long fileSize = 0;
 	private URL downloadURL;
 	private URLConnection connection;
+	private TransferObject transporter;
 
 	@Override
 	protected Void doInBackground() throws Exception {
 		progressBar.setValue(0);
 		connection = openConnection();
+
 		log.info("The length of the content : "
 				+ humanReadableByteCount(connection.getContentLengthLong()));
 		fileSize = connection.getContentLengthLong();
-		String fileName = FilenameUtils.getBaseName(url) + "." + FilenameUtils.getExtension(url);
-		File file = new File(saveLocation + "/" + fileName);
+		String fileName = FilenameUtils.getBaseName(url) + "."
+				+ FilenameUtils.getExtension(url);
+		File file = new File(saveLocation
+				+ System.getProperty("file.separator") + fileName);
 		log.info(file.getCanonicalPath());
 		log.info("File creation operation : " + file.createNewFile());
 
 		try (InputStream input = connection.getInputStream();
 				FileOutputStream fileWriter = new FileOutputStream(file);) {
-			BufferedInputStream in = new BufferedInputStream(input);
-			byte[] data = new byte[1024];
-			int count;
+			transporter = new TransferObject(input, fileWriter);
+			int count = 0;
 			log.info("Attempting to start writing to file");
-			while ((count = in.read(data, 0, 1024)) != -1) {
-				fileWriter.write(data, 0, count);
+			while ((count = transporter.transfer(1024, 0)) != -1) {
 				downloaded += count;
 				progressBar.setValue(getPogress());
 			}
@@ -61,7 +65,17 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 		return null;
 	}
 
-	protected URLConnection openConnection() throws MalformedURLException, IOException {
+	/**
+	 * Opens a connection to the URL that was entered in the UI interface.
+	 * 
+	 * @return a {@link URLConnection} to a specific URL address.
+	 * @throws MalformedURLException
+	 *             if the entered URL is not valid.
+	 * @throws IOException
+	 *             if there is a problem opening the connection.
+	 */
+	protected URLConnection openConnection() throws MalformedURLException,
+			IOException {
 		downloadURL = new URL(url);
 		return downloadURL.openConnection();
 	}
@@ -76,7 +90,8 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 	 * @param progressBar
 	 *            the progress bar this task is associated with.
 	 */
-	public DownloadUITask(String url, String saveLocation, JProgressBar progressBar) {
+	public DownloadUITask(String url, String saveLocation,
+			JProgressBar progressBar) {
 		this.url = url;
 		this.saveLocation = saveLocation;
 		this.progressBar = progressBar;

@@ -14,7 +14,7 @@ import java.util.Map;
 public class TimeoutHashtable {
 
 	private final Map<String, Object> timeOutMap;
-	private long timeout = 10000L;
+	private long timeout = 1000L;
 	private final List<TimingThread> threads;
 
 	/**

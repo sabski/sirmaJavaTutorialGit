@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.SocketGenerator;
+
 /**
  * Server class whose job is to receive client connections and send user the number there are on the
  * server.
@@ -43,13 +45,9 @@ public class InformationServer extends Thread {
 	 * Start the server on local port 7000.
 	 */
 	public void startServer() {
-		try {
-			server = new ServerSocket(7000);
-			displayMessage("Server is starting.");
-			log.info("Server is starting");
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-		}
+		server = SocketGenerator.createServerSocket();
+		displayMessage("Server is starting.");
+		log.info("Server is starting");
 	}
 
 	/**

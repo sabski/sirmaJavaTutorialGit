@@ -20,12 +20,10 @@ public class TestInformationServer {
 
 	private static Logger log = Logger.getLogger(TestInformationServer.class);
 	private InformationClient clientOne;
-	private InformationClient clientTwo;
 	private InformationServer server;
 	private JTextArea serverArea;
 	@Mock
 	private InformationClientGUI clientOneArea;
-	private InformationClientGUI clientTwoArea;
 
 	/**
 	 * @throws java.lang.Exception

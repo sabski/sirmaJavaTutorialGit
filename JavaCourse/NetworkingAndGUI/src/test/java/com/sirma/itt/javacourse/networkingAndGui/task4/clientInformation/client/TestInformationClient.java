@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server.InformationServer;
 
 /**
+ * Test class for {@link InformationClient}.
+ * 
  * @author Simeon Iliev
  */
 public class TestInformationClient {

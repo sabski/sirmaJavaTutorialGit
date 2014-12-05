@@ -54,34 +54,20 @@ public class TestMessageServer {
 		server.start();
 		client.start();
 		try {
-			Thread.sleep(300);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
 		client.sendMessageToServer("aaaa");
-		client.stopClient();
-		server.stopServer();
-		assertTrue(serverTextArea.getText().contains("aaaa"));
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.server.MessageServer#writeReversedMessage(java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testWriteReversedMessage() {
-		server.start();
-		client.start();
+		
 		try {
-			Thread.sleep(300);
+			Thread.sleep(700);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		server.writeReversedMessage("aaaa");
 		client.stopClient();
 		server.stopServer();
-		assertTrue(serverTextArea.getText().contains("aaaa"));
+		assertTrue(clientTextArea.getText().contains("aaaa"));
 	}
 
 	/**

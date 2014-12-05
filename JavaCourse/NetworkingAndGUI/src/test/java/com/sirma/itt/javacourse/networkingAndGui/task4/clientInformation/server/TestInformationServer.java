@@ -14,6 +14,9 @@ import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.
 import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.InformationClientGUI;
 
 /**
+ * Test class for {@link InformationServer}.
+ * 
+ * 
  * @author Simeon Iliev
  */
 public class TestInformationServer {
@@ -80,7 +83,7 @@ public class TestInformationServer {
 	@Test
 	public void testAcceptConnetion() {
 		server.start();
-	
+
 		clientOne.start();
 		try {
 			Thread.sleep(600);

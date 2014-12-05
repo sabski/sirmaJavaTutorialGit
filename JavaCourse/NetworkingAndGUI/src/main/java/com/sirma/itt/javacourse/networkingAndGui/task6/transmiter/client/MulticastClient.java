@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.SocketGenerator;
+
 /**
  * @author siliev
  * 
@@ -67,6 +69,11 @@ public class MulticastClient extends Thread {
 		if (multicastClient != null && multicastClient.isConnected()) {
 			multicastClient.close();
 		}
+		try {
+			client.close();
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
 
 	}
 
@@ -90,11 +97,7 @@ public class MulticastClient extends Thread {
 	}
 
 	private void connect() {
-		try {
-			client = new Socket("localhost", 7015);
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-		}
+		client = SocketGenerator.createSocket();
 	}
 
 	/**

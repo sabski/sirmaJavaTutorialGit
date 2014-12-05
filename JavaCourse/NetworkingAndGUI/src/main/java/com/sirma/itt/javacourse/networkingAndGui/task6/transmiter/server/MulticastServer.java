@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.swing.JTextArea;
 
+import com.sirma.itt.javacourse.SocketGenerator;
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MessageDispacher;
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MulticastAddressSupplier;
 
@@ -32,18 +33,20 @@ public class MulticastServer extends Thread {
 	private JTextArea messageArea;
 
 	public void startServer() {
-		try {
-			server = new ServerSocket(7015);
-			log.info("Server started");
-			displayMessage("Server started");
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			displayMessage(e.getMessage());
-		}
+		server = SocketGenerator.createServerSocket();
+		log.info("Server started");
+		displayMessage("Server started");
 	}
 
 	public void stopServer() {
+		log.info("Server is stoping");
+		displayMessage("Server is stoping");
 		activeAddresses.clear();
+		try {
+			server.close();
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
 		dispacher.interrupt();
 		interrupt();
 	}
@@ -52,6 +55,7 @@ public class MulticastServer extends Thread {
 		while (!server.isClosed()) {
 			try {
 				client = server.accept();
+				log.info("Client connected");
 				InetAddress clientAddress = supplier.getRandomAddress();
 				dispacher.addChanell(clientAddress);
 				sendClientMulticastAddress(client, clientAddress);
@@ -71,7 +75,8 @@ public class MulticastServer extends Thread {
 				outputStream = new ObjectOutputStream(
 						clientSocket.getOutputStream());
 				outputStream.writeObject(address.getCanonicalHostName());
-				log.info(address.toString());
+				log.info("Address given to client :"
+						+ address.getCanonicalHostName());
 				displayMessage("Address given to client :"
 						+ address.getCanonicalHostName());
 				outputStream.flush();

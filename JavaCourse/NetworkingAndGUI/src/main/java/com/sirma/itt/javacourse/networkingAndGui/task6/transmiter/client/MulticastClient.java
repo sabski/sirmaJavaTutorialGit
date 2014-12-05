@@ -14,6 +14,9 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.SocketGenerator;
 
 /**
+ * A client that connects to a server and listens to a multicast addresses for
+ * for messages.
+ * 
  * @author siliev
  * 
  */
@@ -25,6 +28,10 @@ public class MulticastClient extends Thread {
 	private String group = "225.4.5.6";
 	private JTextArea messageArea;
 
+	/**
+	 * Listens to the multicast messages and displays that a message was
+	 * received.
+	 */
 	public void readPackegeData() {
 		try {
 			multicastClient = new MulticastSocket(7005);
@@ -46,13 +53,16 @@ public class MulticastClient extends Thread {
 		}
 	}
 
+	/**
+	 * Reads the multicast address that the server has assigned to this client
+	 * to listen to.
+	 */
 	private void readMulticastAddress() {
 		try {
 			ObjectInputStream reader = new ObjectInputStream(
 					client.getInputStream());
 			String message = (String) reader.readObject();
 			if (message != null) {
-				// displayMessage(message);
 				log.info(message);
 				group = message;
 				displayMessage("Multicast listeing addres is " + message);
@@ -65,6 +75,9 @@ public class MulticastClient extends Thread {
 		}
 	}
 
+	/**
+	 * Stops listening to the multicast broadcast, and closes the socket.
+	 */
 	void stopClient() {
 		if (multicastClient != null && multicastClient.isConnected()) {
 			multicastClient.close();
@@ -96,12 +109,18 @@ public class MulticastClient extends Thread {
 		readPackegeData();
 	}
 
+	/**
+	 * Connects to the server.
+	 */
 	private void connect() {
 		client = SocketGenerator.createSocket();
 	}
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param multicastClientUI
+	 *            the UI
 	 * 
 	 */
 	public MulticastClient(MulticastClientUI multicastClientUI) {

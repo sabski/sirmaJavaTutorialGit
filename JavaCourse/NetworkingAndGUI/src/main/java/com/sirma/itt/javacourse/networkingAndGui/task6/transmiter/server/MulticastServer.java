@@ -16,6 +16,9 @@ import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispach
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MulticastAddressSupplier;
 
 /**
+ * A server that accepts client connections and gives multicast addresses for
+ * the clients to listen to.
+ * 
  * @author siliev
  * 
  */
@@ -32,12 +35,18 @@ public class MulticastServer extends Thread {
 
 	private JTextArea messageArea;
 
+	/**
+	 * Start the server.
+	 */
 	public void startServer() {
 		server = SocketGenerator.createServerSocket();
 		log.info("Server started");
 		displayMessage("Server started");
 	}
 
+	/**
+	 * Stops the server and cleans up.
+	 */
 	public void stopServer() {
 		log.info("Server is stoping");
 		displayMessage("Server is stoping");
@@ -51,6 +60,10 @@ public class MulticastServer extends Thread {
 		interrupt();
 	}
 
+	/**
+	 * Accepts incoming user connections. Adds the channel that was assigned to
+	 * them to be broadcasted.
+	 */
 	public void acceptConnections() {
 		while (!server.isClosed()) {
 			try {
@@ -67,6 +80,14 @@ public class MulticastServer extends Thread {
 
 	}
 
+	/**
+	 * Sends the client a multicast address to listen to.
+	 * 
+	 * @param clientSocket
+	 *            the client we want to send the address to.
+	 * @param address
+	 *            the multicast address that is to be send to the client.
+	 */
 	public void sendClientMulticastAddress(Socket clientSocket,
 			InetAddress address) {
 		ObjectOutputStream outputStream = null;
@@ -107,6 +128,8 @@ public class MulticastServer extends Thread {
 	 * Basic constructor.
 	 * 
 	 * @param messageArea
+	 *            the message area of the UI so that events on the server may be
+	 *            displayed.
 	 */
 	public MulticastServer(JTextArea messageArea) {
 		supplier = new MulticastAddressSupplier();

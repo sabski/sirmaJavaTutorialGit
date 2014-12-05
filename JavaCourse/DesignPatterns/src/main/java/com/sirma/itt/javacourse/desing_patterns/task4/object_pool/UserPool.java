@@ -16,20 +16,27 @@ public class UserPool<T> implements Pool<T> {
 
 	private static Logger log = Logger.getLogger(UserPool.class.getName());
 
-	private static int capacaty = 10;
+	private int capacity = 10;
 	private final T instance;
 	private final List<T> freeInstances;
 	private final List<T> usedInstances;
 
 	public UserPool(T instance) {
-		freeInstances = new ArrayList<T>(capacaty + 1);
-		usedInstances = new ArrayList<T>(capacaty + 1);
+		freeInstances = new ArrayList<T>(capacity + 1);
+		usedInstances = new ArrayList<T>(capacity + 1);
 		this.instance = instance;
+	}
+
+	public UserPool(int capacity, T instance) {
+		freeInstances = new ArrayList<T>(capacity + 1);
+		usedInstances = new ArrayList<T>(capacity + 1);
+		this.instance = instance;
+		this.capacity = capacity;
 	}
 
 	@Override
 	public T acquire() throws NoMoreResourcesException {
-		if (usedInstances.size() > capacaty) {
+		if (usedInstances.size() > capacity) {
 			throw new NoMoreResourcesException("Pool can't return instance");
 		}
 		T user;
@@ -46,7 +53,7 @@ public class UserPool<T> implements Pool<T> {
 
 	@Override
 	public void release(T object) throws NoMoreResourcesException {
-		if (freeInstances.size() == capacaty) {
+		if (freeInstances.size() == capacity) {
 			throw new NoMoreResourcesException("All instances are free");
 		}
 		usedInstances.remove(object);

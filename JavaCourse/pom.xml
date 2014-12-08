@@ -65,6 +65,7 @@
 		<module>DesignPatterns</module>
 		<module>Threads</module>
 		<module>NetworkingAndGUI</module>
+		<module>ChatApplication</module>
 	</modules>
 	<artifactId>JavaCourse</artifactId>
 </project>

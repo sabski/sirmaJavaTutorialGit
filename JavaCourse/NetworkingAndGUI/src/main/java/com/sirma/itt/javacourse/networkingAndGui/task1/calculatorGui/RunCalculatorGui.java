@@ -1,15 +1,21 @@
 package com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui;
+
+import com.sirma.itt.javacourse.desing_patterns.task7.calculator.Calculator;
+
 /**
+ * Runner class for {@link Calculator}
  * 
  * @author Simeon Iliev
  */
 public class RunCalculatorGui {
 
 	/**
+	 * Main method.
+	 * 
 	 * @param args
+	 *            arguments for the main method
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new CalculatorGui();
 	}
 

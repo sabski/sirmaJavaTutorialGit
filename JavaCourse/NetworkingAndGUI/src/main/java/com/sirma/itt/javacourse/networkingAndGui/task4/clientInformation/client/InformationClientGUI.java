@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,7 +19,7 @@ public class InformationClientGUI extends JFrame {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = -6264959974014685722L;
-	//private static Logger log = Logger.getLogger(InformationClientGUI.class);
+	// private static Logger log = Logger.getLogger(InformationClientGUI.class);
 
 	private JTextArea messageWingow;
 	private JButton connectButton;
@@ -37,8 +37,8 @@ public class InformationClientGUI extends JFrame {
 		connectButton = new JButton("Connect");
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
-	
-		mainWindow.setLayout(new GridLayout(2, 1));
+
+		mainWindow.setLayout(new BorderLayout());
 		connectButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -47,10 +47,11 @@ public class InformationClientGUI extends JFrame {
 			}
 		});
 
-		mainWindow.add(connectButton);
+		mainWindow.add(connectButton, BorderLayout.NORTH);
 		mainWindow.add(messageWingow);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(300, 200);
+		mainWindow.setTitle("Information Client");
 		mainWindow.setVisible(true);
 		client = new InformationClient(this);
 		mainWindow.addWindowListener(new WindowAdapter() {
@@ -61,7 +62,7 @@ public class InformationClientGUI extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (client.isAlive()) {
-					client.stopClient();
+					client.interrupt();
 				}
 				System.exit(0);
 			}

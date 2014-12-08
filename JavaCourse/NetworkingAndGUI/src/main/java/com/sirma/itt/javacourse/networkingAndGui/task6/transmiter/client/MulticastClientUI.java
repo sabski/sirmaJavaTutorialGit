@@ -1,9 +1,6 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.client;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -14,14 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
+ * User interface for {@link MulticastClient}.
+ * 
  * @author siliev
  * 
  */
 public class MulticastClientUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4084729024170473482L;
 
 	// private static Logger log = Logger.getLogger(MulticastClientUI.class);
@@ -42,19 +38,22 @@ public class MulticastClientUI extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public MulticastClientUI() {
 		setUp();
 	}
 
+	/**
+	 * Set up method.
+	 */
 	private void setUp() {
 		JFrame mainWindow = this;
 		connectButton = new JButton("Connect");
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
 
-		mainWindow.setLayout(new GridLayout(2, 1));
+		mainWindow.setLayout(new BorderLayout());
 		connectButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -63,17 +62,15 @@ public class MulticastClientUI extends JFrame {
 			}
 		});
 
-		mainWindow.add(connectButton);
+		mainWindow.add(connectButton, BorderLayout.NORTH);
 		mainWindow.add(messageWingow);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(300, 200);
 		mainWindow.setVisible(true);
+		mainWindow.setTitle("Multicast Client");
 		client = new MulticastClient(this);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
-			/**
-			 * {@inheritDoc}
-			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (client.isAlive()) {

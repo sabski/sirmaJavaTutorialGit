@@ -3,7 +3,7 @@
  */
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.server;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -24,7 +24,7 @@ public class MulticastServerUI extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -1804980056427035663L;
-	//private static Logger log = Logger.getLogger(MulticastServerUI.class);
+	// private static Logger log = Logger.getLogger(MulticastServerUI.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;
@@ -41,16 +41,16 @@ public class MulticastServerUI extends JFrame {
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
-		mainWindow.setLayout(new GridLayout(2, 1));
+		mainWindow.setLayout(new BorderLayout());
 
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
 		createButtonListners();
-		mainWindow.add(buttonPanel);
+		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);
-
+		mainWindow.setTitle("Multicast Server");
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 
@@ -61,7 +61,9 @@ public class MulticastServerUI extends JFrame {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				server.stopServer();
+				if (server != null) {
+					server.stopServer();
+				}
 				System.exit(0);
 			}
 

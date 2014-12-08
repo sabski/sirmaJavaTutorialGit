@@ -48,8 +48,9 @@ public class DownloadAgentGui extends JFrame {
 	 */
 	private void setUp() {
 		JFrame mainWindow = this;
-		mainWindow.setSize(400, 200);
+		mainWindow.setSize(400, 300);
 		mainWindow.setLayout(new GridLayout(4, 1));
+		mainWindow.setTitle("Download Agent");
 		mainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initFields();
 		// Panel set up

@@ -78,11 +78,12 @@ public class InformationClient extends Thread {
 			Thread.sleep(5 * 1000);
 			clientGUI.dispatchEvent(new WindowEvent(clientGUI,
 					WindowEvent.WINDOW_CLOSING));
+			interrupt();
 		} catch (IOException | InterruptedException e) {
 			log.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
-		interrupt();
+
 	}
 
 	/**

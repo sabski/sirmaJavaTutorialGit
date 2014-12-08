@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,16 +46,16 @@ public class DateServerGUI extends JFrame {
 		messageArea = new JTextArea();
 		server = new DateServer(messageArea);
 		mainWindow.setSize(300, 250);
-		mainWindow.setLayout(new GridLayout(2, 1));
+		mainWindow.setLayout(new BorderLayout());
 
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
 		createButtonListners();
-		mainWindow.add(buttonPanel);
+		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);
-
+		mainWindow.setTitle("Date Server");
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 

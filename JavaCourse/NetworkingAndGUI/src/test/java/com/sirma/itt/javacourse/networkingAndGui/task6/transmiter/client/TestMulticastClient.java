@@ -3,7 +3,7 @@
  */
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.client;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JTextArea;
 
@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.server.MulticastServer;
-import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.server.MulticastServerUI;
 
 /**
  * Test class for {@link MulticastClient}.

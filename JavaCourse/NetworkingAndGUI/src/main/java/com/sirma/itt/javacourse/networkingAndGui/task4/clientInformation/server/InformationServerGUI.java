@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -23,7 +23,7 @@ public class InformationServerGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 2732996645737413793L;
 
-	//private static Logger log = Logger.getLogger(InformationServerGUI.class);
+	// private static Logger log = Logger.getLogger(InformationServerGUI.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;
@@ -37,8 +37,8 @@ public class InformationServerGUI extends JFrame {
 	}
 
 	/**
-	 * Set up method for the interface initiates the values and set the setting for the window
-	 * frame.
+	 * Set up method for the interface initiates the values and set the setting
+	 * for the window frame.
 	 */
 	private void setUp() {
 		// TODO Have a nice day;
@@ -47,16 +47,16 @@ public class InformationServerGUI extends JFrame {
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
-		mainWindow.setLayout(new GridLayout(2, 1));
+		mainWindow.setLayout(new BorderLayout());
 
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
 		createButtonListners();
-		mainWindow.add(buttonPanel);
+		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);
-
+		mainWindow.setTitle("Information Server");
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 
@@ -67,7 +67,9 @@ public class InformationServerGUI extends JFrame {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				server.stopServer();
+				if (server != null) {
+					server.stopServer();
+				}
 				System.exit(0);
 			}
 
@@ -75,7 +77,8 @@ public class InformationServerGUI extends JFrame {
 	}
 
 	/**
-	 * Method for setting up the buttons. Creating and adding there action listeners.
+	 * Method for setting up the buttons. Creating and adding there action
+	 * listeners.
 	 */
 	private void createButtonListners() {
 		startButton.addActionListener(new ActionListener() {

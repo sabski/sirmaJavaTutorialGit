@@ -13,8 +13,13 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
 
 /**
+ * The main window frame of the Chat client application. Also this class servers
+ * as the entry point of the client application.
+ * 
  * @author siliev
  * 
  */
@@ -27,7 +32,10 @@ public class MainClientWindow extends JFrame {
 	private ClientThread client;
 
 	/**
+	 * Main method.
+	 * 
 	 * @param args
+	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
 		new MainClientWindow();
@@ -38,8 +46,9 @@ public class MainClientWindow extends JFrame {
 	}
 
 	private void setUp() {
+		LanguageControler.setLanguage(LANGUGES.BG.toString());
 		JFrame mainWindow = this;
-		connectButton = new JButton("Connect");
+		connectButton = new JButton(LanguageControler.getWord("connect"));
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
 

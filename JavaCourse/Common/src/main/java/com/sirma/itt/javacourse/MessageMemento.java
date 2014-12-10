@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client;
+package com.sirma.itt.javacourse;
 
 /**
  * This class is used to store states of a String object.

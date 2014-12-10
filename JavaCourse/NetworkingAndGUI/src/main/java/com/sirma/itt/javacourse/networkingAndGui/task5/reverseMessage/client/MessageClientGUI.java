@@ -18,6 +18,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
+import com.sirma.itt.javacourse.MessageMemento;
+import com.sirma.itt.javacourse.MessageOriginator;
+
 /**
  * UI for the {@link MessageClient} client class.
  * 

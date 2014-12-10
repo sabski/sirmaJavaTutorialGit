@@ -16,9 +16,12 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
+ * The main server window.
+ * 
  * @author siliev
  * 
  */
@@ -31,12 +34,18 @@ public class ServerWindow extends JFrame {
 	private JTextArea messageArea;
 	private MainServerThread server;
 
+	/**
+	 * Constructor.
+	 */
 	public ServerWindow() {
 		setUp();
 	}
 
 	/**
+	 * Main method.
+	 * 
 	 * @param args
+	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
 
@@ -49,6 +58,9 @@ public class ServerWindow extends JFrame {
 	 * for the window frame.
 	 */
 	private void setUp() {
+		// Start language setup.
+		LanguageControler.loadCurrentLanguage();
+		LanguageControler.setLanguage("BG");
 		// TODO Have a nice day;
 		JFrame mainWindow = this;
 		startButton = new JButton("Start");
@@ -70,9 +82,6 @@ public class ServerWindow extends JFrame {
 
 		mainWindow.addWindowListener(new WindowAdapter() {
 
-			/**
-			 * {@inheritDoc}
-			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (server != null) {
@@ -103,7 +112,9 @@ public class ServerWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				server.interrupt();
+				if (server != null) {
+					server.stopServer();
+				}
 			}
 		});
 	}

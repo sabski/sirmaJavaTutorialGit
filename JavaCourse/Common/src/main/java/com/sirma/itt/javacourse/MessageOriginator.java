@@ -1,4 +1,5 @@
-package com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client;
+package com.sirma.itt.javacourse;
+
 
 /**
  * The originator of {@link MessageMemento} objects.

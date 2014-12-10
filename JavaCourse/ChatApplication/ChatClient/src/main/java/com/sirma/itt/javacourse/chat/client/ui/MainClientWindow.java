@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
@@ -15,6 +16,7 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
+import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
  * The main window frame of the Chat client application. Also this class servers
@@ -23,7 +25,7 @@ import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
  * @author siliev
  * 
  */
-public class MainClientWindow extends JFrame {
+public class MainClientWindow extends JFrame implements UIColegue {
 
 	private static final long serialVersionUID = 1826026493714885025L;
 	private static Logger log = Logger.getLogger(MainClientWindow.class);
@@ -41,10 +43,16 @@ public class MainClientWindow extends JFrame {
 		new MainClientWindow();
 	}
 
+	/**
+	 * Constructor.
+	 */
 	public MainClientWindow() {
 		setUp();
 	}
 
+	/**
+	 * Set up method.
+	 */
 	private void setUp() {
 		LanguageControler.setLanguage(LANGUGES.BG.toString());
 		JFrame mainWindow = this;
@@ -57,18 +65,18 @@ public class MainClientWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				client = new ClientThread();
 				client.start();
+				client.sendMessage(inputUserName());
 			}
 		});
 
 		mainWindow.add(connectButton, BorderLayout.NORTH);
 		mainWindow.add(messageWingow);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainWindow.setSize(300, 200);
+		mainWindow.setSize(600, 400);
 		mainWindow.setTitle("Chat Client");
 		mainWindow.setVisible(true);
-		// client = new ClientThread(this);
-		client = new ClientThread();
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			/**
@@ -104,4 +112,28 @@ public class MainClientWindow extends JFrame {
 		this.messageWingow = messageWingow;
 	}
 
+	public String inputUserName() {
+		String name = null;
+		name = JOptionPane.showInputDialog(LanguageControler
+				.getWord("inputUsername"));
+		return name;
+	}
+
+	@Override
+	public void sendUIEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void respondToEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerComponent() {
+		// TODO Auto-generated method stub
+		
+	}
 }

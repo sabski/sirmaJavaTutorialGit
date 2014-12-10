@@ -8,6 +8,9 @@ import java.net.Socket;
 import org.apache.log4j.Logger;
 
 /**
+ * This class represents the user of the application.
+ * 
+ * 
  * @author siliev
  * 
  */
@@ -22,7 +25,9 @@ public class ChatUser {
 
 	/**
 	 * @param username
+	 *            the username of the user.
 	 * @param clientSocket
+	 *            the socket the client has been assigned to.
 	 */
 	public ChatUser(String username, Socket clientSocket) {
 		this.username = username;

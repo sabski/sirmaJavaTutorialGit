@@ -6,7 +6,14 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-public class ChatsPanel extends JPanel {
+import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
+
+/**
+ * 
+ * @author siliev
+ *
+ */
+public class ChatsPanel extends JPanel implements UIColegue{
 
 	private static final long serialVersionUID = -3781827111159603799L;
 
@@ -43,5 +50,23 @@ public class ChatsPanel extends JPanel {
 		JTextArea textArea = new JTextArea();
 		panel.add(textArea);
 		return panel;
+	}
+
+	@Override
+	public void sendUIEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void respondToEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerComponent() {
+		// TODO Auto-generated method stub
+		
 	}
 }

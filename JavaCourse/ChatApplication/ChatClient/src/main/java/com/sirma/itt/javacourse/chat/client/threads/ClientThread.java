@@ -10,7 +10,7 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.SocketGenerator;
+import com.sirma.itt.javacourse.chat.common.Message;
 
 /**
  * @author siliev
@@ -48,9 +48,11 @@ public class ClientThread extends Thread {
 		}
 	}
 
-	public void sendMessage(String messageToSend) {
+	public void sendMessage(Message messageToSend) {
 		try {
-			output = new ObjectOutputStream(client.getOutputStream());
+			if (output == null) {
+				output = new ObjectOutputStream(client.getOutputStream());
+			}
 			output.writeObject(messageToSend);
 			output.flush();
 			output.reset();

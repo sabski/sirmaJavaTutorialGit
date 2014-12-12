@@ -62,6 +62,7 @@ public class UserPool<T> implements Pool<T> {
 
 	@Override
 	public T initObject() {
+		@SuppressWarnings("unchecked")
 		Class<T> object = (Class<T>) instance.getClass();
 		try {
 			return object.newInstance();

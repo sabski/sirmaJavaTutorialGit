@@ -1,18 +1,16 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.ui;
 
-import java.awt.HeadlessException;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
-import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
@@ -20,13 +18,16 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
+import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
+import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
  * @author siliev
  * 
  */
-public class TextArea extends JFrame implements UIColegue {
+public class TextArea extends JPanel implements UIColegue {
 
 	private static final long serialVersionUID = 8138842498862853077L;
 	private static Logger log = Logger.getLogger(TextArea.class);
@@ -34,13 +35,24 @@ public class TextArea extends JFrame implements UIColegue {
 	private MessageOriginator originator;
 	private List<MessageMemento> mementos;
 	private int index;
-	private JButton sendButton;
 	private JTextField messageField;
+	private JButton sendButton;
+	private JButton connectButton;
+	private JButton languageButton;
+	private ClientThread client;
+
+	public void setClient(ClientThread client) {
+		this.client = client;
+	}
 
 	/**
+	 * @param connectButton
 	 * 
 	 */
-	public TextArea() {
+	public TextArea(JButton connectButton) {
+		this.connectButton = connectButton;
+		mementos = new ArrayList<>();
+		originator = new MessageOriginator();
 		setUP();
 	}
 
@@ -48,6 +60,16 @@ public class TextArea extends JFrame implements UIColegue {
 	 * 
 	 */
 	private void setUP() {
+		JPanel mainWindow = this;
+		mainWindow.setLayout(new FlowLayout());
+		messageField = new JTextField();
+		sendButton = new JButton("Send");
+		languageButton = new JButton("EN/BG");
+		messageField.setPreferredSize(new Dimension(250, 30));
+		mainWindow.add(languageButton);
+		mainWindow.add(connectButton);
+		mainWindow.add(messageField);
+		mainWindow.add(sendButton);
 		listenersSetUp();
 	}
 
@@ -65,6 +87,15 @@ public class TextArea extends JFrame implements UIColegue {
 
 		});
 
+		languageButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Write the action.
+
+			}
+		});
+
 		Action keyDown = new AbstractAction() {
 
 			private static final long serialVersionUID = 11L;
@@ -72,6 +103,7 @@ public class TextArea extends JFrame implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				index--;
+				log.info("Event " + e.getActionCommand());
 				if (index > -1) {
 					messageField.setText(originator.restoreFromMemento(mementos
 							.get(index)));
@@ -88,6 +120,7 @@ public class TextArea extends JFrame implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				index++;
+				log.info("Event " + e.getActionCommand());
 				if (mementos.size() > index) {
 					messageField.setText(originator.restoreFromMemento(mementos
 							.get(index)));
@@ -107,24 +140,31 @@ public class TextArea extends JFrame implements UIColegue {
 	}
 
 	private void sendMessage(String text) {
-
+		// TODO Implement send message;
+		if (client != null) {
+			client.sendMessage(new Message(text, 0, TYPE.MESSAGE, null));
+			originator.setState(messageField.getText());
+			mementos.add(0, originator.saveToMemento());
+			index = -1;
+			messageField.setText("");
+		}
 	}
 
 	@Override
 	public void sendUIEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void respondToEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

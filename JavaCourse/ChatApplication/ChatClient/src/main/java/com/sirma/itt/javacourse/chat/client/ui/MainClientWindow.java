@@ -1,19 +1,23 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
 
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
+import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
@@ -29,9 +33,13 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 	private static final long serialVersionUID = 1826026493714885025L;
 	private static Logger log = Logger.getLogger(MainClientWindow.class);
-	private JTextArea messageWingow;
 	private JButton connectButton;
 	private ClientThread client;
+	private TextArea textArea;
+	private ChatsPanel chatPanel;
+	// private JList<ChatUser> userList;
+	private JList userList;
+	private DefaultListModel<String> users;
 
 	/**
 	 * Main method.
@@ -57,22 +65,35 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		LanguageControler.setLanguage(LANGUGES.BG.toString());
 		JFrame mainWindow = this;
 		connectButton = new JButton(LanguageControler.getWord("connect"));
-		messageWingow = new JTextArea();
-		messageWingow.setEditable(false);
-
+		chatPanel = new ChatsPanel();
+		textArea = new TextArea(connectButton);
+		users = new DefaultListModel<>();
+		userList = new JList(users);
+		client = new ClientThread();
+		textArea.setClient(client);
 		mainWindow.setLayout(new BorderLayout());
 		connectButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client = new ClientThread();
+
 				client.start();
-				client.sendMessage(inputUserName());
+				// client.sendMessage(inputUserName());
+				//client.sendMessage(new Message("", 0, Message.TYPE.CONNECT.toString()));
 			}
 		});
 
-		mainWindow.add(connectButton, BorderLayout.NORTH);
-		mainWindow.add(messageWingow);
+		// Test user List values
+		users.addElement("Test");
+		users.addElement("Test1");
+		users.addElement("Test2");
+		// End
+		userList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		userList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		userList.setPreferredSize(new Dimension(80, 400));
+		mainWindow.add(userList, BorderLayout.WEST);
+		mainWindow.add(textArea, BorderLayout.SOUTH);
+		mainWindow.add(chatPanel, BorderLayout.CENTER);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(600, 400);
 		mainWindow.setTitle("Chat Client");
@@ -84,32 +105,13 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (client.isAlive()) {
+				if (client != null && client.isAlive()) {
 					client.interrupt();
 				}
 				System.exit(0);
 			}
 
 		});
-	}
-
-	/**
-	 * Getter method for messageWingow.
-	 * 
-	 * @return the messageWingow
-	 */
-	public JTextArea getMessageWingow() {
-		return messageWingow;
-	}
-
-	/**
-	 * Setter method for messageWingow.
-	 * 
-	 * @param messageWingow
-	 *            the messageWingow to set
-	 */
-	public void setMessageWingow(JTextArea messageWingow) {
-		this.messageWingow = messageWingow;
 	}
 
 	public String inputUserName() {
@@ -122,18 +124,18 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	@Override
 	public void sendUIEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void respondToEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -14,8 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import org.apache.log4j.Logger;
-
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
@@ -28,7 +26,7 @@ import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 public class ServerWindow extends JFrame {
 
 	private static final long serialVersionUID = -401486980443255042L;
-	private static Logger log = Logger.getLogger(ServerWindow.class);
+	//private static Logger log = Logger.getLogger(ServerWindow.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;

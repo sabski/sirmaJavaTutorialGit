@@ -1,11 +1,15 @@
 package com.sirma.itt.javacourse.chat.server.manager;
 
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
+import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
  * A singleton class that its purpose is to keep an accurate list of the current
@@ -19,7 +23,9 @@ public class UserManager {
 
 	private static Logger log = Logger.getLogger(UserManager.class);
 	private static UserManager instance;
-	private Map<String, ChatUser> userMap;
+	private Map<String, ClientListenerThread> userMap;
+	private List<ClientListenerThread> tempHolder;
+	private ServerMessageInterpretor interpretator;
 
 	/**
 	 * This method returns the only instance of this class.
@@ -37,7 +43,9 @@ public class UserManager {
 	 * Private constructor.
 	 */
 	private UserManager() {
-		userMap = new HashMap<String, ChatUser>();
+		userMap = new HashMap<String, ClientListenerThread>();
+		tempHolder = new ArrayList<ClientListenerThread>();
+		interpretator = new ServerMessageInterpretor();
 	}
 
 	/**
@@ -48,9 +56,9 @@ public class UserManager {
 	 * @return true if the user was added false if there is a user with the same
 	 *         name logged on.
 	 */
-	public boolean addUser(ChatUser user) {
-		if (isValidName(user.getUsername())) {
-			userMap.put(user.getUsername(), user);
+	public boolean addUser(ClientListenerThread user) {
+		if (isValidName(user.getUser().getUsername())) {
+			userMap.put(user.getUser().getUsername(), user);
 			return true;
 		} else {
 			return false;
@@ -95,8 +103,21 @@ public class UserManager {
 	 * @return the {@link ChatUser} object or null if there is no user with this
 	 *         username.
 	 */
-	public ChatUser getUser(String userName) {
+	public ClientListenerThread getUser(String userName) {
 		return userMap.get(userName);
+	}
+
+	/**
+	 * Starts the process of registering the user to the server.
+	 * 
+	 * @param client
+	 *            the client to be registered.
+	 */
+	public void acceptUser(Socket client) {
+		ChatUser user = new ChatUser(null, client);
+		ClientListenerThread listener = new ClientListenerThread(user);
+		listener.start();
+		tempHolder.add(listener);
 	}
 
 }

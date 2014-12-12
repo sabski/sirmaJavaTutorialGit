@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -11,9 +13,9 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 /**
  * 
  * @author siliev
- *
+ * 
  */
-public class ChatsPanel extends JPanel implements UIColegue{
+public class ChatsPanel extends JPanel implements UIColegue {
 
 	private static final long serialVersionUID = -3781827111159603799L;
 
@@ -25,7 +27,6 @@ public class ChatsPanel extends JPanel implements UIColegue{
 	 * Constructor
 	 */
 	public ChatsPanel() {
-
 		setUp();
 	}
 
@@ -33,9 +34,11 @@ public class ChatsPanel extends JPanel implements UIColegue{
 		// TODO Full set up off the tabbed pane.
 		tabbedPane = new JTabbedPane();
 		JPanel papel = this;
-		papel.setVisible(true);
 		papel.add(tabbedPane);
-
+		ChatWindow chatsPanel = new ChatWindow();
+		tabbedPane.add(chatsPanel);
+		chatsPanel.setEditable(false);
+		tabbedPane.setPreferredSize(new Dimension(380, 310));
 	}
 
 	public void addNewTab(String info) {
@@ -55,18 +58,18 @@ public class ChatsPanel extends JPanel implements UIColegue{
 	@Override
 	public void sendUIEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void respondToEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

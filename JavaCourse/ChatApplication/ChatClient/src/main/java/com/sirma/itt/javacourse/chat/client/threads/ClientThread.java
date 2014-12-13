@@ -8,9 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 
 /**
  * @author siliev
@@ -22,11 +26,13 @@ public class ClientThread extends Thread {
 	private Socket client;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
+	private ClientMessageInterpretor manager;
 
 	@Override
 	public void run() {
 		log.info("Starting client");
 		connectToServer();
+		readServerMassesges();
 	}
 
 	protected void connectToServer() {
@@ -34,7 +40,7 @@ public class ClientThread extends Thread {
 		try {
 			client = new Socket("localhost", 7000);
 			input = new ObjectInputStream(client.getInputStream());
-
+			manager = new ClientMessageInterpretor(this);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -60,4 +66,19 @@ public class ClientThread extends Thread {
 			log.error(e.getMessage(), e);
 		}
 	}
+
+	public void readServerMassesges() {
+		try {
+			Message message;
+			while (!client.isClosed()) {
+				message = (Message) input.readObject();
+				if (message != null) {
+					manager.interpretMessage(message, null);
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			log.error(e.getMessage(), e);
+		}
+	}
+
 }

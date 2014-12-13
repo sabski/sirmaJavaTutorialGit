@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.server.manager.ChatRoom;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
@@ -20,6 +21,7 @@ public class MainServerThread extends Thread {
 	private ServerSocket server;
 	private UserManager userManager;
 	private ChatRoomManager chatRoomManager;
+	private ChatRoom mainRoom;
 
 	@Override
 	public void run() {
@@ -36,7 +38,9 @@ public class MainServerThread extends Thread {
 			log.error(e.getMessage(), e);
 		}
 		userManager = UserManager.getInstance();
-		
+		chatRoomManager = ChatRoomManager.getInstance();
+		Long mainID = chatRoomManager.createChatRoom();
+		mainRoom = chatRoomManager.getRoomById(mainID);
 		log.info("startServer");
 	}
 
@@ -64,6 +68,21 @@ public class MainServerThread extends Thread {
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}
+	}
+
+	/**
+	 * @return the mainRoom
+	 */
+	public ChatRoom getMainRoom() {
+		return mainRoom;
+	}
+
+	/**
+	 * @param mainRoom
+	 *            the mainRoom to set
+	 */
+	public void setMainRoom(ChatRoom mainRoom) {
+		this.mainRoom = mainRoom;
 	}
 
 }

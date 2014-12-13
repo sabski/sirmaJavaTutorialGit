@@ -1,7 +1,7 @@
 package com.sirma.itt.javacourse.chat.server.manager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author siliev
@@ -10,19 +10,27 @@ import java.util.List;
 public class ChatRoomManager {
 
 	private static ChatRoomManager instance;
-	private List<ChatRoom> chatRooms;
+	private Map<Long, ChatRoom> chatRooms;
 
 	private ChatRoomManager() {
-		chatRooms = new ArrayList<ChatRoom>();
+		chatRooms = new HashMap<Long, ChatRoom>();
 	}
 
-	public ChatRoomManager getInstance() {
+	public static ChatRoomManager getInstance() {
 		if (instance == null) {
 			instance = new ChatRoomManager();
-
 		}
 		return instance;
 	}
+
+	public Long createChatRoom() {
+		ChatRoom chatRoom = new ChatRoom();
+		chatRooms.put(chatRoom.getId(), chatRoom);
+		return chatRoom.getId();
+	}
+
 	
-	
+	public ChatRoom getRoomById(Long id) {
+		return chatRooms.get(id);
+	}
 }

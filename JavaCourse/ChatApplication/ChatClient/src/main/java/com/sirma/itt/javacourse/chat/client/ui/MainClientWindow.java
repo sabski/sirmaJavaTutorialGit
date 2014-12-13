@@ -16,8 +16,10 @@ import javax.swing.ListSelectionModel;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
@@ -78,8 +80,10 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			public void actionPerformed(ActionEvent e) {
 
 				client.start();
-				// client.sendMessage(inputUserName());
-				//client.sendMessage(new Message("", 0, Message.TYPE.CONNECT.toString()));
+				client.sendMessage(new Message(ClientMessageInterpretor.inputUserName(), 0,
+						TYPE.CONNECT, null));
+				// client.sendMessage(new Message("", 0,
+				// Message.TYPE.CONNECT.toString()));
 			}
 		});
 
@@ -112,13 +116,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			}
 
 		});
-	}
-
-	public String inputUserName() {
-		String name = null;
-		name = JOptionPane.showInputDialog(LanguageControler
-				.getWord("inputUsername"));
-		return name;
 	}
 
 	@Override

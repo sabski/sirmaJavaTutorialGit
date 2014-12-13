@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpretor;
+import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
  * @author siliev
@@ -31,7 +32,7 @@ public class ClientListenerThread extends Thread {
 	 */
 	public ClientListenerThread(ChatUser user) {
 		this.user = user;
-		interpretor = new ServerMessageInterpretor();
+		interpretor = UserManager.getInstance().getInterpretator();
 		try {
 			inputStream = new ObjectInputStream(user.getInputStream());
 			outputStream = new ObjectOutputStream(user.getOutputStream());

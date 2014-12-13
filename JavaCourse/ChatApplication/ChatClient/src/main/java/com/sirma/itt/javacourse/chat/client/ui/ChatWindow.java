@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.ui;
 
 import java.util.List;

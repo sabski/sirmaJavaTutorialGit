@@ -18,13 +18,13 @@ public class ChatRoom {
 	private static Logger log = Logger.getLogger(ChatRoom.class);
 	private static long chatRoomCount = 0;
 
-	private long id;
+	private Long id;
 	private List<ClientListenerThread> userList;
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

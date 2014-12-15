@@ -142,7 +142,7 @@ public class TextArea extends JPanel implements UIColegue {
 	private void sendMessage(String text) {
 		// TODO Implement send message;
 		if (client != null) {
-			client.sendMessage(new Message(text, 0, TYPE.MESSAGE, null));
+			client.sendMessage(new Message(text, 0, TYPE.MESSAGE, "TODO"));
 			originator.setState(messageField.getText());
 			mementos.add(0, originator.saveToMemento());
 			index = -1;

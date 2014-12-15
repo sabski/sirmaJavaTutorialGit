@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
+import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
@@ -26,7 +27,7 @@ public class UserManager {
 	private static UserManager instance;
 	private Map<String, ClientListenerThread> userMap;
 	private List<ClientListenerThread> tempHolder;
-	private ServerMessageInterpretor interpretator;
+	private ServerMessageInterpreter interpretator;
 
 	/**
 	 * This method returns the only instance of this class.
@@ -46,7 +47,7 @@ public class UserManager {
 	private UserManager() {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
-		interpretator = new ServerMessageInterpretor(this);
+		interpretator = new ServerMessageInterpreter(this);
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class UserManager {
 		tempHolder.add(listener);
 	}
 
-	public ServerMessageInterpretor getInterpretator() {
+	public ServerMessageInterpreter getInterpretator() {
 		return interpretator;
 	}
 
@@ -134,6 +135,9 @@ public class UserManager {
 				thread.sendMessge(interpretator.generateMessage(TYPE.APPROVED,
 						0, "Welcome to the matrix sir "
 								+ thread.getUser().getUsername(),
+						TYPE.SERVER.toString()));
+				thread.sendMessge(new Message(null, ChatRoomManager
+						.getInstance().getCommonRoom().getId(), TYPE.STARTCHAT,
 						TYPE.SERVER.toString()));
 				break;
 			}

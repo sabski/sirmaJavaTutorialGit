@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.server.threads;
 
 import java.io.IOException;
@@ -11,7 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpretor;
+import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
@@ -23,12 +20,15 @@ public class ClientListenerThread extends Thread {
 	private static Logger log = Logger.getLogger(ClientListenerThread.class);
 
 	private ChatUser user;
-	private ServerMessageInterpretor interpretor;
+	private ServerMessageInterpreter interpretor;
 	private ObjectInputStream inputStream;
 	private ObjectOutputStream outputStream;
 
 	/**
+	 * 
+	 * 
 	 * @param user
+	 *            the user that is associated with this thread.
 	 */
 	public ClientListenerThread(ChatUser user) {
 		this.user = user;
@@ -74,11 +74,17 @@ public class ClientListenerThread extends Thread {
 						+ message.getMessageType() + " " + message.getContent());
 				interpretor.interpretMessage(message, user);
 			}
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (ClassNotFoundException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
 
+	/**
+	 * Sends a message to the user.
+	 * 
+	 * @param message
+	 *            the message that is sent to the user.
+	 */
 	public void sendMessge(Message message) {
 		if (user != null) {
 			try {

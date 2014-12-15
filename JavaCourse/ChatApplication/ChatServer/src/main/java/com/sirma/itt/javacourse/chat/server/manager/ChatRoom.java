@@ -3,19 +3,19 @@ package com.sirma.itt.javacourse.chat.server.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
+ * This class represent a single chat room in the application. The idea of this
+ * class is to hold a user list and send messages between these users.
  * 
  * @author siliev
  * 
  */
 public class ChatRoom {
 
-	private static Logger log = Logger.getLogger(ChatRoom.class);
+	// private static Logger log = Logger.getLogger(ChatRoom.class);
 	private static long chatRoomCount = 0;
 
 	private Long id;
@@ -46,6 +46,12 @@ public class ChatRoom {
 		userList.add(user);
 	}
 
+	/**
+	 * Sends a given message to all the users in the chat room.
+	 * 
+	 * @param message
+	 *            the message that is to be sent to the users.
+	 */
 	public void sendMessage(Message message) {
 		for (ClientListenerThread user : userList) {
 			user.sendMessge(message);

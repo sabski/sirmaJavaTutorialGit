@@ -7,7 +7,7 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = -103156352094886756L;
 
 	public static enum TYPE {
-		CONNECT, DISCONNECT, MESSAGE, STARTCHAT, SERVER, APPROVED, REFUSED
+		CONNECT, DISCONNECT, MESSAGE, STARTCHAT, SERVER, APPROVED, REFUSED, USERLIST
 	};
 
 	private String content;
@@ -89,4 +89,9 @@ public class Message implements Serializable {
 		this.author = author;
 	}
 
+	@Override
+	public String toString() {
+		return messageType.toString() + " " + author + " " + chatRoomId + " "
+				+ content;
+	}
 }

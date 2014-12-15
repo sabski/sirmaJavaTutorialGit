@@ -11,7 +11,7 @@ import com.sirma.itt.javacourse.chat.common.Message.TYPE;
  * @author siliev
  * 
  */
-public interface MessageInterpretor {
+public interface MessageInterpreter {
 
 	public Message generateMessage(TYPE type, long id, String content,
 			String author);

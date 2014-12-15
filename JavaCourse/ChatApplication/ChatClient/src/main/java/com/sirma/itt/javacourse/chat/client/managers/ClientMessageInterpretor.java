@@ -12,16 +12,17 @@ import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
-import com.sirma.itt.javacourse.chat.common.MessageInterpretor;
+import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 
 /**
  * @author siliev
  * 
  */
-public class ClientMessageInterpretor implements MessageInterpretor {
+public class ClientMessageInterpretor implements MessageInterpreter {
 
 	private Logger log = Logger.getLogger(ClientMessageInterpretor.class);
 	private ClientThread clientThread;
+	private UIControler controler = UIControler.getInstance();
 
 	public ClientMessageInterpretor(ClientThread clientThread) {
 		this.clientThread = clientThread;
@@ -30,8 +31,7 @@ public class ClientMessageInterpretor implements MessageInterpretor {
 	@Override
 	public Message generateMessage(TYPE type, long id, String content,
 			String author) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Message(content, id, type, author);
 	}
 
 	@Override
@@ -39,10 +39,10 @@ public class ClientMessageInterpretor implements MessageInterpretor {
 
 		switch (message.getMessageType()) {
 		case MESSAGE:
-
+			displayMessage(message);
 			break;
 		case STARTCHAT:
-			//clientThread.sendMessage(new Message(, 0, TYPE.STARTCHAT, user.getUsername()));
+			createNewChatWindow(message);
 			break;
 		case APPROVED:
 			JOptionPane.showMessageDialog(null, message.getContent());
@@ -55,11 +55,26 @@ public class ClientMessageInterpretor implements MessageInterpretor {
 		case SERVER:
 
 			break;
+		case USERLIST:
+			
+			break;
 		default:
 			log.info("Unsuported type " + message.getMessageType());
 			break;
 		}
-		// APPROVED, REFUSED
+	}
+
+	private void displayMessage(Message message) {
+		// TODO Display message to proper screen.
+		log.info("Message reseived : " + message);
+		controler.getChatsPanel().processMessage(message);
+
+	}
+
+	private void createNewChatWindow(Message message) {
+		// TODO Create a new chat window.
+		log.info("Creating new chat room " + message);
+		controler.getChatsPanel().addNewTab(message);
 	}
 
 	public static String inputUserName() {

@@ -28,6 +28,7 @@ public class UserManager {
 	private Map<String, ClientListenerThread> userMap;
 	private List<ClientListenerThread> tempHolder;
 	private ServerMessageInterpreter interpretator;
+	private ChatRoomManager manager = ChatRoomManager.getInstance();
 
 	/**
 	 * This method returns the only instance of this class.
@@ -133,11 +134,11 @@ public class UserManager {
 				userMap.put(user.getUsername(), thread);
 				log.info("Registering user " + user.getUsername());
 				thread.sendMessge(interpretator.generateMessage(TYPE.APPROVED,
-						0, "Welcome to the matrix sir "
-								+ thread.getUser().getUsername(),
-						TYPE.SERVER.toString()));
-				thread.sendMessge(new Message(null, ChatRoomManager
-						.getInstance().getCommonRoom().getId(), TYPE.STARTCHAT,
+						0, thread.getUser().getUsername(), thread.getUser()
+								.getUsername()));
+				thread.sendMessge(new Message(manager.getCommonRoom()
+						.getUsers().toString(),
+						manager.getCommonRoom().getId(), TYPE.STARTCHAT,
 						TYPE.SERVER.toString()));
 				break;
 			}
@@ -161,5 +162,11 @@ public class UserManager {
 
 	public ClientListenerThread getClientThreadByName(String name) {
 		return userMap.get(name);
+	}
+
+	public List<String> getUserList() {
+		List<String> list = new ArrayList<String>(userMap.keySet());
+
+		return list;
 	}
 }

@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
@@ -57,8 +57,8 @@ public class ServerWindow extends JFrame {
 	 */
 	private void setUp() {
 		// Start language setup.
-		LanguageControler.loadCurrentLanguage();
-		LanguageControler.setLanguage("BG");
+		LanguageController.loadCurrentLanguage();
+		LanguageController.setLanguage("BG");
 		// TODO Have a nice day;
 		JFrame mainWindow = this;
 		startButton = new JButton("Start");
@@ -100,8 +100,7 @@ public class ServerWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// server = new MainServerThread(messageArea);
-				server = new MainServerThread();
+				server = new MainServerThread(messageArea);
 				server.start();
 			}
 		});

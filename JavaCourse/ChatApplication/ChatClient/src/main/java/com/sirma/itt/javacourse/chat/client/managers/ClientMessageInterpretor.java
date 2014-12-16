@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.managers;
 
 import javax.swing.JOptionPane;
@@ -11,7 +8,7 @@ import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 
 /**
@@ -23,9 +20,11 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	private Logger log = Logger.getLogger(ClientMessageInterpretor.class);
 	private ClientThread clientThread;
 	private UIControler controler = UIControler.getInstance();
+	private ClientInfo client;
 
 	public ClientMessageInterpretor(ClientThread clientThread) {
 		this.clientThread = clientThread;
+		client = ClientInfo.getInstance();
 	}
 
 	@Override
@@ -45,6 +44,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			createNewChatWindow(message);
 			break;
 		case APPROVED:
+			client.setUserName(message.getAuthor());
 			JOptionPane.showMessageDialog(null, message.getContent());
 			break;
 		case REFUSED:
@@ -56,7 +56,9 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 
 			break;
 		case USERLIST:
-			
+			// TODO HELP ME HERE
+			log.info(message);
+			controler.updateUserList(message.getContent());
 			break;
 		default:
 			log.info("Unsuported type " + message.getMessageType());
@@ -79,8 +81,10 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 
 	public static String inputUserName() {
 		String name = null;
-		name = JOptionPane.showInputDialog(LanguageControler
+		name = JOptionPane.showInputDialog(LanguageController
 				.getWord("inputUsername"));
 		return name;
 	}
+	
+	
 }

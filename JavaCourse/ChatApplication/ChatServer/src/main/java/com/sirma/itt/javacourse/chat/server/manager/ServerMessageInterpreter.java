@@ -45,7 +45,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 					message);
 			break;
 		case DISCONNECT:
-
+			disconnect(message);
 			break;
 		case STARTCHAT:
 			Long empyRoom = chatRoomManager.createChatRoom();
@@ -58,6 +58,12 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 			log.info("Unsuported type " + message.getMessageType());
 			break;
 		}
+	}
+
+	private void disconnect(Message message) {
+		// TODO disconnect the user and notify other users
+		// that this user has left the server.
+
 	}
 
 	@Override
@@ -81,6 +87,10 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 			manager.registerUser(user);
 			chatRoomManager.getCommonRoom().addUser(
 					manager.getUser(user.getUsername()));
+			chatRoomManager.getCommonRoom().sendMessage(
+					new Message(manager.getUserList().toString(),
+							chatRoomManager.getCommonRoom().getId(),
+							TYPE.USERLIST, TYPE.SERVER.toString()));
 		} else {
 			manager.rejectUser(user);
 		}

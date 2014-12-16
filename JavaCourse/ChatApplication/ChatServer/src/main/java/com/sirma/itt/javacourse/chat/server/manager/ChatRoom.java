@@ -20,6 +20,7 @@ public class ChatRoom {
 
 	private Long id;
 	private List<ClientListenerThread> userList;
+	private List<String> usernameList;
 
 	/**
 	 * @return the id
@@ -34,6 +35,7 @@ public class ChatRoom {
 	public ChatRoom() {
 		id = chatRoomCount++;
 		userList = new ArrayList<ClientListenerThread>();
+		usernameList = new ArrayList<String>();
 	}
 
 	/**
@@ -44,6 +46,7 @@ public class ChatRoom {
 	 */
 	public void addUser(ClientListenerThread user) {
 		userList.add(user);
+		usernameList.add(user.getUser().getUsername());
 	}
 
 	/**
@@ -56,6 +59,10 @@ public class ChatRoom {
 		for (ClientListenerThread user : userList) {
 			user.sendMessge(message);
 		}
+	}
+
+	public List<String> getUsers() {
+		return usernameList;
 	}
 
 }

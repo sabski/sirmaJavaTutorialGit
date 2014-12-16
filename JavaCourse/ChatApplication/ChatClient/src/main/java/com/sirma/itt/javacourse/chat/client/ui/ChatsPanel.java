@@ -41,25 +41,22 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		tabbedPane = new JTabbedPane();
 		JPanel papel = this;
 		papel.add(tabbedPane);
-		ChatWindow chatsPanel = new ChatWindow();
-		tabbedPane.add(chatsPanel);
-		chatsPanel.setEditable(false);
 		tabbedPane.setPreferredSize(new Dimension(380, 310));
 		registerComponent();
 	}
 
 	public void addNewTab(Message info) {
 		log.info("Adding tab");
-		ChatWindow temp = createNewPanel(info);
-		tabbedPane.add(temp, 0);
+		ChatWindow chatWindow = createNewPanel(info);
+		tabbedPane.add(info.getChatRoomId().toString(), chatWindow);
 		tabbedPane.invalidate();
-		tabs.add(temp);
+		tabs.add(chatWindow);
 	}
 
 	private ChatWindow createNewPanel(Message info) {
+		log.info("Creating new window");
 		ChatWindow panel = new ChatWindow();
-		JTextArea textArea = new JTextArea();
-		panel.add(textArea);
+		panel.setEditable(false);
 		panel.setChatID(info.getChatRoomId());
 		return panel;
 	}
@@ -89,7 +86,7 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	public void processMessage(Message message) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getChatID() == message.getChatRoomId()) {
-				tab.displayMessage(message);	
+				tab.displayMessage(message);
 				break;
 			}
 		}

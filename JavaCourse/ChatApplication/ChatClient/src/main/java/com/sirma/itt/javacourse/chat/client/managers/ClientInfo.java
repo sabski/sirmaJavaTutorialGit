@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.chat.client.managers;
 
-import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
  * Class that holds the current client settings.
@@ -10,7 +10,48 @@ import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
  */
 public class ClientInfo {
 
+	private static ClientInfo instance;
+
 	private String userName;
-	private LanguageControler contrloer;
+	private LanguageController controller;
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	/**
+	 * @return the controller
+	 */
+	public LanguageController getController() {
+		return controller;
+	}
+
+
+	/**
+	 * @param contrloer the controller to set
+	 */
+	public void setContrloer(LanguageController contrloer) {
+		this.controller = contrloer;
+	}
+
+
+	public static ClientInfo getInstance() {
+		if (instance == null) {
+			instance = new ClientInfo();
+		}
+		return instance;
+	}
 
 }

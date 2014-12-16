@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.swing.JTextArea;
+
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoom;
@@ -21,7 +23,11 @@ public class MainServerThread extends Thread {
 	private ServerSocket server;
 	private UserManager userManager;
 	private ChatRoomManager chatRoomManager;
-	private ChatRoom mainRoom;
+	private JTextArea messageArea;
+
+	public MainServerThread(JTextArea messageArea) {
+		this.messageArea = messageArea;
+	}
 
 	@Override
 	public void run() {
@@ -39,9 +45,8 @@ public class MainServerThread extends Thread {
 		}
 		userManager = UserManager.getInstance();
 		chatRoomManager = ChatRoomManager.getInstance();
-		Long mainID = chatRoomManager.createChatRoom();
-		mainRoom = chatRoomManager.getRoomById(mainID);
 		log.info("startServer");
+		displayMessage("Server has started");
 	}
 
 	protected void acceptConnections() {
@@ -63,6 +68,7 @@ public class MainServerThread extends Thread {
 	public void stopServer() {
 		try {
 			log.info("Stopping server");
+			displayMessage("Stoping server");
 			server.close();
 			interrupt();
 		} catch (IOException e) {
@@ -70,19 +76,7 @@ public class MainServerThread extends Thread {
 		}
 	}
 
-	/**
-	 * @return the mainRoom
-	 */
-	public ChatRoom getMainRoom() {
-		return mainRoom;
+	public void displayMessage(String message) {
+		messageArea.setText(messageArea.getText() + "/n" + message);
 	}
-
-	/**
-	 * @param mainRoom
-	 *            the mainRoom to set
-	 */
-	public void setMainRoom(ChatRoom mainRoom) {
-		this.mainRoom = mainRoom;
-	}
-
 }

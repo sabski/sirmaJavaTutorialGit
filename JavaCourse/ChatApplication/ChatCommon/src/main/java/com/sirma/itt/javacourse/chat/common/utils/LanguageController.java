@@ -14,9 +14,9 @@ import org.apache.log4j.Logger;
  * @author siliev
  * 
  */
-public class LanguageControler {
+public class LanguageController {
 
-	private static Logger log = Logger.getLogger(LanguageControler.class);
+	private static Logger log = Logger.getLogger(LanguageController.class);
 
 	public static enum LANGUGES {
 		EN("en"), BG("bg");
@@ -71,7 +71,7 @@ public class LanguageControler {
 	 * Setting the constructor to private to prevent getting instances of this
 	 * class.
 	 */
-	private LanguageControler() {
+	private LanguageController() {
 
 	}
 }

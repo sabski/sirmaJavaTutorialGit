@@ -13,15 +13,19 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
+import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageControler;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageControler.LANGUGES;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -40,8 +44,10 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	private TextArea textArea;
 	private ChatsPanel chatPanel;
 	// private JList<ChatUser> userList;
-	private JList userList;
+	private JList<String> userList;
+
 	private DefaultListModel<String> users;
+	private UIControler controler;
 
 	/**
 	 * Main method.
@@ -57,41 +63,25 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	 * Constructor.
 	 */
 	public MainClientWindow() {
+		controler = UIControler.getInstance();
 		setUp();
+		registerComponent();
 	}
 
 	/**
 	 * Set up method.
 	 */
 	private void setUp() {
-		LanguageControler.setLanguage(LANGUGES.BG.toString());
+		LanguageController.setLanguage(LANGUGES.BG.toString());
 		JFrame mainWindow = this;
-		connectButton = new JButton(LanguageControler.getWord("connect"));
+		connectButton = new JButton(LanguageController.getWord("connect"));
 		chatPanel = new ChatsPanel();
 		textArea = new TextArea(connectButton);
 		users = new DefaultListModel<>();
-		userList = new JList(users);
+		userList = new JList<String>(users);
 		client = new ClientThread();
 		textArea.setClient(client);
 		mainWindow.setLayout(new BorderLayout());
-		connectButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				client.start();
-				client.sendMessage(new Message(ClientMessageInterpretor.inputUserName(), 0,
-						TYPE.CONNECT, null));
-				// client.sendMessage(new Message("", 0,
-				// Message.TYPE.CONNECT.toString()));
-			}
-		});
-
-		// Test user List values
-		users.addElement("Test");
-		users.addElement("Test1");
-		users.addElement("Test2");
-		// End
 		userList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		userList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		userList.setPreferredSize(new Dimension(80, 400));
@@ -116,6 +106,42 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			}
 
 		});
+		setUpListeners();
+	}
+
+	private void setUpListeners() {
+		connectButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				client.start();
+				client.sendMessage(new Message(ClientMessageInterpretor
+						.inputUserName(), 0, TYPE.CONNECT, null));
+			}
+		});
+
+		userList.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				log.info(e);
+			}
+		});
+	}
+
+	/**
+	 * @return the users
+	 */
+	public DefaultListModel<String> getUsers() {
+		return users;
+	}
+
+	/**
+	 * @return the userList
+	 */
+	public JList<String> getUserList() {
+		return userList;
 	}
 
 	@Override
@@ -133,6 +159,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-
+		controler.registerMainWindow(this);
 	}
 }

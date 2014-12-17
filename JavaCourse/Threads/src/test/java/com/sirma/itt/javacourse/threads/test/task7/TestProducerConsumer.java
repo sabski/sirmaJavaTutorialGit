@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task7.producer_consumer.Consumer;
-import com.sirma.itt.javacourse.threads.task7.producer_consumer.Producer;
-import com.sirma.itt.javacourse.threads.task7.producer_consumer.Product;
+import com.sirma.itt.javacourse.threads.task7.producerconsumer.Consumer;
+import com.sirma.itt.javacourse.threads.task7.producerconsumer.Producer;
+import com.sirma.itt.javacourse.threads.task7.producerconsumer.Product;
 
 /**
  * @author Simeon Iliev
@@ -50,7 +50,7 @@ public class TestProducerConsumer {
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
-		producer.stop();
+		producer.interrupt();
 		consumer.start();
 		try {
 			Thread.sleep(400);
@@ -66,10 +66,10 @@ public class TestProducerConsumer {
 	@After
 	public void tearDown() {
 		if (consumer.isAlive()) {
-			consumer.stop();
+			consumer.interrupt();
 		}
 		if (producer.isAlive()) {
-			producer.stop();
+			producer.interrupt();
 		}
 	}
 }

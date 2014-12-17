@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task5.synchronized_stack;
+package com.sirma.itt.javacourse.threads.task5.synchronizedstack;
 
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class AddingThread extends Thread {
 
-	private Logger log = Logger.getLogger(AddingThread.class);
+	private static final Logger LOGGER = Logger.getLogger(AddingThread.class);
 	private Object objectToAdd;
 	private ObjectListSynchonized list;
 
@@ -24,12 +24,12 @@ public class AddingThread extends Thread {
 				try {
 					list.wait();
 				} catch (InterruptedException e) {
-					log.error(e.getMessage(), e);
+					LOGGER.error(e.getMessage(), e);
 				}
 			}
 		}
 		// Add the element to the list...
-		log.info("The element was added " + list.addElement(objectToAdd));
+		LOGGER.info("The element was added " + list.addElement(objectToAdd));
 	}
 
 	/**

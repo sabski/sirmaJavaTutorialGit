@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task7.producer_consumer;
+package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 
 /**
  * Base product.

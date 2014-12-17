@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task7.producer_consumer;
+package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 
 import java.util.List;
 
@@ -21,7 +21,8 @@ public class Warehouse {
 		products.add(product);
 	}
 
-	public synchronized void deliverProduct(AbstractProduct product, int quantity) {
+	public synchronized void deliverProduct(AbstractProduct product,
+			int quantity) {
 		if (products.contains(product)) {
 			for (AbstractProduct pr : products) {
 				if (pr.equals(product)) {

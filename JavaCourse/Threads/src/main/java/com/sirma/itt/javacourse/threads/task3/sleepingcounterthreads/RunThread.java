@@ -1,6 +1,6 @@
-package com.sirma.itt.javacourse.threads.task3.sleeping_counter_threads;
+package com.sirma.itt.javacourse.threads.task3.sleepingcounterthreads;
 
-import com.sirma.itt.javacourse.threads.task2.two_counter_threads.StoperThread;
+import com.sirma.itt.javacourse.threads.task2.twocounterthreads.StoperThread;
 
 /**
  * Runner class to compare sleep and wait.

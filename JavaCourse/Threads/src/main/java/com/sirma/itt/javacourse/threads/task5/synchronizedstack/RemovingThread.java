@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task5.synchronized_stack;
+package com.sirma.itt.javacourse.threads.task5.synchronizedstack;
 
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class RemovingThread extends Thread {
 
-	private final Logger log = Logger.getLogger(RemovingThread.class);
+	private static final Logger LOGGER = Logger.getLogger(RemovingThread.class);
 	private ObjectListSynchonized list;
 
 	/**
@@ -23,19 +23,20 @@ public class RemovingThread extends Thread {
 				try {
 					list.wait();
 				} catch (InterruptedException e) {
-					log.error(e.getMessage(), e);
+					LOGGER.error(e.getMessage(), e);
 				}
 			}
 		}
 		// Remove element from the list
-		log.info("The element was removed " + list.removeElement());
+		LOGGER.info("The element was removed " + list.removeElement());
 	}
 
 	/**
 	 * Constructor with {@link ObjectListSynchonized} that is used as a lock.
 	 * 
 	 * @param lock
-	 *            the object list that we are going to add and use as a lock object.
+	 *            the object list that we are going to add and use as a lock
+	 *            object.
 	 */
 	public RemovingThread(ObjectListSynchonized lock) {
 		this.list = lock;

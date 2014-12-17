@@ -6,13 +6,13 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task5.synchronized_stack.AddingThread;
-import com.sirma.itt.javacourse.threads.task5.synchronized_stack.ObjectListSynchonized;
-import com.sirma.itt.javacourse.threads.task5.synchronized_stack.RemovingThread;
+import com.sirma.itt.javacourse.threads.task5.synchronizedstack.AddingThread;
+import com.sirma.itt.javacourse.threads.task5.synchronizedstack.ObjectListSynchonized;
+import com.sirma.itt.javacourse.threads.task5.synchronizedstack.RemovingThread;
 
 /**
- * This is a complex test that will include the following classes. {@link AddingThread},
- * {@link RemovingThread}, {@link ObjectListSynchonized}
+ * This is a complex test that will include the following classes.
+ * {@link AddingThread}, {@link RemovingThread}, {@link ObjectListSynchonized}
  * 
  * @author Simeon Iliev
  */
@@ -68,7 +68,7 @@ public class TestThreads {
 			log.error(e.getMessage(), e);
 		}
 		assertTrue(tempThread.isAlive());
-		tempThread.stop();
+		tempThread.interrupt();
 	}
 
 	/**
@@ -100,6 +100,6 @@ public class TestThreads {
 			log.error(e.getMessage(), e);
 		}
 		assertTrue(tempThread.isAlive());
-		tempThread.stop();
+		tempThread.interrupt();
 	}
 }

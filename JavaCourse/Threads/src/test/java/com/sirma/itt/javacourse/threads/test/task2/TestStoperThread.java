@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task2.two_counter_threads.StoperThread;
+import com.sirma.itt.javacourse.threads.task2.twocounterthreads.StoperThread;
 
 /**
  * @author Simeon Iliev

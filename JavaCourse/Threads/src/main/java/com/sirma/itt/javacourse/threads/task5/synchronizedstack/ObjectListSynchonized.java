@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task5.synchronized_stack;
+package com.sirma.itt.javacourse.threads.task5.synchronizedstack;
 
 import org.apache.log4j.Logger;
 
@@ -11,7 +11,7 @@ import com.sirma.itt.javacourse.InputUtils;
  */
 public class ObjectListSynchonized {
 
-	private Logger log = Logger.getLogger(ObjectListSynchonized.class);
+	private static final Logger LOGGER = Logger.getLogger(ObjectListSynchonized.class);
 	private int capacity = 10;
 	private int index = 0;
 	private boolean addFlag = true;
@@ -61,7 +61,7 @@ public class ObjectListSynchonized {
 	 */
 	public synchronized boolean removeElement() {
 		index--;
-		log.info("Removing element at index " + index);
+		LOGGER.info("Removing element at index " + index);
 		setAddFlag(true);
 		array[index] = null;
 		if (index <= 0) {

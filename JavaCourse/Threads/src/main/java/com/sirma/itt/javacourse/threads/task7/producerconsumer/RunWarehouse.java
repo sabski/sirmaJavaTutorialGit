@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task7.producer_consumer;
+package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 
 /**
  * Runner class for warehouse producer and consumer.
@@ -14,8 +14,7 @@ public class RunWarehouse {
 	 *            Arguments for the main method
 	 */
 	public static void main(String[] args) {
-		// TODO Be great
-		Product product = new Product("Sirene",100);
+		Product product = new Product("Sirene", 100);
 		Producer producer = new Producer(product, 500, 2);
 		Consumer consumer = new Consumer(product, 450, 20);
 		Producer producer1 = new Producer(product, 500, 7);

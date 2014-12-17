@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task6.timeout_hashtable;
+package com.sirma.itt.javacourse.threads.task6.timeouthashtable;
 
 import com.sirma.itt.javacourse.InputUtils;
 

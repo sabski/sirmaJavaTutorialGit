@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task1.stop_counter_thread;
+package com.sirma.itt.javacourse.threads.task1.stopcounterthread;
 
 import com.sirma.itt.javacourse.InputUtils;
 

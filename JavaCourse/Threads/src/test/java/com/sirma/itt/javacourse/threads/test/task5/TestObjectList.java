@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task5.synchronized_stack.ObjectListSynchonized;
+import com.sirma.itt.javacourse.threads.task5.synchronizedstack.ObjectListSynchonized;
 
 /**
  * Test class {@link ObjectListSynchonized}

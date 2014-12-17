@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task6.timeout_hashtable;
+package com.sirma.itt.javacourse.threads.task6.timeouthashtable;
 
 import java.util.Date;
 
@@ -11,16 +11,21 @@ import org.apache.log4j.Logger;
  */
 public class TimingThread extends Thread {
 
-	private final Logger log = Logger.getLogger(TimingThread.class);
+	private static final Logger LOGGER = Logger.getLogger(TimingThread.class);
 	private final long timeout;
 	private long timeToLive;
 	private final String key;
 	private final TimeoutHashtable table;
 
 	/**
+	 * Constructor for {@link TimingThread}.
+	 * 
 	 * @param timeout
+	 *            the timeout of the thread.
 	 * @param key
+	 *            the key to the object in the table.
 	 * @param table
+	 *            the table that contains the object we are intersted in.
 	 */
 	public TimingThread(long timeout, String key, TimeoutHashtable table) {
 		this.timeout = timeout;
@@ -35,14 +40,14 @@ public class TimingThread extends Thread {
 	@Override
 	public void run() {
 		while (timeToLive > new Date().getTime()) {
-			log.info("Thread is waiting");
+			LOGGER.info("Thread is waiting");
 			try {
 				Thread.sleep(timeout);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
-		log.info("Removing object");
+		LOGGER.info("Removing object");
 		table.remove(key);
 		table.removeThread(this);
 	}

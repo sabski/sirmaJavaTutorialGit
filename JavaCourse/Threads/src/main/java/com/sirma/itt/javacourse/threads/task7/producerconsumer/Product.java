@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task7.producer_consumer;
+package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class Product extends AbstractProduct {
 
-	private final static Logger log = Logger.getLogger(Product.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(Product.class.getName());
 	private final int maxQuantity;
 
 	/**
@@ -38,11 +38,11 @@ public class Product extends AbstractProduct {
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		setQuantity(quantity + getQuantity());
-		log.info("New product value is " + getQuantity());
+		LOGGER.info("New product value is " + getQuantity());
 	}
 
 	/**
@@ -57,11 +57,11 @@ public class Product extends AbstractProduct {
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		setQuantity(getQuantity() - quantity);
-		log.info("New product value is " + getQuantity());
+		LOGGER.info("New product value is " + getQuantity());
 	}
 
 	/**

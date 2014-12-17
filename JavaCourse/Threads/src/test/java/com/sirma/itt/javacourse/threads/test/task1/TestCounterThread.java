@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task1.stop_counter_thread.CounterThread;
+import com.sirma.itt.javacourse.threads.task1.stopcounterthread.CounterThread;
 
 /**
  * Test class for {@link CounterThread}.

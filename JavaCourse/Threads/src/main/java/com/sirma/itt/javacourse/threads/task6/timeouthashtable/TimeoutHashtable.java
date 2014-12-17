@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task6.timeout_hashtable;
+package com.sirma.itt.javacourse.threads.task6.timeouthashtable;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -42,9 +42,9 @@ public class TimeoutHashtable {
 	public Object put(String key, Object value) {
 		TimingThread thread = null;
 		if (timeOutMap.containsKey(key)) {
-			for (TimingThread t : threads) {
-				if (t.getKey().equals(key)) {
-					t.updateTime();
+			for (TimingThread threadFor : threads) {
+				if (threadFor.getKey().equals(key)) {
+					threadFor.updateTime();
 					break;
 				}
 			}

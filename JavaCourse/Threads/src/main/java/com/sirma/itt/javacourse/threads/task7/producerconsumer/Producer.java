@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task7.producer_consumer;
+package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 
 import org.apache.log4j.Logger;
 
@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
  */
 public class Producer extends Thread {
 
-	private static Logger log = Logger.getLogger(Producer.class);
+	private static final Logger LOGGER = Logger.getLogger(Producer.class);
 
 	private static int numThreads = 0;
 	private final Product product;
@@ -43,16 +43,16 @@ public class Producer extends Thread {
 			try {
 				Thread.sleep(productionTime);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
-			log.info(Producer.class.getName() + " : " + threadNumber);
+			LOGGER.info(Producer.class.getName() + " : " + threadNumber);
 			product.deliverProduct(supply);
 			synchronized (product) {
 				product.notify();
 				try {
 					product.wait();
 				} catch (InterruptedException e) {
-					log.error(e.getMessage(), e);
+					LOGGER.error(e.getMessage(), e);
 				}
 			}
 		}

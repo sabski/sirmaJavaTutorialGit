@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task4.synchronized_threads;
+package com.sirma.itt.javacourse.threads.task4.synchronizedthreads;
 
 import com.sirma.itt.javacourse.InputUtils;
 

@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task4.synchronized_threads;
+package com.sirma.itt.javacourse.threads.task4.synchronizedthreads;
 
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
  */
 public class CounterSynchronizedThread extends Thread {
 
-	private static final Logger log = Logger.getLogger(CounterSynchronizedThread.class.getName());
 	private static int threadNumber = 0;
 	private static final Lock lock = new Lock();
 
@@ -51,14 +50,15 @@ public class CounterSynchronizedThread extends Thread {
 	}
 
 	/**
-	 * Class used for locking thread instances and printing out console messages.
+	 * Class used for locking thread instances and printing out console
+	 * messages.
 	 * 
 	 * @author Simeon Iliev
 	 */
 	static class Lock {
 
-		private static final Logger log = Logger.getLogger(CounterSynchronizedThread.class
-				.getName());
+		private static final Logger LOGGER = Logger
+				.getLogger(CounterSynchronizedThread.class.getName());
 
 		/**
 		 * Synchronized method for printing the countdown of a thread.
@@ -70,13 +70,13 @@ public class CounterSynchronizedThread extends Thread {
 		 */
 		public void printCount(int currentCount, int currentNumber) {
 			synchronized (this) {
-				log.info("Thread : " + currentNumber
-						+ "  Current count is : " + currentCount);
+				LOGGER.info("Thread : " + currentNumber + "  Current count is : "
+						+ currentCount);
 				this.notify();
 				try {
 					this.wait(500);
 				} catch (InterruptedException e) {
-					log.error(e.getMessage(), e);
+					LOGGER.error(e.getMessage(), e);
 				}
 			}
 		}

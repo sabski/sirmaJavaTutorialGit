@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task2.two_counter_threads;
+package com.sirma.itt.javacourse.threads.task2.twocounterthreads;
 
 import org.apache.log4j.Logger;
 

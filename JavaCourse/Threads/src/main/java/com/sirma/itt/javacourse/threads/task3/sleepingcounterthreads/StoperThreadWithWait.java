@@ -1,4 +1,4 @@
-package com.sirma.itt.javacourse.threads.task3.sleeping_counter_threads;
+package com.sirma.itt.javacourse.threads.task3.sleepingcounterthreads;
 
 import org.apache.log4j.Logger;
 
@@ -11,8 +11,9 @@ import org.apache.log4j.Logger;
  */
 public class StoperThreadWithWait extends Thread {
 
-	private final static Logger log = Logger
-			.getLogger(StoperThreadWithWait.class.getName());
+	private final static Logger LOGGER = Logger
+		
+			.getLogger(StoperThreadWithWait.class);
 
 	private int currentCount = 0;
 	private int count;
@@ -25,9 +26,9 @@ public class StoperThreadWithWait extends Thread {
 				synchronized (this) {
 					wait(1000);
 				}
-				log.info("Current count is : " + currentCount);
+				LOGGER.info("Current count is : " + currentCount);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 			currentCount++;
 		}

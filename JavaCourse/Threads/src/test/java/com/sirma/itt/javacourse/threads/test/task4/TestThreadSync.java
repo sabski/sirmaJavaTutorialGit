@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.threads.task4.synchronized_threads.CounterSynchronizedThread;
+import com.sirma.itt.javacourse.threads.task4.synchronizedthreads.CounterSynchronizedThread;
 
 /**
  * Test for {@link CounterSynchronizedThread}

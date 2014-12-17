@@ -8,13 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
  * @author siliev

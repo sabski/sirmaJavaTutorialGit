@@ -45,6 +45,9 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			break;
 		case APPROVED:
 			client.setUserName(message.getAuthor());
+			controler.getMainWindow().setTitle(
+					controler.getMainWindow().getTitle() + " "
+							+ message.getAuthor());
 			JOptionPane.showMessageDialog(null, message.getContent());
 			break;
 		case REFUSED:
@@ -85,6 +88,5 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 				.getWord("inputUsername"));
 		return name;
 	}
-	
-	
+
 }

@@ -1,8 +1,12 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
+import java.awt.Dimension;
+import java.util.Date;
 import java.util.List;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import org.apache.log4j.Logger;
 
@@ -19,13 +23,15 @@ public class ChatWindow extends JTextArea {
 	private long chatID;
 	private List<String> userNames;
 	private JTextArea textArea;
+	private JScrollPane scroll;
 
 	public ChatWindow() {
 		textArea = new JTextArea();
-		this.add(textArea);
-		textArea.setSize(200, 200);
+		textArea.setSize(300, 200);
 		textArea.setEditable(false);
-
+		scroll = new JScrollPane(textArea);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		this.add(scroll);
 	}
 
 	/**
@@ -59,10 +65,9 @@ public class ChatWindow extends JTextArea {
 	}
 
 	public void displayMessage(Message message) {
-		log.info(chatID + " " + message.getContent() + " "
-				+ message.getChatRoomId());
-		textArea.setText(chatID + " " + message.getContent() + " "
-				+ message.getChatRoomId());
+		textArea.setText(textArea.getText() + "\n" + new Date().toString()
+				+ " " + message.getAuthor() + " : " + message.getContent());
+
 		textArea.invalidate();
 	}
 

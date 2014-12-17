@@ -18,11 +18,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
-import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
-import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
-import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -41,13 +37,7 @@ public class TextArea extends JPanel implements UIColegue {
 	private JButton sendButton;
 	private JButton connectButton;
 	private JButton languageButton;
-	private ClientThread client;
-	private ClientInfo clientInfo;
 	private UIControler controler;
-
-	public void setClient(ClientThread client) {
-		this.client = client;
-	}
 
 	/**
 	 * @param connectButton
@@ -58,7 +48,6 @@ public class TextArea extends JPanel implements UIColegue {
 		mementos = new ArrayList<>();
 		originator = new MessageOriginator();
 		controler = UIControler.getInstance();
-		clientInfo = ClientInfo.getInstance();
 		setUP();
 	}
 
@@ -147,15 +136,12 @@ public class TextArea extends JPanel implements UIColegue {
 
 	private void sendMessage(String text) {
 		// TODO Implement send message;
-		if (client != null) {
 
-			client.sendMessage(new Message(text, 0, TYPE.MESSAGE, clientInfo
-					.getUserName()));
-			originator.setState(messageField.getText());
-			mementos.add(0, originator.saveToMemento());
-			index = -1;
-			messageField.setText("");
-		}
+		controler.sendMessage(text);
+		originator.setState(messageField.getText());
+		mementos.add(0, originator.saveToMemento());
+		index = -1;
+		messageField.setText("");
 	}
 
 	@Override
@@ -173,6 +159,6 @@ public class TextArea extends JPanel implements UIColegue {
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-
+	//	controler.registerTextArea(this);
 	}
 }

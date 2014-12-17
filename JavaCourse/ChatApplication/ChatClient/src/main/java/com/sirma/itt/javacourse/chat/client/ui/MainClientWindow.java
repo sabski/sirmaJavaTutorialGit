@@ -6,19 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
@@ -79,12 +78,11 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		textArea = new TextArea(connectButton);
 		users = new DefaultListModel<>();
 		userList = new JList<String>(users);
-		client = new ClientThread();
-		textArea.setClient(client);
 		mainWindow.setLayout(new BorderLayout());
 		userList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		userList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		userList.setPreferredSize(new Dimension(80, 400));
+		client = controler.getThread();
 		mainWindow.add(userList, BorderLayout.WEST);
 		mainWindow.add(textArea, BorderLayout.SOUTH);
 		mainWindow.add(chatPanel, BorderLayout.CENTER);
@@ -92,6 +90,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		mainWindow.setSize(600, 400);
 		mainWindow.setTitle("Chat Client");
 		mainWindow.setVisible(true);
+		mainWindow.setLocationRelativeTo(null);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			/**
@@ -114,7 +113,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				client.start();
 				client.sendMessage(new Message(ClientMessageInterpretor
 						.inputUserName(), 0, TYPE.CONNECT, null));
@@ -125,7 +123,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				log.info(e);
+				controler.createChatRoom(userList.getSelectedValuesList());
 			}
 		});
 	}

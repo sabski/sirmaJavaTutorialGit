@@ -6,6 +6,7 @@ import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
+import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 
 /**
  * Interprets the received server messages from the clients.
@@ -48,16 +49,26 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 			disconnect(message);
 			break;
 		case STARTCHAT:
-			Long empyRoom = chatRoomManager.createChatRoom();
-			chatRoomManager.getRoomById(empyRoom).addUser(
-					manager.getUser(user.getUsername()));
-			chatRoomManager.getRoomById(empyRoom).addUser(
-					manager.getUser(message.getContent()));
+			createNewChatRoom(message, user);
 			break;
 		default:
 			log.info("Unsuported type " + message.getMessageType());
 			break;
 		}
+	}
+
+	private void createNewChatRoom(Message message, ChatUser user) {
+		Long empyRoom = chatRoomManager.createChatRoom();
+		chatRoomManager.getRoomById(empyRoom).addUser(
+				manager.getUser(user.getUsername()));
+		String[] results= CommonUtils.splitList(message.getContent());
+		for (String users : results) {
+			chatRoomManager.getRoomById(empyRoom).addUser(
+					manager.getUser(users));
+		}
+		chatRoomManager.getRoomById(empyRoom).sendMessage(
+				generateStartChatMessage(empyRoom, user.getUsername(),
+						message.getContent()));
 	}
 
 	private void disconnect(Message message) {
@@ -70,6 +81,11 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	public Message generateMessage(TYPE type, long id, String content,
 			String author) {
 		return new Message(content, id, type, author);
+	}
+
+	public Message generateStartChatMessage(Long id, String author,
+			String userList) {
+		return new Message(userList, id, TYPE.STARTCHAT, author);
 	}
 
 	/**

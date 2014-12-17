@@ -2,16 +2,17 @@ package com.sirma.itt.javacourse.chat.client.ui;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -48,7 +49,7 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	public void addNewTab(Message info) {
 		log.info("Adding tab");
 		ChatWindow chatWindow = createNewPanel(info);
-		tabbedPane.add(info.getChatRoomId().toString(), chatWindow);
+		tabbedPane.add(info.getContent(), chatWindow);
 		tabbedPane.invalidate();
 		tabs.add(chatWindow);
 	}
@@ -58,6 +59,7 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		ChatWindow panel = new ChatWindow();
 		panel.setEditable(false);
 		panel.setChatID(info.getChatRoomId());
+		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info.getContent())));
 		return panel;
 	}
 
@@ -90,5 +92,20 @@ public class ChatsPanel extends JPanel implements UIColegue {
 				break;
 			}
 		}
+	}
+
+	public boolean checkPanels(List<String> list) {
+		for (ChatWindow tab : tabs) {
+			if (tab.getUserNames().containsAll(list)
+					&& list.containsAll(tab.getUserNames())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public Long getSelectedChat() {
+		ChatWindow window = (ChatWindow) tabbedPane.getSelectedComponent();
+		return window.getChatID();
 	}
 }

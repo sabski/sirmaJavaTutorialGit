@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.AbstractFactory;
-import com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.Factory;
-import com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.MyProduct;
+import com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.AbstractFactory;
+import com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.Factory;
+import com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.MyProduct;
 
 /**
  * Test case for class {@link Factory}
@@ -20,7 +20,7 @@ public class TestFactoryImpl {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.Factory#createInstance()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.Factory#createInstance()}
 	 * .
 	 */
 	@Test
@@ -31,7 +31,7 @@ public class TestFactoryImpl {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.Factory#createInstanceByReflection()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.Factory#createInstanceByReflection()}
 	 * .
 	 */
 	@Test
@@ -42,7 +42,7 @@ public class TestFactoryImpl {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task1.abstract_factory.Factory#getInstance()} .
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task1.abstractfactory.Factory#getInstance()} .
 	 */
 	@Test
 	public void testGetInstance() {

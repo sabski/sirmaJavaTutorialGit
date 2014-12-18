@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task4.object_pool.NoMoreResourcesException;
-import com.sirma.itt.javacourse.desing_patterns.task4.object_pool.User;
-import com.sirma.itt.javacourse.desing_patterns.task4.object_pool.UserPool;
+import com.sirma.itt.javacourse.desingpatterns.task4.objectpool.NoMoreResourcesException;
+import com.sirma.itt.javacourse.desingpatterns.task4.objectpool.User;
+import com.sirma.itt.javacourse.desingpatterns.task4.objectpool.UserPool;
 
 /**
  * Test class for {@link UserPool}
@@ -33,7 +33,7 @@ public class TestUserPool {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task4.object_pool.UserPool#acquire()}.
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task4.objectpool.UserPool#acquire()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
@@ -45,7 +45,7 @@ public class TestUserPool {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task4.object_pool.UserPool#acquire()}.
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task4.objectpool.UserPool#acquire()}.
 	 * 
 	 * @throws NoMoreResourcesException
 	 */
@@ -76,7 +76,7 @@ public class TestUserPool {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task4.object_pool.UserPool#releseUser(com.sirma.itt.javacourse.desing_patterns.task4.object_pool.User)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task4.objectpool.UserPool#releseUser(com.sirma.itt.javacourse.desingpatterns.task4.objectpool.User)}
 	 * .
 	 */
 	@Test

@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.ItemObservable;
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.OrderObesrver;
-import com.sirma.itt.javacourse.desing_patterns.task6.observer.StockObserver;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.ItemObservable;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.OrderObesrver;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.StockObserver;
 
 /**
  * Test {@link StockObserver}, {@link ItemObservable}
@@ -47,7 +47,7 @@ public class TestObserver {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task6.observer.StockObserver#update(com.sirma.itt.javacourse.desing_patterns.task6.observer.Observable)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task6.observer.StockObserver#update(com.sirma.itt.javacourse.desingpatterns.task6.observer.Observable)}
 	 * .
 	 */
 	@Test

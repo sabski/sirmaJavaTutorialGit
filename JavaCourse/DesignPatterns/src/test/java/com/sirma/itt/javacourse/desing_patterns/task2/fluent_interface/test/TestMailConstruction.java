@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task2.fluent_interface.Mail;
-import com.sirma.itt.javacourse.desing_patterns.task2.fluent_interface.MailFluentConstruct;
+import com.sirma.itt.javacourse.desingpatterns.task2.fluentinterface.Mail;
+import com.sirma.itt.javacourse.desingpatterns.task2.fluentinterface.MailFluentConstruct;
 
 /**
  * Test class for {@link Mail} and {@link MailFluentConstruct}

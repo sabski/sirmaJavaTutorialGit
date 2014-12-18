@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.Command;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.Command;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder;
 
 /**
  * @author Simeon Iliev

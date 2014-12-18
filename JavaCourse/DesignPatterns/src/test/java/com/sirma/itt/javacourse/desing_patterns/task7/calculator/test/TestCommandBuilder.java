@@ -4,13 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.AddCommand;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.Command;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.DivideCommand;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.MultiplyCommand;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.OddCommand;
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.SubtractCommand;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.AddCommand;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.Command;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.DivideCommand;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.MultiplyCommand;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.OddCommand;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.SubtractCommand;
 
 /**
  * @author Simeon Iliev
@@ -20,7 +20,7 @@ public class TestCommandBuilder {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder#createAddCommand()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder#createAddCommand()}
 	 * .
 	 */
 	@Test
@@ -31,7 +31,7 @@ public class TestCommandBuilder {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder#createDivideCommand()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder#createDivideCommand()}
 	 * .
 	 */
 	@Test
@@ -42,7 +42,7 @@ public class TestCommandBuilder {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder#createMultiplyCommand()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder#createMultiplyCommand()}
 	 * .
 	 */
 	@Test
@@ -53,7 +53,7 @@ public class TestCommandBuilder {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder#createOddCommand()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder#createOddCommand()}
 	 * .
 	 */
 	@Test
@@ -64,7 +64,7 @@ public class TestCommandBuilder {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.commands.CommandBuilder#createSubstractCommand()}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder#createSubstractCommand()}
 	 * .
 	 */
 	@Test

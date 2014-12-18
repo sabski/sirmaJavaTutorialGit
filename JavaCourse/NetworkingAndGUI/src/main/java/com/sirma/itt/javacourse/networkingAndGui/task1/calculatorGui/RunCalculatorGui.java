@@ -1,6 +1,6 @@
 package com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui;
 
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.Calculator;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.Calculator;
 
 /**
  * Runner class for {@link Calculator}

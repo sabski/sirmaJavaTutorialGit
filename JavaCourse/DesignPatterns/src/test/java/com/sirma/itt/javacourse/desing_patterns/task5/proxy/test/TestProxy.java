@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
-import com.sirma.itt.javacourse.desing_patterns.task5.proxy.CarFactory;
-import com.sirma.itt.javacourse.desing_patterns.task5.proxy.CarInterface;
+import com.sirma.itt.javacourse.desingpatterns.task5.proxy.CarFactory;
+import com.sirma.itt.javacourse.desingpatterns.task5.proxy.CarInterface;
 
 /**
  * Test class for proxy testing

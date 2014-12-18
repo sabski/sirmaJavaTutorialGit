@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations;
+import com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations;
 
 /**
  * Test class for {@link NumberOperations}
@@ -15,7 +15,7 @@ public class TestNumberOperations {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations#additionNumbers(java.lang.Double, java.lang.Double)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations#additionNumbers(java.lang.Double, java.lang.Double)}
 	 * .
 	 */
 	@Test
@@ -25,7 +25,7 @@ public class TestNumberOperations {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations#subtractNumbers(java.lang.Double, java.lang.Double)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations#subtractNumbers(java.lang.Double, java.lang.Double)}
 	 * .
 	 */
 	@Test
@@ -35,7 +35,7 @@ public class TestNumberOperations {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations#multiplyNumbers(java.lang.Double, java.lang.Double)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations#multiplyNumbers(java.lang.Double, java.lang.Double)}
 	 * .
 	 */
 	@Test
@@ -45,7 +45,7 @@ public class TestNumberOperations {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations#divideNumbers(java.lang.Double, java.lang.Double)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations#divideNumbers(java.lang.Double, java.lang.Double)}
 	 * .
 	 */
 	@Test
@@ -55,7 +55,7 @@ public class TestNumberOperations {
 
 	/**
 	 * Test method for
-	 * {@link com.sirma.itt.javacourse.desing_patterns.task7.calculator.NumberOperations#oddFuncthion(java.lang.Double, java.lang.Double)}
+	 * {@link com.sirma.itt.javacourse.desingpatterns.task7.calculator.NumberOperations#oddFuncthion(java.lang.Double, java.lang.Double)}
 	 * .
 	 */
 	@Test

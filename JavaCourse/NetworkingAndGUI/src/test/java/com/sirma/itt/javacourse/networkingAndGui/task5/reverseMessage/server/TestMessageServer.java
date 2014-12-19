@@ -41,7 +41,8 @@ public class TestMessageServer {
 		Mockito.when(clientUI.getMessageArea()).thenReturn(clientTextArea);
 		client = new MessageClient(clientUI);
 		serverTextArea = new JTextArea();
-		server = new MessageServer(serverTextArea);
+		server = new MessageServer();
+		server.setTextArea(serverTextArea);
 	}
 
 	/**
@@ -59,7 +60,7 @@ public class TestMessageServer {
 			log.error(e.getMessage(), e);
 		}
 		client.sendMessageToServer("aaaa");
-		
+
 		try {
 			Thread.sleep(700);
 		} catch (InterruptedException e) {
@@ -96,12 +97,12 @@ public class TestMessageServer {
 	public void testStopServer() {
 		server.start();
 		try {
-			Thread.sleep(300);
+			Thread.sleep(430);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
 		server.stopServer();
-		assertTrue(serverTextArea.getText().contains("Server is stopped"));
+		assertTrue(serverTextArea.getText().contains("erver is stopped"));
 	}
 
 }

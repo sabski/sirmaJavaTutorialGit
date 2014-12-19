@@ -6,11 +6,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.SocketGenerator;
+import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
 
 /**
  * Date server class that is opened on port 7000. This class accepts connections
@@ -18,7 +17,7 @@ import com.sirma.itt.javacourse.SocketGenerator;
  * 
  * @author Simeon Iliev
  */
-public class DateServer extends Thread {
+public class DateServer extends AbstractServer {
 
 	private static Logger log = Logger.getLogger(DateServer.class);
 
@@ -26,33 +25,13 @@ public class DateServer extends Thread {
 
 	private Socket client;
 	private boolean isRunning;
-	private JTextArea messageArea;
 
-	/**
-	 * Basic constructor.
-	 * 
-	 * @param messageArea
-	 */
-	public DateServer(JTextArea messageArea) {
-		this.messageArea = messageArea;
-	}
-
-	/**
-	 * Opens the server socket. After this method is called the method
-	 * accepConnection() should be called, to allow user processing. When the
-	 * server is started the observers are notified.
-	 */
 	public void startServer() {
 		server = SocketGenerator.createServerSocket();
 		isRunning = true;
 		displayMessage("Server started");
 	}
 
-	/**
-	 * Stops the server by closing the connection and stopping the admission of
-	 * new clients to the server. Notifies the observers that the server has
-	 * stopped or if didn't stop properly.
-	 */
 	public void stopServer() {
 		if (server != null) {
 			try {
@@ -62,23 +41,6 @@ public class DateServer extends Thread {
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
-			}
-		}
-	}
-
-	/**
-	 * Allows the acceptance of connections for the server. Before this method
-	 * is called make sure that the startServer() method is called.
-	 */
-	public void acceptConnection() {
-		while (isRunning) {
-			try {
-				client = server.accept();
-			} catch (IOException e) {
-				displayMessage(e.getMessage());
-			}
-			if (isRunning) {
-				sendUserMessage(client);
 			}
 		}
 	}
@@ -110,13 +72,26 @@ public class DateServer extends Thread {
 	 *            the message to be displayed on the UI.
 	 */
 	public void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + "\n" + message);
+		getTextArea().setText(getTextArea().getText() + "\n" + message);
 	}
 
 	@Override
 	public void run() {
-
 		startServer();
-		acceptConnection();
+		acceptConnections();
+	}
+
+	@Override
+	public void acceptConnections() {
+		while (isRunning) {
+			try {
+				client = server.accept();
+			} catch (IOException e) {
+				displayMessage(e.getMessage());
+			}
+			if (isRunning) {
+				sendUserMessage(client);
+			}
+		}
 	}
 }

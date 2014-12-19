@@ -40,7 +40,8 @@ public class TestInformationClient {
 		serverArea = new JTextArea();
 		clientOneUI = Mockito.mock(InformationClientGUI.class);
 		clientTwoUI = Mockito.mock(InformationClientGUI.class);
-		server = new InformationServer(serverArea);
+		server = new InformationServer();
+		server.setTextArea(serverArea);
 		messageOneArea = new JTextArea();
 		Mockito.when(clientOneUI.getMessageWingow()).thenReturn(messageOneArea);
 		Mockito.when(clientTwoUI.getMessageWingow()).thenReturn(messageOneArea);

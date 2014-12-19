@@ -28,11 +28,7 @@ import com.sirma.itt.javacourse.MessageOriginator;
  */
 public class MessageClientGUI extends JFrame {
 
-	/**
-	 * Comment for serialVersionUID.
-	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(MessageClientGUI.class);
 	private MessageOriginator originator;
 	private List<MessageMemento> mementos;
 	private int index;
@@ -78,9 +74,6 @@ public class MessageClientGUI extends JFrame {
 		mainWindow.add(messagePanel, BorderLayout.SOUTH);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
-			/**
-			 * {@inheritDoc}
-			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (client.isAlive()) {

@@ -10,7 +10,8 @@ import com.sirma.itt.javacourse.SocketGenerator;
 import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.DateServer;
 
 /**
- * Client that connects to the {@link DateServer} and receives a message from it.
+ * Client that connects to the {@link DateServer} and receives a message from
+ * it.
  * 
  * @author Simeon Iliev
  */
@@ -27,6 +28,9 @@ public class DateClient {
 	 */
 	public String connect() {
 		clientSideSocket = SocketGenerator.createSocket();
+		if (clientSideSocket == null) {
+			return "Cant connect to server, try again";
+		}
 		return "Connected to server";
 	}
 
@@ -51,11 +55,12 @@ public class DateClient {
 	/**
 	 * Retrieves the message from the server.
 	 * 
-	 * @return the message that was sent from the server or an error message if the server message
-	 *         Can't Be retrieved.
+	 * @return the message that was sent from the server or an error message if
+	 *         the server message Can't Be retrieved.
 	 */
 	public String getMessage() {
-		try (DataInputStream reader = new DataInputStream(clientSideSocket.getInputStream());) {
+		try (DataInputStream reader = new DataInputStream(
+				clientSideSocket.getInputStream());) {
 			return reader.readUTF();
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);

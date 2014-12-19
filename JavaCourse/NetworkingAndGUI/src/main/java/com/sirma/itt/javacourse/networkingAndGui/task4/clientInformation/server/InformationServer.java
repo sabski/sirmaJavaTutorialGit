@@ -9,19 +9,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.SocketGenerator;
+import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
 
 /**
- * Server class whose job is to receive client connections and send user the number there are on the
- * server.
+ * Server class whose job is to receive client connections and send user the
+ * number there are on the server.
  * 
  * @author Simeon Iliev
  */
-public class InformationServer extends Thread {
+public class InformationServer extends AbstractServer {
 
 	private static Logger log = Logger.getLogger(InformationServer.class);
 
@@ -29,16 +28,13 @@ public class InformationServer extends Thread {
 	private Socket client;
 	private int clientNumber;
 	private final Map<Socket, OutputStream> clientList;
-	private final JTextArea messageArea;
 
 	/**
 	 * Basic constructor.
 	 */
-	public InformationServer(JTextArea messageArea) {
+	public InformationServer() {
 		this.clientNumber = 0;
 		this.clientList = new HashMap<Socket, OutputStream>();
-		this.messageArea = messageArea;
-
 	}
 
 	/**
@@ -50,14 +46,9 @@ public class InformationServer extends Thread {
 		log.info("Server is starting");
 	}
 
-	/**
-	 * Sends a message in the UI message area.
-	 * 
-	 * @param message
-	 *            the message that is to written in the UI.
-	 */
-	private void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + "\n" + message);
+	@Override
+	public void displayMessage(String message) {
+		getTextArea().setText(getTextArea().getText() + "\n" + message);
 	}
 
 	/**
@@ -66,7 +57,8 @@ public class InformationServer extends Thread {
 	public void stopServer() {
 		for (Entry<Socket, OutputStream> clientPair : clientList.entrySet()) {
 			try {
-				ObjectOutputStream oStream = (ObjectOutputStream) clientPair.getValue();
+				ObjectOutputStream oStream = (ObjectOutputStream) clientPair
+						.getValue();
 				oStream.writeObject("Server is stopping");
 				oStream.flush();
 				clientPair.getKey().close();
@@ -94,24 +86,7 @@ public class InformationServer extends Thread {
 	@Override
 	public void run() {
 		startServer();
-		acceptConnetion();
-	}
-
-	/**
-	 * This method allows the server to continuously accept connections to the server until the
-	 * thread is interrupted.
-	 */
-	public void acceptConnetion() {
-		while (!server.isClosed()) {
-			try {
-				client = server.accept();
-				clientNumber++;
-				sendUserMessage(client);
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-				displayMessage(e.getMessage());
-			}
-		}
+		acceptConnections();
 	}
 
 	/**
@@ -124,8 +99,10 @@ public class InformationServer extends Thread {
 		ObjectOutputStream outputStream = null;
 		if (clientSocket != null) {
 			try {
-				outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-				outputStream.writeObject("You are client number " + clientNumber);
+				outputStream = new ObjectOutputStream(
+						clientSocket.getOutputStream());
+				outputStream.writeObject("You are client number "
+						+ clientNumber);
 				log.info("New client has connected : " + clientNumber);
 				outputStream.flush();
 				displayMessage("New client has connected : " + clientNumber);
@@ -136,14 +113,31 @@ public class InformationServer extends Thread {
 		}
 		for (Entry<Socket, OutputStream> clientPair : clientList.entrySet()) {
 			try {
-				ObjectOutputStream oStream = (ObjectOutputStream) clientPair.getValue();
-				oStream.writeObject("Client number " + clientNumber + " has connected.");
+				ObjectOutputStream oStream = (ObjectOutputStream) clientPair
+						.getValue();
+				oStream.writeObject("Client number " + clientNumber
+						+ " has connected.");
 				oStream.flush();
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 			}
 		}
 		clientList.put(clientSocket, outputStream);
+	}
+
+	@Override
+	public void acceptConnections() {
+		while (!server.isClosed()) {
+			try {
+				client = server.accept();
+				clientNumber++;
+				sendUserMessage(client);
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+				displayMessage(e.getMessage());
+			}
+		}
+
 	}
 
 }

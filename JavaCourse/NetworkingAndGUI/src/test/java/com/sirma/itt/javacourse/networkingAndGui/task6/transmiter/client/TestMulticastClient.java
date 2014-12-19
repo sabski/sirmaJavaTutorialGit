@@ -48,7 +48,8 @@ public class TestMulticastClient {
 		Mockito.when(clientUI.getMessageWingow()).thenReturn(clientTextArea);
 		client = new MulticastClient(clientUI);
 		serverMessageArea = new JTextArea();
-		server = new MulticastServer(serverMessageArea);
+		server = new MulticastServer();
+		server.setTextArea(serverMessageArea);
 	}
 
 	/**

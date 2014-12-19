@@ -65,7 +65,7 @@ public class SocketGenerator {
 				client = createSocket(host, i);
 				break;
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				//log.error(e.getMessage(), e);
 			}
 		}
 		return client;

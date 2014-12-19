@@ -39,10 +39,15 @@ public class InformationClient extends Thread {
 	 * Connects the client to the server.
 	 */
 	public void connect() {
+		displayMessage("Attempting to connect to server.");
+		client = SocketGenerator.createSocket();
+		if (client == null) {
+			displayMessage("Cant connect to server.");
+			return;
+		}
 		try {
-			client = SocketGenerator.createSocket();
 			reader = new ObjectInputStream(client.getInputStream());
-			displayMessage("Attempting to connect to server.");
+			readFromServer();
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
@@ -97,13 +102,9 @@ public class InformationClient extends Thread {
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		connect();
-		readFromServer();
 	}
 
 }

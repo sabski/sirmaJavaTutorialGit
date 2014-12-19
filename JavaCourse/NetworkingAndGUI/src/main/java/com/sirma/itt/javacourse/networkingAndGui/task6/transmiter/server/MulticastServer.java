@@ -9,10 +9,10 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JTextArea;
-
 import com.sirma.itt.javacourse.SocketGenerator;
-import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MessageDispacher;
+import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
+import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.AbstractMessageModerator;
+import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MessageDispatcher;
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.MulticastAddressSupplier;
 
 /**
@@ -22,7 +22,7 @@ import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispach
  * @author siliev
  * 
  */
-public class MulticastServer extends Thread {
+public class MulticastServer extends AbstractServer {
 
 	private static org.apache.log4j.Logger log = org.apache.log4j.Logger
 			.getLogger(MulticastServer.class);
@@ -30,23 +30,15 @@ public class MulticastServer extends Thread {
 	private ServerSocket server;
 	private Socket client;
 	private MulticastAddressSupplier supplier;
-	private MessageDispacher dispacher;
+	private AbstractMessageModerator dispacher;
 	private Map<InetAddress, MulticastSocket> activeAddresses;
 
-	private JTextArea messageArea;
-
-	/**
-	 * Start the server.
-	 */
 	public void startServer() {
 		server = SocketGenerator.createServerSocket();
 		log.info("Server started");
 		displayMessage("Server started");
 	}
 
-	/**
-	 * Stops the server and cleans up.
-	 */
 	public void stopServer() {
 		log.info("Server is stoping");
 		displayMessage("Server is stoping");
@@ -60,10 +52,6 @@ public class MulticastServer extends Thread {
 		interrupt();
 	}
 
-	/**
-	 * Accepts incoming user connections. Adds the channel that was assigned to
-	 * them to be broadcasted.
-	 */
 	public void acceptConnections() {
 		while (!server.isClosed()) {
 			try {
@@ -114,14 +102,8 @@ public class MulticastServer extends Thread {
 		acceptConnections();
 	}
 
-	/**
-	 * Sends a message in the UI message area.
-	 * 
-	 * @param message
-	 *            the message that is to written in the UI.
-	 */
-	private void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + "\n" + message);
+	public void displayMessage(String message) {
+		getTextArea().setText(getTextArea().getText() + "\n" + message);
 	}
 
 	/**
@@ -131,12 +113,10 @@ public class MulticastServer extends Thread {
 	 *            the message area of the UI so that events on the server may be
 	 *            displayed.
 	 */
-	public MulticastServer(JTextArea messageArea) {
+	public MulticastServer() {
 		supplier = new MulticastAddressSupplier();
 		activeAddresses = new HashMap<InetAddress, MulticastSocket>();
-		dispacher = new MessageDispacher();
+		dispacher = new MessageDispatcher();
 		dispacher.start();
-		this.messageArea = messageArea;
 	}
-
 }

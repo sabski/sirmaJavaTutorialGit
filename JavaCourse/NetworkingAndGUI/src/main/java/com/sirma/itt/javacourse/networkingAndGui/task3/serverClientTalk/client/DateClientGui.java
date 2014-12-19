@@ -2,7 +2,10 @@ package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,22 +20,18 @@ import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server.D
  */
 public class DateClientGui extends JFrame {
 
-	/**
-	 * Comment for serialVersionUID.
-	 */
 	private static final long serialVersionUID = 3497964934272245742L;
-	// private static Logger log = Logger.getLogger(DateClientGui.class);
 
 	private JTextArea messageWingow;
 	private JLabel messageLabel;
 	private DateClient client;
+	private JButton connectButton;
 
 	/**
 	 * Start the window frame and opens the connection to the server.
 	 */
 	public DateClientGui() {
 		setUp();
-		startConnection();
 	}
 
 	/**
@@ -41,10 +40,12 @@ public class DateClientGui extends JFrame {
 	private void setUp() {
 		JFrame mainWindow = this;
 		messageWingow = new JTextArea();
+		connectButton = new JButton("Connect");
 		messageLabel = new JLabel("Actions");
 		messageWingow.setEditable(false);
 		JPanel labelPanel = new JPanel();
 		labelPanel.setPreferredSize(new Dimension(300, 30));
+		labelPanel.add(connectButton);
 		labelPanel.add(messageLabel);
 		mainWindow.setLayout(new BorderLayout());
 		mainWindow.setTitle("Date Client");
@@ -53,6 +54,13 @@ public class DateClientGui extends JFrame {
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(300, 200);
 		mainWindow.setVisible(true);
+		connectButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				startConnection();
+			}
+		});
 	}
 
 	/**
@@ -61,7 +69,8 @@ public class DateClientGui extends JFrame {
 	 */
 	private void startConnection() {
 		client = new DateClient();
-		messageWingow.setText(client.connect());
+		messageWingow
+				.setText(messageWingow.getText() + "\n" + client.connect());
 		messageWingow.setText(messageWingow.getText() + "\n"
 				+ client.getMessage());
 		messageWingow.setText(messageWingow.getText() + "\n"

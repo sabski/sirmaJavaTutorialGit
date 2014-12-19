@@ -42,7 +42,8 @@ public class TestMessageClient {
 		Mockito.when(clientUI.getMessageArea()).thenReturn(clientTextArea);
 		client = new MessageClient(clientUI);
 		serverTextArea = new JTextArea();
-		server = new MessageServer(serverTextArea);
+		server = new MessageServer();
+		server.setTextArea(serverTextArea);
 	}
 
 	/**

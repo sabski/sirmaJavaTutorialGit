@@ -1,13 +1,13 @@
-package com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.server;
+package com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server;
 
 import com.sirma.itt.javacourse.networkingAndGui.ServerUI;
 
 /**
- * Runner class for {@link DateServerGUI}.
+ * UI for the Information Server.
  * 
  * @author Simeon Iliev
  */
-public class RunServer {
+public class RunInformationServer {
 
 	/**
 	 * Main method.
@@ -16,7 +16,7 @@ public class RunServer {
 	 *            arguments for the main method.
 	 */
 	public static void main(String[] args) {
-		new ServerUI(new DateServer());
+		new ServerUI(new InformationServer());
 	}
 
 }

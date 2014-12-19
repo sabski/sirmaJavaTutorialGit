@@ -12,19 +12,21 @@ import java.util.Map.Entry;
 import org.apache.log4j.Logger;
 
 /**
+ * 
+ * 
  * @author siliev
  * 
  */
-public class MessageDispacher extends Thread implements MessageModerator {
+public class MessageDispatcher extends AbstractMessageModerator {
 
-	private static Logger log = Logger.getLogger(MessageDispacher.class);
+	private static Logger log = Logger.getLogger(MessageDispatcher.class);
 	private volatile Map<InetAddress, MulticastSocket> addressList;
 	private MulticastAddressSupplier supplier;
 
 	/**
-	 * 
+	 * Constructor for the message dispatcher.
 	 */
-	public MessageDispacher() {
+	public MessageDispatcher() {
 		addressList = new HashMap<InetAddress, MulticastSocket>();
 		supplier = new MulticastAddressSupplier();
 	}
@@ -62,6 +64,15 @@ public class MessageDispacher extends Thread implements MessageModerator {
 
 	}
 
+	/**
+	 * Generates a message that is going to be sent to a specific multicast
+	 * address.
+	 * 
+	 * @param address
+	 *            the address for the packet to be sent to.
+	 * @param socket
+	 *            the socket that we are going to send the message thru.
+	 */
 	public void generatePackege(InetAddress address, MulticastSocket socket) {
 		Date date = new Date();
 		byte[] buffer = date.toString().getBytes();
@@ -77,7 +88,10 @@ public class MessageDispacher extends Thread implements MessageModerator {
 
 	}
 
-	public void sendMulticastMessage() {
+	/**
+	 * Starts broadcasting multicat messages to the InetAddress in the list.
+	 */
+	public void broadcastMulticastMessages() {
 		while (isAlive()) {
 			if (!addressList.isEmpty()) {
 				MulticastSocket socket = null;
@@ -98,7 +112,7 @@ public class MessageDispacher extends Thread implements MessageModerator {
 
 	@Override
 	public void run() {
-		sendMulticastMessage();
+		broadcastMulticastMessages();
 	}
 
 }

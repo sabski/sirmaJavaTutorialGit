@@ -34,7 +34,8 @@ public class TestInformationServer {
 	@Before
 	public void setUp() throws Exception {
 		serverArea = new JTextArea();
-		server = new InformationServer(serverArea);
+		server = new InformationServer();
+		server.setTextArea(serverArea);
 		clientOneArea = Mockito.mock(InformationClientGUI.class);
 		Mockito.when(clientOneArea.getMessageWingow()).thenReturn(
 				new JTextArea());

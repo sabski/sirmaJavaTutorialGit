@@ -18,7 +18,6 @@ import com.sirma.itt.javacourse.networkingAndGui.task3.serverClientTalk.client.D
  */
 public class TestDateServer {
 
-	// private static Logger log = Logger.getLogger(TestDateServer.class);
 
 	@Spy
 	private DateServer server;
@@ -31,7 +30,9 @@ public class TestDateServer {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		server = Mockito.spy(new DateServer(new JTextArea()));
+		server = Mockito.spy(new DateServer());
+		server.setTextArea(new JTextArea());
+		
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class TestDateServer {
 		assertTrue(client.getMessage().contains("Server time is "));
 		client.disconnect();
 		server.stopServer();
-		Mockito.verify(server, Mockito.atLeastOnce()).acceptConnection();
+		Mockito.verify(server, Mockito.atLeastOnce()).acceptConnections();
 
 	}
 }

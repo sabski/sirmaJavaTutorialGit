@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
+
+import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
 
 /**
  * Message server class accepts a user connection receives and sends user
@@ -16,10 +16,9 @@ import org.apache.log4j.Logger;
  * 
  * @author Simeon Iliev
  */
-public class MessageServer extends Thread {
+public class MessageServer extends AbstractServer {
 
 	private static Logger log = Logger.getLogger(MessageServer.class);
-	private final JTextArea messageArea;
 	private ServerSocket server;
 	private Socket client;
 	private ObjectOutputStream outputStream;
@@ -54,7 +53,7 @@ public class MessageServer extends Thread {
 	@Override
 	public void run() {
 		startServer();
-		acceptClientConnection();
+		acceptConnections();
 		readClientMessage();
 	}
 
@@ -70,21 +69,6 @@ public class MessageServer extends Thread {
 			log.error(e.getMessage(), e);
 		}
 
-	}
-
-	/**
-	 * Accepts a single client connection.
-	 */
-	public void acceptClientConnection() {
-		try {
-			client = server.accept();
-			outputStream = new ObjectOutputStream(client.getOutputStream());
-			inputStream = new ObjectInputStream(client.getInputStream());
-			sendUserMessage("Welcome client");
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			displayMessage(e.getMessage());
-		}
 	}
 
 	/**
@@ -134,18 +118,20 @@ public class MessageServer extends Thread {
 	 *            the message to be displayed on the UI.
 	 */
 	public void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + "\n" + message);
+		getTextArea().setText(getTextArea().getText() + "\n" + message);
 	}
 
-	/**
-	 * Constructor for the server, that takes a {@link MessageServerGUI} as a
-	 * parameter.
-	 * 
-	 * @param messageArea
-	 *            the UI area to display messages.
-	 */
-	public MessageServer(JTextArea messageArea) {
-		this.messageArea = messageArea;
+	@Override
+	public void acceptConnections() {
+		try {
+			client = server.accept();
+			outputStream = new ObjectOutputStream(client.getOutputStream());
+			inputStream = new ObjectInputStream(client.getInputStream());
+			sendUserMessage("Welcome client");
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+			displayMessage(e.getMessage());
+		}
 	}
 
 }

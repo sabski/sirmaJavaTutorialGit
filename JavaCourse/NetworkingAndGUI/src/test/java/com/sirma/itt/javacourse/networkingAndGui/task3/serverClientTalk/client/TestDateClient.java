@@ -29,7 +29,8 @@ public class TestDateClient {
 	@Before
 	public void setUp() throws Exception {
 		client = new DateClient();
-		server = new DateServer(new JTextArea());
+		server = new DateServer();
+		server.setTextArea(new JTextArea());
 
 	}
 

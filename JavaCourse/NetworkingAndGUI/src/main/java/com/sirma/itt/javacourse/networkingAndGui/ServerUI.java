@@ -48,7 +48,7 @@ public class ServerUI extends JFrame {
 		createButtonListners();
 		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);
-		mainWindow.setTitle(server.getClass().getName());
+		mainWindow.setTitle(server.getClass().getSimpleName());
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 

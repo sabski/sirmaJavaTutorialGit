@@ -54,7 +54,6 @@ public class ExceptionsMessageManager {
 
 	private String message = "";
 
-	// private static Logger log = Logger.getLogger(ExceptionsMessageManager.class.getName());
 
 	/**
 	 * Adds an exception message that is from the map, otherwise throws an exception.
@@ -84,7 +83,7 @@ public class ExceptionsMessageManager {
 
 	/**
 	 * Add an exception message to the current list of messages. This method should be used the
-	 * following way : myManager.addExceptionMessageUsingCode(ExceptionsMessageManager.THIRD)).
+	 * following way : <br>myManager.addExceptionMessageUsingCode(ExceptionsMessageManager.THIRD)).
 	 * 
 	 * @param messageCode
 	 *            the code of the message.

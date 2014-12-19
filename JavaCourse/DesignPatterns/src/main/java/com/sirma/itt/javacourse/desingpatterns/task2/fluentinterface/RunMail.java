@@ -16,7 +16,6 @@ public class RunMail {
 	public static void main(String[] args) {
 		MailFluentConstruct mailConstructor = new MailFluentConstruct();
 		mailConstructor.createNewMailFromTo("simeon", "hristo").attachFile(null).send();
-
 	}
 
 }

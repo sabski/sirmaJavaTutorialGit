@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class Factory extends AbstractFactory {
 
-	private static Logger log = Logger.getLogger(Factory.class.getName());
+	private static Logger log = Logger.getLogger(Factory.class);
 	private static Factory instance = null;
 
 	/**

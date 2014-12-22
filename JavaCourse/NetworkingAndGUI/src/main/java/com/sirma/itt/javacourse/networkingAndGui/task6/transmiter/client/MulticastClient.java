@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.client;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
@@ -45,10 +47,16 @@ public class MulticastClient extends Thread {
 			try {
 				multicastClient.receive(pack);
 				log.info("reseived " + pack.toString());
-
-				displayMessage("packege reseived " + pack.toString());
+				ByteArrayInputStream byteStream = new ByteArrayInputStream(
+						buffer);
+				ObjectInputStream is = new ObjectInputStream(
+						new BufferedInputStream(byteStream));
+				Object o = is.readObject();
+				displayMessage("packege reseived " + o.toString());
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -105,15 +113,21 @@ public class MulticastClient extends Thread {
 	public void run() {
 		log.info("Client started");
 		connect();
-		readMulticastAddress();
-		readPackegeData();
+
 	}
 
 	/**
 	 * Connects to the server.
 	 */
 	private void connect() {
+		displayMessage("Attempting to connect to server");
 		client = SocketGenerator.createSocket();
+		if (client == null) {
+			displayMessage("Cant connect to server.");
+			return;
+		}
+		readMulticastAddress();
+		readPackegeData();
 	}
 
 	/**

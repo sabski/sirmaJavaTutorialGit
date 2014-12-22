@@ -1,6 +1,8 @@
 package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -9,10 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * This class sends multicast messages to active mulsticast addresses.
  * 
  * @author siliev
  * 
@@ -75,8 +78,16 @@ public class MessageDispatcher extends AbstractMessageModerator {
 	 */
 	public void generatePackege(InetAddress address, MulticastSocket socket) {
 		Date date = new Date();
-		byte[] buffer = date.toString().getBytes();
+
 		try {
+			ByteArrayOutputStream byteStream = new ByteArrayOutputStream(1024);
+			ObjectOutputStream os = new ObjectOutputStream(
+					new BufferedOutputStream(byteStream));
+			os.flush();
+			os.writeObject(date);
+			os.flush();
+			os.close();
+			byte[] buffer = byteStream.toByteArray();
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length,
 					address, 7005);
 			socket.send(packet);

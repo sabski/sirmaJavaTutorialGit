@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispac
 import java.net.InetAddress;
 
 /**
+ * This is an abstract message moderator.
+ * 
  * @author siliev
  * 
  */

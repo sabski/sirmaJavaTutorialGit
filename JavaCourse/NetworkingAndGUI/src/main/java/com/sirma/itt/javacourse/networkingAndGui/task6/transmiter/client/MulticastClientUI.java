@@ -20,8 +20,6 @@ public class MulticastClientUI extends JFrame {
 
 	private static final long serialVersionUID = 4084729024170473482L;
 
-	// private static Logger log = Logger.getLogger(MulticastClientUI.class);
-
 	private JTextArea messageWingow;
 	private JButton connectButton;
 
@@ -58,6 +56,7 @@ public class MulticastClientUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				client = new MulticastClient(MulticastClientUI.this);
 				client.start();
 			}
 		});
@@ -68,12 +67,12 @@ public class MulticastClientUI extends JFrame {
 		mainWindow.setSize(300, 200);
 		mainWindow.setVisible(true);
 		mainWindow.setTitle("Multicast Client");
-		client = new MulticastClient(this);
+
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (client.isAlive()) {
+				if (client != null && client.isAlive()) {
 					client.stopClient();
 				}
 				System.exit(0);

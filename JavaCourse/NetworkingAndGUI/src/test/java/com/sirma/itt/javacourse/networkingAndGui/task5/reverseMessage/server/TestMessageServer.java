@@ -102,7 +102,7 @@ public class TestMessageServer {
 			log.error(e.getMessage(), e);
 		}
 		server.stopServer();
-		assertTrue(serverTextArea.getText().contains("erver is stopped"));
+		assertTrue(serverTextArea.getText().contains("Server is stopped"));
 	}
 
 }

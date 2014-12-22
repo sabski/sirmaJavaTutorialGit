@@ -19,7 +19,6 @@ public class InformationClientGUI extends JFrame {
 	 * Comment for serialVersionUID.
 	 */
 	private static final long serialVersionUID = -6264959974014685722L;
-	// private static Logger log = Logger.getLogger(InformationClientGUI.class);
 
 	private JTextArea messageWingow;
 	private JButton connectButton;
@@ -33,7 +32,7 @@ public class InformationClientGUI extends JFrame {
 	}
 
 	private void setUp() {
-		JFrame mainWindow = this;
+		final InformationClientGUI mainWindow = this;
 		connectButton = new JButton("Connect");
 		messageWingow = new JTextArea();
 		messageWingow.setEditable(false);
@@ -43,17 +42,17 @@ public class InformationClientGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				client = new InformationClient(mainWindow);
 				client.start();
 			}
 		});
-
 		mainWindow.add(connectButton, BorderLayout.NORTH);
 		mainWindow.add(messageWingow);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(300, 200);
 		mainWindow.setTitle("Information Client");
 		mainWindow.setVisible(true);
-		client = new InformationClient(this);
+
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			/**
@@ -61,7 +60,7 @@ public class InformationClientGUI extends JFrame {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (client.isAlive()) {
+				if (client != null && client.isAlive()) {
 					client.interrupt();
 				}
 				System.exit(0);

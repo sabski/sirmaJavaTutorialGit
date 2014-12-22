@@ -33,6 +33,7 @@ public class MessageClientGUI extends JFrame {
 	private List<MessageMemento> mementos;
 	private int index;
 	private JButton sendButton;
+	private JButton connectButton;
 	private JTextArea messageArea;
 	private JTextField messageField;
 	private MessageClient client;
@@ -53,30 +54,29 @@ public class MessageClientGUI extends JFrame {
 		originator = new MessageOriginator();
 		mementos = new ArrayList<MessageMemento>();
 		sendButton = new JButton("Send");
+		connectButton = new JButton("Connect");
 		setMessageArea(new JTextArea());
 		messageField = new JTextField();
 		messageField.setPreferredSize(new Dimension(150, 30));
-		client = new MessageClient(this);
-		client.start();
 		messageArea.setEditable(false);
 		listenersSetUp();
 		// Frame settings
 		JFrame mainWindow = this;
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainWindow.setPreferredSize(new Dimension(300, 200));
-
+		mainWindow.setPreferredSize(new Dimension(350, 200));
 		mainWindow.setLayout(new BorderLayout());
 		mainWindow.add(messageArea, BorderLayout.CENTER);
 		JPanel messagePanel = new JPanel();
 		messagePanel.add(messageField);
 		messagePanel.add(sendButton);
-		messagePanel.setPreferredSize(new Dimension(300, 40));
+		messagePanel.add(connectButton);
+		messagePanel.setPreferredSize(new Dimension(350, 40));
 		mainWindow.add(messagePanel, BorderLayout.SOUTH);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (client.isAlive()) {
+				if (client != null && client.isAlive()) {
 					client.interrupt();
 				}
 				System.exit(0);
@@ -88,7 +88,8 @@ public class MessageClientGUI extends JFrame {
 	}
 
 	/**
-	 * Sets up the lister for the button and the action commands for the key strokes.
+	 * Sets up the lister for the button and the action commands for the key
+	 * strokes.
 	 */
 	private void listenersSetUp() {
 		sendButton.addActionListener(new ActionListener() {
@@ -100,6 +101,14 @@ public class MessageClientGUI extends JFrame {
 
 		});
 
+		connectButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				client = new MessageClient(MessageClientGUI.this);
+				client.start();
+			}
+		});
 		Action keyDown = new AbstractAction() {
 
 			private static final long serialVersionUID = 11L;
@@ -108,7 +117,8 @@ public class MessageClientGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				index--;
 				if (index > -1) {
-					messageField.setText(originator.restoreFromMemento(mementos.get(index)));
+					messageField.setText(originator.restoreFromMemento(mementos
+							.get(index)));
 				} else {
 					index = -1;
 				}
@@ -123,14 +133,16 @@ public class MessageClientGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				index++;
 				if (mementos.size() > index) {
-					messageField.setText(originator.restoreFromMemento(mementos.get(index)));
+					messageField.setText(originator.restoreFromMemento(mementos
+							.get(index)));
 				} else {
 					index = mementos.size() - 1;
 				}
 			}
 		};
 
-		messageField.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "keyDown");
+		messageField.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),
+				"keyDown");
 		messageField.getInputMap().put(KeyStroke.getKeyStroke("UP"), "keyUp");
 
 		messageField.getActionMap().put("keyDown", keyDown);

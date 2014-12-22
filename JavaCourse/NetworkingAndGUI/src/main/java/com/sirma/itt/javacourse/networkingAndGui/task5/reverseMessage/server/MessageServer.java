@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -23,38 +25,12 @@ public class MessageServer extends AbstractServer {
 	private Socket client;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
-
-	/**
-	 * Read the client messages and invokes a response to them.
-	 */
-	public void readClientMessage() {
-		String line = null;
-		try {
-			while ((line = (String) inputStream.readObject()) != null) {
-				sendUserMessage(writeReversedMessage(line));
-			}
-		} catch (ClassNotFoundException | IOException e) {
-			log.error(e.getMessage(), e);
-		}
-	}
-
-	/**
-	 * Writes a reverse message that is returned
-	 * 
-	 * @param message
-	 *            the message to be reverted
-	 * @return the reverted String.
-	 */
-	public String writeReversedMessage(String message) {
-		StringBuilder reversedMessage = new StringBuilder(message);
-		return "The reverse of " + message + " is " + reversedMessage.reverse();
-	}
+	private List<UserThread> users = new ArrayList<UserThread>();
 
 	@Override
 	public void run() {
 		startServer();
 		acceptConnections();
-		readClientMessage();
 	}
 
 	/**
@@ -72,41 +48,22 @@ public class MessageServer extends AbstractServer {
 	}
 
 	/**
-	 * Sends the connected client a message.
-	 * 
-	 * @param message
-	 *            the message that is to be sent to the client.
-	 */
-	private void sendUserMessage(String message) {
-		if (client != null) {
-			try {
-				outputStream.writeObject(message);
-				log.info("Message was sent : " + message);
-				outputStream.flush();
-				outputStream.reset();
-				displayMessage("Message was sent : " + message);
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-				displayMessage(e.getMessage());
-			}
-		}
-	}
-
-	/**
 	 * Stops the server and closes the server and client socket.
 	 */
 	public void stopServer() {
 		if (server != null) {
 			try {
+				users.clear();
 				server.close();
 				if (client != null) {
 					client.close();
 				}
 				displayMessage("Server is stopped");
 				log.info("Server is stopping");
+				interrupt();
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
-				displayMessage(e.getMessage());
+				// displayMessage(e.getMessage());
 			}
 		}
 	}
@@ -123,15 +80,20 @@ public class MessageServer extends AbstractServer {
 
 	@Override
 	public void acceptConnections() {
-		try {
-			client = server.accept();
-			outputStream = new ObjectOutputStream(client.getOutputStream());
-			inputStream = new ObjectInputStream(client.getInputStream());
-			sendUserMessage("Welcome client");
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			displayMessage(e.getMessage());
+		while (!isInterrupted()) {
+			try {
+				client = server.accept();
+				outputStream = new ObjectOutputStream(client.getOutputStream());
+				inputStream = new ObjectInputStream(client.getInputStream());
+				UserThread user = new UserThread(client, outputStream,
+						inputStream);
+				user.sendUserMessage("Welcome client");
+				users.add(user);
+				user.start();
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+				displayMessage(e.getMessage());
+			}
 		}
 	}
-
 }

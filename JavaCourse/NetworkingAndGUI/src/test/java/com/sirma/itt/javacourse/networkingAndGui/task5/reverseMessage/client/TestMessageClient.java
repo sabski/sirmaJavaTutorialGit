@@ -81,7 +81,7 @@ public class TestMessageClient {
 		}
 		client.stopClient();
 		server.stopServer();
-		assertTrue(clientTextArea.getText().contains("Client is stopping"));
+		assertTrue(clientTextArea.getText().contains("Client will stop"));
 	}
 
 	/**

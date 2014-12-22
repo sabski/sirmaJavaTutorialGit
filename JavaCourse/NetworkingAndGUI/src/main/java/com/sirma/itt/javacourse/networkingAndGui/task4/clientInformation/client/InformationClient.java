@@ -79,7 +79,7 @@ public class InformationClient extends Thread {
 	public void stopClient() {
 		try {
 			client.close();
-			displayMessage("Client is stopping !!!");
+			displayMessage("Client will close in 5 seconds.");
 			Thread.sleep(5 * 1000);
 			clientGUI.dispatchEvent(new WindowEvent(clientGUI,
 					WindowEvent.WINDOW_CLOSING));

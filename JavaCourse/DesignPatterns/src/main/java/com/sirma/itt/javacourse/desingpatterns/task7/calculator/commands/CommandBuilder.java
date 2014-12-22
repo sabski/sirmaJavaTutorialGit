@@ -12,13 +12,14 @@ public class CommandBuilder {
 
 	private static CommandBuilder instance;
 
-	private static final List<Command> commands = new ArrayList<Command>(5);
+	private static final List<Command> commands = new ArrayList<Command>(6);
 	static {
 		commands.add(new AddCommand());
 		commands.add(new DivideCommand());
 		commands.add(new MultiplyCommand());
 		commands.add(new OddCommand());
 		commands.add(new SubtractCommand());
+		commands.add(new EqualsCommand());
 	}
 
 	/**
@@ -44,8 +45,8 @@ public class CommandBuilder {
 	 * 
 	 * @param command
 	 *            the String value of the command.
-	 * @return the command that was given with the String or null if no command has confirmed the
-	 *         command.
+	 * @return the command that was given with the String or null if no command
+	 *         has confirmed the command.
 	 */
 	public Command createCommand(String command) {
 		for (Command commandFromList : commands) {

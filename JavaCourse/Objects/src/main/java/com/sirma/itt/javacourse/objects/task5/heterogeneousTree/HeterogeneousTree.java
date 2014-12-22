@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.sirma.itt.javacourse.InputUtils;
 import com.sirma.itt.javacourse.objects.task2.shapes.Figure;
-import com.sirma.itt.javacourse.objects.task4.binaryTree.Node;
 
 /**
  * This class represent a generic type collection that extend Figure.

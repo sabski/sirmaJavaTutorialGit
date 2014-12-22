@@ -42,6 +42,20 @@ public class ChildBClass extends ParrentClass {
 	public ChildBClass(int id, float floatValue, String strngValue) {
 		super(id);
 		this.floatValue = floatValue;
-		this.stringValue = strngValue;
+		this.setStringValue(strngValue);
+	}
+
+	/**
+	 * @return the stringValue
+	 */
+	public String getStringValue() {
+		return stringValue;
+	}
+
+	/**
+	 * @param stringValue the stringValue to set
+	 */
+	public void setStringValue(String stringValue) {
+		this.stringValue = stringValue;
 	}
 }

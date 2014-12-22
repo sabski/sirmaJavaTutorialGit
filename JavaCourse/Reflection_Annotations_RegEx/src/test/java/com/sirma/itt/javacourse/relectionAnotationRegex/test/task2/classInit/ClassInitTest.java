@@ -13,7 +13,6 @@ import com.sirma.itt.javacourse.reflectionAnotationRegex.task2.classInit.ClassIn
 public class ClassInitTest {
 
 	private ClassInit init;
-	private final String result = "java.lang.CharSequence";
 	private final String classUnderTest = "java.lang.String";
 	private final String error = "dasdlf";
 

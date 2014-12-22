@@ -7,8 +7,11 @@ package com.sirma.itt.javacourse.reflectionAnotationRegex.task3.privateAccess;
  */
 public class MyPrivateClass {
 
+	@SuppressWarnings("unused")
 	private int integerValue = 22225;
+	@SuppressWarnings("unused")
 	private String stringValue = "Private String value";
+	@SuppressWarnings("unused")
 	private float floatValue = 1.2f;
 
 	/**
@@ -34,6 +37,7 @@ public class MyPrivateClass {
 	 *            the message to be returned.
 	 * @return the message the user entered.
 	 */
+	@SuppressWarnings("unused")
 	private String getMessage(String message) {
 
 		return message;

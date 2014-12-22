@@ -53,7 +53,7 @@ public class CalculatorGui extends JFrame {
 
 	private ActionListener numberButtonListener;
 	private ActionListener operationListener;
-	private final CommandBuilder builder; 
+	private final CommandBuilder builder;
 	private Double firstNumber;
 	private Double secondNumber;
 
@@ -103,7 +103,6 @@ public class CalculatorGui extends JFrame {
 	 *            the panel where the numbers and result will appear.
 	 */
 	private void setUpTopPanel(JPanel topPanel) {
-		// TODO Something something something...
 		textFiled = new JTextField();
 		textFiled.setEditable(false);
 		textFiled.setText("");
@@ -113,14 +112,13 @@ public class CalculatorGui extends JFrame {
 	}
 
 	/**
-	 * Creates the buttons for the calculator and sets their actions listeners also orders them in
-	 * an orderly fashion.
+	 * Creates the buttons for the calculator and sets their actions listeners
+	 * also orders them in an orderly fashion.
 	 * 
 	 * @param panel
 	 *            the panel to add the buttons to.
 	 */
 	private void setupButtons(JPanel panel) {
-		// TODO set up Jenson Button...
 		plusButton = new JButton("+");
 		minusButton = new JButton("-");
 		divideButton = new JButton("/");
@@ -146,7 +144,6 @@ public class CalculatorGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO The other stuff besides printing the log.
 				textFiled.setText(textFiled.getText() + e.getActionCommand());
 				textFiled.validate();
 				log.info(e.getActionCommand() + " : " + textFiled.getText());
@@ -164,38 +161,33 @@ public class CalculatorGui extends JFrame {
 		numberEightButton.addActionListener(numberButtonListener);
 		numberNineButton.addActionListener(numberButtonListener);
 
-		// TODO add missing action listeners... do not forget John Snow
-
 		operationListener = new ActionListener() {
 			Command command;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				log.info(e.getActionCommand());
-				if (e.getActionCommand() != "=") {
-					if (firstNumber == null) {
-						firstNumber = Double.valueOf(textFiled.getText());
-						command = builder.createCommand(e.getActionCommand());
-					} else {
-						if (command == null) {
-							command = builder.createCommand(e.getActionCommand());
-						} else {
-							secondNumber = Double.valueOf(textFiled.getText().substring(
-									(firstNumber + " ").length(), textFiled.getText().length()));
-							firstNumber = command.execute(firstNumber, secondNumber);
-							command = builder.createCommand(e.getActionCommand());
-							firstNumber = null;
-						}
-					}
-					textFiled.setText(firstNumber + e.getActionCommand());
+				if (firstNumber == null) {
+					firstNumber = Double.valueOf(textFiled.getText());
+					command = builder.createCommand(e.getActionCommand());
+					textFiled.setText(textFiled.getText()
+							+ e.getActionCommand());
 				} else {
-					int lenght = (firstNumber + " ").length();
-					secondNumber = Double.valueOf(textFiled.getText().substring(lenght,
-							textFiled.getText().length()));
+					int a = (firstNumber + "").length() - 1;
+					int b = textFiled.getText().length();
+					log.info("a = " + a + " b = " + b + " first = "
+							+ firstNumber);
+					String temp = textFiled.getText().substring(a, b);
+					secondNumber = Double.valueOf(temp);
 					firstNumber = command.execute(firstNumber, secondNumber);
-					textFiled.setText(firstNumber + "");
-					command = null;
-					firstNumber = null;
+					log.info("Result = " + firstNumber);
+					command = builder.createCommand(e.getActionCommand());
+					if (command.isMyCommand("=")) {
+						textFiled.setText(firstNumber + "");
+						firstNumber = null;
+					} else {
+						textFiled.setText(firstNumber + e.getActionCommand());
+					}
 				}
 				textFiled.validate();
 			}
@@ -206,7 +198,13 @@ public class CalculatorGui extends JFrame {
 		minusButton.addActionListener(operationListener);
 		divideButton.addActionListener(operationListener);
 		multiplyButton.addActionListener(operationListener);
-		decimalDotButton.addActionListener(operationListener);
+		decimalDotButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textFiled.setText(textFiled.getText() + ".");
+			}
+		});
 
 		// Clear Buttons
 		clearAllButton.addActionListener(new ActionListener() {
@@ -222,8 +220,8 @@ public class CalculatorGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textFiled.setText(textFiled.getText()
-						.substring(0, textFiled.getText().length() - 1));
+				textFiled.setText(textFiled.getText().substring(0,
+						textFiled.getText().length() - 1));
 			}
 		});
 

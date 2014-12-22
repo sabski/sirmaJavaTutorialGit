@@ -21,7 +21,6 @@ public class HeterogeneousTreeRunner {
 	public static void main(String[] args) {
 		HeterogeneousTree<Figure> fig;
 		Point p = new Point(20, 20);
-		Rectangle rect = new Rectangle(p, 0, 0);
 		Rectangle rect2 = new Rectangle(p, 0, 0);
 		Rectangle rect3 = new Rectangle(p, 0, 0);
 		Rectangle rect4 = new Rectangle(p, 0, 0);
@@ -67,7 +66,8 @@ public class HeterogeneousTreeRunner {
 		fig.addFigureEllemet(new Rectangle(p, 0, 0));
 		fig.addFigureEllemet(new Parallelogram(p, p, 0, 0));
 
-		InputUtils.printConsoleMessage("Ellement in the tree : \n" + fig.printAllNames());
+		InputUtils.printConsoleMessage("Ellement in the tree : \n"
+				+ fig.printAllNames());
 	}
 
 }

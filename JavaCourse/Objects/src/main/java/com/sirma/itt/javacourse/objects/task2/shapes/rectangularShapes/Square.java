@@ -36,14 +36,14 @@ public class Square extends Figure {
 	 * Point constructor.
 	 * 
 	 * @param firstPoint
-	 *            top left point of the rectangle * @param secondPoint           
+	 *            top left point of the rectangle * @param secondPoint
 	 * @param side
 	 *            the side of the square
 	 */
 	public Square(Point firstPoint, int side) {
 		super("Square");
 		this.sideA = side;
-		this.firstPoint = firstPoint;
+		this.setFirstPoint(firstPoint);
 	}
 
 	/**
@@ -52,6 +52,21 @@ public class Square extends Figure {
 	@Override
 	public void draw() {
 		// TODO Draw a square
+	}
+
+	/**
+	 * @return the firstPoint
+	 */
+	public Point getFirstPoint() {
+		return firstPoint;
+	}
+
+	/**
+	 * @param firstPoint
+	 *            the firstPoint to set
+	 */
+	public void setFirstPoint(Point firstPoint) {
+		this.firstPoint = firstPoint;
 	}
 
 }

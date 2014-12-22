@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 
@@ -24,7 +25,7 @@ import com.sirma.itt.javacourse.inputoutput.task4.transferingObjects.TransferObj
  */
 public class DownloadUITask extends SwingWorker<Void, Void> {
 
-	private static Logger log = Logger.getLogger(DownloadUITask.class);
+	private static final Logger LOGGER = Logger.getLogger(DownloadUITask.class);
 	private final String url;
 	private final String saveLocation;
 	private final JProgressBar progressBar;
@@ -38,29 +39,38 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		progressBar.setValue(0);
 		connection = openConnection();
-
-		log.info("The length of the content : "
-				+ humanReadableByteCount(connection.getContentLengthLong()));
+		/*
+		 * LOGGER.info("The length of the content : " +
+		 * humanReadableByteCount(connection.getContentLength()));
+		 */
 		fileSize = connection.getContentLengthLong();
+		LOGGER.info("File size " + fileSize);
 		String fileName = FilenameUtils.getBaseName(url) + "."
 				+ FilenameUtils.getExtension(url);
+		if (fileName.equals(".")) {
+			showErrorMessage();
+			return null;
+		}
+		if (!new File(saveLocation).exists()) {
+			new File(saveLocation).mkdir();
+		}
 		File file = new File(saveLocation
 				+ System.getProperty("file.separator") + fileName);
-		log.info(file.getCanonicalPath());
-		log.info("File creation operation : " + file.createNewFile());
+		LOGGER.info(file.getCanonicalPath());
+		LOGGER.info("File creation operation : " + file.createNewFile());
 
 		try (InputStream input = connection.getInputStream();
 				FileOutputStream fileWriter = new FileOutputStream(file);) {
 			transporter = new TransferObject(input, fileWriter);
 			int count = 0;
-			log.info("Attempting to start writing to file");
+			LOGGER.info("Attempting to start writing to file");
 			while ((count = transporter.transfer(1024, 0)) != -1) {
 				downloaded += count;
 				progressBar.setValue(getPogress());
 			}
-			log.info("Writing finished");
+			LOGGER.info("Writing finished");
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return null;
 	}
@@ -118,5 +128,13 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 		int exp = (int) (Math.log(bytes) / Math.log(unit));
 		String prefix = ("KMGTPE").charAt(exp - 1) + ("i");
 		return String.format("%.1f %sB", bytes / Math.pow(unit, exp), prefix);
+	}
+
+	/**
+	 * Shows an error message to the user for invalid download address.
+	 */
+	public void showErrorMessage() {
+		JOptionPane.showMessageDialog(null, "Can`t download on this address",
+				"Error", JOptionPane.ERROR_MESSAGE);
 	}
 }

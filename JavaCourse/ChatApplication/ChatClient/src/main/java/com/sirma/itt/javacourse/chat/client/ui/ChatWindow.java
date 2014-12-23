@@ -1,14 +1,11 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
-import java.awt.Dimension;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
-
-import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.Message;
 
@@ -19,7 +16,6 @@ import com.sirma.itt.javacourse.chat.common.Message;
 public class ChatWindow extends JTextArea {
 
 	private static final long serialVersionUID = 2804226115505001629L;
-	private static Logger log = Logger.getLogger(ChatWindow.class);
 	private long chatID;
 	private List<String> userNames;
 	private JTextArea textArea;

@@ -26,7 +26,6 @@ import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 public class ServerWindow extends JFrame {
 
 	private static final long serialVersionUID = -401486980443255042L;
-	//private static Logger log = Logger.getLogger(ServerWindow.class);
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;

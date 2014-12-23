@@ -8,7 +8,6 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.chat.server.manager.ChatRoom;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
@@ -22,7 +21,7 @@ public class MainServerThread extends Thread {
 	private Logger log = Logger.getLogger(MainServerThread.class);
 	private ServerSocket server;
 	private UserManager userManager;
-	private ChatRoomManager chatRoomManager;
+	// private ChatRoomManager chatRoomManager;
 	private JTextArea messageArea;
 
 	public MainServerThread(JTextArea messageArea) {
@@ -44,7 +43,7 @@ public class MainServerThread extends Thread {
 			log.error(e.getMessage(), e);
 		}
 		userManager = UserManager.getInstance();
-		chatRoomManager = ChatRoomManager.getInstance();
+		ChatRoomManager.getInstance();
 		log.info("startServer");
 		displayMessage("Server has started");
 	}

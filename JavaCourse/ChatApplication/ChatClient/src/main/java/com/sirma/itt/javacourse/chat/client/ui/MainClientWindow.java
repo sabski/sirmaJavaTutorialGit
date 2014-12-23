@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,8 +14,6 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
@@ -37,7 +34,6 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 public class MainClientWindow extends JFrame implements UIColegue {
 
 	private static final long serialVersionUID = 1826026493714885025L;
-	private static Logger log = Logger.getLogger(MainClientWindow.class);
 	private JButton connectButton;
 	private ClientThread client;
 	private TextArea textArea;

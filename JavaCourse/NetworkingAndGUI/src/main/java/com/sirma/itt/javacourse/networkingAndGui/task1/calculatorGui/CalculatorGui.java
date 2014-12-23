@@ -54,8 +54,9 @@ public class CalculatorGui extends JFrame {
 	private ActionListener numberButtonListener;
 	private ActionListener operationListener;
 	private final CommandBuilder builder;
-	private Double firstNumber;
-	private Double secondNumber;
+	private String firstNumber;
+	private String secondNumber;
+	private Command command;
 
 	/**
 	 * Constructor for the calculator UI.
@@ -144,8 +145,16 @@ public class CalculatorGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textFiled.setText(textFiled.getText() + e.getActionCommand());
-				textFiled.validate();
+				if (command != null && command.isMyCommand("=")) {
+					textFiled.setText(e.getActionCommand());
+					textFiled.validate();
+					command = null;
+				} else {
+					textFiled.setText(textFiled.getText()
+							+ e.getActionCommand());
+					textFiled.validate();
+
+				}
 				log.info(e.getActionCommand() + " : " + textFiled.getText());
 			}
 		};
@@ -162,24 +171,24 @@ public class CalculatorGui extends JFrame {
 		numberNineButton.addActionListener(numberButtonListener);
 
 		operationListener = new ActionListener() {
-			Command command;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				log.info(e.getActionCommand());
-				if (firstNumber == null) {
-					firstNumber = Double.valueOf(textFiled.getText());
+				if (firstNumber == null || command == null) {
+					firstNumber = textFiled.getText();
 					command = builder.createCommand(e.getActionCommand());
 					textFiled.setText(textFiled.getText()
 							+ e.getActionCommand());
 				} else {
-					int a = (firstNumber + "").length() - 1;
+					int a = (firstNumber + " ").length();
 					int b = textFiled.getText().length();
 					log.info("a = " + a + " b = " + b + " first = "
 							+ firstNumber);
-					String temp = textFiled.getText().substring(a, b);
-					secondNumber = Double.valueOf(temp);
-					firstNumber = command.execute(firstNumber, secondNumber);
+					secondNumber = textFiled.getText().substring(a, b);
+
+					firstNumber = command.execute(Double.valueOf(firstNumber),
+							Double.valueOf(secondNumber)) + "";
 					log.info("Result = " + firstNumber);
 					command = builder.createCommand(e.getActionCommand());
 					if (command.isMyCommand("=")) {
@@ -220,6 +229,14 @@ public class CalculatorGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String temp = textFiled.getText().substring(
+						textFiled.getText().length() - 1);
+				log.info("Clear " + temp);
+				if (temp.matches("\\+|-|\\*|/")) {
+					command = null;
+					firstNumber = null;
+					log.info("Matches " + firstNumber);
+				}
 				textFiled.setText(textFiled.getText().substring(0,
 						textFiled.getText().length() - 1));
 			}

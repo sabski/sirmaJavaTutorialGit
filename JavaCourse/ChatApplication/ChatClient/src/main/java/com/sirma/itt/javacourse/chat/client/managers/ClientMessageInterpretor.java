@@ -17,7 +17,7 @@ import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
  */
 public class ClientMessageInterpretor implements MessageInterpreter {
 
-	private Logger log = Logger.getLogger(ClientMessageInterpretor.class);
+	private static final Logger LOGGER = Logger.getLogger(ClientMessageInterpretor.class);
 	private ClientThread clientThread;
 	private UIControler controler = UIControler.getInstance();
 	private ClientInfo client;
@@ -60,25 +60,28 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			break;
 		case USERLIST:
 			// TODO HELP ME HERE
-			log.info(message);
+			LOGGER.info(message);
 			controler.updateUserList(message.getContent());
 			break;
+		case DISCONNECT:
+			LOGGER.info(message);
+			break;
 		default:
-			log.info("Unsuported type " + message.getMessageType());
+			LOGGER.info("Unsuported type " + message.getMessageType());
 			break;
 		}
 	}
 
 	private void displayMessage(Message message) {
 		// TODO Display message to proper screen.
-		log.info("Message reseived : " + message);
+		LOGGER.info("Message reseived : " + message);
 		controler.getChatsPanel().processMessage(message);
 
 	}
 
 	private void createNewChatWindow(Message message) {
 		// TODO Create a new chat window.
-		log.info("Creating new chat room " + message);
+		LOGGER.info("Creating new chat room " + message);
 		controler.getChatsPanel().addNewTab(message);
 	}
 

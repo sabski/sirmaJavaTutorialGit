@@ -2,6 +2,11 @@ package com.sirma.itt.javacourse.chat.server.manager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.log4j.Logger;
+
+import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
  * This class manages the chat rooms on the server.
@@ -10,7 +15,8 @@ import java.util.Map;
  * 
  */
 public class ChatRoomManager {
-
+	private static final Logger LOGGER = Logger
+			.getLogger(ChatRoomManager.class);
 	private static ChatRoomManager instance;
 	private Map<Long, ChatRoom> chatRooms;
 	private ChatRoom commonRoom;
@@ -74,5 +80,19 @@ public class ChatRoomManager {
 	 */
 	public ChatRoom getCommonRoom() {
 		return commonRoom;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public void removeUserFromChats(ClientListenerThread user) {
+		LOGGER.info("Searching for users to remove");
+		for (Entry<Long, ChatRoom> room : chatRooms.entrySet()) {
+			if (room.getValue().containsUser(user.getUser().getUsername())) {
+				room.getValue().removeUser(user);
+				LOGGER.info("Removed user");
+			}
+		}
 	}
 }

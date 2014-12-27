@@ -23,6 +23,7 @@ public class ClientListenerThread extends Thread {
 	private ServerMessageInterpreter interpretor;
 	private ObjectInputStream inputStream;
 	private ObjectOutputStream outputStream;
+	private UserManager manager;
 
 	/**
 	 * 
@@ -32,7 +33,8 @@ public class ClientListenerThread extends Thread {
 	 */
 	public ClientListenerThread(ChatUser user) {
 		this.user = user;
-		interpretor = UserManager.getInstance().getInterpretator();
+		manager = UserManager.getInstance();
+		interpretor = manager.getInterpretator();
 		try {
 			inputStream = new ObjectInputStream(user.getInputStream());
 			outputStream = new ObjectOutputStream(user.getOutputStream());
@@ -75,7 +77,10 @@ public class ClientListenerThread extends Thread {
 				interpretor.interpretMessage(message, user);
 			}
 		} catch (ClassNotFoundException e) {
+
 			log.error(e.getMessage(), e);
+		} finally {
+			manager.disconnectUser(this);
 		}
 	}
 

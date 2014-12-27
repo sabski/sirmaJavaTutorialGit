@@ -3,7 +3,9 @@ package com.sirma.itt.javacourse.chat.server.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
@@ -65,4 +67,18 @@ public class ChatRoom {
 		return usernameList;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public boolean containsUser(String user) {
+		return usernameList.contains(user);
+	}
+
+	public void removeUser(ClientListenerThread user) {
+		userList.remove(user);
+		usernameList.remove(user.getUser().getUsername());
+		sendMessage(new Message("", id, TYPE.DISCONNECT, TYPE.SERVER.toString()));
+	}
 }

@@ -57,7 +57,6 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	private ChatWindow createNewPanel(Message info) {
 		log.info("Creating new window");
 		ChatWindow panel = new ChatWindow();
-		panel.setEditable(false);
 		panel.setChatID(info.getChatRoomId());
 		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info.getContent())));
 		return panel;

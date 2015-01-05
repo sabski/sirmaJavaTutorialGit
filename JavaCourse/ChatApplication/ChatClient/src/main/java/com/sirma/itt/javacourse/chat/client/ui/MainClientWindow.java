@@ -87,6 +87,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		mainWindow.setTitle("Chat Client");
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
+		mainWindow.setResizable(false);
 		mainWindow.addWindowListener(new WindowAdapter() {
 
 			/**

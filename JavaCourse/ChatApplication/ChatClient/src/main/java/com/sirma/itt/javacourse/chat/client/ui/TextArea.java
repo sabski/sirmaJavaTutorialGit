@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,10 +126,22 @@ public class TextArea extends JPanel implements UIColegue {
 			}
 		};
 
+		Action enterAction = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sendMessage(messageField.getText());
+			}
+		};
+
 		messageField.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),
 				"keyDown");
 		messageField.getInputMap().put(KeyStroke.getKeyStroke("UP"), "keyUp");
+		messageField.getInputMap().put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
 
+		messageField.getActionMap().put("enter", enterAction);
 		messageField.getActionMap().put("keyDown", keyDown);
 		messageField.getActionMap().put("keyUp", keyUp);
 
@@ -136,7 +149,7 @@ public class TextArea extends JPanel implements UIColegue {
 
 	private void sendMessage(String text) {
 		// TODO Implement send message;
-
+		
 		controler.sendMessage(text);
 		originator.setState(messageField.getText());
 		mementos.add(0, originator.saveToMemento());
@@ -159,6 +172,6 @@ public class TextArea extends JPanel implements UIColegue {
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub
-	//	controler.registerTextArea(this);
+		// controler.registerTextArea(this);
 	}
 }

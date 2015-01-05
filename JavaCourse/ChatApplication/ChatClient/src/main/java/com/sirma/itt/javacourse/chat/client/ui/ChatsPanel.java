@@ -1,6 +1,7 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +41,10 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	private void setUp() {
 		// TODO Full set up off the tabbed pane.
 		tabbedPane = new JTabbedPane();
-		JPanel papel = this;
-		papel.add(tabbedPane);
-		tabbedPane.setPreferredSize(new Dimension(380, 310));
+		JPanel panel = this;
+		panel.add(tabbedPane);
+		tabbedPane.setPreferredSize(new Dimension(480, 315));
+		panel.setLayout(new FlowLayout());
 		registerComponent();
 	}
 
@@ -58,7 +60,8 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		log.info("Creating new window");
 		ChatWindow panel = new ChatWindow();
 		panel.setChatID(info.getChatRoomId());
-		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info.getContent())));
+		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info
+				.getContent())));
 		return panel;
 	}
 

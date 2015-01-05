@@ -1,13 +1,11 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
-import java.awt.Dimension;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 
 import com.sirma.itt.javacourse.chat.common.Message;
 
@@ -15,24 +13,23 @@ import com.sirma.itt.javacourse.chat.common.Message;
  * @author siliev
  * 
  */
-public class ChatWindow extends JScrollPane {
+public class ChatWindow extends JPanel {
 
 	private static final long serialVersionUID = 2804226115505001629L;
 	private long chatID;
 	private List<String> userNames;
 	private JTextArea textArea;
-	private JPanel panel;
 
 	public ChatWindow() {
-		panel = new JPanel();
-		textArea = new JTextArea();
-		//textArea.setSize(300, 200);
+		textArea = new JTextArea(16, 39);
+		//textArea.setSize(200, 300);
 		textArea.setEditable(false);
-		//textArea.setPreferredSize(new Dimension(450, 390));
-		this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		this.setPreferredSize(new Dimension(450, 390));
-		panel.add(textArea);
-		this.add(panel);
+		JScrollPane scrollableTextArea = new JScrollPane(textArea);
+		scrollableTextArea
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+		add(scrollableTextArea);
+		this.setSize(400, 500);
 	}
 
 	/**

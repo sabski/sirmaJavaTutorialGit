@@ -77,7 +77,6 @@ public class ClientListenerThread extends Thread {
 				interpretor.interpretMessage(message, user);
 			}
 		} catch (ClassNotFoundException e) {
-
 			log.error(e.getMessage(), e);
 		} finally {
 			manager.disconnectUser(this);

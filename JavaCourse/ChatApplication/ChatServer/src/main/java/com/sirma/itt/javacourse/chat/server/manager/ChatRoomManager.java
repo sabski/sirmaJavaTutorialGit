@@ -83,8 +83,11 @@ public class ChatRoomManager {
 	}
 
 	/**
+	 * Searches for a user that has disconnected and removes him from the chat
+	 * rooms he is in.
 	 * 
 	 * @param user
+	 *            the user to be removed from chats.
 	 */
 	public void removeUserFromChats(ClientListenerThread user) {
 		LOGGER.info("Searching for users to remove");

@@ -83,6 +83,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		return new Message(content, id, type, author);
 	}
 
+	
 	public Message generateStartChatMessage(Long id, String author,
 			String userList) {
 		return new Message(userList, id, TYPE.STARTCHAT, author);

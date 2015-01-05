@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
 
 import org.apache.log4j.Logger;
@@ -20,7 +22,10 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.JLimitTextField;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 
 /**
  * @author siliev
@@ -29,14 +34,14 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 public class TextArea extends JPanel implements UIColegue {
 
 	private static final long serialVersionUID = 8138842498862853077L;
-	private static Logger log = Logger.getLogger(TextArea.class);
+	private static final Logger LOGGER = Logger.getLogger(TextArea.class);
 
 	private MessageOriginator originator;
 	private List<MessageMemento> mementos;
 	private int index;
 	private JTextField messageField;
 	private JButton sendButton;
-	private JButton connectButton;
+	private JToggleButton connectButton;
 	private JButton languageButton;
 	private UIControler controler;
 
@@ -44,7 +49,7 @@ public class TextArea extends JPanel implements UIColegue {
 	 * @param connectButton
 	 * 
 	 */
-	public TextArea(JButton connectButton) {
+	public TextArea(JToggleButton connectButton) {
 		this.connectButton = connectButton;
 		mementos = new ArrayList<>();
 		originator = new MessageOriginator();
@@ -53,12 +58,13 @@ public class TextArea extends JPanel implements UIColegue {
 	}
 
 	/**
-	 * 
+	 * Sets up the UI settings.
 	 */
 	private void setUP() {
 		JPanel mainWindow = this;
 		mainWindow.setLayout(new FlowLayout());
 		messageField = new JTextField();
+		messageField.setDocument(new JLimitTextField(200));
 		sendButton = new JButton("Send");
 		languageButton = new JButton("EN/BG");
 		messageField.setPreferredSize(new Dimension(250, 30));
@@ -78,6 +84,8 @@ public class TextArea extends JPanel implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LOGGER.info("The lenght of the message is : "
+						+ messageField.getText().length());
 				sendMessage(messageField.getText());
 			}
 
@@ -88,7 +96,12 @@ public class TextArea extends JPanel implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Write the action.
-
+				if (LanguageController.getCurrentLanguage() == Locale.ENGLISH){
+					LanguageController.setLanguage(LANGUGES.BG.toString());	
+				}else {
+					LanguageController.setLanguage(LANGUGES.EN.toString());
+				}
+				
 			}
 		});
 
@@ -99,7 +112,7 @@ public class TextArea extends JPanel implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				index--;
-				log.info("Event " + e.getActionCommand());
+				LOGGER.info("Event " + e.getActionCommand());
 				if (index > -1) {
 					messageField.setText(originator.restoreFromMemento(mementos
 							.get(index)));
@@ -116,7 +129,7 @@ public class TextArea extends JPanel implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				index++;
-				log.info("Event " + e.getActionCommand());
+				LOGGER.info("Event " + e.getActionCommand());
 				if (mementos.size() > index) {
 					messageField.setText(originator.restoreFromMemento(mementos
 							.get(index)));
@@ -148,25 +161,12 @@ public class TextArea extends JPanel implements UIColegue {
 	}
 
 	private void sendMessage(String text) {
-		// TODO Implement send message;
 		
 		controler.sendMessage(text);
 		originator.setState(messageField.getText());
 		mementos.add(0, originator.saveToMemento());
 		index = -1;
 		messageField.setText("");
-	}
-
-	@Override
-	public void sendUIEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void respondToEvent() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

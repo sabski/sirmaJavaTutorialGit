@@ -1,6 +1,8 @@
 package com.sirma.itt.javacourse.chat.server.manager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -19,13 +21,15 @@ public class ChatRoomManager {
 			.getLogger(ChatRoomManager.class);
 	private static ChatRoomManager instance;
 	private Map<Long, ChatRoom> chatRooms;
+	private List<ChatRoom> freeRooms;
 	private ChatRoom commonRoom;
 
 	/**
 	 * Singleton constructor.
 	 */
 	private ChatRoomManager() {
-		chatRooms = new HashMap<Long, ChatRoom>();
+		chatRooms = new HashMap<Long, ChatRoom>(100);
+		freeRooms = new ArrayList<ChatRoom>(20);
 		createCommonRoom();
 	}
 
@@ -48,7 +52,13 @@ public class ChatRoomManager {
 	 * @return the id of the created room.
 	 */
 	public Long createChatRoom() {
-		ChatRoom chatRoom = new ChatRoom();
+		ChatRoom chatRoom;
+		if (freeRooms.isEmpty()) {
+			chatRoom = new ChatRoom();
+		} else {
+			chatRoom = freeRooms.get(0);
+			chatRoom.getUsers().clear();
+		}
 		chatRooms.put(chatRoom.getId(), chatRoom);
 		return chatRoom.getId();
 	}
@@ -95,7 +105,12 @@ public class ChatRoomManager {
 			if (room.getValue().containsUser(user.getUser().getUsername())) {
 				room.getValue().removeUser(user);
 				LOGGER.info("Removed user");
+				if (room.getValue().isChatRoomEmpty()) {
+					chatRooms.remove(room);
+					freeRooms.add(room.getValue());
+				}
 			}
 		}
+		commonRoom.removeUser(user);
 	}
 }

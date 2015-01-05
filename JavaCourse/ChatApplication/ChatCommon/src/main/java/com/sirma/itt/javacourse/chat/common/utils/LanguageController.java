@@ -74,4 +74,8 @@ public class LanguageController {
 	private LanguageController() {
 
 	}
+
+	public static Locale getCurrentLanguage() {
+		return currentLocale;
+	}
 }

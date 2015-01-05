@@ -17,7 +17,8 @@ import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
  */
 public class ClientMessageInterpretor implements MessageInterpreter {
 
-	private static final Logger LOGGER = Logger.getLogger(ClientMessageInterpretor.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(ClientMessageInterpretor.class);
 	private ClientThread clientThread;
 	private UIControler controler = UIControler.getInstance();
 	private ClientInfo client;
@@ -65,6 +66,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			break;
 		case DISCONNECT:
 			LOGGER.info(message);
+			displayMessage(message);
 			break;
 		default:
 			LOGGER.info("Unsuported type " + message.getMessageType());

@@ -1,5 +1,7 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
+import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,9 @@ import javax.swing.JTextArea;
 import com.sirma.itt.javacourse.chat.common.Message;
 
 /**
+ * This class represent a window that is a chat to a person or a group of
+ * people.
+ * 
  * @author siliev
  * 
  */
@@ -22,13 +27,12 @@ public class ChatWindow extends JPanel {
 
 	public ChatWindow() {
 		textArea = new JTextArea(16, 39);
-		//textArea.setSize(200, 300);
 		textArea.setEditable(false);
 		JScrollPane scrollableTextArea = new JScrollPane(textArea);
 		scrollableTextArea
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-		add(scrollableTextArea);
+		setLayout(new BorderLayout());
+		add(scrollableTextArea, BorderLayout.CENTER);
 		this.setSize(400, 500);
 	}
 
@@ -62,11 +66,18 @@ public class ChatWindow extends JPanel {
 		this.userNames = userNames;
 	}
 
+	/**
+	 * Displays a message to that was sent to the user for this window.
+	 * 
+	 * @param message
+	 *            the message that is to be displayed to the user
+	 */
 	public void displayMessage(Message message) {
-		textArea.setText(textArea.getText() + "\n" + new Date().toString()
-				+ " " + message.getAuthor() + " : " + message.getContent());
+		SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+
+		textArea.setText(textArea.getText() + "\n<" + format.format(new Date())
+				+ ">" + message.getAuthor() + " : " + message.getContent());
 
 		textArea.invalidate();
 	}
-
 }

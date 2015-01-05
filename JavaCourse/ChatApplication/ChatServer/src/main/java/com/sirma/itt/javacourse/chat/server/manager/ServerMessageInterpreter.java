@@ -17,7 +17,7 @@ import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
  */
 public class ServerMessageInterpreter implements MessageInterpreter {
 
-	private static Logger log = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(ServerMessageInterpreter.class);
 
 	private UserManager manager;
@@ -36,6 +36,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 
 	@Override
 	public void interpretMessage(Message message, ChatUser user) {
+		LOGGER.info(message);
 		switch (message.getMessageType()) {
 		case CONNECT:
 			user.setUsername(message.getContent());
@@ -52,7 +53,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 			createNewChatRoom(message, user);
 			break;
 		default:
-			log.info("Unsuported type " + message.getMessageType());
+			LOGGER.info("Unsuported type " + message.getMessageType());
 			break;
 		}
 	}
@@ -61,7 +62,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		Long empyRoom = chatRoomManager.createChatRoom();
 		chatRoomManager.getRoomById(empyRoom).addUser(
 				manager.getUser(user.getUsername()));
-		String[] results= CommonUtils.splitList(message.getContent());
+		String[] results = CommonUtils.splitList(message.getContent());
 		for (String users : results) {
 			chatRoomManager.getRoomById(empyRoom).addUser(
 					manager.getUser(users));
@@ -74,6 +75,14 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	private void disconnect(Message message) {
 		// TODO disconnect the user and notify other users
 		// that this user has left the server.
+		LOGGER.info("Recieved dissconet message still dont know what to do with it :/");
+		manager.removeUser(manager.getUser(message.getAuthor()).getUser());
+		chatRoomManager
+				.removeUserFromChats(manager.getUser(message.getAuthor()));
+		chatRoomManager.getCommonRoom().sendMessage(
+				new Message(manager.getUserList().toString(), chatRoomManager
+						.getCommonRoom().getId(), TYPE.USERLIST, TYPE.SERVER
+						.toString()));
 
 	}
 
@@ -83,7 +92,6 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		return new Message(content, id, type, author);
 	}
 
-	
 	public Message generateStartChatMessage(Long id, String author,
 			String userList) {
 		return new Message(userList, id, TYPE.STARTCHAT, author);

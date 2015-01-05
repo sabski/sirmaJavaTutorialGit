@@ -18,7 +18,7 @@ import com.sirma.itt.javacourse.chat.server.manager.UserManager;
  */
 public class MainServerThread extends Thread {
 
-	private Logger log = Logger.getLogger(MainServerThread.class);
+	private static final Logger LOGGER = Logger.getLogger(MainServerThread.class);
 	private ServerSocket server;
 	private UserManager userManager;
 	// private ChatRoomManager chatRoomManager;
@@ -30,7 +30,7 @@ public class MainServerThread extends Thread {
 
 	@Override
 	public void run() {
-		log.info("Server thread started");
+		LOGGER.info("Server thread started");
 		startServer();
 		acceptConnections();
 	}
@@ -40,23 +40,23 @@ public class MainServerThread extends Thread {
 		try {
 			server = new ServerSocket(7000);
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		userManager = UserManager.getInstance();
 		ChatRoomManager.getInstance();
-		log.info("startServer");
+		LOGGER.info("startServer");
 		displayMessage("Server has started");
 	}
 
 	protected void acceptConnections() {
-		log.info("acceptConnections");
+		LOGGER.info("acceptConnections");
 		while (!isInterrupted()) {
 			try {
 				Socket client = server.accept();
-				log.info("Client has connected");
+				LOGGER.info("Client has connected");
 				userManager.acceptUser(client);
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 	}
@@ -66,12 +66,12 @@ public class MainServerThread extends Thread {
 	 */
 	public void stopServer() {
 		try {
-			log.info("Stopping server");
+			LOGGER.info("Stopping server");
 			displayMessage("Stoping server");
 			server.close();
 			interrupt();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 	}
 

@@ -9,7 +9,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
-import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
@@ -24,6 +23,7 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 public class UserManager {
 
 	private static final Logger LOGGER = Logger.getLogger(UserManager.class);
+
 	private static UserManager INSTANCE;
 	private Map<String, ClientListenerThread> userMap;
 	private List<ClientListenerThread> tempHolder;
@@ -88,6 +88,9 @@ public class UserManager {
 	 *         is a user with this username.
 	 */
 	public boolean isValidName(String userName) {
+		if (userName.contains("[") || userName.contains("]")) {
+			return false;
+		}
 		if (userMap.keySet() != null) {
 			for (String key : userMap.keySet()) {
 				if (key.equalsIgnoreCase(userName)) {
@@ -123,10 +126,18 @@ public class UserManager {
 		tempHolder.add(listener);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ServerMessageInterpreter getInterpretator() {
 		return interpretator;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 */
 	public void registerUser(ChatUser user) {
 		for (ClientListenerThread thread : tempHolder) {
 			if (thread.getUser().getUsername().equals(user.getUsername())) {
@@ -136,21 +147,23 @@ public class UserManager {
 				thread.sendMessge(interpretator.generateMessage(TYPE.APPROVED,
 						0, thread.getUser().getUsername(), thread.getUser()
 								.getUsername()));
-				thread.sendMessge(new Message(manager.getCommonRoom()
-						.getUsers().toString(),
-						manager.getCommonRoom().getId(), TYPE.STARTCHAT,
+				thread.sendMessge(interpretator.generateMessage(TYPE.STARTCHAT,
+						manager.getCommonRoom().getId(), manager
+								.getCommonRoom().getUsers().toString(),
 						TYPE.SERVER.toString()));
 				break;
 			}
 		}
 	}
 
+	/**
+	 * 
+	 * @param user
+	 */
 	public void rejectUser(ChatUser user) {
 		for (ClientListenerThread thread : tempHolder) {
 			if (thread.getUser().getUsername().equals(user.getUsername())) {
-				tempHolder.remove(thread);
-				userMap.put(user.getUsername(), thread);
-				LOGGER.info("Registering user " + user.getUsername());
+				LOGGER.info("Rejecting user " + user.getUsername());
 				thread.sendMessge(interpretator.generateMessage(TYPE.REFUSED,
 						0, "The user name you entered is invalid : "
 								+ thread.getUser().getUsername(),
@@ -160,16 +173,28 @@ public class UserManager {
 		}
 	}
 
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public ClientListenerThread getClientThreadByName(String name) {
 		return userMap.get(name);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<String> getUserList() {
 		List<String> list = new ArrayList<String>(userMap.keySet());
-
 		return list;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 */
 	public void disconnectUser(ClientListenerThread user) {
 		manager.removeUserFromChats(user);
 	}

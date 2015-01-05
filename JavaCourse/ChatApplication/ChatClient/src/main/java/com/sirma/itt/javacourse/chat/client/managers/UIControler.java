@@ -10,15 +10,16 @@ import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
-import com.sirma.itt.javacourse.chat.common.utils.UIMediator;
+import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
+ * 
  * @author siliev
  * 
  */
-public class UIControler implements UIMediator {
+public class UIControler implements UIColegue {
 
-	private static Logger log = Logger.getLogger(UIControler.class);
+	private static final Logger LOGGER = Logger.getLogger(UIControler.class);
 	private static UIControler instance;
 	private ChatsPanel chatsPanel;
 	private MainClientWindow mainWindow;
@@ -38,18 +39,6 @@ public class UIControler implements UIMediator {
 		return instance;
 	}
 
-	@Override
-	public void processUIEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void sendUIEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void registerChatPanel(ChatsPanel chatsPanel) {
 		this.chatsPanel = chatsPanel;
 	}
@@ -65,7 +54,7 @@ public class UIControler implements UIMediator {
 		String[] users = CommonUtils.splitList(content);
 		mainWindow.getUsers().clear();
 		for (String user : users) {
-			log.info(user);
+			LOGGER.info(user);
 			mainWindow.getUsers().addElement(user);
 		}
 		mainWindow.getUserList().invalidate();
@@ -91,8 +80,9 @@ public class UIControler implements UIMediator {
 	}
 
 	public void sendMessage(String text) {
-		clientThread.sendMessage(new Message(text, chatsPanel.getSelectedChat(), TYPE.MESSAGE, clientInfo
-				.getUserName()));
+		clientThread.sendMessage(new Message(text,
+				chatsPanel.getSelectedChat(), TYPE.MESSAGE, clientInfo
+						.getUserName()));
 	}
 
 	/**
@@ -114,5 +104,19 @@ public class UIControler implements UIMediator {
 			clientThread.sendMessage(new Message(list.toString(), 0,
 					TYPE.STARTCHAT, clientInfo.getUserName()));
 		}
+	}
+
+	/**
+	 * @return the thread
+	 */
+	public ClientThread restartThread() {
+		clientThread = new ClientThread();
+		return clientThread;
+	}
+
+	@Override
+	public void registerComponent() {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -83,6 +83,15 @@ public class ChatRoom {
 	public void removeUser(ClientListenerThread user) {
 		userList.remove(user);
 		usernameList.remove(user.getUser().getUsername());
-		sendMessage(new Message("", id, TYPE.DISCONNECT, TYPE.SERVER.toString()));
+		sendMessage(new Message(user.getUser().getUsername(), id,
+				TYPE.DISCONNECT, TYPE.SERVER.toString()));
+	}
+
+	public boolean isChatRoomEmpty() {
+		if (id == 0 || userList.size() > 1) {
+			return false;
+		}
+
+		return true;
 	}
 }

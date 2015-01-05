@@ -17,7 +17,7 @@ import com.sirma.itt.javacourse.chat.server.manager.UserManager;
  */
 public class ClientListenerThread extends Thread {
 
-	private static Logger log = Logger.getLogger(ClientListenerThread.class);
+	private static final Logger LOGGER = Logger.getLogger(ClientListenerThread.class);
 
 	private ChatUser user;
 	private ServerMessageInterpreter interpretor;
@@ -39,7 +39,7 @@ public class ClientListenerThread extends Thread {
 			inputStream = new ObjectInputStream(user.getInputStream());
 			outputStream = new ObjectOutputStream(user.getOutputStream());
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 	}
 
@@ -54,11 +54,11 @@ public class ClientListenerThread extends Thread {
 
 	@Override
 	public void run() {
-		log.info("Started listening to messages from " + user.getUsername());
+		LOGGER.info("Started listening to messages from " + user.getUsername());
 		try {
 			readClientMessage();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 	}
 
@@ -72,12 +72,12 @@ public class ClientListenerThread extends Thread {
 		Message message = null;
 		try {
 			while ((message = (Message) inputStream.readObject()) != null) {
-				log.info("Read message " + message.getChatRoomId() + " "
+				LOGGER.info("Read message " + message.getChatRoomId() + " "
 						+ message.getMessageType() + " " + message.getContent());
 				interpretor.interpretMessage(message, user);
 			}
 		} catch (ClassNotFoundException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		} finally {
 			manager.disconnectUser(this);
 		}
@@ -93,11 +93,11 @@ public class ClientListenerThread extends Thread {
 		if (user != null) {
 			try {
 				outputStream.writeObject(message);
-				log.info("Message was sent : " + message);
+				LOGGER.info("Message was sent : " + message);
 				outputStream.flush();
 				outputStream.reset();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 	}

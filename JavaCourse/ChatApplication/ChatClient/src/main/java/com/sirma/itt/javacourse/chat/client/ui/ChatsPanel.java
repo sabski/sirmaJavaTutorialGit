@@ -1,7 +1,6 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +16,8 @@ import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
+ * The main chat panel window.
+ * 
  * 
  * @author siliev
  * 
@@ -25,7 +26,7 @@ public class ChatsPanel extends JPanel implements UIColegue {
 
 	private static final long serialVersionUID = -3781827111159603799L;
 
-	private static Logger log = Logger.getLogger(ChatsPanel.class);
+	private static final Logger LOGGER = Logger.getLogger(ChatsPanel.class);
 	private JTabbedPane tabbedPane;
 	private UIControler controler = UIControler.getInstance();
 	private List<ChatWindow> tabs;
@@ -38,26 +39,42 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		setUp();
 	}
 
+	/**
+	 * Sets up the UI settings.
+	 */
 	private void setUp() {
-		// TODO Full set up off the tabbed pane.
 		tabbedPane = new JTabbedPane();
 		JPanel panel = this;
-		panel.add(tabbedPane);
-		tabbedPane.setPreferredSize(new Dimension(480, 315));
-		panel.setLayout(new FlowLayout());
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		panel.setLayout(new BorderLayout());
+		panel.add(tabbedPane, BorderLayout.CENTER);
 		registerComponent();
 	}
 
+	/**
+	 * Adds the new tab to the tabbed pane.
+	 * 
+	 * 
+	 * @param info
+	 *            the information for the new tab.
+	 */
 	public void addNewTab(Message info) {
-		log.info("Adding tab");
+		LOGGER.info("Adding tab");
 		ChatWindow chatWindow = createNewPanel(info);
 		tabbedPane.add(info.getContent(), chatWindow);
 		tabbedPane.invalidate();
 		tabs.add(chatWindow);
 	}
 
+	/**
+	 * Creates a new chat window.
+	 * 
+	 * @param info
+	 *            the information required for the new chat window.
+	 * @return the new chat window.
+	 */
 	private ChatWindow createNewPanel(Message info) {
-		log.info("Creating new window");
+		LOGGER.info("Creating new window");
 		ChatWindow panel = new ChatWindow();
 		panel.setChatID(info.getChatRoomId());
 		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info
@@ -66,27 +83,26 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	}
 
 	@Override
-	public void sendUIEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void respondToEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void registerComponent() {
 		controler.registerChatPanel(this);
 	}
 
+	/**
+	 * Gets the current selected chats id.
+	 * 
+	 * @return the selected chat windows ID.
+	 */
 	public Long getChatId() {
 		ChatWindow window = (ChatWindow) tabbedPane.getSelectedComponent();
 		return window.getChatID();
 	}
 
+	/**
+	 * Send a message to be displayed in the proper tab.
+	 * 
+	 * @param message
+	 *            the message that is tso be processed.
+	 */
 	public void processMessage(Message message) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getChatID() == message.getChatRoomId()) {
@@ -96,6 +112,14 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		}
 	}
 
+	/**
+	 * Checks if there is already a chat room with the people we have selected.
+	 * 
+	 * @param list
+	 *            the list of users we want to check.
+	 * @return true if there is no chat with the same user is there is then the
+	 *         result is false.
+	 */
 	public boolean checkPanels(List<String> list) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getUserNames().containsAll(list)
@@ -106,8 +130,17 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		return true;
 	}
 
+	/**
+	 * Returns the selected chats ID.
+	 */
 	public Long getSelectedChat() {
 		ChatWindow window = (ChatWindow) tabbedPane.getSelectedComponent();
 		return window.getChatID();
+	}
+
+	public void resetChats() {
+		tabs.clear();
+		tabbedPane.removeAll();
+		// tabbedPane.invalidate();
 	}
 }

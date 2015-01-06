@@ -140,7 +140,7 @@ public class UserManager {
 	 */
 	public void registerUser(ChatUser user) {
 		for (ClientListenerThread thread : tempHolder) {
-			if (thread.getUser().getUsername().equals(user.getUsername())) {
+			if (thread.getUser().equals(user)) {
 				tempHolder.remove(thread);
 				userMap.put(user.getUsername(), thread);
 				LOGGER.info("Registering user " + user.getUsername());

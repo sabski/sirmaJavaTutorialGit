@@ -59,10 +59,17 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		case SERVER:
 
 			break;
+		case USERLISTADD:
+			LOGGER.info(message);
+			controler.updateUserListAdd(message.getContent());
+			break;
 		case USERLIST:
-			// TODO HELP ME HERE
 			LOGGER.info(message);
 			controler.updateUserList(message.getContent());
+			break;
+		case USERLISTREMOVE:
+			LOGGER.info(message);
+			controler.updateUserListRemove(message.getContent());
 			break;
 		case DISCONNECT:
 			LOGGER.info(message);
@@ -89,8 +96,8 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 
 	public static String inputUserName() {
 		String name = null;
-		name = JOptionPane.showInputDialog(LanguageController
-				.getWord("inputUsername"));
+		name = JOptionPane.showInputDialog(
+				LanguageController.getWord("inputUsername"), null);
 		return name;
 	}
 

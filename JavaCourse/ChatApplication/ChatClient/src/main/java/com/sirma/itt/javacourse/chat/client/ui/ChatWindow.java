@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 import com.sirma.itt.javacourse.chat.common.Message;
 
@@ -28,12 +29,15 @@ public class ChatWindow extends JPanel {
 	public ChatWindow() {
 		textArea = new JTextArea(16, 39);
 		textArea.setEditable(false);
+		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane scrollableTextArea = new JScrollPane(textArea);
 		scrollableTextArea
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		setLayout(new BorderLayout());
 		add(scrollableTextArea, BorderLayout.CENTER);
 		this.setSize(400, 500);
+
 	}
 
 	/**

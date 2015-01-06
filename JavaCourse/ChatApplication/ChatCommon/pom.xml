@@ -19,6 +19,5 @@
 			<artifactId>seaglasslookandfeel</artifactId>
 			<version>0.1.6.1</version>
 		</dependency>
-
 	</dependencies>
 </project>

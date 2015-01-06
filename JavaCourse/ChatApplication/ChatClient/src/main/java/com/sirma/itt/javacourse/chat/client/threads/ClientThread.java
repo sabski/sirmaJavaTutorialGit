@@ -49,9 +49,8 @@ public class ClientThread extends Thread {
 			manager = new ClientMessageInterpretor(this);
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
-			JOptionPane.showMessageDialog(null,
-					"Eggs are not supposed to be green.", "Inane error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Server is not reachable.",
+					"Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

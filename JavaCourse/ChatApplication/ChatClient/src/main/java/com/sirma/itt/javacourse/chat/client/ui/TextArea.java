@@ -7,14 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
 
 import org.apache.log4j.Logger;
@@ -22,10 +20,10 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
-import com.sirma.itt.javacourse.chat.client.ui.componnents.JLimitTextField;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextDocument;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
+import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
  * @author siliev
@@ -41,16 +39,19 @@ public class TextArea extends JPanel implements UIColegue {
 	private int index;
 	private JTextField messageField;
 	private JButton sendButton;
-	private JToggleButton connectButton;
+	private JButton connectButton;
+	private JButton disconnectButton;
 	private JButton languageButton;
 	private UIControler controler;
 
 	/**
 	 * @param connectButton
+	 * @param disconnectButton
 	 * 
 	 */
-	public TextArea(JToggleButton connectButton) {
+	public TextArea(JButton connectButton, JButton disconnectButton) {
 		this.connectButton = connectButton;
+		this.disconnectButton = disconnectButton;
 		mementos = new ArrayList<>();
 		originator = new MessageOriginator();
 		controler = UIControler.getInstance();
@@ -64,12 +65,14 @@ public class TextArea extends JPanel implements UIColegue {
 		JPanel mainWindow = this;
 		mainWindow.setLayout(new FlowLayout());
 		messageField = new JTextField();
-		messageField.setDocument(new JLimitTextField(200));
-		sendButton = new JButton("Send");
-		languageButton = new JButton("EN/BG");
+		messageField.setDocument(new LimitTextDocument(200));
+		sendButton = new JButton(LanguageController.getWord("send"));
+		languageButton = new JButton(LanguageController.getWord("enbg"));
 		messageField.setPreferredSize(new Dimension(250, 30));
+		messageField.setEditable(false);
 		mainWindow.add(languageButton);
 		mainWindow.add(connectButton);
+		mainWindow.add(disconnectButton);
 		mainWindow.add(messageField);
 		mainWindow.add(sendButton);
 		listenersSetUp();
@@ -90,18 +93,21 @@ public class TextArea extends JPanel implements UIColegue {
 			}
 
 		});
-
 		languageButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Write the action.
-				if (LanguageController.getCurrentLanguage() == Locale.ENGLISH){
-					LanguageController.setLanguage(LANGUGES.BG.toString());	
-				}else {
+				LOGGER.info("Language is "
+						+ LanguageController.getCurrentLanguage());
+				if (LanguageController.getCurrentLanguage().equals(
+						LANGUGES.BG.toString())) {
 					LanguageController.setLanguage(LANGUGES.EN.toString());
+				} else {
+					LanguageController.setLanguage(LANGUGES.BG.toString());
 				}
-				
+				LanguageController.invalidateComponents();
+				invalidate();
 			}
 		});
 
@@ -158,10 +164,14 @@ public class TextArea extends JPanel implements UIColegue {
 		messageField.getActionMap().put("keyDown", keyDown);
 		messageField.getActionMap().put("keyUp", keyUp);
 
+		LanguageController.addComponent("connect", connectButton);
+		LanguageController.addComponent("disconnect", disconnectButton);
+		LanguageController.addComponent("enbg", languageButton);
+		LanguageController.addComponent("send", sendButton);
 	}
 
 	private void sendMessage(String text) {
-		
+		text = text.substring(0, 1).toUpperCase() + text.substring(1);
 		controler.sendMessage(text);
 		originator.setState(messageField.getText());
 		mementos.add(0, originator.saveToMemento());
@@ -171,7 +181,15 @@ public class TextArea extends JPanel implements UIColegue {
 
 	@Override
 	public void registerComponent() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubs
 		// controler.registerTextArea(this);
+	}
+
+	public void toogleText() {
+		if (messageField.isEditable()) {
+			messageField.setEditable(false);
+		} else {
+			messageField.setEditable(true);
+		}
 	}
 }

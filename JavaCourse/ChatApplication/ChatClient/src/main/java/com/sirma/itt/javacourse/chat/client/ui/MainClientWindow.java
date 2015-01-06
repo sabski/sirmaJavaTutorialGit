@@ -1,17 +1,18 @@
 package com.sirma.itt.javacourse.chat.client.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -37,7 +38,8 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 public class MainClientWindow extends JFrame implements UIColegue {
 
 	private static final long serialVersionUID = 1826026493714885025L;
-	private JToggleButton connectButton;
+	private JButton connectButton;
+	private JButton disconnectButton;
 	private ClientThread client;
 	private TextArea textArea;
 	private ChatsPanel chatPanel;
@@ -83,14 +85,16 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	private void setUp() {
 		LanguageController.setLanguage(LANGUGES.BG.toString());
 		JFrame mainWindow = this;
-		connectButton = new JToggleButton(LanguageController.getWord("connect"));
+		connectButton = new JButton(LanguageController.getWord("connect"));
+		disconnectButton = new JButton(LanguageController.getWord("disconnect"));
 		chatPanel = new ChatsPanel();
-		textArea = new TextArea(connectButton);
+		textArea = new TextArea(connectButton, disconnectButton);
 		users = new DefaultListModel<>();
 		userList = new JList<String>(users);
 		mainWindow.setLayout(new BorderLayout());
 		userList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		userList.setLayoutOrientation(JList.VERTICAL);
+		userList.setMinimumSize(new Dimension(100, 200));
 		scroll = new JScrollPane(userList);
 		client = controler.getThread();
 		JPanel userListPanel = new JPanel(new BorderLayout());
@@ -118,6 +122,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			}
 
 		});
+
 		setUpListeners();
 	}
 
@@ -126,20 +131,30 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (connectButton.isSelected()) {
-					String name = ClientMessageInterpretor.inputUserName();
-					client.start();
-					client.sendMessage(new Message(name, 0, TYPE.CONNECT, null));
-					connectButton.setText("Disconnect");
-				} else {
-					if (client != null && client.isAlive()) {
-						client.interrupt();
-						client = controler.restartThread();
-						connectButton.setText("Connect");
-						chatPanel.resetChats();
-					}
-				}
+				client.start();
+				String name = ClientMessageInterpretor.inputUserName();
+				client.sendMessage(new Message(name, 0, TYPE.CONNECT, name));
+				connectButton.setText(LanguageController.getWord("disconnect"));
+				textArea.toogleText();
+				connectButton.setEnabled(false);
+				disconnectButton.setEnabled(true);
+			}
+		});
 
+		disconnectButton.setEnabled(false);
+		disconnectButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (client != null && client.isAlive()) {
+					client.interrupt();
+					client = controler.restartThread();
+					connectButton.setText(LanguageController.getWord("connect"));
+					chatPanel.resetChats();
+					textArea.toogleText();
+					connectButton.setEnabled(true);
+					disconnectButton.setEnabled(false);
+				}
 			}
 		});
 

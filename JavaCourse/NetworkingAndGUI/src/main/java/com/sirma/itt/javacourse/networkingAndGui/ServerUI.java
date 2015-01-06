@@ -84,6 +84,11 @@ public class ServerUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				server.stopServer();
+				try {
+					server = server.getClass().newInstance();
+				} catch (InstantiationException | IllegalAccessException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 	}

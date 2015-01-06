@@ -60,6 +60,16 @@ public class UIControler implements UIColegue {
 		mainWindow.getUserList().invalidate();
 	}
 
+	public void updateUserListAdd(String content) {
+		mainWindow.getUsers().addElement(content);
+		mainWindow.getUserList().invalidate();
+	}
+
+	public void updateUserListRemove(String content) {
+		mainWindow.getUsers().removeElement(content);
+		mainWindow.getUserList().invalidate();
+	}
+
 	public void registerMainWindow(MainClientWindow mainClientWindow) {
 		this.mainWindow = mainClientWindow;
 	}

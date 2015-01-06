@@ -3,6 +3,8 @@ package com.sirma.itt.javacourse.chat.server.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
@@ -16,6 +18,7 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
  */
 public class ChatRoom {
 
+	private static final Logger LOGGER = Logger.getLogger(ChatRoom.class);
 	private static long chatRoomCount = 0;
 
 	private Long id;
@@ -81,6 +84,7 @@ public class ChatRoom {
 	 *            the user we want to remove from the chat room.
 	 */
 	public void removeUser(ClientListenerThread user) {
+		LOGGER.info("Removing user" + user.getUser().getUsername());
 		userList.remove(user);
 		usernameList.remove(user.getUser().getUsername());
 		sendMessage(new Message(user.getUser().getUsername(), id,

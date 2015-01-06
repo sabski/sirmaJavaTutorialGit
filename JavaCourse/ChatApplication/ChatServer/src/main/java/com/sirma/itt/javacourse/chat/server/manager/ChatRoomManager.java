@@ -101,16 +101,17 @@ public class ChatRoomManager {
 	 */
 	public void removeUserFromChats(ClientListenerThread user) {
 		LOGGER.info("Searching for users to remove");
-		for (Entry<Long, ChatRoom> room : chatRooms.entrySet()) {
-			if (room.getValue().containsUser(user.getUser().getUsername())) {
-				room.getValue().removeUser(user);
-				LOGGER.info("Removed user");
-				if (room.getValue().isChatRoomEmpty()) {
-					chatRooms.remove(room);
-					freeRooms.add(room.getValue());
+		if (!chatRooms.isEmpty()) {
+			for (Entry<Long, ChatRoom> room : chatRooms.entrySet()) {
+				if (room.getValue().containsUser(user.getUser().getUsername())) {
+					room.getValue().removeUser(user);
+					LOGGER.info("Removed user");
+					if (room.getValue().isChatRoomEmpty()) {
+						chatRooms.remove(room);
+						freeRooms.add(room.getValue());
+					}
 				}
 			}
 		}
-		commonRoom.removeUser(user);
 	}
 }

@@ -7,6 +7,7 @@ import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
+import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
  * Interprets the received server messages from the clients.
@@ -76,13 +77,13 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		// TODO disconnect the user and notify other users
 		// that this user has left the server.
 		LOGGER.info("Recieved dissconet message still dont know what to do with it :/");
-		manager.removeUser(manager.getUser(message.getAuthor()).getUser());
 		chatRoomManager
 				.removeUserFromChats(manager.getUser(message.getAuthor()));
+		manager.removeUser(manager.getUser(message.getAuthor()).getUser());
 		chatRoomManager.getCommonRoom().sendMessage(
-				new Message(manager.getUserList().toString(), chatRoomManager
-						.getCommonRoom().getId(), TYPE.USERLIST, TYPE.SERVER
-						.toString()));
+				new Message(message.getAuthor(), chatRoomManager
+						.getCommonRoom().getId(), TYPE.USERLISTREMOVE,
+						TYPE.SERVER.toString()));
 
 	}
 
@@ -110,8 +111,8 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	private void registerUser(Message message, ChatUser user) {
 		if (manager.isValidName(message.getContent())) {
 			manager.registerUser(user);
-			chatRoomManager.getCommonRoom().addUser(
-					manager.getUser(user.getUsername()));
+			ClientListenerThread newUser = manager.getUser(user.getUsername());
+			chatRoomManager.getCommonRoom().addUser(newUser);
 			chatRoomManager.getCommonRoom().sendMessage(
 					new Message(manager.getUserList().toString(),
 							chatRoomManager.getCommonRoom().getId(),

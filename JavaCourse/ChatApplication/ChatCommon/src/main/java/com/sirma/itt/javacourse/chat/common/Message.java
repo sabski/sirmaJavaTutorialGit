@@ -7,7 +7,7 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = -103156352094886756L;
 
 	public static enum TYPE {
-		CONNECT, DISCONNECT, MESSAGE, STARTCHAT, SERVER, APPROVED, REFUSED, USERLIST, REMOVEUSER
+		CONNECT, DISCONNECT, MESSAGE, STARTCHAT, SERVER, APPROVED, REFUSED, USERLIST, USERLISTADD, USERLISTREMOVE, REMOVEUSER
 	};
 
 	private String content;

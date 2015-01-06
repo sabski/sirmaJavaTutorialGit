@@ -1,7 +1,12 @@
 package com.sirma.itt.javacourse.chat.common.utils;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
+
+import javax.swing.AbstractButton;
 
 import org.apache.log4j.Logger;
 
@@ -19,7 +24,7 @@ public class LanguageController {
 	private static Logger log = Logger.getLogger(LanguageController.class);
 
 	public static enum LANGUGES {
-		EN("en"), BG("bg");
+		EN("ENGLISH"), BG("bg");
 
 		private final String value;
 
@@ -35,6 +40,7 @@ public class LanguageController {
 	private static String currentLanguage = LANGUGES.EN.toString();
 	private static Locale currentLocale;
 	private static ResourceBundle messages;
+	private static Map<String, AbstractButton> components = new HashMap<String, AbstractButton>();
 
 	/**
 	 * Sets the current language.
@@ -72,10 +78,22 @@ public class LanguageController {
 	 * class.
 	 */
 	private LanguageController() {
-
 	}
 
-	public static Locale getCurrentLanguage() {
-		return currentLocale;
+	public static String getCurrentLanguage() {
+		return currentLanguage;
+	}
+
+	public static void addComponent(String propertyValue,
+			AbstractButton component) {
+		components.put(propertyValue, component);
+	}
+
+	public static void invalidateComponents() {
+		for (Entry<String, AbstractButton> entry : components.entrySet()) {
+			String value = entry.getKey();
+			AbstractButton component = entry.getValue();
+			component.setText(getWord(value));
+		}
 	}
 }

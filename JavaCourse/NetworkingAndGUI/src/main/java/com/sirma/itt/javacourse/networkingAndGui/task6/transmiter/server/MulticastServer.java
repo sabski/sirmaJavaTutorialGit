@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.sirma.itt.javacourse.SocketGenerator;
 import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
 import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispacher.AbstractMessageModerator;
@@ -24,7 +26,7 @@ import com.sirma.itt.javacourse.networkingAndGui.task6.transmiter.messagedispach
  */
 public class MulticastServer extends AbstractServer {
 
-	private static org.apache.log4j.Logger log = org.apache.log4j.Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(MulticastServer.class);
 
 	private ServerSocket server;
@@ -35,18 +37,18 @@ public class MulticastServer extends AbstractServer {
 
 	public void startServer() {
 		server = SocketGenerator.createServerSocket();
-		log.info("Server started");
+		LOGGER.info("Server started");
 		displayMessage("Server started");
 	}
 
 	public void stopServer() {
-		log.info("Server is stoping");
+		LOGGER.info("Server is stoping");
 		displayMessage("Server is stoping");
 		activeAddresses.clear();
 		try {
 			server.close();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		dispacher.interrupt();
 		interrupt();
@@ -56,12 +58,12 @@ public class MulticastServer extends AbstractServer {
 		while (!server.isClosed()) {
 			try {
 				client = server.accept();
-				log.info("Client connected");
+				LOGGER.info("Client connected");
 				InetAddress clientAddress = supplier.getRandomAddress();
 				dispacher.addChanell(clientAddress);
 				sendClientMulticastAddress(client, clientAddress);
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
@@ -84,13 +86,13 @@ public class MulticastServer extends AbstractServer {
 				outputStream = new ObjectOutputStream(
 						clientSocket.getOutputStream());
 				outputStream.writeObject(address.getCanonicalHostName());
-				log.info("Address given to client :"
+				LOGGER.info("Address given to client :"
 						+ address.getCanonicalHostName());
 				displayMessage("Address given to client :"
 						+ address.getCanonicalHostName());
 				outputStream.flush();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}

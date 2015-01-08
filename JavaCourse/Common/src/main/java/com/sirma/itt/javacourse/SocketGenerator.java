@@ -31,7 +31,7 @@ public class SocketGenerator {
 	 */
 	public final static String HOST_ADDRESS = "localhost";
 
-	private final static Logger log = Logger.getLogger(SocketGenerator.class);
+	private final static Logger LOGGER = Logger.getLogger(SocketGenerator.class);
 
 	/**
 	 * Creates a new {@link Socket} at {@value #HOST_ADDRESS} at a single port
@@ -65,7 +65,7 @@ public class SocketGenerator {
 				client = createSocket(host, i);
 				break;
 			} catch (IOException e) {
-				//log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		return client;
@@ -118,7 +118,7 @@ public class SocketGenerator {
 				server = createServerSocket(i);
 				break;
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		return server;

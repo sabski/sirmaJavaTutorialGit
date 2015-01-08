@@ -26,7 +26,7 @@ public class ChatRoom {
 	private List<String> usernameList;
 
 	/**
-	 * @return the id
+	 * @return the id of the chat room.
 	 */
 	public Long getId() {
 		return id;
@@ -60,18 +60,25 @@ public class ChatRoom {
 	 */
 	public void sendMessage(Message message) {
 		for (ClientListenerThread user : userList) {
-			user.sendMessge(message);
+			user.sendMessage(message);
 		}
 	}
 
+	/**
+	 * 
+	 * @return the list of user for the chatroom.
+	 */
 	public List<String> getUsers() {
 		return usernameList;
 	}
 
 	/**
+	 * Checks the room if it contains a user by his username.
 	 * 
 	 * @param user
-	 * @return
+	 *            the user we want to check is in the room.A
+	 * 
+	 * @return true if the user is in the list, false otherwise.
 	 */
 	public boolean containsUser(String user) {
 		return usernameList.contains(user);
@@ -91,8 +98,14 @@ public class ChatRoom {
 				TYPE.DISCONNECT, TYPE.SERVER.toString()));
 	}
 
+	/**
+	 * Checks if the current chat room is empty.
+	 * 
+	 * @return true if there are no users in the room, false if there is at
+	 *         least one user in the room.
+	 */
 	public boolean isChatRoomEmpty() {
-		if (id == 0 || userList.size() > 1) {
+		if (id == 0 || userList.size() > 0) {
 			return false;
 		}
 

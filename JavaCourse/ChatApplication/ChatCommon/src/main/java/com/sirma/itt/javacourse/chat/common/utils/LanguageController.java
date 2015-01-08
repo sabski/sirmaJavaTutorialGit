@@ -80,6 +80,11 @@ public class LanguageController {
 	private LanguageController() {
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return the current language setting
+	 */
 	public static String getCurrentLanguage() {
 		return currentLanguage;
 	}

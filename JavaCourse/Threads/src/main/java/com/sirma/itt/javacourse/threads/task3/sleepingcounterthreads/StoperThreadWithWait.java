@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 public class StoperThreadWithWait extends Thread {
 
 	private final static Logger LOGGER = Logger
-		
 			.getLogger(StoperThreadWithWait.class);
 
 	private int currentCount = 0;

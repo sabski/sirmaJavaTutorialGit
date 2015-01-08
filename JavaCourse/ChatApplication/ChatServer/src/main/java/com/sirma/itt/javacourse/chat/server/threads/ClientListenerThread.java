@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
@@ -17,7 +18,8 @@ import com.sirma.itt.javacourse.chat.server.manager.UserManager;
  */
 public class ClientListenerThread extends Thread {
 
-	private static final Logger LOGGER = Logger.getLogger(ClientListenerThread.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(ClientListenerThread.class);
 
 	private ChatUser user;
 	private ServerMessageInterpreter interpretor;
@@ -30,16 +32,21 @@ public class ClientListenerThread extends Thread {
 	 * 
 	 * @param user
 	 *            the user that is associated with this thread.
+	 * @throws ChatException
 	 */
-	public ClientListenerThread(ChatUser user) {
-		this.user = user;
-		manager = UserManager.getInstance();
-		interpretor = manager.getInterpretator();
-		try {
-			inputStream = new ObjectInputStream(user.getInputStream());
-			outputStream = new ObjectOutputStream(user.getOutputStream());
-		} catch (IOException e) {
-			LOGGER.error(e.getMessage(), e);
+	public ClientListenerThread(ChatUser user) throws ChatException {
+		if (user != null) {
+			this.user = user;
+			manager = UserManager.getInstance();
+			interpretor = manager.getInterpretator();
+			try {
+				inputStream = new ObjectInputStream(user.getInputStream());
+				outputStream = new ObjectOutputStream(user.getOutputStream());
+			} catch (IOException e) {
+				LOGGER.error(e.getMessage(), e);
+			}
+		} else {
+			throw new ChatException();
 		}
 	}
 
@@ -89,16 +96,14 @@ public class ClientListenerThread extends Thread {
 	 * @param message
 	 *            the message that is sent to the user.
 	 */
-	public void sendMessge(Message message) {
-		if (user != null) {
-			try {
-				outputStream.writeObject(message);
-				LOGGER.info("Message was sent : " + message);
-				outputStream.flush();
-				outputStream.reset();
-			} catch (IOException e) {
-				LOGGER.error(e.getMessage(), e);
-			}
+	public void sendMessage(Message message) {
+		try {
+			outputStream.writeObject(message);
+			outputStream.flush();
+			outputStream.reset();
+			LOGGER.info("Message was sent : " + message);
+		} catch (IOException e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 	}
 }

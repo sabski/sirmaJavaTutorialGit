@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
@@ -121,9 +122,14 @@ public class UserManager {
 	 */
 	public void acceptUser(Socket client) {
 		ChatUser user = new ChatUser(null, client);
-		ClientListenerThread listener = new ClientListenerThread(user);
-		listener.start();
-		tempHolder.add(listener);
+		ClientListenerThread listener;
+		try {
+			listener = new ClientListenerThread(user);
+			listener.start();
+			tempHolder.add(listener);
+		} catch (ChatException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
 	}
 
 	/**
@@ -144,10 +150,10 @@ public class UserManager {
 				tempHolder.remove(thread);
 				userMap.put(user.getUsername(), thread);
 				LOGGER.info("Registering user " + user.getUsername());
-				thread.sendMessge(interpretator.generateMessage(TYPE.APPROVED,
+				thread.sendMessage(interpretator.generateMessage(TYPE.APPROVED,
 						0, thread.getUser().getUsername(), thread.getUser()
 								.getUsername()));
-				thread.sendMessge(interpretator.generateMessage(TYPE.STARTCHAT,
+				thread.sendMessage(interpretator.generateMessage(TYPE.STARTCHAT,
 						manager.getCommonRoom().getId(), manager
 								.getCommonRoom().getUsers().toString(),
 						TYPE.SERVER.toString()));
@@ -164,7 +170,7 @@ public class UserManager {
 		for (ClientListenerThread thread : tempHolder) {
 			if (thread.getUser().getUsername().equals(user.getUsername())) {
 				LOGGER.info("Rejecting user " + user.getUsername());
-				thread.sendMessge(interpretator.generateMessage(TYPE.REFUSED,
+				thread.sendMessage(interpretator.generateMessage(TYPE.REFUSED,
 						0, "The user name you entered is invalid : "
 								+ thread.getUser().getUsername(),
 						TYPE.SERVER.toString()));

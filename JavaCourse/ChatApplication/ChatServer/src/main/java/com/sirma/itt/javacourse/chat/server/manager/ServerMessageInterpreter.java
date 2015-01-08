@@ -84,7 +84,6 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 				new Message(message.getAuthor(), chatRoomManager
 						.getCommonRoom().getId(), TYPE.USERLISTREMOVE,
 						TYPE.SERVER.toString()));
-
 	}
 
 	@Override

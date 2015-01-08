@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
  */
 public class ChatUser {
 
-	private static Logger log = Logger.getLogger(ChatUser.class);
+	private static final Logger LOGGER = Logger.getLogger(ChatUser.class);
 
 	private String username;
 	private Socket clientSocket;
@@ -36,13 +36,13 @@ public class ChatUser {
 			this.outputStream = clientSocket.getOutputStream();
 			this.inputStream = clientSocket.getInputStream();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 
 	}
 
 	/**
-	 * @return the username
+	 * @return the username of the user
 	 */
 	public String getUsername() {
 		return username;

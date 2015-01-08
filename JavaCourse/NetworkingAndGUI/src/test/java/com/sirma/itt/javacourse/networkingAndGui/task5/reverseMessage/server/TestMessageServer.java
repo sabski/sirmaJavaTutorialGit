@@ -22,7 +22,8 @@ import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.client.Mes
  */
 public class TestMessageServer {
 
-	private static Logger log = Logger.getLogger(TestMessageServer.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(TestMessageServer.class);
 
 	private MessageClient client;
 	@Mock
@@ -57,14 +58,14 @@ public class TestMessageServer {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		client.sendMessageToServer("aaaa");
 
 		try {
 			Thread.sleep(700);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		client.stopClient();
 		server.stopServer();
@@ -82,7 +83,7 @@ public class TestMessageServer {
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		server.stopServer();
 		assertTrue(serverTextArea.getText().contains("Server is starting"));
@@ -99,7 +100,7 @@ public class TestMessageServer {
 		try {
 			Thread.sleep(430);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		server.stopServer();
 		assertTrue(serverTextArea.getText().contains("Server is stopped"));

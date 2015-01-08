@@ -19,9 +19,13 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 public class ChatRoomManager {
 	private static final Logger LOGGER = Logger
 			.getLogger(ChatRoomManager.class);
+
 	private static ChatRoomManager instance;
+
 	private Map<Long, ChatRoom> chatRooms;
+
 	private List<ChatRoom> freeRooms;
+
 	private ChatRoom commonRoom;
 
 	/**
@@ -78,7 +82,7 @@ public class ChatRoomManager {
 	/**
 	 * Creates the common room which is sent to all the users.
 	 */
-	public void createCommonRoom() {
+	private void createCommonRoom() {
 		commonRoom = new ChatRoom();
 		chatRooms.put(commonRoom.getId(), commonRoom);
 	}

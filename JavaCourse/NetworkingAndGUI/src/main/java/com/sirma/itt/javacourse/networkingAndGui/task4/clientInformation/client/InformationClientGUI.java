@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
+ * The user interface of the Information client.
+ * 
  * @author Simeon Iliev
  */
 public class InformationClientGUI extends JFrame {
@@ -31,6 +33,9 @@ public class InformationClientGUI extends JFrame {
 		setUp();
 	}
 
+	/**
+	 * Sets up all the UI variables.
+	 */
 	private void setUp() {
 		final InformationClientGUI mainWindow = this;
 		connectButton = new JButton("Connect");
@@ -55,9 +60,6 @@ public class InformationClientGUI extends JFrame {
 
 		mainWindow.addWindowListener(new WindowAdapter() {
 
-			/**
-			 * {@inheritDoc}
-			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (client != null && client.isAlive()) {
@@ -65,14 +67,13 @@ public class InformationClientGUI extends JFrame {
 				}
 				System.exit(0);
 			}
-
 		});
 	}
 
 	/**
 	 * Getter method for messageWingow.
 	 * 
-	 * @return the messageWingow
+	 * @return the messageWingow the window where all the messages are.
 	 */
 	public JTextArea getMessageWingow() {
 		return messageWingow;
@@ -89,7 +90,7 @@ public class InformationClientGUI extends JFrame {
 	}
 
 	/**
-	 * Main method
+	 * Main method.
 	 * 
 	 * @param args
 	 *            arguments for the main method.
@@ -97,5 +98,4 @@ public class InformationClientGUI extends JFrame {
 	public static void main(String[] args) {
 		new InformationClientGUI();
 	}
-
 }

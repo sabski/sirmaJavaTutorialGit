@@ -3,7 +3,7 @@ package com.sirma.itt.javacourse.threads.task1.stopcounterthread;
 import org.apache.log4j.Logger;
 
 /**
- * Class that counts the time from the start of the Thread to a concole command or a specific value.
+ * Class that counts the time from the start of the Thread to a console command or a specific value.
  * 
  * @author Simeon Iliev
  */
@@ -37,6 +37,7 @@ public class CounterThread extends Thread {
 	}
 
 	/**
+	 * Gets the number the thread has counted to.
 	 * @return the current count.
 	 */
 	public int getCount() {

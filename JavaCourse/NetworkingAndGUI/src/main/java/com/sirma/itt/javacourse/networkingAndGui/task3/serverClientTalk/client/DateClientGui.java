@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -23,7 +22,6 @@ public class DateClientGui extends JFrame {
 	private static final long serialVersionUID = 3497964934272245742L;
 
 	private JTextArea messageWingow;
-	private JLabel messageLabel;
 	private DateClient client;
 	private JButton connectButton;
 
@@ -41,12 +39,10 @@ public class DateClientGui extends JFrame {
 		JFrame mainWindow = this;
 		messageWingow = new JTextArea();
 		connectButton = new JButton("Connect");
-		messageLabel = new JLabel("Actions");
 		messageWingow.setEditable(false);
 		JPanel labelPanel = new JPanel();
 		labelPanel.setPreferredSize(new Dimension(300, 30));
 		labelPanel.add(connectButton);
-		labelPanel.add(messageLabel);
 		mainWindow.setLayout(new BorderLayout());
 		mainWindow.setTitle("Date Client");
 		mainWindow.add(labelPanel, BorderLayout.NORTH);
@@ -68,12 +64,8 @@ public class DateClientGui extends JFrame {
 	 * closes the connection.
 	 */
 	private void startConnection() {
-		client = new DateClient();
-		messageWingow
-				.setText(messageWingow.getText() + "\n" + client.connect());
-		messageWingow.setText(messageWingow.getText() + "\n"
-				+ client.getMessage());
-		messageWingow.setText(messageWingow.getText() + "\n"
-				+ client.disconnect());
+		client = new DateClient(messageWingow);
+		client.start();
 	}
+
 }

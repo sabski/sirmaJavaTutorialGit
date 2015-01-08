@@ -12,17 +12,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.apache.log4j.Logger;
-
 import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.Command;
-import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder;
+import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.ClearAllListener;
+import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.ClearListener;
+import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.NumberButtonLister;
+import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.OperationListener;
 
 /**
  * @author Simeon Iliev
  */
 public class CalculatorGui extends JFrame {
 
-	private static Logger log = Logger.getLogger(CalculatorGui.class);
 	/**
 	 * Comment for serialVersionUID.
 	 */
@@ -53,9 +53,7 @@ public class CalculatorGui extends JFrame {
 
 	private ActionListener numberButtonListener;
 	private ActionListener operationListener;
-	private final CommandBuilder builder;
 	private String firstNumber;
-	private String secondNumber;
 	private Command command;
 
 	/**
@@ -63,7 +61,6 @@ public class CalculatorGui extends JFrame {
 	 */
 	public CalculatorGui() {
 		starBuildingGUI();
-		builder = CommandBuilder.getInstance();
 	}
 
 	/**
@@ -141,23 +138,7 @@ public class CalculatorGui extends JFrame {
 		numberNineButton = new JButton("9");
 		numberZeroButton = new JButton("0");
 
-		numberButtonListener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (command != null && command.isMyCommand("=")) {
-					textFiled.setText(e.getActionCommand());
-					textFiled.validate();
-					command = null;
-				} else {
-					textFiled.setText(textFiled.getText()
-							+ e.getActionCommand());
-					textFiled.validate();
-
-				}
-				log.info(e.getActionCommand() + " : " + textFiled.getText());
-			}
-		};
+		numberButtonListener = new NumberButtonLister(command, textFiled);
 
 		numberZeroButton.addActionListener(numberButtonListener);
 		numberOneButton.addActionListener(numberButtonListener);
@@ -170,37 +151,8 @@ public class CalculatorGui extends JFrame {
 		numberEightButton.addActionListener(numberButtonListener);
 		numberNineButton.addActionListener(numberButtonListener);
 
-		operationListener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				log.info(e.getActionCommand());
-				if (firstNumber == null || command == null) {
-					firstNumber = textFiled.getText();
-					command = builder.createCommand(e.getActionCommand());
-					textFiled.setText(textFiled.getText()
-							+ e.getActionCommand());
-				} else {
-					int a = (firstNumber + " ").length();
-					int b = textFiled.getText().length();
-					log.info("a = " + a + " b = " + b + " first = "
-							+ firstNumber);
-					secondNumber = textFiled.getText().substring(a, b);
-
-					firstNumber = command.execute(Double.valueOf(firstNumber),
-							Double.valueOf(secondNumber)) + "";
-					log.info("Result = " + firstNumber);
-					command = builder.createCommand(e.getActionCommand());
-					if (command.isMyCommand("=")) {
-						textFiled.setText(firstNumber + "");
-						firstNumber = null;
-					} else {
-						textFiled.setText(firstNumber + e.getActionCommand());
-					}
-				}
-				textFiled.validate();
-			}
-		};
+		operationListener = new OperationListener(textFiled, command,
+				firstNumber);
 
 		equalsButton.addActionListener(operationListener);
 		plusButton.addActionListener(operationListener);
@@ -216,31 +168,11 @@ public class CalculatorGui extends JFrame {
 		});
 
 		// Clear Buttons
-		clearAllButton.addActionListener(new ActionListener() {
+		clearAllButton.addActionListener(new ClearAllListener(textFiled,
+				firstNumber));
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textFiled.setText("");
-				firstNumber = null;
-			}
-		});
-
-		clearLastSymbollButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String temp = textFiled.getText().substring(
-						textFiled.getText().length() - 1);
-				log.info("Clear " + temp);
-				if (temp.matches("\\+|-|\\*|/")) {
-					command = null;
-					firstNumber = null;
-					log.info("Matches " + firstNumber);
-				}
-				textFiled.setText(textFiled.getText().substring(0,
-						textFiled.getText().length() - 1));
-			}
-		});
+		clearLastSymbollButton.addActionListener(new ClearListener(textFiled,
+				firstNumber, command));
 
 		// Buttons added to the panel.
 		panel.add(clearAllButton);

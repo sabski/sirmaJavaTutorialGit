@@ -22,9 +22,11 @@ import org.apache.log4j.Logger;
  */
 public class MessageDispatcher extends AbstractMessageModerator {
 
-	private static Logger log = Logger.getLogger(MessageDispatcher.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(MessageDispatcher.class);
 	private volatile Map<InetAddress, MulticastSocket> addressList;
 	private MulticastAddressSupplier supplier;
+	private MulticastSocket server;
 
 	/**
 	 * Constructor for the message dispatcher.
@@ -32,17 +34,22 @@ public class MessageDispatcher extends AbstractMessageModerator {
 	public MessageDispatcher() {
 		addressList = new HashMap<InetAddress, MulticastSocket>();
 		supplier = new MulticastAddressSupplier();
+		try {
+			server = new MulticastSocket();
+		} catch (IOException e) {
+			LOGGER.info(e.getMessage(), e);
+		}
 	}
 
 	@Override
 	public void addChanell(InetAddress address) {
 		if (!addressList.containsKey(address)) {
 			try {
-				MulticastSocket server = new MulticastSocket();
+
 				server.joinGroup(address);
 				addressList.put(address, server);
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 	}
@@ -59,9 +66,9 @@ public class MessageDispatcher extends AbstractMessageModerator {
 						buffer.length, address, 7005);
 				socket.setTimeToLive(5);
 				socket.send(packet);
-				log.info("Message send " + message.toString());
+				LOGGER.info("Message send " + message.toString());
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 
@@ -91,10 +98,10 @@ public class MessageDispatcher extends AbstractMessageModerator {
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length,
 					address, 7005);
 			socket.send(packet);
-			log.info("Date send " + date.toString() + " send to "
+			LOGGER.info("Date send " + date.toString() + " send to "
 					+ address.getHostAddress());
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 
 	}
@@ -116,7 +123,7 @@ public class MessageDispatcher extends AbstractMessageModerator {
 			try {
 				Thread.sleep(2500);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 	}

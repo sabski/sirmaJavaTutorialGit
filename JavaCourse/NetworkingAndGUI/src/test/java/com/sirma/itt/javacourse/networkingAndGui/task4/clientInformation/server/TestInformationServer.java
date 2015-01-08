@@ -21,7 +21,7 @@ import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.client.
  */
 public class TestInformationServer {
 
-	private static Logger log = Logger.getLogger(TestInformationServer.class);
+	private static final Logger LOGGER = Logger.getLogger(TestInformationServer.class);
 	private InformationClient clientOne;
 	private InformationServer server;
 	private JTextArea serverArea;
@@ -53,7 +53,7 @@ public class TestInformationServer {
 		try {
 			Thread.sleep(400);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		assertTrue(serverArea.getText().contains("Server is starting"));
 		server.stopServer();
@@ -70,7 +70,7 @@ public class TestInformationServer {
 		try {
 			Thread.sleep(400);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		server.stopServer();
 		assertTrue(serverArea.getText().contains("Server is stopped"));
@@ -89,7 +89,7 @@ public class TestInformationServer {
 		try {
 			Thread.sleep(600);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		clientOne.stopClient();
 		server.stopServer();

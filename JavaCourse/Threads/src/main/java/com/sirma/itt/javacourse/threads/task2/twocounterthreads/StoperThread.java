@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
  */
 public class StoperThread extends Thread {
 
-	private final Logger log = Logger.getLogger(StoperThread.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(StoperThread.class.getName());
 
 	private int currentCount = 0;
 	private int count;
@@ -21,9 +21,9 @@ public class StoperThread extends Thread {
 		while (flag && count > currentCount) {
 			try {
 				Thread.sleep(1000);
-				log.info("Current count is : " + currentCount);
+				LOGGER.info("Current count is : " + currentCount);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 			currentCount++;
 		}

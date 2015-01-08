@@ -19,7 +19,7 @@ import com.sirma.itt.javacourse.networkingAndGui.task4.clientInformation.server.
  */
 public class TestInformationClient {
 
-	private static Logger log = Logger.getLogger(TestInformationClient.class);
+	private static final Logger LOGGER = Logger.getLogger(TestInformationClient.class);
 	private InformationClient clientOne;
 	private InformationClient clientTwo;
 	private InformationServer server;
@@ -61,7 +61,7 @@ public class TestInformationClient {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		assertTrue(messageOneArea.getText().contains("You are "));
 		clientOne.stopClient();
@@ -81,7 +81,7 @@ public class TestInformationClient {
 		try {
 			Thread.sleep(700);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		assertTrue(messageOneArea.getText().contains("Client number"));
 		clientOne.stopClient();
@@ -102,11 +102,15 @@ public class TestInformationClient {
 		try {
 			Thread.sleep(700);
 		} catch (InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
-		clientOne.stopClient();
-		assertTrue(messageOneArea.getText().contains("Client is"));
 		server.stopServer();
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		assertTrue(messageOneArea.getText().contains("Client will close"));
 	}
 
 }

@@ -57,7 +57,7 @@ public class ObjectListSynchonized {
 	/**
 	 * Removes the last element of the array.
 	 * 
-	 * @return true if the remove was succesful
+	 * @return true if the remove was successful
 	 */
 	public synchronized boolean removeElement() {
 		index--;

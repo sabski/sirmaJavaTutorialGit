@@ -15,6 +15,13 @@ public class ClientInfo {
 	private String userName;
 	private LanguageController controller;
 
+	public static ClientInfo getInstance() {
+		if (instance == null) {
+			instance = new ClientInfo();
+		}
+		return instance;
+	}
+
 	/**
 	 * @return the userName
 	 */
@@ -22,14 +29,13 @@ public class ClientInfo {
 		return userName;
 	}
 
-
 	/**
-	 * @param userName the userName to set
+	 * @param userName
+	 *            the userName to set
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 
 	/**
 	 * @return the controller
@@ -38,20 +44,11 @@ public class ClientInfo {
 		return controller;
 	}
 
-
 	/**
-	 * @param contrloer the controller to set
+	 * @param contrloer
+	 *            the controller to set
 	 */
 	public void setContrloer(LanguageController contrloer) {
 		this.controller = contrloer;
 	}
-
-
-	public static ClientInfo getInstance() {
-		if (instance == null) {
-			instance = new ClientInfo();
-		}
-		return instance;
-	}
-
 }

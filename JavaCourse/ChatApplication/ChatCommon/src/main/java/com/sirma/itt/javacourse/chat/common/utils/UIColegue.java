@@ -8,8 +8,6 @@ package com.sirma.itt.javacourse.chat.common.utils;
  */
 public interface UIColegue {
 
-
-
 	/**
 	 * Register the component to the mediator.
 	 */

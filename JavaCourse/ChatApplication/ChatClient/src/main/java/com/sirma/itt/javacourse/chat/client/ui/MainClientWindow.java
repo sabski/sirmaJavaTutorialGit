@@ -183,7 +183,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 	@Override
 	public void registerComponent() {
-		// TODO Auto-generated method stub
 		controler.registerMainWindow(this);
 	}
 }

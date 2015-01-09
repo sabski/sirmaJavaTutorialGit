@@ -13,6 +13,7 @@ import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
+ * This class holds references to UI components that interact together.
  * 
  * @author siliev
  * 
@@ -20,7 +21,7 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 public class UIControler implements UIColegue {
 
 	private static final Logger LOGGER = Logger.getLogger(UIControler.class);
-	private static UIControler instance;
+	private static final UIControler INSTANCE = new UIControler();
 	private ChatsPanel chatsPanel;
 	private MainClientWindow mainWindow;
 
@@ -33,10 +34,8 @@ public class UIControler implements UIColegue {
 	}
 
 	public static UIControler getInstance() {
-		if (instance == null) {
-			instance = new UIControler();
-		}
-		return instance;
+
+		return INSTANCE;
 	}
 
 	public void registerChatPanel(ChatsPanel chatsPanel) {

@@ -16,9 +16,10 @@ import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 
 /**
- * 
+ * The main client thread that connects to the server and reads messages.
  * 
  * @author siliev
  * 
@@ -29,7 +30,7 @@ public class ClientThread extends Thread {
 	private Socket client;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-	private ClientMessageInterpretor manager;
+	private MessageInterpreter manager;
 
 	@Override
 	public void run() {

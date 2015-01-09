@@ -21,7 +21,8 @@ import org.apache.log4j.Logger;
  */
 public class LanguageController {
 
-	private static Logger log = Logger.getLogger(LanguageController.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(LanguageController.class);
 
 	public static enum LANGUGES {
 		EN("ENGLISH"), BG("bg");
@@ -43,6 +44,14 @@ public class LanguageController {
 	private static Map<String, AbstractButton> components = new HashMap<String, AbstractButton>();
 
 	/**
+	 * Setting the constructor to private to prevent getting instances of this
+	 * class.
+	 */
+	private LanguageController() {
+
+	}
+
+	/**
 	 * Sets the current language.
 	 * 
 	 * @param language
@@ -51,7 +60,7 @@ public class LanguageController {
 	public static void setLanguage(String language) {
 		currentLanguage = language;
 		loadCurrentLanguage();
-		log.info("Current language is " + language);
+		LOGGER.info("Current language is " + language);
 	}
 
 	/**
@@ -74,14 +83,7 @@ public class LanguageController {
 	}
 
 	/**
-	 * Setting the constructor to private to prevent getting instances of this
-	 * class.
-	 */
-	private LanguageController() {
-	}
-
-	/**
-	 * 
+	 * Returns the current language value.
 	 * 
 	 * @return the current language setting
 	 */
@@ -89,11 +91,21 @@ public class LanguageController {
 		return currentLanguage;
 	}
 
+	/**
+	 * Adds a reference to a component and its property value to allow for dynamic language change.
+	 * @param propertyValue
+	 *            the string property value of the component.
+	 * @param component
+	 *            the component we want to add.
+	 */
 	public static void addComponent(String propertyValue,
 			AbstractButton component) {
 		components.put(propertyValue, component);
 	}
 
+	/**
+	 * Sets the components text value whenever the language is changed.
+	 */
 	public static void invalidateComponents() {
 		for (Entry<String, AbstractButton> entry : components.entrySet()) {
 			String value = entry.getKey();

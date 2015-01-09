@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
-import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
@@ -22,7 +22,7 @@ public class ClientListenerThread extends Thread {
 			.getLogger(ClientListenerThread.class);
 
 	private ChatUser user;
-	private ServerMessageInterpreter interpretor;
+	private MessageInterpreter interpretor;
 	private ObjectInputStream inputStream;
 	private ObjectOutputStream outputStream;
 	private UserManager manager;

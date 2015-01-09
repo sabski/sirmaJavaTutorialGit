@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
@@ -25,11 +26,11 @@ public class UserManager {
 
 	private static final Logger LOGGER = Logger.getLogger(UserManager.class);
 
-	private static UserManager INSTANCE;
+	private static UserManager instance;
 	private Map<String, ClientListenerThread> userMap;
 	private List<ClientListenerThread> tempHolder;
-	private ServerMessageInterpreter interpretator;
-	private ChatRoomManager manager = ChatRoomManager.getInstance();
+	private MessageInterpreter interpretator;
+	private ChatRoomManager manager;
 
 	/**
 	 * This method returns the only instance of this class.
@@ -37,10 +38,10 @@ public class UserManager {
 	 * @return the sole instance of this class.
 	 */
 	public static UserManager getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new UserManager();
+		if (instance == null) {
+			instance = new UserManager();
 		}
-		return INSTANCE;
+		return instance;
 	}
 
 	/**
@@ -50,6 +51,7 @@ public class UserManager {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
 		interpretator = new ServerMessageInterpreter(this);
+		manager = ChatRoomManager.getInstance();
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class UserManager {
 	}
 
 	/**
-	 * Checks if there is a user on the server with the given username
+	 * Checks if there is a user on the server with the given username.
 	 * 
 	 * @param userName
 	 *            the username we want to check.
@@ -133,16 +135,21 @@ public class UserManager {
 	}
 
 	/**
+	 * Retrieves the current {@link MessageInterpreter}.
 	 * 
-	 * @return
+	 * 
+	 * @return the message interpreter.
 	 */
-	public ServerMessageInterpreter getInterpretator() {
+	public MessageInterpreter getInterpretator() {
 		return interpretator;
 	}
 
 	/**
+	 * Registers a user on the server and sends him the current user list and
+	 * the common room chat.
 	 * 
 	 * @param user
+	 *            the user to be registered on the server.
 	 */
 	public void registerUser(ChatUser user) {
 		for (ClientListenerThread thread : tempHolder) {
@@ -153,9 +160,9 @@ public class UserManager {
 				thread.sendMessage(interpretator.generateMessage(TYPE.APPROVED,
 						0, thread.getUser().getUsername(), thread.getUser()
 								.getUsername()));
-				thread.sendMessage(interpretator.generateMessage(TYPE.STARTCHAT,
-						manager.getCommonRoom().getId(), manager
-								.getCommonRoom().getUsers().toString(),
+				thread.sendMessage(interpretator.generateMessage(
+						TYPE.STARTCHAT, manager.getCommonRoom().getId(),
+						manager.getCommonRoom().getUsers().toString(),
 						TYPE.SERVER.toString()));
 				break;
 			}
@@ -163,8 +170,10 @@ public class UserManager {
 	}
 
 	/**
+	 * Rejects the user for invalid username.
 	 * 
 	 * @param user
+	 *            the user to send a {@link TYPE.REFUSED}.
 	 */
 	public void rejectUser(ChatUser user) {
 		for (ClientListenerThread thread : tempHolder) {
@@ -180,17 +189,22 @@ public class UserManager {
 	}
 
 	/**
+	 * Returns the {@link ClientListenerThread} that is associated with a
+	 * client.
 	 * 
 	 * @param name
-	 * @return
+	 *            the name of the client we are looking for.
+	 * @return the thread that is associated with a client.
 	 */
 	public ClientListenerThread getClientThreadByName(String name) {
 		return userMap.get(name);
 	}
 
 	/**
+	 * Retrieves the user list of registered users on the server.S
 	 * 
-	 * @return
+	 * 
+	 * @return the list of connected users that are on the server.
 	 */
 	public List<String> getUserList() {
 		List<String> list = new ArrayList<String>(userMap.keySet());
@@ -198,8 +212,10 @@ public class UserManager {
 	}
 
 	/**
+	 * Disconnects the user from the chats he is into.
 	 * 
 	 * @param user
+	 *            removes the user from chats.
 	 */
 	public void disconnectUser(ClientListenerThread user) {
 		manager.removeUserFromChats(user);

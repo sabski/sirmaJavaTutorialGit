@@ -20,12 +20,13 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	private static final Logger LOGGER = Logger
 			.getLogger(ClientMessageInterpretor.class);
 	private ClientThread clientThread;
-	private UIControler controler = UIControler.getInstance();
+	private UIControler controler;
 	private ClientInfo client;
 
 	public ClientMessageInterpretor(ClientThread clientThread) {
 		this.clientThread = clientThread;
 		client = ClientInfo.getInstance();
+		controler = UIControler.getInstance();
 	}
 
 	@Override
@@ -45,19 +46,13 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			createNewChatWindow(message);
 			break;
 		case APPROVED:
-			client.setUserName(message.getAuthor());
-			controler.getMainWindow().setTitle(
-					controler.getMainWindow().getTitle() + " "
-							+ message.getAuthor());
-			JOptionPane.showMessageDialog(null, message.getContent());
+			clientApprover(message);
 			break;
 		case REFUSED:
-			JOptionPane.showMessageDialog(null, message.getContent());
-			clientThread.sendMessage(new Message(ClientMessageInterpretor
-					.inputUserName(), 0, TYPE.CONNECT, null));
+			serverRefused(message);
 			break;
 		case SERVER:
-
+			// TODO WHAT WHAT !!! - i can`t remember
 			break;
 		case USERLISTADD:
 			LOGGER.info(message);
@@ -81,24 +76,64 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		}
 	}
 
-	private void displayMessage(Message message) {
-		// TODO Display message to proper screen.
-		LOGGER.info("Message reseived : " + message);
-		controler.getChatsPanel().processMessage(message);
-
+	/**
+	 * Shows that the server has refused the client.
+	 * 
+	 * @param message
+	 *            the message that was received from the server.
+	 */
+	protected void serverRefused(Message message) {
+		JOptionPane.showMessageDialog(null, message.getContent());
+		clientThread.sendMessage(new Message(ClientMessageInterpretor
+				.inputUserName(), 0, TYPE.CONNECT, null));
 	}
 
-	private void createNewChatWindow(Message message) {
-		// TODO Create a new chat window.
+	/**
+	 * Shows that the server has approved the client.
+	 * 
+	 * @param message
+	 *            the message that was received from the server.
+	 */
+	protected void clientApprover(Message message) {
+		client.setUserName(message.getAuthor());
+		controler.getMainWindow().setTitle(
+				controler.getMainWindow().getTitle() + " "
+						+ message.getAuthor());
+		JOptionPane.showMessageDialog(null, message.getContent());
+	}
+
+	/**
+	 * Redirects the message to where it can be properly displayed.
+	 * 
+	 * @param message
+	 *            the message that is to be displayed.
+	 */
+	protected void displayMessage(Message message) {
+		LOGGER.info("Message reseived : " + message);
+		controler.getChatsPanel().processMessage(message);
+	}
+
+	/**
+	 * Creates a new chat tab for a chat with one or multiple users.
+	 * 
+	 * @param message
+	 *            the message to create a new chat window and the data needed to
+	 *            create the room.
+	 */
+	protected void createNewChatWindow(Message message) {
 		LOGGER.info("Creating new chat room " + message);
 		controler.getChatsPanel().addNewTab(message);
 	}
 
+	/**
+	 * Opens a dialog window so the user can enter a user name he wants.
+	 * 
+	 * @return the user name that was inputed by the user.
+	 */
 	public static String inputUserName() {
 		String name = null;
 		name = JOptionPane.showInputDialog(
 				LanguageController.getWord("inputUsername"), null);
 		return name;
 	}
-
 }

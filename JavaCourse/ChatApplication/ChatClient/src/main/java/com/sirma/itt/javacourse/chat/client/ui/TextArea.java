@@ -26,6 +26,8 @@ import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
+ * The Bottom panel of the client window.
+ * 
  * @author siliev
  * 
  */
@@ -45,8 +47,12 @@ public class TextArea extends JPanel implements UIColegue {
 	private UIControler controler;
 
 	/**
+	 * The Bottom panel of the client window.
+	 * 
 	 * @param connectButton
+	 *            the connect button.
 	 * @param disconnectButton
+	 *            the disconnect button.
 	 * 
 	 */
 	public TextArea(JButton connectButton, JButton disconnectButton) {
@@ -97,7 +103,6 @@ public class TextArea extends JPanel implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Write the action.
 				LOGGER.info("Language is "
 						+ LanguageController.getCurrentLanguage());
 				if (LanguageController.getCurrentLanguage().equals(
@@ -170,6 +175,12 @@ public class TextArea extends JPanel implements UIColegue {
 		LanguageController.addComponent("send", sendButton);
 	}
 
+	/**
+	 * Sends a message to the server and clears up the text area.
+	 * 
+	 * @param text
+	 *            the text for the message.
+	 */
 	private void sendMessage(String text) {
 		text = text.substring(0, 1).toUpperCase() + text.substring(1);
 		controler.sendMessage(text);
@@ -185,6 +196,9 @@ public class TextArea extends JPanel implements UIColegue {
 		// controler.registerTextArea(this);
 	}
 
+	/**
+	 * Switches the text field editable status.
+	 */
 	public void toogleText() {
 		if (messageField.isEditable()) {
 			messageField.setEditable(false);

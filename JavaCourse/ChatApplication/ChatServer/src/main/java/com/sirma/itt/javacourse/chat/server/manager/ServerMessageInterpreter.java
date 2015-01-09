@@ -59,7 +59,13 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		}
 	}
 
-	private void createNewChatRoom(Message message, ChatUser user) {
+	/**
+	 * 
+	 * @param message
+	 * @param user
+	 *            the user that wants to start a new chat room.
+	 */
+	private synchronized void createNewChatRoom(Message message, ChatUser user) {
 		Long empyRoom = chatRoomManager.createChatRoom();
 		chatRoomManager.getRoomById(empyRoom).addUser(
 				manager.getUser(user.getUsername()));
@@ -73,7 +79,13 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 						message.getContent()));
 	}
 
-	private void disconnect(Message message) {
+	/**
+	 * 
+	 * 
+	 * @param message
+	 *            the disconnect message that disconnects the user.
+	 */
+	private synchronized void disconnect(Message message) {
 		// TODO disconnect the user and notify other users
 		// that this user has left the server.
 		LOGGER.info("Recieved dissconet message still dont know what to do with it :/");
@@ -107,7 +119,7 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	 * @param user
 	 *            that want to register to the server.
 	 */
-	private void registerUser(Message message, ChatUser user) {
+	private synchronized void registerUser(Message message, ChatUser user) {
 		if (manager.isValidName(message.getContent())) {
 			manager.registerUser(user);
 			ClientListenerThread newUser = manager.getUser(user.getUsername());

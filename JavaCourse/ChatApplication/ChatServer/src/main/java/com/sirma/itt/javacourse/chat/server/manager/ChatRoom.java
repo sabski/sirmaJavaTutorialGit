@@ -58,7 +58,7 @@ public class ChatRoom {
 	 * @param message
 	 *            the message that is to be sent to the users.
 	 */
-	public void sendMessage(Message message) {
+	public synchronized void sendMessage(Message message) {
 		for (ClientListenerThread user : userList) {
 			user.sendMessage(message);
 		}
@@ -85,7 +85,7 @@ public class ChatRoom {
 	}
 
 	/**
-	 * 
+	 * Removes the user from the chat.
 	 * 
 	 * @param user
 	 *            the user we want to remove from the chat room.
@@ -108,7 +108,6 @@ public class ChatRoom {
 		if (id == 0 || userList.size() > 0) {
 			return false;
 		}
-
 		return true;
 	}
 }

@@ -134,7 +134,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 				client.start();
 				String name = ClientMessageInterpretor.inputUserName();
 				client.sendMessage(new Message(name, 0, TYPE.CONNECT, name));
-				connectButton.setText(LanguageController.getWord("disconnect"));
 				textArea.toogleText();
 				connectButton.setEnabled(false);
 				disconnectButton.setEnabled(true);
@@ -149,7 +148,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 				if (client != null && client.isAlive()) {
 					client.interrupt();
 					client = controler.restartThread();
-					connectButton.setText(LanguageController.getWord("connect"));
 					chatPanel.resetChats();
 					textArea.toogleText();
 					connectButton.setEnabled(true);

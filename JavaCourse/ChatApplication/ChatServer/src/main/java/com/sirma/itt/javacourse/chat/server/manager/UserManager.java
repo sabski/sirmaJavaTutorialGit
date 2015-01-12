@@ -26,32 +26,19 @@ public class UserManager {
 
 	private static final Logger LOGGER = Logger.getLogger(UserManager.class);
 
-	private static UserManager instance;
 	private Map<String, ClientListenerThread> userMap;
 	private List<ClientListenerThread> tempHolder;
 	private MessageInterpreter interpretator;
-	private ChatRoomManager manager;
-
-	/**
-	 * This method returns the only instance of this class.
-	 * 
-	 * @return the sole instance of this class.
-	 */
-	public static UserManager getInstance() {
-		if (instance == null) {
-			instance = new UserManager();
-		}
-		return instance;
-	}
+	private ChatRoomManager chatRoomManager;
 
 	/**
 	 * Private constructor.
 	 */
-	private UserManager() {
+	public UserManager() {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
-		interpretator = new ServerMessageInterpreter(this);
-		manager = ChatRoomManager.getInstance();
+		chatRoomManager = new ChatRoomManager();
+		interpretator = new ServerMessageInterpreter(this, chatRoomManager);
 	}
 
 	/**
@@ -126,7 +113,7 @@ public class UserManager {
 		ChatUser user = new ChatUser(null, client);
 		ClientListenerThread listener;
 		try {
-			listener = new ClientListenerThread(user);
+			listener = new ClientListenerThread(user, this);
 			listener.start();
 			tempHolder.add(listener);
 		} catch (ChatException e) {
@@ -161,8 +148,9 @@ public class UserManager {
 						0, thread.getUser().getUsername(), thread.getUser()
 								.getUsername()));
 				thread.sendMessage(interpretator.generateMessage(
-						TYPE.STARTCHAT, manager.getCommonRoom().getId(),
-						manager.getCommonRoom().getUsers().toString(),
+						TYPE.STARTCHAT,
+						chatRoomManager.getCommonRoom().getId(),
+						chatRoomManager.getCommonRoom().getUsers().toString(),
 						TYPE.SERVER.toString()));
 				break;
 			}
@@ -218,6 +206,6 @@ public class UserManager {
 	 *            removes the user from chats.
 	 */
 	public void disconnectUser(ClientListenerThread user) {
-		manager.removeUserFromChats(user);
+		chatRoomManager.removeUserFromChats(user);
 	}
 }

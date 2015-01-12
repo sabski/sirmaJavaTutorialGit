@@ -34,10 +34,11 @@ public class ClientListenerThread extends Thread {
 	 *            the user that is associated with this thread.
 	 * @throws ChatException
 	 */
-	public ClientListenerThread(ChatUser user) throws ChatException {
+	public ClientListenerThread(ChatUser user, UserManager manager)
+			throws ChatException {
 		if (user != null) {
 			this.user = user;
-			manager = UserManager.getInstance();
+			this.manager = manager;
 			interpretor = manager.getInterpretator();
 			try {
 				inputStream = new ObjectInputStream(user.getInputStream());

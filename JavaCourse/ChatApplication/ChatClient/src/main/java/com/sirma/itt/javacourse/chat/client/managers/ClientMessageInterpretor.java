@@ -29,6 +29,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		controler = UIControler.getInstance();
 	}
 
+
 	@Override
 	public Message generateMessage(TYPE type, long id, String content,
 			String author) {

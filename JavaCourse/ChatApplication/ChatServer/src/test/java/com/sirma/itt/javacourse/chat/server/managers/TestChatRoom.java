@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.server.managers;
 
 import static org.junit.Assert.*;

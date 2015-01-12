@@ -30,8 +30,9 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	 * @param manager
 	 *            the user manager of the server.
 	 */
-	public ServerMessageInterpreter(UserManager manager) {
-		chatRoomManager = ChatRoomManager.getInstance();
+	public ServerMessageInterpreter(UserManager manager,
+			ChatRoomManager chatRoomManager) {
+		this.chatRoomManager = chatRoomManager;
 		this.manager = manager;
 	}
 

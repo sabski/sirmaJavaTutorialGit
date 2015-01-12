@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
@@ -23,7 +24,7 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
  */
 public class TestServerMessageInterpretor {
 
-	private UserManager manager = UserManager.getInstance();
+	private UserManager manager = new UserManager();
 	private ServerMessageInterpreter interpreter;
 
 	@Mock
@@ -39,7 +40,8 @@ public class TestServerMessageInterpretor {
 	@Before
 	public void setUp() throws Exception {
 
-		interpreter = new ServerMessageInterpreter(manager);
+		interpreter = new ServerMessageInterpreter(manager,
+				new ChatRoomManager());
 		user = Mockito.mock(ChatUser.class);
 		thread = Mockito.mock(ClientListenerThread.class);
 	}

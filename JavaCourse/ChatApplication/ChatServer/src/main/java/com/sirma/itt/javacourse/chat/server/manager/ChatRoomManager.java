@@ -20,7 +20,6 @@ public class ChatRoomManager {
 	private static final Logger LOGGER = Logger
 			.getLogger(ChatRoomManager.class);
 
-	private static ChatRoomManager instance;
 
 	private Map<Long, ChatRoom> chatRooms;
 
@@ -31,22 +30,10 @@ public class ChatRoomManager {
 	/**
 	 * Singleton constructor.
 	 */
-	private ChatRoomManager() {
+	public ChatRoomManager() {
 		chatRooms = new HashMap<Long, ChatRoom>(100);
 		freeRooms = new ArrayList<ChatRoom>(20);
 		createCommonRoom();
-	}
-
-	/**
-	 * Singleton method to get the class instance;
-	 * 
-	 * @return the sole instance of this class.
-	 */
-	public static ChatRoomManager getInstance() {
-		if (instance == null) {
-			instance = new ChatRoomManager();
-		}
-		return instance;
 	}
 
 	/**

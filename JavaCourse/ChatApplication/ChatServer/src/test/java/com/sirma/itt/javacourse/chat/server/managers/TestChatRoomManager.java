@@ -4,9 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoom;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
+import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
  * Test class for {@link ChatRoomManager}.
@@ -16,7 +19,10 @@ import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
  */
 public class TestChatRoomManager {
 
-	private ChatRoomManager manager = ChatRoomManager.getInstance();
+	private ChatRoomManager manager = new ChatRoomManager();
+
+	@Mock
+	private ClientListenerThread user;
 
 	/**
 	 * Set up method.
@@ -57,7 +63,11 @@ public class TestChatRoomManager {
 	 */
 	@Test
 	public void testRemoveUserFromChats() {
-		
+		user = Mockito.mock(ClientListenerThread.class);
+		Mockito.when(user.getUser().getUsername()).thenReturn("test");
+		manager.getCommonRoom().addUser(user);
+		manager.removeUserFromChats(user);
+		assertTrue(manager.getCommonRoom().containsUser("test"));
 	}
 
 }

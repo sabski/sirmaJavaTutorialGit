@@ -123,11 +123,14 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		if (manager.isValidName(message.getContent())) {
 			manager.registerUser(user);
 			ClientListenerThread newUser = manager.getUser(user.getUsername());
-			chatRoomManager.getCommonRoom().addUser(newUser);
 			chatRoomManager.getCommonRoom().sendMessage(
-					new Message(manager.getUserList().toString(),
+					new Message(newUser.getUser().getUsername(),
 							chatRoomManager.getCommonRoom().getId(),
-							TYPE.USERLIST, TYPE.SERVER.toString()));
+							TYPE.USERLISTADD, TYPE.SERVER.toString()));
+			chatRoomManager.getCommonRoom().addUser(newUser);
+			newUser.sendMessage(new Message(manager.getUserList().toString(),
+					chatRoomManager.getCommonRoom().getId(), TYPE.USERLIST,
+					TYPE.SERVER.toString()));
 		} else {
 			manager.rejectUser(user);
 		}

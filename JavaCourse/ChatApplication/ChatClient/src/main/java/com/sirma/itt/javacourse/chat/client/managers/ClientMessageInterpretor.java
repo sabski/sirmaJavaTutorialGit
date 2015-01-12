@@ -57,6 +57,9 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		case USERLISTADD:
 			LOGGER.info(message);
 			controler.updateUserListAdd(message.getContent());
+			message.setContent(LanguageController.getWord("connectmessage")
+					+ " " + message.getContent());
+			displayMessage(message);
 			break;
 		case USERLIST:
 			LOGGER.info(message);
@@ -68,6 +71,8 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			break;
 		case DISCONNECT:
 			LOGGER.info(message);
+			message.setContent(LanguageController.getWord("disconnectmessage")
+					+ " " + message.getContent());
 			displayMessage(message);
 			break;
 		default:
@@ -99,7 +104,10 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		controler.getMainWindow().setTitle(
 				controler.getMainWindow().getTitle() + " "
 						+ message.getAuthor());
-		JOptionPane.showMessageDialog(null, message.getContent());
+		JOptionPane.showMessageDialog(
+				null,
+				LanguageController.getWord("welcomemessage") + " : "
+						+ message.getContent());
 	}
 
 	/**

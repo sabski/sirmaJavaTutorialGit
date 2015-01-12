@@ -139,6 +139,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 * @return the user name that was inputed by the user.
 	 */
 	public static String inputUserName() {
+		LOGGER.info("Input user name");
 		String name = null;
 		name = JOptionPane.showInputDialog(
 				LanguageController.getWord("inputUsername"), null);

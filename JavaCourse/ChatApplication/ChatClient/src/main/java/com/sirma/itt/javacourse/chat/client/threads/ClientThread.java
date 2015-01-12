@@ -17,6 +17,7 @@ import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
  * The main client thread that connects to the server and reads messages.
@@ -31,11 +32,18 @@ public class ClientThread extends Thread {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private MessageInterpreter manager;
+	private String username;
+
+	public ClientThread(String username) {
+		this.username = username;
+	}
 
 	@Override
 	public void run() {
 		LOGGER.info("Starting client");
 		connectToServer();
+		sendMessage(new Message(username, 0, TYPE.CONNECT, username));
+		LOGGER.info("Starting read messages");
 		readServerMassesges();
 	}
 
@@ -46,12 +54,16 @@ public class ClientThread extends Thread {
 		// client = SocketGenerator.createSocket();10.131.2.96
 		try {
 			client = new Socket("localhost", 7000);
+			output = new ObjectOutputStream(client.getOutputStream());
 			input = new ObjectInputStream(client.getInputStream());
 			manager = new ClientMessageInterpretor(this);
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
-			JOptionPane.showMessageDialog(null, "Server is not reachable.",
-					"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					LanguageController.getWord("servererror"), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		} finally {
+			LOGGER.info("Connection attemt finished.");
 		}
 	}
 
@@ -73,10 +85,8 @@ public class ClientThread extends Thread {
 	 *            the message that the client wants to send to the server.
 	 */
 	public void sendMessage(Message messageToSend) {
+		LOGGER.info("Sending message " + messageToSend);
 		try {
-			if (output == null) {
-				output = new ObjectOutputStream(client.getOutputStream());
-			}
 			output.writeObject(messageToSend);
 			output.flush();
 			output.reset();

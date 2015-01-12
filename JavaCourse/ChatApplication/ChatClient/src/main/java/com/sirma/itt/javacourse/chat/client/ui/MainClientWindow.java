@@ -22,8 +22,6 @@ import javax.swing.event.ListSelectionListener;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
-import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
@@ -96,7 +94,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		userList.setLayoutOrientation(JList.VERTICAL);
 		userList.setMinimumSize(new Dimension(100, 200));
 		scroll = new JScrollPane(userList);
-		client = controler.getThread();
 		JPanel userListPanel = new JPanel(new BorderLayout());
 		userListPanel.add(scroll, BorderLayout.CENTER);
 		mainWindow.add(userListPanel, BorderLayout.WEST);
@@ -131,9 +128,9 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				client = new ClientThread(ClientMessageInterpretor.inputUserName());
+				controler.setThread(client);
 				client.start();
-				String name = ClientMessageInterpretor.inputUserName();
-				client.sendMessage(new Message(name, 0, TYPE.CONNECT, name));
 				textArea.toogleText();
 				connectButton.setEnabled(false);
 				disconnectButton.setEnabled(true);

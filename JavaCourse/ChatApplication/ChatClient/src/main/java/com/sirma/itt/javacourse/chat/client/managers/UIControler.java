@@ -29,7 +29,6 @@ public class UIControler implements UIColegue {
 	private ClientInfo clientInfo;
 
 	private UIControler() {
-		clientThread = new ClientThread();
 		clientInfo = ClientInfo.getInstance();
 	}
 
@@ -119,7 +118,8 @@ public class UIControler implements UIColegue {
 	 * @return the thread
 	 */
 	public ClientThread restartThread() {
-		clientThread = new ClientThread();
+		clientThread = new ClientThread(
+				ClientMessageInterpretor.inputUserName());
 		return clientThread;
 	}
 

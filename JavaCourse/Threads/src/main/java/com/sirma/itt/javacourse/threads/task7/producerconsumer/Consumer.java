@@ -3,15 +3,16 @@ package com.sirma.itt.javacourse.threads.task7.producerconsumer;
 import org.apache.log4j.Logger;
 
 /**
- * A consumer of a product in a warehouse. The thread will try to buy at a regular interval if it can
- * not buy within the interval it is waiting and when it is notified then the time continues.
+ * A consumer of a product in a warehouse. The thread will try to buy at a
+ * regular interval if it can not buy within the interval it is waiting and when
+ * it is notified then the time continues.
  * 
  * @author Simeon Iliev
  */
 public class Consumer extends Thread {
 
 	private static final Logger LOGGER = Logger.getLogger(Consumer.class);
-	
+
 	private static int threadCount = 0;
 	private final Product product;
 	private final long timeToBye;
@@ -54,9 +55,6 @@ public class Consumer extends Thread {
 					LOGGER.error(e.getMessage(), e);
 				}
 			}
-
 		}
-
 	}
-
 }

@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -61,7 +62,12 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	public void addNewTab(Message info) {
 		LOGGER.info("Adding tab");
 		ChatWindow chatWindow = createNewPanel(info);
-		tabbedPane.add(info.getContent(), chatWindow);
+		if (chatWindow.getChatID() == 0) {
+			tabbedPane
+					.add(LanguageController.getWord("commonroom"), chatWindow);
+		} else {
+			tabbedPane.add(info.getContent(), chatWindow);
+		}
 		tabbedPane.invalidate();
 		tabs.add(chatWindow);
 	}
@@ -124,7 +130,9 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		for (ChatWindow tab : tabs) {
 			if (tab.getUserNames().containsAll(list)
 					&& list.containsAll(tab.getUserNames())) {
-				return false;
+				if (tab.getChatID() != 0) {
+					return false;
+				}
 			}
 		}
 		return true;

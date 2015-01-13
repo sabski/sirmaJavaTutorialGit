@@ -12,9 +12,6 @@ public class RemovingThread extends Thread {
 	private static final Logger LOGGER = Logger.getLogger(RemovingThread.class);
 	private ObjectListSynchonized list;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		while (!chekFlag()) {
@@ -43,7 +40,7 @@ public class RemovingThread extends Thread {
 	}
 
 	/**
-	 * Cheks the flag of the current object.
+	 * Checks the flag of the current object.
 	 * 
 	 * @return the lock status.
 	 */

@@ -85,7 +85,6 @@ public class MessageDispatcher extends AbstractMessageModerator {
 	 */
 	public void generatePackege(InetAddress address, MulticastSocket socket) {
 		Date date = new Date();
-
 		try {
 			ByteArrayOutputStream byteStream = new ByteArrayOutputStream(1024);
 			ObjectOutputStream os = new ObjectOutputStream(
@@ -98,6 +97,7 @@ public class MessageDispatcher extends AbstractMessageModerator {
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length,
 					address, 7005);
 			socket.send(packet);
+			socket.joinGroup(address);
 			LOGGER.info("Date send " + date.toString() + " send to "
 					+ address.getHostAddress());
 		} catch (IOException e) {
@@ -132,5 +132,4 @@ public class MessageDispatcher extends AbstractMessageModerator {
 	public void run() {
 		broadcastMulticastMessages();
 	}
-
 }

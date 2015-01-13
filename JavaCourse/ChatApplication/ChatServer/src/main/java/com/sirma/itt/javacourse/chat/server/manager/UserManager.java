@@ -9,8 +9,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
@@ -144,14 +144,15 @@ public class UserManager {
 				tempHolder.remove(thread);
 				userMap.put(user.getUsername(), thread);
 				LOGGER.info("Registering user " + user.getUsername());
-				thread.sendMessage(interpretator.generateMessage(TYPE.APPROVED,
-						0, thread.getUser().getUsername(), thread.getUser()
+				thread.sendMessage(interpretator.generateMessage(
+						MessageType.APPROVED, 0,
+						thread.getUser().getUsername(), thread.getUser()
 								.getUsername()));
 				thread.sendMessage(interpretator.generateMessage(
-						TYPE.STARTCHAT,
-						chatRoomManager.getCommonRoom().getId(),
-						chatRoomManager.getCommonRoom().getUsers().toString(),
-						TYPE.SERVER.toString()));
+						MessageType.STARTCHAT, chatRoomManager.getCommonRoom()
+								.getId(), chatRoomManager.getCommonRoom()
+								.getUsers().toString(), MessageType.SERVER
+								.toString()));
 				break;
 			}
 		}
@@ -167,10 +168,11 @@ public class UserManager {
 		for (ClientListenerThread thread : tempHolder) {
 			if (thread.getUser().getUsername().equals(user.getUsername())) {
 				LOGGER.info("Rejecting user " + user.getUsername());
-				thread.sendMessage(interpretator.generateMessage(TYPE.REFUSED,
-						0, "The user name you entered is invalid : "
+				thread.sendMessage(interpretator.generateMessage(
+						MessageType.REFUSED, 0,
+						"The user name you entered is invalid : "
 								+ thread.getUser().getUsername(),
-						TYPE.SERVER.toString()));
+						MessageType.SERVER.toString()));
 				break;
 			}
 		}

@@ -19,13 +19,12 @@ import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.N
 import com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners.OperationListener;
 
 /**
+ * User interface for a calculator application.
+ * 
  * @author Simeon Iliev
  */
 public class CalculatorGui extends JFrame {
 
-	/**
-	 * Comment for serialVersionUID.
-	 */
 	private static final long serialVersionUID = 1L;
 
 	// Operation buttons
@@ -64,7 +63,7 @@ public class CalculatorGui extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Start setting up the UI.
 	 */
 	private void starBuildingGUI() {
 		// Get current frame reference.
@@ -90,7 +89,6 @@ public class CalculatorGui extends JFrame {
 		buttonPanel.validate();
 		frame.add(buttonPanel, BorderLayout.CENTER);
 		frame.pack();
-		// NO MORE CODE BELLOW THIS LINE...
 		frame.setVisible(true);
 	}
 

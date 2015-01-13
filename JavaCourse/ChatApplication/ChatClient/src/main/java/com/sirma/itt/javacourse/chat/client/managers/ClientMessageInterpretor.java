@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 
@@ -29,9 +29,8 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		controler = UIControler.getInstance();
 	}
 
-
 	@Override
-	public Message generateMessage(TYPE type, long id, String content,
+	public Message generateMessage(MessageType type, long id, String content,
 			String author) {
 		return new Message(content, id, type, author);
 	}
@@ -91,7 +90,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	protected void serverRefused(Message message) {
 		JOptionPane.showMessageDialog(null, message.getContent());
 		clientThread.sendMessage(new Message(ClientMessageInterpretor
-				.inputUserName(), 0, TYPE.CONNECT, null));
+				.inputUserName(), 0, MessageType.CONNECT, null));
 	}
 
 	/**

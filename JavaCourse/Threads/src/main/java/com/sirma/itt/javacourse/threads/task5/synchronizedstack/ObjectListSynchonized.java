@@ -2,8 +2,6 @@ package com.sirma.itt.javacourse.threads.task5.synchronizedstack;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.InputUtils;
-
 /**
  * Class that represents a list of items.
  * 
@@ -11,7 +9,8 @@ import com.sirma.itt.javacourse.InputUtils;
  */
 public class ObjectListSynchonized {
 
-	private static final Logger LOGGER = Logger.getLogger(ObjectListSynchonized.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(ObjectListSynchonized.class);
 	private int capacity = 10;
 	private int index = 0;
 	private boolean addFlag = true;
@@ -82,7 +81,7 @@ public class ObjectListSynchonized {
 			builder.append(" " + array[i]);
 		}
 		builder.append(" ]");
-		InputUtils.printConsoleMessage(builder.toString());
+		LOGGER.info(builder.toString());
 	}
 
 	/**

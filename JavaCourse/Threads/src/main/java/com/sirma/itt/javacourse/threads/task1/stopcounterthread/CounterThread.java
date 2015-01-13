@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class CounterThread extends Thread {
 
-	private final Logger log = Logger.getLogger(CounterThread.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CounterThread.class.getName());
 	private int count = 0;
 	private final int maxCount;
 	private volatile boolean flag = true;
@@ -30,7 +30,7 @@ public class CounterThread extends Thread {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 			count++;
 		}

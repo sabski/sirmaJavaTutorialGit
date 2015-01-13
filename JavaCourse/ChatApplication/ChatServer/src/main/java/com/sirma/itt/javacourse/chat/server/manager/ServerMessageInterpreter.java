@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
@@ -61,8 +61,10 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	}
 
 	/**
+	 * Creates a new chat room with the selected users.
 	 * 
 	 * @param message
+	 *            the message that contains the users of the chat rooms.
 	 * @param user
 	 *            the user that wants to start a new chat room.
 	 */
@@ -95,19 +97,19 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 		manager.removeUser(manager.getUser(message.getAuthor()).getUser());
 		chatRoomManager.getCommonRoom().sendMessage(
 				new Message(message.getAuthor(), chatRoomManager
-						.getCommonRoom().getId(), TYPE.USERLISTREMOVE,
-						TYPE.SERVER.toString()));
+						.getCommonRoom().getId(), MessageType.USERLISTREMOVE,
+						MessageType.SERVER.toString()));
 	}
 
 	@Override
-	public Message generateMessage(TYPE type, long id, String content,
+	public Message generateMessage(MessageType type, long id, String content,
 			String author) {
 		return new Message(content, id, type, author);
 	}
 
 	public Message generateStartChatMessage(Long id, String author,
 			String userList) {
-		return new Message(userList, id, TYPE.STARTCHAT, author);
+		return new Message(userList, id, MessageType.STARTCHAT, author);
 	}
 
 	/**
@@ -127,11 +129,12 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 			chatRoomManager.getCommonRoom().sendMessage(
 					new Message(newUser.getUser().getUsername(),
 							chatRoomManager.getCommonRoom().getId(),
-							TYPE.USERLISTADD, TYPE.SERVER.toString()));
+							MessageType.USERLISTADD, MessageType.SERVER
+									.toString()));
 			chatRoomManager.getCommonRoom().addUser(newUser);
 			newUser.sendMessage(new Message(manager.getUserList().toString(),
-					chatRoomManager.getCommonRoom().getId(), TYPE.USERLIST,
-					TYPE.SERVER.toString()));
+					chatRoomManager.getCommonRoom().getId(),
+					MessageType.USERLIST, MessageType.SERVER.toString()));
 		} else {
 			manager.rejectUser(user);
 		}

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.threads;
 
 import java.io.IOException;
@@ -15,8 +12,8 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
@@ -33,6 +30,8 @@ public class ClientThread extends Thread {
 	private ObjectOutputStream output;
 	private MessageInterpreter manager;
 	private String username;
+	private String address = "localhost";
+	private int port = 7000;
 
 	public ClientThread(String username) {
 		this.username = username;
@@ -42,7 +41,7 @@ public class ClientThread extends Thread {
 	public void run() {
 		LOGGER.info("Starting client");
 		connectToServer();
-		sendMessage(new Message(username, 0, TYPE.CONNECT, username));
+		sendMessage(new Message(username, 0, MessageType.CONNECT, username));
 		LOGGER.info("Starting read messages");
 		readServerMassesges();
 	}
@@ -51,9 +50,8 @@ public class ClientThread extends Thread {
 	 * Connect to the server.
 	 */
 	protected void connectToServer() {
-		// client = SocketGenerator.createSocket();10.131.2.96
 		try {
-			client = new Socket("localhost", 7000);
+			client = new Socket(address, port);
 			output = new ObjectOutputStream(client.getOutputStream());
 			input = new ObjectInputStream(client.getInputStream());
 			manager = new ClientMessageInterpretor(this);
@@ -116,7 +114,7 @@ public class ClientThread extends Thread {
 	public void interrupt() {
 		if (client.isConnected()) {
 			LOGGER.info("Sending dissconnect message to the server.");
-			sendMessage(new Message("", 0, TYPE.DISCONNECT, ClientInfo
+			sendMessage(new Message("", 0, MessageType.DISCONNECT, ClientInfo
 					.getInstance().getUserName()));
 		}
 		super.interrupt();

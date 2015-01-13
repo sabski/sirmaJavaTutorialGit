@@ -24,7 +24,7 @@ import com.sirma.itt.javacourse.SocketGenerator;
  */
 public class MulticastClient extends Thread {
 
-	private static Logger log = Logger.getLogger(MulticastClient.class);
+	private static final Logger LOGGER = Logger.getLogger(MulticastClient.class);
 	private MulticastSocket multicastClient;
 	private Socket client;
 	private String group = "225.4.5.6";
@@ -39,14 +39,14 @@ public class MulticastClient extends Thread {
 			multicastClient = new MulticastSocket(7005);
 			multicastClient.joinGroup(InetAddress.getByName(group));
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		while (!multicastClient.isConnected()) {
 			byte[] buffer = new byte[1024];
 			DatagramPacket pack = new DatagramPacket(buffer, buffer.length);
 			try {
 				multicastClient.receive(pack);
-				log.info("reseived " + pack.toString());
+				LOGGER.info("reseived " + pack.toString());
 				ByteArrayInputStream byteStream = new ByteArrayInputStream(
 						buffer);
 				ObjectInputStream is = new ObjectInputStream(
@@ -54,7 +54,7 @@ public class MulticastClient extends Thread {
 				Object o = is.readObject();
 				displayMessage("packege reseived " + o.toString());
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -71,14 +71,14 @@ public class MulticastClient extends Thread {
 					client.getInputStream());
 			String message = (String) reader.readObject();
 			if (message != null) {
-				log.info(message);
+				LOGGER.info(message);
 				group = message;
 				displayMessage("Multicast listeing addres is " + message);
 
 			}
 
 		} catch (IOException | ClassNotFoundException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			stopClient();
 		}
 	}
@@ -93,7 +93,7 @@ public class MulticastClient extends Thread {
 		try {
 			client.close();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 
 	}
@@ -105,13 +105,13 @@ public class MulticastClient extends Thread {
 	 *            the message to be send to the UI.
 	 */
 	private void displayMessage(String message) {
-		log.info(message);
+		LOGGER.info(message);
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 
 	@Override
 	public void run() {
-		log.info("Client started");
+		LOGGER.info("Client started");
 		connect();
 
 	}

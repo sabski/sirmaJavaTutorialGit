@@ -13,7 +13,8 @@ import com.sirma.itt.javacourse.ReflectionUtil;
 import com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject;
 
 /**
- * JUnit test for {@link com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject}
+ * JUnit test for
+ * {@link com.sirma.itt.javacourse.inputoutput.task6.serialization.UserDefinedObject}
  * 
  * @author Simeon Iliev
  */
@@ -21,7 +22,8 @@ public class TestSerializathion {
 
 	private Logger log = Logger.getLogger(TestSerializathion.class.getName());
 	private UserDefinedObject object;
-	private String path = getClass().getResource("/Serializathion.txt").getPath();
+	private String path = getClass().getResource("/Serializathion.txt")
+			.getPath();
 
 	/**
 	 * @throws java.lang.Exception
@@ -48,8 +50,10 @@ public class TestSerializathion {
 	 */
 	@Test
 	public void testGetObject() {
+		object.saveObject(path, object);
 		try {
-			assertTrue(ReflectionUtil.compareObjects(object, object.getObject(path)));
+			assertTrue(ReflectionUtil.compareObjects(object,
+					object.getObject(path)));
 		} catch (IOException e) {
 			log.error(e);
 		} catch (SecurityException e) {

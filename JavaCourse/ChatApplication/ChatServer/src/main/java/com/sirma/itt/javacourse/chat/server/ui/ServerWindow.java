@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
@@ -28,6 +29,8 @@ public class ServerWindow extends JFrame {
 	private static final long serialVersionUID = -401486980443255042L;
 	private JButton startButton;
 	private JButton stopButton;
+	private JButton languageButton;
+	private JTextField portTextField;
 	private JTextArea messageArea;
 	private MainServerThread server;
 
@@ -58,18 +61,22 @@ public class ServerWindow extends JFrame {
 		// Start language setup.
 		LanguageController.loadCurrentLanguage();
 		LanguageController.setLanguage("BG");
-		// TODO Have a nice day;
+		// TODO Add internatiolization preoperties.
 		JFrame mainWindow = this;
 		startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
+		languageButton = new JButton("EN/BG");
+		portTextField = new JTextField("7000");
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new BorderLayout());
 
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(portTextField);
 		buttonPanel.add(startButton);
 		buttonPanel.add(stopButton);
+		buttonPanel.add(languageButton);
 		createButtonListners();
 		mainWindow.add(buttonPanel, BorderLayout.NORTH);
 		mainWindow.add(messageArea);

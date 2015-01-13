@@ -11,16 +11,16 @@ import javax.swing.text.PlainDocument;
  * @author siliev
  * 
  */
-public class LimitTextDocument extends PlainDocument {
+public class LimitTextField extends PlainDocument {
 	private static final long serialVersionUID = 1402603494725444011L;
 	private int limit;
 
-	public LimitTextDocument(int limit) {
+	public LimitTextField(int limit) {
 		super();
 		this.limit = limit;
 	}
 
-	public LimitTextDocument(int limit, boolean upper) {
+	public LimitTextField(int limit, boolean upper) {
 		super();
 		this.limit = limit;
 	}

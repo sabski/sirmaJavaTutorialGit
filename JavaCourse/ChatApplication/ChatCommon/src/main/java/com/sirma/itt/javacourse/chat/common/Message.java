@@ -6,19 +6,15 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = -103156352094886756L;
 
-	public static enum TYPE {
-		CONNECT, DISCONNECT, MESSAGE, STARTCHAT, SERVER, APPROVED, REFUSED, USERLIST, USERLISTADD, USERLISTREMOVE, REMOVEUSER
-	};
-
 	private String content;
 	private Long chatRoomId;
-	private TYPE messageType;
+	private MessageType messageType;
 	private String author;
 
 	/**
 	 * @return the messageType
 	 */
-	public TYPE getMessageType() {
+	public MessageType getMessageType() {
 		return messageType;
 	}
 
@@ -26,7 +22,7 @@ public class Message implements Serializable {
 	 * @param messageType
 	 *            the messageType to set
 	 */
-	public void setMessageType(TYPE messageType) {
+	public void setMessageType(MessageType messageType) {
 		this.messageType = messageType;
 	}
 
@@ -81,7 +77,7 @@ public class Message implements Serializable {
 	 * @param messageType
 	 * @param author
 	 */
-	public Message(String content, long chatRoomId, TYPE messageType,
+	public Message(String content, long chatRoomId, MessageType messageType,
 			String author) {
 		this.content = content;
 		this.chatRoomId = chatRoomId;

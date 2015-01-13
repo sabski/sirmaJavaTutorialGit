@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
-import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextDocument;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextField;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
@@ -71,7 +71,7 @@ public class TextArea extends JPanel implements UIColegue {
 		JPanel mainWindow = this;
 		mainWindow.setLayout(new FlowLayout());
 		messageField = new JTextField();
-		messageField.setDocument(new LimitTextDocument(200));
+		messageField.setDocument(new LimitTextField(200));
 		sendButton = new JButton(LanguageController.getWord("send"));
 		languageButton = new JButton(LanguageController.getWord("enbg"));
 		messageField.setPreferredSize(new Dimension(250, 30));

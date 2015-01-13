@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
@@ -95,7 +95,7 @@ public class ChatRoom {
 		userList.remove(user);
 		usernameList.remove(user.getUser().getUsername());
 		sendMessage(new Message(user.getUser().getUsername(), id,
-				TYPE.DISCONNECT, TYPE.SERVER.toString()));
+				MessageType.DISCONNECT, MessageType.SERVER.toString()));
 	}
 
 	/**

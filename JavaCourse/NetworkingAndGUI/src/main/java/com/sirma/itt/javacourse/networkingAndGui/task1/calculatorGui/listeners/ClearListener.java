@@ -7,6 +7,12 @@ import javax.swing.JTextField;
 
 import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.Command;
 
+/**
+ * This listener removes the last entered character in a text field.
+ * 
+ * @author siliev
+ * 
+ */
 public class ClearListener implements ActionListener {
 
 	private JTextField textFiled;
@@ -16,9 +22,14 @@ public class ClearListener implements ActionListener {
 	private Command command;
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param textFiled
+	 *            the text field we want to modify.
 	 * @param firstNumber
+	 *            the string we want to reset.
 	 * @param command
+	 *            the command we want to reset.
 	 */
 	public ClearListener(JTextField textFiled, String firstNumber,
 			Command command) {
@@ -37,7 +48,5 @@ public class ClearListener implements ActionListener {
 		}
 		textFiled.setText(textFiled.getText().substring(0,
 				textFiled.getText().length() - 1));
-
 	}
-
 }

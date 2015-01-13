@@ -106,10 +106,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setResizable(true);
 		mainWindow.addWindowListener(new WindowAdapter() {
-
-			/**
-			 * {@inheritDoc}
-			 */
+			
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (client != null && client.isAlive()) {
@@ -117,9 +114,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 				}
 				System.exit(0);
 			}
-
 		});
-
 		setUpListeners();
 	}
 

@@ -13,9 +13,9 @@ public class TimingThread extends Thread {
 
 	private static final Logger LOGGER = Logger.getLogger(TimingThread.class);
 	private final long timeout;
-	private long timeToLive;
 	private final String key;
 	private final TimeoutHashtable table;
+	private long timeToLive;
 
 	/**
 	 * Constructor for {@link TimingThread}.
@@ -34,9 +34,6 @@ public class TimingThread extends Thread {
 		updateTime();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		while (timeToLive > new Date().getTime()) {
@@ -68,5 +65,4 @@ public class TimingThread extends Thread {
 	public String getKey() {
 		return key;
 	}
-
 }

@@ -20,7 +20,7 @@ import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
  */
 public class MessageServer extends AbstractServer {
 
-	private static Logger log = Logger.getLogger(MessageServer.class);
+	private static final Logger LOGGER = Logger.getLogger(MessageServer.class);
 	private ServerSocket server;
 	private Socket client;
 	private ObjectOutputStream outputStream;
@@ -40,9 +40,9 @@ public class MessageServer extends AbstractServer {
 		try {
 			server = new ServerSocket(7000);
 			displayMessage("Server is starting.");
-			log.info("Server is starting");
+			LOGGER.info("Server is starting");
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 
 	}
@@ -59,11 +59,10 @@ public class MessageServer extends AbstractServer {
 					client.close();
 				}
 				displayMessage("Server is stopped");
-				log.info("Server is stopping");
+				LOGGER.info("Server is stopping");
 				interrupt();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-				// displayMessage(e.getMessage());
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 	}
@@ -91,7 +90,7 @@ public class MessageServer extends AbstractServer {
 				users.add(user);
 				user.start();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}

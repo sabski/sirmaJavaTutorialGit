@@ -19,7 +19,7 @@ import com.sirma.itt.javacourse.MathUtil;
  */
 public class MulticastAddressSupplier {
 
-	private static Logger log = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(MulticastAddressSupplier.class);
 	private List<InetAddress> addressBook;
 
@@ -45,7 +45,7 @@ public class MulticastAddressSupplier {
 			addressBook.add(InetAddress.getByName("224.0.0.45"));
 			addressBook.add(InetAddress.getByName("224.0.0.46"));
 		} catch (UnknownHostException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 
 	}

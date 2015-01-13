@@ -8,7 +8,7 @@ import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.ChatsPanel;
 import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
@@ -89,7 +89,7 @@ public class UIControler implements UIColegue {
 
 	public void sendMessage(String text) {
 		clientThread.sendMessage(new Message(text,
-				chatsPanel.getSelectedChat(), TYPE.MESSAGE, clientInfo
+				chatsPanel.getSelectedChat(), MessageType.MESSAGE, clientInfo
 						.getUserName()));
 	}
 
@@ -110,7 +110,7 @@ public class UIControler implements UIColegue {
 		}
 		if (list.size() != 0 && chatsPanel.checkPanels(list)) {
 			clientThread.sendMessage(new Message(list.toString(), 0,
-					TYPE.STARTCHAT, clientInfo.getUserName()));
+					MessageType.STARTCHAT, clientInfo.getUserName()));
 		}
 	}
 

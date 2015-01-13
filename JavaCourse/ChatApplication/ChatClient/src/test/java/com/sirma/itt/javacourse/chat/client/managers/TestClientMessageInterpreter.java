@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.managers;
 
 import static org.junit.Assert.*;
@@ -21,7 +18,7 @@ import com.sirma.itt.javacourse.chat.client.ui.ChatsPanel;
 import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 
 /**
  * @author siliev
@@ -83,12 +80,12 @@ public class TestClientMessageInterpreter {
 	public void testInterpretMessage() {
 		Message message;
 		// Test simple message
-		message = new Message("test", 0, TYPE.MESSAGE, "test");
+		message = new Message("test", 0, MessageType.MESSAGE, "test");
 		interpreter.interpretMessage(message, null);
 		Mockito.verify(interpreter).displayMessage(message);
 
 		// Test Start chat
-		message = new Message("test", 0, TYPE.STARTCHAT, "test");
+		message = new Message("test", 0, MessageType.STARTCHAT, "test");
 		interpreter.interpretMessage(message, null);
 		Mockito.verify(interpreter).createNewChatWindow(message);
 
@@ -103,24 +100,24 @@ public class TestClientMessageInterpreter {
 		// Mockito.verify(interpreter).serverRefused(message);
 
 		// Test Userlist message
-		message = new Message("[test]", 0, TYPE.USERLIST, "test");
+		message = new Message("[test]", 0, MessageType.USERLIST, "test");
 		interpreter.interpretMessage(message, new ChatUser("", new Socket()));
 		Mockito.verify(controler).updateUserList("[test]");
 
 		// Test Userlist add message
-		message = new Message("[test]", 0, TYPE.USERLISTADD, "test");
+		message = new Message("[test]", 0, MessageType.USERLISTADD, "test");
 		interpreter.interpretMessage(message, null);
 		Mockito.verify(controler).updateUserListAdd("[test]");
 		;
 
 		// Test Userlist remove message
-		message = new Message("[test]", 0, TYPE.USERLISTREMOVE, "test");
+		message = new Message("[test]", 0, MessageType.USERLISTREMOVE, "test");
 		interpreter.interpretMessage(message, null);
 		Mockito.verify(controler).updateUserListRemove("[test]");
 		;
 
 		// Test disconnect message
-		message = new Message("[test]", 0, TYPE.DISCONNECT, "[test]");
+		message = new Message("[test]", 0, MessageType.DISCONNECT, "[test]");
 		interpreter.interpretMessage(message, null);
 		Mockito.verify(interpreter).createNewChatWindow(message);
 	}

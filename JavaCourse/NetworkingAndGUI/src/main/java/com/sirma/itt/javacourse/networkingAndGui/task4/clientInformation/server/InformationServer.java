@@ -22,12 +22,12 @@ import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
  */
 public class InformationServer extends AbstractServer {
 
-	private static Logger log = Logger.getLogger(InformationServer.class);
-
+	private static final Logger LOGGER = Logger
+			.getLogger(InformationServer.class);
+	private final Map<Socket, OutputStream> clientList;
 	private ServerSocket server;
 	private Socket client;
 	private int clientNumber;
-	private final Map<Socket, OutputStream> clientList;
 
 	/**
 	 * Basic constructor.
@@ -43,7 +43,7 @@ public class InformationServer extends AbstractServer {
 	public void startServer() {
 		server = SocketGenerator.createServerSocket();
 		displayMessage("Server is starting.");
-		log.info("Server is starting");
+		LOGGER.info("Server is starting");
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class InformationServer extends AbstractServer {
 				oStream.flush();
 				clientPair.getKey().close();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		if (server != null) {
@@ -72,17 +72,14 @@ public class InformationServer extends AbstractServer {
 				clientNumber = 0;
 				clientList.clear();
 				displayMessage("Server is stopped");
-				log.info("Server is stopping");
+				LOGGER.info("Server is stopping");
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		startServer();
@@ -103,11 +100,11 @@ public class InformationServer extends AbstractServer {
 						clientSocket.getOutputStream());
 				outputStream.writeObject("You are client number "
 						+ clientNumber);
-				log.info("New client has connected : " + clientNumber);
+				LOGGER.info("New client has connected : " + clientNumber);
 				outputStream.flush();
 				displayMessage("New client has connected : " + clientNumber);
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
@@ -119,7 +116,7 @@ public class InformationServer extends AbstractServer {
 						+ " has connected.");
 				oStream.flush();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		clientList.put(clientSocket, outputStream);
@@ -133,11 +130,9 @@ public class InformationServer extends AbstractServer {
 				clientNumber++;
 				sendUserMessage(client);
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
-
 	}
-
 }

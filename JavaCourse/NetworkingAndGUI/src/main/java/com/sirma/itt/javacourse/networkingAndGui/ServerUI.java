@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class ServerUI extends JFrame {
@@ -18,6 +19,7 @@ public class ServerUI extends JFrame {
 	private JButton startButton;
 	private JButton stopButton;
 	private JTextArea messageArea;
+	private JScrollPane scrollPane;
 	private AbstractServer server;
 
 	/**
@@ -38,6 +40,9 @@ public class ServerUI extends JFrame {
 		startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
 		messageArea = new JTextArea();
+		scrollPane = new JScrollPane(messageArea);
+		scrollPane
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new BorderLayout());
 
@@ -47,7 +52,7 @@ public class ServerUI extends JFrame {
 		buttonPanel.add(stopButton);
 		createButtonListners();
 		mainWindow.add(buttonPanel, BorderLayout.NORTH);
-		mainWindow.add(messageArea);
+		mainWindow.add(scrollPane);
 		mainWindow.setTitle(server.getClass().getSimpleName());
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);

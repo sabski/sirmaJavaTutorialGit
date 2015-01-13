@@ -79,6 +79,12 @@ public class DateClient extends Thread {
 		}
 	}
 
+	/**
+	 * Displays a message on to the UI.
+	 * 
+	 * @param message
+	 *            the message to be displayed.
+	 */
 	public void displayMessage(String message) {
 		textArea.setText(textArea.getText() + "\n" + message);
 		textArea.invalidate();

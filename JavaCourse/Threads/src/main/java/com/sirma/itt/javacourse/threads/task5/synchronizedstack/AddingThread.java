@@ -13,9 +13,6 @@ public class AddingThread extends Thread {
 	private Object objectToAdd;
 	private ObjectListSynchonized list;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void run() {
 		while (!chekFlag()) {
@@ -36,7 +33,7 @@ public class AddingThread extends Thread {
 	 * Set up thread method.
 	 * 
 	 * @param objectToAdd
-	 *            the object that is t obe added by this thread.
+	 *            the object that is to be added by this thread.
 	 */
 	public void setUpThread(Object objectToAdd) {
 		this.objectToAdd = objectToAdd;
@@ -46,14 +43,15 @@ public class AddingThread extends Thread {
 	 * Constructor with {@link ObjectListSynchonized} that is used as a lock.
 	 * 
 	 * @param lock
-	 *            the object list that we are going to add and use as a lock object.
+	 *            the object list that we are going to add and use as a lock
+	 *            object.
 	 */
 	public AddingThread(ObjectListSynchonized lock) {
 		this.list = lock;
 	}
 
 	/**
-	 * Cheks the flag of the lock object.
+	 * Checks the flag of the lock object.
 	 * 
 	 * @return the flag status.
 	 */

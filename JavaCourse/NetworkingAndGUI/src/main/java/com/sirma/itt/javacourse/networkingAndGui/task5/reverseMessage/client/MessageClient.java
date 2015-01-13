@@ -21,10 +21,10 @@ import com.sirma.itt.javacourse.networkingAndGui.task5.reverseMessage.server.Mes
  */
 public class MessageClient extends Thread {
 
-	private static Logger log = Logger.getLogger(MessageClient.class);
-	private Socket client;
+	private static final Logger LOGGER = Logger.getLogger(MessageClient.class);
 	private final MessageClientGUI clientGUI;
 	private final JTextArea messageArea;
+	private Socket client;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 
@@ -38,7 +38,7 @@ public class MessageClient extends Thread {
 			input = new ObjectInputStream(client.getInputStream());
 			output = new ObjectOutputStream(client.getOutputStream());
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
 	}
@@ -54,10 +54,10 @@ public class MessageClient extends Thread {
 			Thread.sleep(5 * 1000);
 			clientGUI.dispatchEvent(new WindowEvent(clientGUI,
 					WindowEvent.WINDOW_CLOSING));
-			log.info(isAlive());
+			LOGGER.info(isAlive());
 			interrupt();
 		} catch (IOException | InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
 
@@ -77,7 +77,7 @@ public class MessageClient extends Thread {
 				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			stopClient();
 		}
 	}
@@ -98,7 +98,7 @@ public class MessageClient extends Thread {
 				output.flush();
 				output.reset();
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
@@ -111,7 +111,7 @@ public class MessageClient extends Thread {
 	 *            the message that is to be send to the UI.
 	 */
 	public void displayMessage(String messageToDisplay) {
-		log.info(messageToDisplay);
+		LOGGER.info(messageToDisplay);
 		messageArea.setText(messageArea.getText() + "\n" + messageToDisplay);
 	}
 

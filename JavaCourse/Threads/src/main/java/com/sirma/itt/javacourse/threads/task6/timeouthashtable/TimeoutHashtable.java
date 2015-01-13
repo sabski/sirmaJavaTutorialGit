@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class that will store objects with a key value to them. The object will be stored for a specific
- * amount of time or a default time.
+ * Class that will store objects with a key value to them. The object will be
+ * stored for a specific amount of time or a default time.
  * 
  * @author Simeon Iliev
  */
 public class TimeoutHashtable {
 
 	private final Map<String, Object> timeOutMap;
-	private long timeout = 1000L;
 	private final List<TimingThread> threads;
+	private long timeout = 1000L;
 
 	/**
 	 * Constructor for the table with given timeout.
@@ -30,8 +30,9 @@ public class TimeoutHashtable {
 	}
 
 	/**
-	 * Puts the specific combination of key and value into the map, if there is already a value with
-	 * the same key it is overwritten and its timeout reset.
+	 * Puts the specific combination of key and value into the map, if there is
+	 * already a value with the same key it is overwritten and its timeout
+	 * reset.
 	 * 
 	 * @param key
 	 *            The key to the object.
@@ -57,8 +58,8 @@ public class TimeoutHashtable {
 	}
 
 	/**
-	 * Retrieves the object value that is associated with this key, if there is no value associated
-	 * with the key returns null value.
+	 * Retrieves the object value that is associated with this key, if there is
+	 * no value associated with the key returns null value.
 	 * 
 	 * @param key
 	 *            The key to the object.
@@ -77,10 +78,11 @@ public class TimeoutHashtable {
 	}
 
 	/**
-	 * Removes an object from the map and also returns the removed objects value. The object is
-	 * removed using its key, however if there is no value in the map the method will return a null
-	 * object, also this map allows null values so it also may return null if the object value is
-	 * equal to null.
+	 * Removes an object from the map and also returns the removed objects
+	 * value. The object is removed using its key, however if there is no value
+	 * in the map the method will return a null object, also this map allows
+	 * null values so it also may return null if the object value is equal to
+	 * null.
 	 * 
 	 * @param key
 	 *            The key to the object.

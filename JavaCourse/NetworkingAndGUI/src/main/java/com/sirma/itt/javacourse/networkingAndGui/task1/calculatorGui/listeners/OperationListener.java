@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.networkingAndGui.task1.calculatorGui.listeners;
 
 import java.awt.event.ActionEvent;
@@ -14,6 +11,9 @@ import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.Command
 import com.sirma.itt.javacourse.desingpatterns.task7.calculator.commands.CommandBuilder;
 
 /**
+ * This listener is responsible for building commands for the calculator, and
+ * executing them.
+ * 
  * @author siliev
  * 
  */
@@ -29,9 +29,14 @@ public class OperationListener implements ActionListener {
 	private String secondNumber;
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param textFiled
+	 *            the text field reference we will display the results.
 	 * @param command
+	 *            the command we want to build or execute.
 	 * @param firstNumber
+	 *            the first number reference.
 	 */
 	public OperationListener(JTextField textFiled, Command command,
 			String firstNumber) {
@@ -68,5 +73,4 @@ public class OperationListener implements ActionListener {
 		}
 		textFiled.validate();
 	}
-
 }

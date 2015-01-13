@@ -25,9 +25,10 @@ public class DownloadAgentGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private static Logger log = Logger.getLogger(DownloadAgentGui.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(DownloadAgentGui.class);
 	public static final String SAVE_LOCATION = System.getProperty("user.home")
-			+ System.getProperty("file.separator") + "Downloads";
+			+ System.getProperty("file.separator") + "DownloadAgent";
 
 	private JTextField urlAddreddField;
 	private JTextField saveLocationTextField;
@@ -90,8 +91,8 @@ public class DownloadAgentGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				log.info(e.getActionCommand());
-				log.info(urlAddreddField.getText());
+				LOGGER.info(e.getActionCommand());
+				LOGGER.info(urlAddreddField.getText());
 				taskCreator();
 			}
 		});
@@ -102,7 +103,7 @@ public class DownloadAgentGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				log.info(e.getActionCommand());
+				LOGGER.info(e.getActionCommand());
 				JFrame frame = new JFrame("Hello");
 				downloadDirChoser = new JFileChooser(SAVE_LOCATION);
 				downloadDirChoser.setVisible(true);
@@ -112,10 +113,10 @@ public class DownloadAgentGui extends JFrame {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					String selected = downloadDirChoser.getSelectedFile()
 							.getAbsolutePath();
-					log.info(selected);
+					LOGGER.info(selected);
 					saveLocationTextField.setText(selected);
 				} else {
-					log.info("Canceled");
+					LOGGER.info("Canceled");
 				}
 			}
 		});

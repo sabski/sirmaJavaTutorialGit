@@ -20,7 +20,6 @@ public class ChatRoomManager {
 	private static final Logger LOGGER = Logger
 			.getLogger(ChatRoomManager.class);
 
-
 	private Map<Long, ChatRoom> chatRooms;
 
 	private List<ChatRoom> freeRooms;
@@ -31,8 +30,8 @@ public class ChatRoomManager {
 	 * Singleton constructor.
 	 */
 	public ChatRoomManager() {
-		chatRooms = new HashMap<Long, ChatRoom>(100);
-		freeRooms = new ArrayList<ChatRoom>(20);
+		chatRooms = new HashMap<Long, ChatRoom>();
+		freeRooms = new ArrayList<ChatRoom>();
 		createCommonRoom();
 	}
 

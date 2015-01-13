@@ -18,11 +18,12 @@ import com.sirma.itt.javacourse.SocketGenerator;
  */
 public class InformationClient extends Thread {
 
-	private static final Logger log = Logger.getLogger(InformationClient.class);
-	private Socket client;
-	private final JTextArea messageArea;
-	private ObjectInputStream reader;
+	private static final Logger LOGGER = Logger
+			.getLogger(InformationClient.class);
 	private final InformationClientGUI clientGUI;
+	private final JTextArea messageArea;
+	private Socket client;
+	private ObjectInputStream reader;
 
 	/**
 	 * Basic constructor for the information client.
@@ -49,7 +50,7 @@ public class InformationClient extends Thread {
 			reader = new ObjectInputStream(client.getInputStream());
 			readFromServer();
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
 
@@ -68,7 +69,7 @@ public class InformationClient extends Thread {
 				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			stopClient();
 		}
 	}
@@ -85,7 +86,7 @@ public class InformationClient extends Thread {
 					WindowEvent.WINDOW_CLOSING));
 			interrupt();
 		} catch (IOException | InterruptedException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
 
@@ -98,7 +99,7 @@ public class InformationClient extends Thread {
 	 *            the message to be send to the UI.
 	 */
 	private void displayMessage(String message) {
-		log.info(message);
+		LOGGER.info(message);
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}
 

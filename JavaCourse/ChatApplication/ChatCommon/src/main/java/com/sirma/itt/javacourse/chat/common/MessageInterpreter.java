@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.common;
-
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
 
 /**
  * An message interpreter interface.
@@ -13,7 +8,7 @@ import com.sirma.itt.javacourse.chat.common.Message.TYPE;
  */
 public interface MessageInterpreter {
 
-	public Message generateMessage(TYPE type, long id, String content,
+	public Message generateMessage(MessageType type, long id, String content,
 			String author);
 
 	/**

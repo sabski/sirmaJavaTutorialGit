@@ -39,10 +39,6 @@ public class DownloadUITask extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		progressBar.setValue(0);
 		connection = openConnection();
-		/*
-		 * LOGGER.info("The length of the content : " +
-		 * humanReadableByteCount(connection.getContentLength()));
-		 */
 		fileSize = connection.getContentLengthLong();
 		LOGGER.info("File size " + fileSize);
 		String fileName = FilenameUtils.getBaseName(url) + "."

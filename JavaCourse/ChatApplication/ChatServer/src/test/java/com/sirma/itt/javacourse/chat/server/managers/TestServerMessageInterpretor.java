@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.server.managers;
 
 import static org.junit.Assert.*;
@@ -12,7 +9,7 @@ import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
-import com.sirma.itt.javacourse.chat.common.Message.TYPE;
+import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
@@ -53,7 +50,7 @@ public class TestServerMessageInterpretor {
 	 */
 	@Test
 	public void testInterpretMessage() {
-		Message message = new Message("Joke", 0, TYPE.MESSAGE, "MEME");
+		Message message = new Message("Joke", 0, MessageType.MESSAGE, "MEME");
 		interpreter.interpretMessage(message, user);
 	}
 

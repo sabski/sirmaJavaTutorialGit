@@ -19,7 +19,7 @@ import com.sirma.itt.javacourse.networkingAndGui.AbstractServer;
  */
 public class DateServer extends AbstractServer {
 
-	private static Logger log = Logger.getLogger(DateServer.class);
+	private static final Logger LOGGER = Logger.getLogger(DateServer.class);
 
 	private ServerSocket server;
 
@@ -39,7 +39,7 @@ public class DateServer extends AbstractServer {
 				server.close();
 				displayMessage("Server stopped");
 			} catch (IOException e) {
-				log.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 				displayMessage(e.getMessage());
 			}
 		}
@@ -60,7 +60,7 @@ public class DateServer extends AbstractServer {
 			clientSocket.close();
 			displayMessage("New client at date : " + date);
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			displayMessage(e.getMessage());
 		}
 	}

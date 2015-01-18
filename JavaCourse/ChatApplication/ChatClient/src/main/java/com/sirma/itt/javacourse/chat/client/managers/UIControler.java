@@ -114,15 +114,6 @@ public class UIControler implements UIColegue {
 		}
 	}
 
-	/**
-	 * @return the thread
-	 */
-	public ClientThread restartThread() {
-		clientThread = new ClientThread(
-				ClientMessageInterpretor.inputUserName());
-		return clientThread;
-	}
-
 	@Override
 	public void registerComponent() {
 		// TODO Auto-generated method stub

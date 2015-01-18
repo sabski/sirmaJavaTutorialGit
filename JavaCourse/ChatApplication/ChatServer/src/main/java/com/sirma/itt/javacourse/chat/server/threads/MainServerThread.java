@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
+ * The main server thread that starts the server and accepts connections.
+ * 
  * 
  * @author siliev
  * 
@@ -22,21 +24,35 @@ public class MainServerThread extends Thread {
 	private ServerSocket server;
 	private UserManager userManager;
 	private JTextArea messageArea;
+	private int port;
 
-	public MainServerThread(JTextArea messageArea) {
+	/**
+	 * Constructor for the main server thread.
+	 * 
+	 * @param messageArea
+	 *            the message area of the UI.
+	 */
+	public MainServerThread(JTextArea messageArea, int port) {
 		this.messageArea = messageArea;
+		this.port = port;
 	}
 
 	@Override
 	public void run() {
 		LOGGER.info("Server thread started");
-		startServer();
+		startServer(port);
 		acceptConnections();
 	}
 
-	protected void startServer() {
+	/**
+	 * Starts the server.
+	 * 
+	 * @param port
+	 *            the port on which to start the server.
+	 */
+	protected void startServer(int port) {
 		try {
-			server = new ServerSocket(7000);
+			server = new ServerSocket(port);
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
@@ -45,6 +61,9 @@ public class MainServerThread extends Thread {
 		displayMessage("Server has started");
 	}
 
+	/**
+	 * Accepts client connections and starts confirmation dialog.
+	 */
 	protected void acceptConnections() {
 		LOGGER.info("acceptConnections");
 		while (!isInterrupted()) {
@@ -73,6 +92,12 @@ public class MainServerThread extends Thread {
 		}
 	}
 
+	/**
+	 * Displays an information message on to the server UI.
+	 * 
+	 * @param message
+	 *            the message we want to display on to the UI.
+	 */
 	public void displayMessage(String message) {
 		messageArea.setText(messageArea.getText() + "\n" + message);
 	}

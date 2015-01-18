@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
+import com.sirma.itt.javacourse.chat.client.ui.TextArea;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.MessageType;
@@ -32,15 +33,20 @@ public class ClientThread extends Thread {
 	private String username;
 	private String address = "localhost";
 	private int port = 7000;
+	private TextArea textArea;
 
-	public ClientThread(String username) {
+	public ClientThread(String username, String address, int port,
+			TextArea textArea) {
 		this.username = username;
+		this.address = address;
+		this.port = port;
+		this.textArea = textArea;
 	}
 
 	@Override
 	public void run() {
-		LOGGER.info("Starting client");
 		connectToServer();
+		LOGGER.info("Starting client");
 		sendMessage(new Message(username, 0, MessageType.CONNECT, username));
 		LOGGER.info("Starting read messages");
 		readServerMassesges();
@@ -49,8 +55,9 @@ public class ClientThread extends Thread {
 	/**
 	 * Connect to the server.
 	 */
-	protected void connectToServer() {
+	public boolean connectToServer() {
 		try {
+			LOGGER.info("Connecting to address " + address + " on port " + port);
 			client = new Socket(address, port);
 			output = new ObjectOutputStream(client.getOutputStream());
 			input = new ObjectInputStream(client.getInputStream());
@@ -60,9 +67,11 @@ public class ClientThread extends Thread {
 			JOptionPane.showMessageDialog(null,
 					LanguageController.getWord("servererror"), "Error",
 					JOptionPane.ERROR_MESSAGE);
+			textArea.toogleText();
 		} finally {
 			LOGGER.info("Connection attemt finished.");
 		}
+		return client != null && client.isConnected();
 	}
 
 	/**

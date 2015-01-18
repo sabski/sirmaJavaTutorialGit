@@ -35,7 +35,7 @@ public class TestMainServerThread {
 	@Before
 	public void setUp() throws Exception {
 		textArea = new JTextArea();
-		mainThread = new MainServerThread(textArea);
+		mainThread = new MainServerThread(textArea,7000);
 	}
 
 	/**

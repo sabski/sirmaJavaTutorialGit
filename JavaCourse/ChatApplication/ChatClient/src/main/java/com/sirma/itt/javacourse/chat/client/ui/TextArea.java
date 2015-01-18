@@ -205,5 +205,7 @@ public class TextArea extends JPanel implements UIColegue {
 		} else {
 			messageField.setEditable(true);
 		}
+		connectButton.setEnabled(!connectButton.isEnabled());
+		disconnectButton.setEnabled(!disconnectButton.isEnabled());
 	}
 }

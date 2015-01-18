@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.server.ui;
 
 import java.awt.BorderLayout;
@@ -11,11 +8,14 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.sirma.itt.javacourse.StringUtil;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
@@ -60,12 +60,15 @@ public class ServerWindow extends JFrame {
 	private void setUp() {
 		// Start language setup.
 		LanguageController.loadCurrentLanguage();
-		LanguageController.setLanguage("BG");
+		// LanguageController.setLanguage("BG");
 		// TODO Add internatiolization preoperties.
 		JFrame mainWindow = this;
-		startButton = new JButton("Start");
-		stopButton = new JButton("Stop");
-		languageButton = new JButton("EN/BG");
+		startButton = new JButton();
+		stopButton = new JButton();
+		languageButton = new JButton();
+		startButton.setText(LanguageController.getWord("start"));
+		stopButton.setText(LanguageController.getWord("stop"));
+		languageButton.setText(LanguageController.getWord("enbg"));
 		portTextField = new JTextField("7000");
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
@@ -106,8 +109,19 @@ public class ServerWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				server = new MainServerThread(messageArea);
-				server.start();
+				if (portTextField.getText().isEmpty()
+						&& StringUtil.validateStringWithRegex(
+								StringUtil.REGEX_VALIDATOR_NUMBERS_ONLY,
+								portTextField.getText())) {
+					JOptionPane.showMessageDialog(null,
+							LanguageController.getWord("servernoport"),
+							LanguageController.getWord("error"),
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					server = new MainServerThread(messageArea, Integer
+							.parseInt(portTextField.getText()));
+					server.start();
+				}
 			}
 		});
 
@@ -118,6 +132,24 @@ public class ServerWindow extends JFrame {
 				if (server != null) {
 					server.stopServer();
 				}
+			}
+		});
+
+		languageButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (LanguageController.getCurrentLanguage().equals(
+						LANGUGES.BG.toString())) {
+					LanguageController.setLanguage(LANGUGES.EN.toString());
+				} else {
+					LanguageController.setLanguage(LANGUGES.BG.toString());
+				}
+				LanguageController.loadCurrentLanguage();
+				startButton.setText(LanguageController.getWord("start"));
+				stopButton.setText(LanguageController.getWord("stop"));
+				languageButton.setText(LanguageController.getWord("enbg"));
+
 			}
 		});
 	}

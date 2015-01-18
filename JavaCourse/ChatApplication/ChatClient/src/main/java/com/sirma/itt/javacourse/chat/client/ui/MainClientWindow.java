@@ -19,9 +19,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.InputDialog;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
@@ -106,9 +106,10 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setResizable(true);
 		mainWindow.addWindowListener(new WindowAdapter() {
-			
+
 			@Override
 			public void windowClosing(WindowEvent e) {
+				client = controler.getThread();
 				if (client != null && client.isAlive()) {
 					client.interrupt();
 				}
@@ -123,12 +124,9 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client = new ClientThread(ClientMessageInterpretor.inputUserName());
-				controler.setThread(client);
-				client.start();
-				textArea.toogleText();
-				connectButton.setEnabled(false);
-				disconnectButton.setEnabled(true);
+				InputDialog input = new InputDialog(textArea, controler);
+				input.displaydialog();
+
 			}
 		});
 
@@ -137,13 +135,11 @@ public class MainClientWindow extends JFrame implements UIColegue {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				client = controler.getThread();
 				if (client != null && client.isAlive()) {
 					client.interrupt();
-					client = controler.restartThread();
 					chatPanel.resetChats();
 					textArea.toogleText();
-					connectButton.setEnabled(true);
-					disconnectButton.setEnabled(false);
 				}
 			}
 		});

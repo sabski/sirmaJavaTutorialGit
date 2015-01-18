@@ -11,6 +11,8 @@ import javax.swing.JTabbedPane;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.ButtonTabComponent;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.TabComponnent;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;

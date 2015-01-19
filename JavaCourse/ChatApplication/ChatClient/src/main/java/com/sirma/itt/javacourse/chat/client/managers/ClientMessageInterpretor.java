@@ -51,9 +51,6 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		case REFUSED:
 			serverRefused(message);
 			break;
-		case SERVER:
-			// TODO WHAT WHAT !!! - i can`t remember
-			break;
 		case USERLISTADD:
 			LOGGER.info(message);
 			controler.updateUserListAdd(message.getContent());

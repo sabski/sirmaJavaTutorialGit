@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 
 /**
  * Test class for {@link LanguageController}.
@@ -22,11 +22,10 @@ public class TestLanguageControler {
 	 */
 	@Test
 	public void testSetLanguage() {
-		LanguageController.setLanguage(LANGUGES.EN.toString());
-		assertEquals(LANGUGES.EN.toString(),
+		LanguageController.setLanguage(LANGUAGES.EN.toString());
+		assertEquals(LANGUAGES.EN.toString(),
 				LanguageController.getCurrentLanguage());
 	}
-
 
 	/**
 	 * Test method for
@@ -46,7 +45,7 @@ public class TestLanguageControler {
 	 */
 	@Test
 	public void testGetCurrentLanguage() {
-		assertEquals(LANGUGES.EN.toString(),
+		assertEquals(LANGUAGES.EN.toString(),
 				LanguageController.getCurrentLanguage());
 	}
 

@@ -1,11 +1,10 @@
 package com.sirma.itt.javacourse.chat.server.managers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoom;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
@@ -54,20 +53,6 @@ public class TestChatRoomManager {
 	public void testGetRoomById() {
 		Long id = manager.createChatRoom();
 		assertTrue(manager.getRoomById(id) instanceof ChatRoom);
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager#removeUserFromChats(com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread)}
-	 * .
-	 */
-	@Test
-	public void testRemoveUserFromChats() {
-		user = Mockito.mock(ClientListenerThread.class);
-		Mockito.when(user.getUser().getUsername()).thenReturn("test");
-		manager.getCommonRoom().addUser(user);
-		manager.removeUserFromChats(user);
-		assertTrue(manager.getCommonRoom().containsUser("test"));
 	}
 
 }

@@ -26,9 +26,6 @@ public class ChatRoomManager {
 
 	private ChatRoom commonRoom;
 
-	/**
-	 * Singleton constructor.
-	 */
 	public ChatRoomManager() {
 		chatRooms = new HashMap<Long, ChatRoom>();
 		freeRooms = new ArrayList<ChatRoom>();

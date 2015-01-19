@@ -79,8 +79,9 @@ public class ChatWindow extends JPanel {
 	public void displayMessage(Message message) {
 		SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
 
-		textArea.setText(textArea.getText() + "\n<" + format.format(new Date())
-				+ ">" + message.getAuthor() + " : " + message.getContent());
+		textArea.setText(textArea.getText() + "<" + format.format(new Date())
+				+ ">" + message.getAuthor() + " : " + message.getContent()
+				+ "\n");
 
 		textArea.invalidate();
 	}

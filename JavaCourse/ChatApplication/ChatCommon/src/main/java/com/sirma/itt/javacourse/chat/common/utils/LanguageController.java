@@ -24,21 +24,8 @@ public class LanguageController {
 	private static final Logger LOGGER = Logger
 			.getLogger(LanguageController.class);
 
-	public static enum LANGUGES {
-		EN("ENGLISH"), BG("bg");
 
-		private final String value;
-
-		private LANGUGES(String value) {
-			this.value = value;
-		}
-
-		public String toString() {
-			return value;
-		}
-	};
-
-	private static String currentLanguage = LANGUGES.EN.toString();
+	private static String currentLanguage = LANGUAGES.EN.toString();
 	private static Locale currentLocale;
 	private static ResourceBundle messages;
 	private static Map<String, AbstractButton> components = new HashMap<String, AbstractButton>();

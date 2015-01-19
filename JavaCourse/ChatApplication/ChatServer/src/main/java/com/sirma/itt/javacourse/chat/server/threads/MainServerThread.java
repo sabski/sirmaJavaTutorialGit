@@ -56,7 +56,7 @@ public class MainServerThread extends Thread {
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
-		userManager = new UserManager();
+		userManager = new UserManager(messageArea);
 		LOGGER.info("startServer");
 		displayMessage("Server has started");
 	}
@@ -99,6 +99,6 @@ public class MainServerThread extends Thread {
 	 *            the message we want to display on to the UI.
 	 */
 	public void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + "\n" + message);
+		messageArea.setText(messageArea.getText() + message + "\n");
 	}
 }

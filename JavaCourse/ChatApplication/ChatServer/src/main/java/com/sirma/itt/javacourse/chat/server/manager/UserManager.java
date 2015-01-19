@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JTextArea;
+
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.common.ChatUser;
@@ -30,15 +32,28 @@ public class UserManager {
 	private List<ClientListenerThread> tempHolder;
 	private MessageInterpreter interpretator;
 	private ChatRoomManager chatRoomManager;
+	private JTextArea messageArea;
 
 	/**
 	 * Private constructor.
+	 * 
+	 * @param messageArea
+	 *            text area of the main UI to display the disconnected users.
 	 */
-	public UserManager() {
+	public UserManager(JTextArea messageArea) {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
 		chatRoomManager = new ChatRoomManager();
 		interpretator = new ServerMessageInterpreter(this, chatRoomManager);
+		this.messageArea = messageArea;
+	}
+
+	public ChatRoomManager getChatRoomManager() {
+		return chatRoomManager;
+	}
+
+	public void setChatRoomManager(ChatRoomManager chatRoomManager) {
+		this.chatRoomManager = chatRoomManager;
 	}
 
 	/**
@@ -159,7 +174,7 @@ public class UserManager {
 	}
 
 	/**
-	 * Rejects the user for invalid username.
+	 * Rejects the user for invalid user name.
 	 * 
 	 * @param user
 	 *            the user to send a {@link TYPE.REFUSED}.
@@ -209,5 +224,16 @@ public class UserManager {
 	 */
 	public void disconnectUser(ClientListenerThread user) {
 		chatRoomManager.removeUserFromChats(user);
+		displayMessage("User has disconnected.");
+	}
+
+	/**
+	 * Displays an information message on to the server UI.
+	 * 
+	 * @param message
+	 *            the message we want to display on to the UI.
+	 */
+	public void displayMessage(String message) {
+		messageArea.setText(messageArea.getText() + message + "\n");
 	}
 }

@@ -10,12 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.javacourse.StringUtil;
+import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
@@ -32,6 +33,7 @@ public class ServerWindow extends JFrame {
 	private JButton languageButton;
 	private JTextField portTextField;
 	private JTextArea messageArea;
+	private JScrollPane scroll;
 	private MainServerThread server;
 
 	/**
@@ -58,10 +60,8 @@ public class ServerWindow extends JFrame {
 	 * for the window frame.
 	 */
 	private void setUp() {
-		// Start language setup.
 		LanguageController.loadCurrentLanguage();
-		// LanguageController.setLanguage("BG");
-		// TODO Add internatiolization preoperties.
+		server = new MainServerThread(messageArea, 7000);
 		JFrame mainWindow = this;
 		startButton = new JButton();
 		stopButton = new JButton();
@@ -73,7 +73,7 @@ public class ServerWindow extends JFrame {
 		messageArea = new JTextArea();
 		mainWindow.setSize(300, 250);
 		mainWindow.setLayout(new BorderLayout());
-
+		scroll = new JScrollPane(messageArea);
 		messageArea.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(portTextField);
@@ -82,8 +82,8 @@ public class ServerWindow extends JFrame {
 		buttonPanel.add(languageButton);
 		createButtonListners();
 		mainWindow.add(buttonPanel, BorderLayout.NORTH);
-		mainWindow.add(messageArea);
-		mainWindow.setTitle("Chat Server");
+		mainWindow.add(scroll);
+		mainWindow.setTitle(LanguageController.getWord("titleserver"));
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 
@@ -140,16 +140,17 @@ public class ServerWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (LanguageController.getCurrentLanguage().equals(
-						LANGUGES.BG.toString())) {
-					LanguageController.setLanguage(LANGUGES.EN.toString());
+						LANGUAGES.BG.toString())) {
+					LanguageController.setLanguage(LANGUAGES.EN.toString());
 				} else {
-					LanguageController.setLanguage(LANGUGES.BG.toString());
+					LanguageController.setLanguage(LANGUAGES.BG.toString());
 				}
 				LanguageController.loadCurrentLanguage();
 				startButton.setText(LanguageController.getWord("start"));
 				stopButton.setText(LanguageController.getWord("stop"));
 				languageButton.setText(LanguageController.getWord("enbg"));
-
+				ServerWindow.this.setTitle(LanguageController
+						.getWord("titleserver"));
 			}
 		});
 	}

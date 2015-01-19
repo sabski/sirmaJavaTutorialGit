@@ -21,8 +21,8 @@ import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextField;
+import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -106,10 +106,10 @@ public class TextArea extends JPanel implements UIColegue {
 				LOGGER.info("Language is "
 						+ LanguageController.getCurrentLanguage());
 				if (LanguageController.getCurrentLanguage().equals(
-						LANGUGES.BG.toString())) {
-					LanguageController.setLanguage(LANGUGES.EN.toString());
+						LANGUAGES.BG.toString())) {
+					LanguageController.setLanguage(LANGUAGES.EN.toString());
 				} else {
-					LanguageController.setLanguage(LANGUGES.BG.toString());
+					LanguageController.setLanguage(LANGUAGES.BG.toString());
 				}
 				LanguageController.invalidateComponents();
 				invalidate();

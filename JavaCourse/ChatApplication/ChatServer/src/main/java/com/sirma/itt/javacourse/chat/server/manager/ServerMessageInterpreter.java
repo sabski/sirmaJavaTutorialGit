@@ -78,20 +78,18 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 					manager.getUser(users));
 		}
 		chatRoomManager.getRoomById(empyRoom).sendMessage(
-				generateStartChatMessage(empyRoom, user.getUsername(),
-						message.getContent()));
+				generateMessage(MessageType.STARTCHAT, empyRoom,
+						message.getContent(), user.getUsername()));
 	}
 
 	/**
-	 * 
+	 * Disconnects the user from the server.
 	 * 
 	 * @param message
 	 *            the disconnect message that disconnects the user.
 	 */
 	private synchronized void disconnect(Message message) {
-		// TODO disconnect the user and notify other users
-		// that this user has left the server.
-		LOGGER.info("Recieved dissconet message still dont know what to do with it :/");
+		LOGGER.info("Recieved dissconet message");
 		chatRoomManager
 				.removeUserFromChats(manager.getUser(message.getAuthor()));
 		manager.removeUser(manager.getUser(message.getAuthor()).getUser());
@@ -105,11 +103,6 @@ public class ServerMessageInterpreter implements MessageInterpreter {
 	public Message generateMessage(MessageType type, long id, String content,
 			String author) {
 		return new Message(content, id, type, author);
-	}
-
-	public Message generateStartChatMessage(Long id, String author,
-			String userList) {
-		return new Message(userList, id, MessageType.STARTCHAT, author);
 	}
 
 	/**

@@ -22,8 +22,8 @@ import javax.swing.event.ListSelectionListener;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.InputDialog;
+import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController.LANGUGES;
 import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
@@ -81,7 +81,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	 * Set up method.
 	 */
 	private void setUp() {
-		LanguageController.setLanguage(LANGUGES.BG.toString());
+		LanguageController.setLanguage(LANGUAGES.BG.toString());
 		JFrame mainWindow = this;
 		connectButton = new JButton(LanguageController.getWord("connect"));
 		disconnectButton = new JButton(LanguageController.getWord("disconnect"));

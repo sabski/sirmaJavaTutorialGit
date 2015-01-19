@@ -13,6 +13,8 @@ import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
+ * A thread that receives and sends messages to the client.
+ * 
  * @author siliev
  * 
  */

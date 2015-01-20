@@ -67,6 +67,10 @@ public class ChatRoomManager {
 	 */
 	private void createCommonRoom() {
 		commonRoom = new ChatRoom();
+		if (commonRoom.getId() != 0) {
+			commonRoom.resetCount();
+			commonRoom.setId(0L);
+		}
 		chatRooms.put(commonRoom.getId(), commonRoom);
 	}
 

@@ -21,9 +21,10 @@ import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
 import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextField;
-import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
+import com.sirma.itt.javacourse.chat.client.ui.listeners.LanguageListener;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.Observable;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.Observer;
 
 /**
  * The Bottom panel of the client window.
@@ -31,7 +32,7 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
  * @author siliev
  * 
  */
-public class TextArea extends JPanel implements UIColegue {
+public class TextArea extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 8138842498862853077L;
 	private static final Logger LOGGER = Logger.getLogger(TextArea.class);
@@ -45,6 +46,7 @@ public class TextArea extends JPanel implements UIColegue {
 	private JButton disconnectButton;
 	private JButton languageButton;
 	private UIControler controler;
+	private MainClientWindow mainClientWindow;
 
 	/**
 	 * The Bottom panel of the client window.
@@ -53,11 +55,15 @@ public class TextArea extends JPanel implements UIColegue {
 	 *            the connect button.
 	 * @param disconnectButton
 	 *            the disconnect button.
+	 * @param mainClientWindow
+	 *            the main window to be added to the observers.
 	 * 
 	 */
-	public TextArea(JButton connectButton, JButton disconnectButton) {
+	public TextArea(JButton connectButton, JButton disconnectButton,
+			MainClientWindow mainClientWindow) {
 		this.connectButton = connectButton;
 		this.disconnectButton = disconnectButton;
+		this.mainClientWindow = mainClientWindow;
 		mementos = new ArrayList<>();
 		originator = new MessageOriginator();
 		controler = UIControler.getInstance();
@@ -99,22 +105,11 @@ public class TextArea extends JPanel implements UIColegue {
 			}
 
 		});
-		languageButton.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				LOGGER.info("Language is "
-						+ LanguageController.getCurrentLanguage());
-				if (LanguageController.getCurrentLanguage().equals(
-						LANGUAGES.BG.toString())) {
-					LanguageController.setLanguage(LANGUAGES.EN.toString());
-				} else {
-					LanguageController.setLanguage(LANGUAGES.BG.toString());
-				}
-				LanguageController.invalidateComponents();
-				invalidate();
-			}
-		});
+		LanguageListener controler = new LanguageListener();
+		languageButton.addActionListener(controler);
+		controler.attachObserver(this);
+		controler.attachObserver(mainClientWindow);
 
 		Action keyDown = new AbstractAction() {
 
@@ -168,11 +163,6 @@ public class TextArea extends JPanel implements UIColegue {
 		messageField.getActionMap().put("enter", enterAction);
 		messageField.getActionMap().put("keyDown", keyDown);
 		messageField.getActionMap().put("keyUp", keyUp);
-
-		LanguageController.addComponent("connect", connectButton);
-		LanguageController.addComponent("disconnect", disconnectButton);
-		LanguageController.addComponent("enbg", languageButton);
-		LanguageController.addComponent("send", sendButton);
 	}
 
 	/**
@@ -190,12 +180,6 @@ public class TextArea extends JPanel implements UIColegue {
 		messageField.setText("");
 	}
 
-	@Override
-	public void registerComponent() {
-		// TODO Auto-generated method stubs
-		// controler.registerTextArea(this);
-	}
-
 	/**
 	 * Switches the text field editable status.
 	 */
@@ -207,5 +191,11 @@ public class TextArea extends JPanel implements UIColegue {
 		}
 		connectButton.setEnabled(!connectButton.isEnabled());
 		disconnectButton.setEnabled(!disconnectButton.isEnabled());
+	}
+
+	@Override
+	public void update(Observable observable) {
+		sendButton.setText(LanguageController.getWord("send"));
+		languageButton.setText(LanguageController.getWord("enbg"));
 	}
 }

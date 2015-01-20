@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sirma.itt.javacourse.chat.client.ui.componnents;
 
 import javax.swing.text.AttributeSet;
@@ -8,6 +5,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 /**
+ * Limits a text field input.
+ * 
  * @author siliev
  * 
  */
@@ -16,12 +15,6 @@ public class LimitTextField extends PlainDocument {
 	private int limit;
 
 	public LimitTextField(int limit) {
-		super();
-		this.limit = limit;
-	}
-
-	public LimitTextField(int limit, boolean upper) {
-		super();
 		this.limit = limit;
 	}
 

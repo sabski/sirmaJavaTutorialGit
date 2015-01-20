@@ -100,7 +100,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 		client.setUserName(message.getAuthor());
 		controler.getMainWindow().setTitle(
 				controler.getMainWindow().getTitle() + " "
-						+ message.getAuthor());
+						+ message.getContent());
 		JOptionPane.showMessageDialog(
 				null,
 				LanguageController.getWord("welcomemessage") + " : "

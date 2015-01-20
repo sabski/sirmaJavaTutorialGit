@@ -16,7 +16,7 @@ import com.sirma.itt.javacourse.inputoutput.task5.directoryBrowser.DirectoryBrow
 public class TestDirectoryBrowser {
 
 	private DirectoryBrowser browser;
-	private String result = "com; Serializathion.txt; Destination.txt; Origin.txt; ";
+	private String result = "com; Destination.txt; Origin.txt; Serializathion.txt; ";
 	private String nullPath = null;
 
 	/**
@@ -35,7 +35,8 @@ public class TestDirectoryBrowser {
 	 */
 	@Test
 	public void testListContent() {
-		assertEquals(result, browser.listContent(getClass().getResource("/").getPath()));
+		assertEquals(result,
+				browser.listContent(getClass().getResource("/").getPath()));
 	}
 
 	/**
@@ -45,8 +46,10 @@ public class TestDirectoryBrowser {
 	 */
 	@Test
 	public void testListContentWithFile() {
-		assertTrue(browser.listContent(getClass().getResource("/Origin.txt").getPath()).endsWith(
-				"sirmaJavaTutorialGit/JavaCourse/InputOutput/target/test-classes/Origin.txt"));
+		assertTrue(browser
+				.listContent(getClass().getResource("/Origin.txt").getPath())
+				.endsWith(
+						"sirmaJavaTutorialGit/JavaCourse/InputOutput/target/test-classes/Origin.txt"));
 	}
 
 	/**

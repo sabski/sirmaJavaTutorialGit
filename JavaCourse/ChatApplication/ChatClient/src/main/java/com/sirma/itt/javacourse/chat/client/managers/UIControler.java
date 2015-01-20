@@ -10,7 +10,6 @@ import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
-import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
  * This class holds references to UI components that interact together.
@@ -18,15 +17,22 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
  * @author siliev
  * 
  */
-public class UIControler implements UIColegue {
+public class UIControler {
 
 	private static final Logger LOGGER = Logger.getLogger(UIControler.class);
 	private static final UIControler INSTANCE = new UIControler();
 	private ChatsPanel chatsPanel;
 	private MainClientWindow mainWindow;
-
 	private ClientThread clientThread;
 	private ClientInfo clientInfo;
+
+	public ClientInfo getClientInfo() {
+		return clientInfo;
+	}
+
+	public void setClientInfo(ClientInfo clientInfo) {
+		this.clientInfo = clientInfo;
+	}
 
 	private UIControler() {
 		clientInfo = ClientInfo.getInstance();
@@ -114,9 +120,4 @@ public class UIControler implements UIColegue {
 		}
 	}
 
-	@Override
-	public void registerComponent() {
-		// TODO Auto-generated method stub
-
-	}
 }

@@ -52,7 +52,7 @@ public class InputDialog {
 		this.port = port;
 	}
 
-	public void displaydialog() {
+	public void displayDialog() {
 		final JTextField addressField = new JTextField("localhost");
 		final JTextField portField = new JTextField("7000");
 		final JTextField usernameField = new JTextField("user");
@@ -67,12 +67,16 @@ public class InputDialog {
 		myPanel.add(portField);
 		myPanel.add(new JLabel(LanguageController.getWord("inputUsername")));
 		myPanel.add(usernameField);
-		myPanel.add(okButton);
-		myPanel.add(cancelButton);
 
+		
+		JPanel buttonPannel= new JPanel();
+		buttonPannel.add(okButton);
+		buttonPannel.add(cancelButton);
+		
+		myPanel.add(buttonPannel);
 		final JFrame frame = new JFrame();
 		frame.add(myPanel);
-		frame.setSize(300, 200);
+		frame.setSize(500, 200);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		okButton.addActionListener(new ActionListener() {

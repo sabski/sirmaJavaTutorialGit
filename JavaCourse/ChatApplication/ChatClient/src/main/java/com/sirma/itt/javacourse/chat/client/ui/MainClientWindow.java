@@ -24,7 +24,8 @@ import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.InputDialog;
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.Observable;
+import com.sirma.itt.javacourse.desingpatterns.task6.observer.Observer;
 
 /**
  * The main window frame of the Chat client application. Also this class servers
@@ -33,7 +34,7 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
  * @author siliev
  * 
  */
-public class MainClientWindow extends JFrame implements UIColegue {
+public class MainClientWindow extends JFrame implements Observer {
 
 	private static final long serialVersionUID = 1826026493714885025L;
 	private JButton connectButton;
@@ -74,7 +75,6 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	public MainClientWindow() {
 		controler = UIControler.getInstance();
 		setUp();
-		registerComponent();
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		connectButton = new JButton(LanguageController.getWord("connect"));
 		disconnectButton = new JButton(LanguageController.getWord("disconnect"));
 		chatPanel = new ChatsPanel();
-		textArea = new TextArea(connectButton, disconnectButton);
+		textArea = new TextArea(connectButton, disconnectButton, this);
 		users = new DefaultListModel<>();
 		userList = new JList<String>(users);
 		mainWindow.setLayout(new BorderLayout());
@@ -101,7 +101,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 		mainWindow.add(chatPanel, BorderLayout.CENTER);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(800, 600);
-		mainWindow.setTitle("Chat Client");
+		mainWindow.setTitle(LanguageController.getWord("titleclient"));
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setResizable(true);
@@ -117,6 +117,8 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			}
 		});
 		setUpListeners();
+		controler.registerMainWindow(this);
+		controler.registerChatPanel(chatPanel);
 	}
 
 	private void setUpListeners() {
@@ -125,7 +127,7 @@ public class MainClientWindow extends JFrame implements UIColegue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InputDialog input = new InputDialog(textArea, controler);
-				input.displaydialog();
+				input.displayDialog();
 
 			}
 		});
@@ -168,7 +170,19 @@ public class MainClientWindow extends JFrame implements UIColegue {
 	}
 
 	@Override
-	public void registerComponent() {
-		controler.registerMainWindow(this);
+	public void update(Observable observable) {
+		if (controler.getClientInfo().getUserName() != null) {
+			MainClientWindow.this.setTitle(LanguageController
+					.getWord("titleclient")
+					+ " "
+					+ controler.getClientInfo().getUserName());
+
+		} else {
+			MainClientWindow.this.setTitle(LanguageController
+					.getWord("titleclient"));
+		}
+		connectButton.setText(LanguageController.getWord("connect"));
+		disconnectButton.setText(LanguageController.getWord("disconnect"));
+		invalidate();
 	}
 }

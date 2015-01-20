@@ -1,10 +1,6 @@
 package com.sirma.itt.javacourse.chat.client.managers;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,16 +38,10 @@ public class TestClientMessageInterpreter {
 	 * @throws java.lang.Exception
 	 *             something went wrong.
 	 */
-	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 		thread = Mockito.mock(ClientThread.class);
 		window = Mockito.mock(MainClientWindow.class);
-		Mockito.when(window.getUsers()).thenReturn(
-				new DefaultListModel<String>(), new DefaultListModel<String>(),
-				new DefaultListModel<String>());
-		Mockito.when(window.getUserList()).thenReturn(new JList<String>(),
-				new JList<String>(), new JList<String>());
 		controler = Mockito.spy(UIControler.getInstance());
 		controler.registerChatPanel(new ChatsPanel());
 		controler.registerMainWindow(window);
@@ -66,36 +56,6 @@ public class TestClientMessageInterpreter {
 	@Test
 	public void testGenerateMessage() {
 		assertTrue(interpreter.generateMessage(MessageType.MESSAGE, 0, "", "") instanceof Message);
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor#interpretMessage(com.sirma.itt.javacourse.chat.common.Message, com.sirma.itt.javacourse.chat.common.ChatUser)}
-	 * .
-	 */
-	@Test
-	public void testInterpretMessage() {
-
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor#displayMessage(Message)}
-	 * .
-	 */
-	@Test
-	public void testDisplayMessage() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor#createNewChatWindow(Message)}
-	 * .
-	 */
-	@Test
-	public void testCreateNewChatWindow() {
-		fail("Not yet implemented");
 	}
 
 }

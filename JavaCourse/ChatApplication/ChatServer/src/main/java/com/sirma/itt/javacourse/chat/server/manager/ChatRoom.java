@@ -33,6 +33,14 @@ public class ChatRoom {
 	}
 
 	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
 	 * Constructor that start a chat room initiates the id of the room.
 	 */
 	public ChatRoom() {
@@ -109,5 +117,12 @@ public class ChatRoom {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Resets the room count so it can start again.
+	 */
+	public void resetCount() {
+		chatRoomCount = 1;
 	}
 }

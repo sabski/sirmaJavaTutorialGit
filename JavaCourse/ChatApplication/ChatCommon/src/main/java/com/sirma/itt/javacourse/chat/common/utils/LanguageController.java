@@ -1,12 +1,7 @@
 package com.sirma.itt.javacourse.chat.common.utils;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
-
-import javax.swing.AbstractButton;
 
 import org.apache.log4j.Logger;
 
@@ -28,7 +23,6 @@ public class LanguageController {
 	private static String currentLanguage = LANGUAGES.EN.toString();
 	private static Locale currentLocale;
 	private static ResourceBundle messages;
-	private static Map<String, AbstractButton> components = new HashMap<String, AbstractButton>();
 
 	/**
 	 * Setting the constructor to private to prevent getting instances of this
@@ -78,26 +72,4 @@ public class LanguageController {
 		return currentLanguage;
 	}
 
-	/**
-	 * Adds a reference to a component and its property value to allow for dynamic language change.
-	 * @param propertyValue
-	 *            the string property value of the component.
-	 * @param component
-	 *            the component we want to add.
-	 */
-	public static void addComponent(String propertyValue,
-			AbstractButton component) {
-		components.put(propertyValue, component);
-	}
-
-	/**
-	 * Sets the components text value whenever the language is changed.
-	 */
-	public static void invalidateComponents() {
-		for (Entry<String, AbstractButton> entry : components.entrySet()) {
-			String value = entry.getKey();
-			AbstractButton component = entry.getValue();
-			component.setText(getWord(value));
-		}
-	}
 }

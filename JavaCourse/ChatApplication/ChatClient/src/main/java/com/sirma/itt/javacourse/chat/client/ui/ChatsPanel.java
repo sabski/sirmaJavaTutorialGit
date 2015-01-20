@@ -10,11 +10,9 @@ import javax.swing.JTabbedPane;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.chat.client.managers.UIControler;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
 
 /**
  * The main chat panel window.
@@ -23,13 +21,12 @@ import com.sirma.itt.javacourse.chat.common.utils.UIColegue;
  * @author siliev
  * 
  */
-public class ChatsPanel extends JPanel implements UIColegue {
+public class ChatsPanel extends JPanel {
 
 	private static final long serialVersionUID = -3781827111159603799L;
 
 	private static final Logger LOGGER = Logger.getLogger(ChatsPanel.class);
 	private JTabbedPane tabbedPane;
-	private UIControler controler = UIControler.getInstance();
 	private List<ChatWindow> tabs;
 
 	/**
@@ -49,7 +46,6 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panel.setLayout(new BorderLayout());
 		panel.add(tabbedPane, BorderLayout.CENTER);
-		registerComponent();
 	}
 
 	/**
@@ -86,11 +82,6 @@ public class ChatsPanel extends JPanel implements UIColegue {
 		panel.setUserNames(Arrays.asList(CommonUtils.splitList(info
 				.getContent())));
 		return panel;
-	}
-
-	@Override
-	public void registerComponent() {
-		controler.registerChatPanel(this);
 	}
 
 	/**
@@ -149,6 +140,5 @@ public class ChatsPanel extends JPanel implements UIColegue {
 	public void resetChats() {
 		tabs.clear();
 		tabbedPane.removeAll();
-		// tabbedPane.invalidate();
 	}
 }

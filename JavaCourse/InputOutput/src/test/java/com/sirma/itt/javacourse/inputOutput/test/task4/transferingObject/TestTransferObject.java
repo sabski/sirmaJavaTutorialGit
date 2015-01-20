@@ -66,7 +66,7 @@ public class TestTransferObject {
 	 */
 	@Test
 	public void testTransferToMuchBytes() {
-		assertEquals(30, transporter.transfer(150000, 0));
+		assertEquals(36, transporter.transfer(150000, 0));
 	}
 
 	/**

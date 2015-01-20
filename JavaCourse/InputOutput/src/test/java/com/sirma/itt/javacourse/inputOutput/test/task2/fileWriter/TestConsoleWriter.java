@@ -20,7 +20,8 @@ import com.sirma.itt.javacourse.inputoutput.task2.consoleWritenFile.WriteFileFro
  */
 public class TestConsoleWriter {
 
-	private final Logger log = Logger.getLogger(TestConsoleWriter.class.getName());
+	private final Logger log = Logger.getLogger(TestConsoleWriter.class
+			.getName());
 	private WriteFileFromConsole writer;
 	private String fileData;
 	private String fileName;
@@ -34,7 +35,7 @@ public class TestConsoleWriter {
 	@Before
 	public void setUp() throws Exception {
 		writer = new WriteFileFromConsole();
-		fileName = getClass().getResource("/Origin.txt").getPath();
+		fileName = getClass().getResource("/writefile.txt").getPath();
 		fileData = "hello word\n sad \n sad\n.";
 		line = fileData;
 	}

@@ -5,7 +5,7 @@
     project="ChatCommon" 
     file="/ChatCommon/src/main/java/com/sirma/itt/javacourse/chat/common/utils/LanguageController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="204" y="184"/>    
+    <position height="-1" width="-1" x="250" y="133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -15,13 +15,43 @@
   <enumeration id="2" language="java" name="com.sirma.itt.javacourse.chat.common.utils.LANGUAGES" project="ChatCommon" 
     file="/ChatCommon/src/main/java/com/sirma/itt/javacourse/chat/common/utils/LANGUAGES.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="531" y="171"/>    
+    <position height="-1" width="-1" x="509" y="92"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
+  <enumeration id="3" language="java" name="com.sirma.itt.javacourse.chat.common.MessageType" project="ChatCommon" 
+    file="/ChatCommon/src/main/java/com/sirma/itt/javacourse/chat/common/MessageType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="568" y="410"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="4" language="java" name="com.sirma.itt.javacourse.chat.common.Message" project="ChatCommon" 
+    file="/ChatCommon/src/main/java/com/sirma/itt/javacourse/chat/common/Message.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="245" y="428"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="5">    
+    <bendpoint x="380" y="419"/>    
+    <bendpoint x="406" y="417"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="6" name="messageType"/>      
+      <multiplicity id="7" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

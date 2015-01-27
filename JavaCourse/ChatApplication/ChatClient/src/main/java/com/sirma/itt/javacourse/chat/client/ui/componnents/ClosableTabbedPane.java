@@ -13,9 +13,10 @@ import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+
+import com.sirma.itt.javacourse.chat.client.ui.ChatWindow;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 public class ClosableTabbedPane extends JTabbedPane {
 
@@ -24,8 +25,6 @@ public class ClosableTabbedPane extends JTabbedPane {
 	private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger
 			.getLogger(ClosableTabbedPane.class);
 
-	private Color defaultBackColor;
-	private Color defaultForeColor;
 	private TabCloseUI closeUI = new TabCloseUI(this);
 
 	public void paint(Graphics g) {
@@ -34,9 +33,7 @@ public class ClosableTabbedPane extends JTabbedPane {
 	}
 
 	public void addTab(String title, Component component) {
-		Icon icon = new ImageIcon(getClass().getResource("/BlueDot.jpg"));
-
-		super.addTab(title + "  ", icon, component);
+		super.addTab(title + "  ", component);
 	}
 
 	public String getTabTitleAt(int index) {
@@ -55,8 +52,9 @@ public class ClosableTabbedPane extends JTabbedPane {
 
 	public void shoudBlink(Component component) {
 		LOGGER.info("is showing : " + component.isShowing());
+		int index = indexOfComponent(component);
 		if (!component.isShowing()) {
-			closeUI.blink(true);
+			closeUI.blink(true, index);
 		}
 	}
 
@@ -68,8 +66,6 @@ public class ClosableTabbedPane extends JTabbedPane {
 		private Rectangle rectangle = new Rectangle(0, 0, width, height);
 
 		public TabCloseUI(ClosableTabbedPane pane) {
-			defaultBackColor = Color.GRAY;
-			defaultForeColor = Color.BLACK;
 			tabbedPane = pane;
 			tabbedPane.addMouseMotionListener(this);
 			tabbedPane.addMouseListener(this);
@@ -85,6 +81,8 @@ public class ClosableTabbedPane extends JTabbedPane {
 		}
 
 		public void mouseClicked(MouseEvent me) {
+			selectedTab = tabbedPane.getSelectedIndex();
+			blink(false, selectedTab);
 		}
 
 		public void mouseDragged(MouseEvent me) {
@@ -96,8 +94,6 @@ public class ClosableTabbedPane extends JTabbedPane {
 				if (isToCloseTab && selectedTab > -1) {
 					tabbedPane.removeTabAt(selectedTab);
 				}
-				selectedTab = tabbedPane.getSelectedIndex();
-				// blink(false);
 			}
 		}
 
@@ -187,11 +183,25 @@ public class ClosableTabbedPane extends JTabbedPane {
 			return false;
 		}
 
-		private void blink(boolean blinkFlag) {
+		private void blink(boolean blinkFlag, int index) {
+			Component component = tabbedPane.getComponentAt(index);
+			ChatWindow window = (ChatWindow) component;
 			if (blinkFlag) {
-
+				if (index == 0) {
+					tabbedPane.setTitleAt(index,
+							LanguageController.getWord("commonroom") + " *");
+				} else {
+					tabbedPane.setTitleAt(index, window.getUserNames()
+							.toString() + " *");
+				}
 			} else {
-
+				if (index == 0) {
+					tabbedPane.setTitleAt(index,
+							LanguageController.getWord("commonroom"));
+				} else {
+					tabbedPane.setTitleAt(index, window.getUserNames()
+							.toString());
+				}
 			}
 			tabbedPane.repaint();
 		}

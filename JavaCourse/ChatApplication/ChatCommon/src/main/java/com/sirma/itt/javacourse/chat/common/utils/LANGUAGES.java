@@ -1,7 +1,7 @@
 package com.sirma.itt.javacourse.chat.common.utils;
 
 public enum LANGUAGES {
-	EN("ENGLISH"), BG("bg");
+	EN("ENGLISH"), BG("BG");
 
 	private final String value;
 

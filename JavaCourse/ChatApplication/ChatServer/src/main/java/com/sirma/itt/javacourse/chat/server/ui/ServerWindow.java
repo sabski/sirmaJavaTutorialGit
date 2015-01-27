@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.MalformedURLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,7 +61,11 @@ public class ServerWindow extends JFrame {
 	 * for the window frame.
 	 */
 	private void setUp() {
-		LanguageController.loadCurrentLanguage();
+		try {
+			LanguageController.loadCurrentLanguage();
+		} catch (MalformedURLException e1) {
+
+		}
 		server = new MainServerThread(messageArea, 7000);
 		JFrame mainWindow = this;
 		startButton = new JButton();
@@ -145,7 +150,11 @@ public class ServerWindow extends JFrame {
 				} else {
 					LanguageController.setLanguage(LANGUAGES.BG.toString());
 				}
-				LanguageController.loadCurrentLanguage();
+				try {
+					LanguageController.loadCurrentLanguage();
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}
 				startButton.setText(LanguageController.getWord("start"));
 				stopButton.setText(LanguageController.getWord("stop"));
 				languageButton.setText(LanguageController.getWord("enbg"));

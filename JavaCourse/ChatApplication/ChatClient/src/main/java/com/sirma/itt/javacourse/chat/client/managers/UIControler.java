@@ -117,6 +117,8 @@ public class UIControler {
 		if (list.size() != 0 && chatsPanel.checkPanels(list)) {
 			clientThread.sendMessage(new Message(list.toString(), 0,
 					MessageType.STARTCHAT, clientInfo.getUserName()));
+		} else {
+			chatsPanel.showTab(list);
 		}
 	}
 

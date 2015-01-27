@@ -7,9 +7,12 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.ui.componnents.ClosableTabbedPane;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
@@ -26,7 +29,7 @@ public class ChatsPanel extends JPanel {
 	private static final long serialVersionUID = -3781827111159603799L;
 
 	private static final Logger LOGGER = Logger.getLogger(ChatsPanel.class);
-	private JTabbedPane tabbedPane;
+	private ClosableTabbedPane tabbedPane;
 	private List<ChatWindow> tabs;
 
 	/**
@@ -41,11 +44,12 @@ public class ChatsPanel extends JPanel {
 	 * Sets up the UI settings.
 	 */
 	private void setUp() {
-		tabbedPane = new JTabbedPane();
+		tabbedPane = new ClosableTabbedPane();
 		JPanel panel = this;
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panel.setLayout(new BorderLayout());
 		panel.add(tabbedPane, BorderLayout.CENTER);
+
 	}
 
 	/**
@@ -98,12 +102,21 @@ public class ChatsPanel extends JPanel {
 	 * Send a message to be displayed in the proper tab.
 	 * 
 	 * @param message
-	 *            the message that is tso be processed.
+	 *            the message that is to be processed.
 	 */
 	public void processMessage(Message message) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getChatID() == message.getChatRoomId()) {
 				tab.displayMessage(message);
+				tabbedPane.shoudBlink(tab);
+				if (!tabbedPane.containsComponnent(tab)) {
+					if (tab.getChatID() == 0) {
+						tabbedPane.add(
+								LanguageController.getWord("commonroom"), tab);
+					} else {
+						tabbedPane.add(tab.getUserNames().toString(), tab);
+					}
+				}
 				break;
 			}
 		}
@@ -140,5 +153,19 @@ public class ChatsPanel extends JPanel {
 	public void resetChats() {
 		tabs.clear();
 		tabbedPane.removeAll();
+	}
+
+	public void showTab(List<String> list) {
+		for (ChatWindow tab : tabs) {
+			if (tab.getUserNames().containsAll(list)
+					&& list.containsAll(tab.getUserNames())) {
+				if (tab.getChatID() == 0) {
+					tabbedPane.add(LanguageController.getWord("commonroom"),
+							tab);
+				} else {
+					tabbedPane.add(tab.getUserNames().toString(), tab);
+				}
+			}
+		}
 	}
 }

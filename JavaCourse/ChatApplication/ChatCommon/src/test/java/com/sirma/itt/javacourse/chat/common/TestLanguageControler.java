@@ -2,6 +2,8 @@ package com.sirma.itt.javacourse.chat.common;
 
 import static org.junit.Assert.assertEquals;
 
+import java.net.MalformedURLException;
+
 import org.junit.Test;
 
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
@@ -34,7 +36,11 @@ public class TestLanguageControler {
 	 */
 	@Test
 	public void testGetWord() {
-		LanguageController.loadCurrentLanguage();
+		try {
+			LanguageController.loadCurrentLanguage();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		assertEquals("Send", LanguageController.getWord("send"));
 	}
 

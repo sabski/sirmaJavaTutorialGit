@@ -11,12 +11,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.AbstractButton;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicButtonUI;
+
+import com.sirma.itt.javacourse.chat.client.ui.ChatWindow;
 
 public class TabComponnent extends JButton implements ActionListener {
 
@@ -24,6 +26,7 @@ public class TabComponnent extends JButton implements ActionListener {
 
 	private String title;
 	private JTabbedPane pane;
+	private ChatWindow window;
 
 	public String getTitle() {
 		return title;
@@ -33,11 +36,13 @@ public class TabComponnent extends JButton implements ActionListener {
 		this.title = title;
 	}
 
-	public TabComponnent() {
+	public TabComponnent(JTabbedPane pane, ChatWindow window) {
 		super();
 		int size = 17;
 		setPreferredSize(new Dimension(size, size));
 		setToolTipText("close this tab");
+		this.pane = pane;
+		this.window = window;
 		// Make the button looks the same for all Laf's
 		setUI(new BasicButtonUI());
 		// Make it transparent
@@ -57,7 +62,9 @@ public class TabComponnent extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int i = pane.indexOfTabComponent(this);
 		if (i != -1) {
-			pane.remove(i);
+			// pane.remove(i);
+			pane.remove(window);
+			pane.invalidate();
 		}
 	}
 
@@ -100,4 +107,7 @@ public class TabComponnent extends JButton implements ActionListener {
 		}
 	};
 
+	public void showcomponent() {
+		pane.setVisible(true);
+	}
 }

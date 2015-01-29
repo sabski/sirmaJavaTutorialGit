@@ -105,8 +105,6 @@ public class ChatsPanel extends JPanel {
 	public void processMessage(Message message) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getChatID() == message.getChatRoomId()) {
-				tab.displayMessage(message);
-				tabbedPane.shoudBlink(tab);
 				if (!tabbedPane.containsComponnent(tab)) {
 					if (tab.getChatID() == 0) {
 						tabbedPane.add(
@@ -115,6 +113,8 @@ public class ChatsPanel extends JPanel {
 						tabbedPane.add(tab.getUserNames().toString(), tab);
 					}
 				}
+				tab.displayMessage(message);
+				tabbedPane.shoudNotifyUser(tab);
 				break;
 			}
 		}
@@ -148,11 +148,20 @@ public class ChatsPanel extends JPanel {
 		return window.getChatID();
 	}
 
+	/**
+	 * Resets all the chats windows.
+	 */
 	public void resetChats() {
 		tabs.clear();
 		tabbedPane.removeAll();
 	}
 
+	/**
+	 * Shows the tab if its hidden.
+	 * 
+	 * @param list
+	 *            the user list to check for the tab.
+	 */
 	public void showTab(List<String> list) {
 		for (ChatWindow tab : tabs) {
 			if (tab.getUserNames().containsAll(list)

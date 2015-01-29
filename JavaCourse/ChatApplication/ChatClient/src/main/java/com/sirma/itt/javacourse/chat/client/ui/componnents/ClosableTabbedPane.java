@@ -18,6 +18,12 @@ import javax.swing.JTabbedPane;
 import com.sirma.itt.javacourse.chat.client.ui.ChatWindow;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
+/**
+ * Closable tabbed pane.
+ * 
+ * @author Simon Iliev
+ * 
+ */
 public class ClosableTabbedPane extends JTabbedPane {
 
 	private static final long serialVersionUID = 3867900688880839110L;
@@ -50,11 +56,18 @@ public class ClosableTabbedPane extends JTabbedPane {
 		return c.contains(component);
 	}
 
-	public void shoudBlink(Component component) {
+	/**
+	 * Checks if the component should add a symbol to notify the user of a
+	 * message.
+	 * 
+	 * @param component
+	 *            the component we want to check if is on focus.
+	 */
+	public void shoudNotifyUser(Component component) {
 		LOGGER.info("is showing : " + component.isShowing());
 		int index = indexOfComponent(component);
 		if (!component.isShowing()) {
-			closeUI.blink(true, index);
+			closeUI.notifyUser(true, index);
 		}
 	}
 
@@ -82,7 +95,7 @@ public class ClosableTabbedPane extends JTabbedPane {
 
 		public void mouseClicked(MouseEvent me) {
 			selectedTab = tabbedPane.getSelectedIndex();
-			blink(false, selectedTab);
+			notifyUser(false, selectedTab);
 		}
 
 		public void mouseDragged(MouseEvent me) {
@@ -183,7 +196,16 @@ public class ClosableTabbedPane extends JTabbedPane {
 			return false;
 		}
 
-		private void blink(boolean blinkFlag, int index) {
+		/**
+		 * Adds or removes a symbol to the title of the tabs to notify users of
+		 * message event if the tab component is not on focus.
+		 * 
+		 * @param blinkFlag
+		 *            flag that tell the component if it should notify user.
+		 * @param index
+		 *            the index of the element.
+		 */
+		private void notifyUser(boolean blinkFlag, int index) {
 			Component component = tabbedPane.getComponentAt(index);
 			ChatWindow window = (ChatWindow) component;
 			if (blinkFlag) {

@@ -60,13 +60,13 @@ public class TextArea extends JPanel implements Observer {
 	 * 
 	 */
 	public TextArea(JButton connectButton, JButton disconnectButton,
-			MainClientWindow mainClientWindow) {
+			MainClientWindow mainClientWindow, UIControler controler) {
 		this.connectButton = connectButton;
 		this.disconnectButton = disconnectButton;
 		this.mainClientWindow = mainClientWindow;
 		mementos = new ArrayList<>();
 		originator = new MessageOriginator();
-		controler = UIControler.getInstance();
+		this.controler = controler;
 		setUP();
 	}
 

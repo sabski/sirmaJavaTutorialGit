@@ -14,8 +14,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -49,31 +47,10 @@ public class MainClientWindow extends JFrame implements Observer {
 	private UIControler controler;
 
 	/**
-	 * Main method.
-	 * 
-	 * @param args
-	 *            arguments for the main method.
-	 */
-	public static void main(String[] args) {
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
-		}
-		new MainClientWindow();
-	}
-
-	/**
 	 * Constructor.
 	 */
-	public MainClientWindow() {
-		controler = UIControler.getInstance();
+	public MainClientWindow(UIControler controler) {
+		this.controler = controler;
 		setUp();
 	}
 
@@ -86,7 +63,8 @@ public class MainClientWindow extends JFrame implements Observer {
 		connectButton = new JButton(LanguageController.getWord("connect"));
 		disconnectButton = new JButton(LanguageController.getWord("disconnect"));
 		chatPanel = new ChatsPanel();
-		textArea = new TextArea(connectButton, disconnectButton, this);
+		textArea = new TextArea(connectButton, disconnectButton, this,
+				controler);
 		users = new DefaultListModel<>();
 		userList = new JList<String>(users);
 		mainWindow.setLayout(new BorderLayout());

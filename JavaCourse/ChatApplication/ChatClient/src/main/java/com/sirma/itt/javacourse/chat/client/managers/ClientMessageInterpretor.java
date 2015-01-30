@@ -1,18 +1,17 @@
 package com.sirma.itt.javacourse.chat.client.managers;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.controller.UIControler;
-import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
+import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 
 /**
+ * Interprets the messages received from the server.
+ * 
  * @author siliev
  * 
  */
@@ -20,14 +19,12 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(ClientMessageInterpretor.class);
-	private ClientThread clientThread;
-	private UIControler controler;
+	private UIControler controller;
 	private ClientInfo client;
 
-	public ClientMessageInterpretor(ClientThread clientThread) {
-		this.clientThread = clientThread;
+	public ClientMessageInterpretor(UIControler controller) {
 		client = ClientInfo.getInstance();
-		controler = UIControler.getInstance();
+		this.controller = controller;
 	}
 
 	@Override
@@ -54,18 +51,15 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 			break;
 		case USERLISTADD:
 			LOGGER.info(message);
-			controler.updateUserListAdd(message.getContent());
-			message.setContent(LanguageController.getWord("connectmessage")
-					+ " " + message.getContent());
-			displayMessage(message);
+			controller.updateUserListAdd(message);
 			break;
 		case USERLIST:
 			LOGGER.info(message);
-			controler.updateUserList(message.getContent());
+			controller.updateUserList(message.getContent());
 			break;
 		case USERLISTREMOVE:
 			LOGGER.info(message);
-			controler.updateUserListRemove(message.getContent());
+			controller.updateUserListRemove(message.getContent());
 			break;
 		case DISCONNECT:
 			LOGGER.info(message);
@@ -86,8 +80,8 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 *            the message that was received from the server.
 	 */
 	protected void serverRefused(Message message) {
-		
-		controler.userNameRejected(message);
+
+		controller.userNameRejected(message);
 	}
 
 	/**
@@ -98,10 +92,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 */
 	protected void clientApprover(Message message) {
 		client.setUserName(message.getAuthor());
-		controler.getMainWindow().setTitle(
-				LanguageController.getWord("titleclient") + " "
-						+ message.getContent());
-		controler.welcomeClient(message);
+		controller.welcomeClient(message);
 	}
 
 	/**
@@ -112,7 +103,7 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 */
 	protected void displayMessage(Message message) {
 		LOGGER.info("Message reseived : " + message);
-		controler.getChatsPanel().processMessage(message);
+		controller.displayMessage(message);
 	}
 
 	/**
@@ -124,6 +115,6 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 */
 	protected void createNewChatWindow(Message message) {
 		LOGGER.info("Creating new chat room " + message);
-		controler.getChatsPanel().addNewTab(message);
+		controller.createTab(message);
 	}
 }

@@ -2,15 +2,13 @@ package com.sirma.itt.javacourse.chat.client.controller;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
-import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.ChatsPanel;
 import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
+import com.sirma.itt.javacourse.chat.client.ui.componnents.PopUpMessages;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
@@ -25,11 +23,12 @@ import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 public class UIControler {
 
 	private static final Logger LOGGER = Logger.getLogger(UIControler.class);
-	private static final UIControler INSTANCE = new UIControler();
+
 	private ChatsPanel chatsPanel;
 	private MainClientWindow mainWindow;
 	private ClientThread clientThread;
 	private ClientInfo clientInfo;
+	private PopUpMessages popUps;
 
 	public ClientInfo getClientInfo() {
 		return clientInfo;
@@ -39,13 +38,10 @@ public class UIControler {
 		this.clientInfo = clientInfo;
 	}
 
-	private UIControler() {
+	public UIControler() {
+		this.mainWindow = new MainClientWindow(this);
+		popUps = new PopUpMessages();
 		clientInfo = ClientInfo.getInstance();
-	}
-
-	public static UIControler getInstance() {
-
-		return INSTANCE;
 	}
 
 	public void registerChatPanel(ChatsPanel chatsPanel) {
@@ -57,6 +53,29 @@ public class UIControler {
 	 */
 	public ChatsPanel getChatsPanel() {
 		return chatsPanel;
+	}
+
+	/**
+	 * @return the thread
+	 */
+	public ClientThread getThread() {
+		return clientThread;
+	}
+
+	/**
+	 * @param thread
+	 *            the thread to set
+	 */
+	public void setThread(ClientThread thread) {
+		this.clientThread = thread;
+	}
+
+	public PopUpMessages getPopUps() {
+		return popUps;
+	}
+
+	public void setPopUps(PopUpMessages popUps) {
+		this.popUps = popUps;
 	}
 
 	/**
@@ -81,9 +100,12 @@ public class UIControler {
 	 * @param content
 	 *            the user to be added.
 	 */
-	public void updateUserListAdd(String content) {
-		mainWindow.getUsers().addElement(content);
+	public void updateUserListAdd(Message message) {
+		mainWindow.getUsers().addElement(message.getContent());
 		mainWindow.getUserList().invalidate();
+		message.setContent(LanguageController.getWord("connectmessage") + " "
+				+ message.getContent());
+		displayMessage(message);
 	}
 
 	/**
@@ -102,30 +124,16 @@ public class UIControler {
 	}
 
 	/**
-	 * @return the thread
-	 */
-	public ClientThread getThread() {
-		return clientThread;
-	}
-
-	/**
-	 * @param thread
-	 *            the thread to set
-	 */
-	public void setThread(ClientThread thread) {
-		this.clientThread = thread;
-	}
-
-	/**
 	 * Sends a message to a speified chat room.
 	 * 
 	 * @param text
 	 *            the text to send.
 	 */
 	public void sendMessage(String text) {
-		clientThread.sendMessage(new Message(text,
-				chatsPanel.getSelectedChat(), MessageType.MESSAGE, clientInfo
-						.getUserName()));
+		clientThread.sendMessage(clientThread.getManager().generateMessage(
+				MessageType.MESSAGE, chatsPanel.getSelectedChat(), text,
+				clientInfo.getUserName()));
+
 	}
 
 	/**
@@ -138,6 +146,7 @@ public class UIControler {
 	/**
 	 * 
 	 * @param list
+	 *            the user names for the new chat room.
 	 */
 	public void createChatRoom(List<String> list) {
 		if (list.contains(clientInfo.getUserName())) {
@@ -156,26 +165,23 @@ public class UIControler {
 	}
 
 	public void serverDisconnect() {
-		JOptionPane.showMessageDialog(null,
-				LanguageController.getWord("servererror"), "Error",
-				JOptionPane.ERROR_MESSAGE);
+		popUps.serverDisconnect();
 		mainWindow.toogleText();
 		chatsPanel.resetChats();
 	}
 
 	public void welcomeClient(Message message) {
-		JOptionPane.showMessageDialog(
-				null,
-				LanguageController.getWord("welcomemessage") + " : "
-						+ message.getContent());
+		popUps.welcomeClient(message);
+		mainWindow.setTitle(LanguageController.getWord("titleclient") + " "
+				+ message.getContent());
 	}
 
 	public void userNameRejected(Message message) {
-		JOptionPane.showMessageDialog(null, message.getContent());
+		popUps.showDialog(message);
 		String username = inputUserName();
 		if (username != null) {
-			clientThread.sendMessage(new Message(username, 0,
-					MessageType.CONNECT, null));
+			clientThread.sendMessage(clientThread.getManager().generateMessage(
+					MessageType.CONNECT, 0, username, null));
 		}
 
 	}
@@ -188,8 +194,7 @@ public class UIControler {
 	public String inputUserName() {
 		LOGGER.info("Input user name");
 		String name = null;
-		name = JOptionPane.showInputDialog(
-				LanguageController.getWord("inputUsername"), null);
+		name = popUps.inputUserName();
 		if (name != null) {
 			chatsPanel.resetChats();
 		} else {
@@ -197,5 +202,26 @@ public class UIControler {
 		}
 		mainWindow.toogleText();
 		return name;
+	}
+
+	/**
+	 * Creates a new UI tab.
+	 * 
+	 * @param message
+	 *            the message that tell us the information about the new tab.
+	 */
+	public void createTab(Message message) {
+		chatsPanel.addNewTab(message);
+	}
+
+	/**
+	 * Displays a message on to a UI tab.
+	 * 
+	 * 
+	 * @param message
+	 *            the message that is to be displayed.
+	 */
+	public void displayMessage(Message message) {
+		chatsPanel.processMessage(message);
 	}
 }

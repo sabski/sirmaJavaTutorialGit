@@ -91,7 +91,7 @@ public class InputDialog {
 					port = Integer.parseInt(portField.getText());
 
 					ClientThread client = new ClientThread(username, address,
-							port);
+							port,controler);
 					controler.setThread(client);
 					client.start();
 					textArea.toogleText();

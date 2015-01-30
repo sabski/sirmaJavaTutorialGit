@@ -32,12 +32,24 @@ public class ClientThread extends Thread {
 	private int port = 7000;
 	private UIControler controller;
 
-	public ClientThread(String username, String address, int port) {
+	public ClientThread(String username, String address, int port,
+			UIControler controller) {
 		this.username = username;
 		this.address = address;
 		this.port = port;
-		controller = UIControler.getInstance();
+		this.controller = controller;
 	}
+
+	
+	public MessageInterpreter getManager() {
+		return manager;
+	}
+
+
+	public void setManager(MessageInterpreter manager) {
+		this.manager = manager;
+	}
+
 
 	@Override
 	public void run() {
@@ -57,7 +69,7 @@ public class ClientThread extends Thread {
 			client = new Socket(address, port);
 			output = new ObjectOutputStream(client.getOutputStream());
 			input = new ObjectInputStream(client.getInputStream());
-			manager = new ClientMessageInterpretor(this);
+			manager = new ClientMessageInterpretor(controller);
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
 			controller.serverDisconnect();
@@ -111,7 +123,7 @@ public class ClientThread extends Thread {
 			LOGGER.error(e.getMessage(), e);
 			controller.serverDisconnect();
 		} finally {
-			LOGGER.info("Hmmmm");
+			LOGGER.info("No more server messages");
 		}
 	}
 

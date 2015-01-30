@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sirma.itt.javacourse.chat.client.managers.UIControler;
+import com.sirma.itt.javacourse.chat.client.controller.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.TextArea;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
@@ -91,7 +91,7 @@ public class InputDialog {
 					port = Integer.parseInt(portField.getText());
 
 					ClientThread client = new ClientThread(username, address,
-							port, textArea);
+							port);
 					controler.setThread(client);
 					client.start();
 					textArea.toogleText();

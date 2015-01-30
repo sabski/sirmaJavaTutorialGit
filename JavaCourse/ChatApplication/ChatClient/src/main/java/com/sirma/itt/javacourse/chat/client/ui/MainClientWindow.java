@@ -19,7 +19,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.sirma.itt.javacourse.chat.client.managers.UIControler;
+import com.sirma.itt.javacourse.chat.client.controller.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.InputDialog;
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
@@ -128,7 +128,6 @@ public class MainClientWindow extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				InputDialog input = new InputDialog(textArea, controler);
 				input.displayDialog();
-
 			}
 		});
 
@@ -184,5 +183,9 @@ public class MainClientWindow extends JFrame implements Observer {
 		connectButton.setText(LanguageController.getWord("connect"));
 		disconnectButton.setText(LanguageController.getWord("disconnect"));
 		invalidate();
+	}
+
+	public void toogleText() {
+		textArea.toogleText();
 	}
 }

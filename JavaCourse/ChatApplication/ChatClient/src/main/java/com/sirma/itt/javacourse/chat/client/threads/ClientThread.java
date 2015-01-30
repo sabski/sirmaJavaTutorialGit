@@ -5,17 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.controller.UIControler;
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
-import com.sirma.itt.javacourse.chat.client.ui.TextArea;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.MessageType;
-import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
  * The main client thread that connects to the server and reads messages.
@@ -33,14 +30,13 @@ public class ClientThread extends Thread {
 	private String username;
 	private String address = "localhost";
 	private int port = 7000;
-	private TextArea textArea;
+	private UIControler controller;
 
-	public ClientThread(String username, String address, int port,
-			TextArea textArea) {
+	public ClientThread(String username, String address, int port) {
 		this.username = username;
 		this.address = address;
 		this.port = port;
-		this.textArea = textArea;
+		controller = UIControler.getInstance();
 	}
 
 	@Override
@@ -64,10 +60,7 @@ public class ClientThread extends Thread {
 			manager = new ClientMessageInterpretor(this);
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
-			JOptionPane.showMessageDialog(null,
-					LanguageController.getWord("servererror"), "Error",
-					JOptionPane.ERROR_MESSAGE);
-			textArea.toogleText();
+			controller.serverDisconnect();
 		} finally {
 			LOGGER.info("Connection attemt finished.");
 		}
@@ -116,6 +109,9 @@ public class ClientThread extends Thread {
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			LOGGER.error(e.getMessage(), e);
+			controller.serverDisconnect();
+		} finally {
+			LOGGER.info("Hmmmm");
 		}
 	}
 

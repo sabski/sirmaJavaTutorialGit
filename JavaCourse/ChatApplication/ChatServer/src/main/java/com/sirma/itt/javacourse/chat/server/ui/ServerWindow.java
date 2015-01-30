@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import com.sirma.itt.javacourse.StringUtil;
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
+import com.sirma.itt.javacourse.chat.server.controler.ServerController;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
@@ -36,24 +37,16 @@ public class ServerWindow extends JFrame {
 	private JTextArea messageArea;
 	private JScrollPane scroll;
 	private MainServerThread server;
+	private ServerController controler;
 
 	/**
 	 * Constructor.
-	 */
-	public ServerWindow() {
-		setUp();
-	}
-
-	/**
-	 * Main method.
 	 * 
-	 * @param args
-	 *            arguments for the main method.
+	 * @param serverControler
 	 */
-	public static void main(String[] args) {
-
-		new ServerWindow();
-
+	public ServerWindow(ServerController serverControler) {
+		this.controler = serverControler;
+		setUp();
 	}
 
 	/**
@@ -66,7 +59,6 @@ public class ServerWindow extends JFrame {
 		} catch (MalformedURLException e1) {
 
 		}
-		server = new MainServerThread(messageArea, 7000);
 		JFrame mainWindow = this;
 		startButton = new JButton();
 		stopButton = new JButton();
@@ -123,9 +115,8 @@ public class ServerWindow extends JFrame {
 							LanguageController.getWord("error"),
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					server = new MainServerThread(messageArea, Integer
-							.parseInt(portTextField.getText()));
-					server.start();
+					controler.startServer(Integer.parseInt(portTextField
+							.getText()));
 				}
 			}
 		});
@@ -134,9 +125,7 @@ public class ServerWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (server != null) {
-					server.stopServer();
-				}
+				controler.stopServer();
 			}
 		});
 
@@ -164,4 +153,13 @@ public class ServerWindow extends JFrame {
 		});
 	}
 
+	/**
+	 * Displays an information message on to the server UI.
+	 * 
+	 * @param message
+	 *            the message we want to display on to the UI.
+	 */
+	public void displayMessage(String message) {
+		messageArea.setText(messageArea.getText() + message + "\n");
+	}
 }

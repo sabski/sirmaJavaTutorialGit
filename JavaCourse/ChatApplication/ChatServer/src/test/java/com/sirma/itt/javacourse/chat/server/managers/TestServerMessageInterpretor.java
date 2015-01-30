@@ -2,8 +2,6 @@ package com.sirma.itt.javacourse.chat.server.managers;
 
 import static org.junit.Assert.assertTrue;
 
-import javax.swing.JTextArea;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -13,6 +11,7 @@ import org.mockito.Spy;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageType;
+import com.sirma.itt.javacourse.chat.server.controler.ServerController;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
@@ -25,7 +24,7 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
  */
 public class TestServerMessageInterpretor {
 
-	private UserManager manager = new UserManager(new JTextArea());
+	private UserManager manager = new UserManager(new ServerController());
 	@Spy
 	private ServerMessageInterpreter interpreter;
 

@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
-import com.sirma.itt.javacourse.chat.client.managers.UIControler;
+import com.sirma.itt.javacourse.chat.client.controller.UIControler;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextField;
 import com.sirma.itt.javacourse.chat.client.ui.listeners.LanguageListener;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;

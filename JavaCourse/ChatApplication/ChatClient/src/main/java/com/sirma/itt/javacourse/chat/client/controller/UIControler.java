@@ -1,15 +1,20 @@
-package com.sirma.itt.javacourse.chat.client.managers;
+package com.sirma.itt.javacourse.chat.client.controller;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
+import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.ChatsPanel;
 import com.sirma.itt.javacourse.chat.client.ui.MainClientWindow;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.utils.CommonUtils;
+import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
 
 /**
  * This class holds references to UI components that interact together.
@@ -54,8 +59,14 @@ public class UIControler {
 		return chatsPanel;
 	}
 
-	public void updateUserList(String content) {
-		String[] users = CommonUtils.splitList(content);
+	/**
+	 * Updates the user list.
+	 * 
+	 * @param usersList
+	 *            the new userList that must be processed.
+	 */
+	public void updateUserList(String usersList) {
+		String[] users = CommonUtils.splitList(usersList);
 		mainWindow.getUsers().clear();
 		for (String user : users) {
 			LOGGER.info(user);
@@ -64,11 +75,23 @@ public class UIControler {
 		mainWindow.getUserList().invalidate();
 	}
 
+	/**
+	 * Adds a single user to the user list.
+	 * 
+	 * @param content
+	 *            the user to be added.
+	 */
 	public void updateUserListAdd(String content) {
 		mainWindow.getUsers().addElement(content);
 		mainWindow.getUserList().invalidate();
 	}
 
+	/**
+	 * Removes a single user from the user list.
+	 * 
+	 * @param content
+	 *            the user to be removed.
+	 */
 	public void updateUserListRemove(String content) {
 		mainWindow.getUsers().removeElement(content);
 		mainWindow.getUserList().invalidate();
@@ -93,6 +116,12 @@ public class UIControler {
 		this.clientThread = thread;
 	}
 
+	/**
+	 * Sends a message to a speified chat room.
+	 * 
+	 * @param text
+	 *            the text to send.
+	 */
 	public void sendMessage(String text) {
 		clientThread.sendMessage(new Message(text,
 				chatsPanel.getSelectedChat(), MessageType.MESSAGE, clientInfo
@@ -122,4 +151,51 @@ public class UIControler {
 		}
 	}
 
+	public void toogleText() {
+		mainWindow.toogleText();
+	}
+
+	public void serverDisconnect() {
+		JOptionPane.showMessageDialog(null,
+				LanguageController.getWord("servererror"), "Error",
+				JOptionPane.ERROR_MESSAGE);
+		mainWindow.toogleText();
+		chatsPanel.resetChats();
+	}
+
+	public void welcomeClient(Message message) {
+		JOptionPane.showMessageDialog(
+				null,
+				LanguageController.getWord("welcomemessage") + " : "
+						+ message.getContent());
+	}
+
+	public void userNameRejected(Message message) {
+		JOptionPane.showMessageDialog(null, message.getContent());
+		String username = inputUserName();
+		if (username != null) {
+			clientThread.sendMessage(new Message(username, 0,
+					MessageType.CONNECT, null));
+		}
+
+	}
+
+	/**
+	 * Opens a dialog window so the user can enter a user name he wants.
+	 * 
+	 * @return the user name that was inputed by the user.
+	 */
+	public String inputUserName() {
+		LOGGER.info("Input user name");
+		String name = null;
+		name = JOptionPane.showInputDialog(
+				LanguageController.getWord("inputUsername"), null);
+		if (name != null) {
+			chatsPanel.resetChats();
+		} else {
+			clientThread.interrupt();
+		}
+		mainWindow.toogleText();
+		return name;
+	}
 }

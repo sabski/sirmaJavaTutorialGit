@@ -109,4 +109,12 @@ public class ClientListenerThread extends Thread {
 			LOGGER.error(e.getMessage(), e);
 		}
 	}
+
+	public void disconnect() {
+		try {
+			user.getClientSocket().close();
+		} catch (IOException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+	}
 }

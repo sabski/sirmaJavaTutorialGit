@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.controller.UIControler;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
@@ -85,9 +86,8 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	 *            the message that was received from the server.
 	 */
 	protected void serverRefused(Message message) {
-		JOptionPane.showMessageDialog(null, message.getContent());
-		clientThread.sendMessage(new Message(ClientMessageInterpretor
-				.inputUserName(), 0, MessageType.CONNECT, null));
+		
+		controler.userNameRejected(message);
 	}
 
 	/**
@@ -99,12 +99,9 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	protected void clientApprover(Message message) {
 		client.setUserName(message.getAuthor());
 		controler.getMainWindow().setTitle(
-				controler.getMainWindow().getTitle() + " "
+				LanguageController.getWord("titleclient") + " "
 						+ message.getContent());
-		JOptionPane.showMessageDialog(
-				null,
-				LanguageController.getWord("welcomemessage") + " : "
-						+ message.getContent());
+		controler.welcomeClient(message);
 	}
 
 	/**
@@ -128,18 +125,5 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 	protected void createNewChatWindow(Message message) {
 		LOGGER.info("Creating new chat room " + message);
 		controler.getChatsPanel().addNewTab(message);
-	}
-
-	/**
-	 * Opens a dialog window so the user can enter a user name he wants.
-	 * 
-	 * @return the user name that was inputed by the user.
-	 */
-	public static String inputUserName() {
-		LOGGER.info("Input user name");
-		String name = null;
-		name = JOptionPane.showInputDialog(
-				LanguageController.getWord("inputUsername"), null);
-		return name;
 	}
 }

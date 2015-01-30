@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.server.controler.ServerController;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
@@ -23,7 +22,7 @@ public class MainServerThread extends Thread {
 			.getLogger(MainServerThread.class);
 	private ServerSocket server;
 	private UserManager userManager;
-	private JTextArea messageArea;
+	private ServerController controler;
 	private int port;
 
 	/**
@@ -32,9 +31,9 @@ public class MainServerThread extends Thread {
 	 * @param messageArea
 	 *            the message area of the UI.
 	 */
-	public MainServerThread(JTextArea messageArea, int port) {
-		this.messageArea = messageArea;
+	public MainServerThread(ServerController controler, int port) {
 		this.port = port;
+		this.controler = controler;
 	}
 
 	@Override
@@ -56,7 +55,7 @@ public class MainServerThread extends Thread {
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
-		userManager = new UserManager(messageArea);
+		userManager = new UserManager(controler);
 		LOGGER.info("startServer");
 		displayMessage("Server has started");
 	}
@@ -85,6 +84,7 @@ public class MainServerThread extends Thread {
 		try {
 			LOGGER.info("Stopping server");
 			displayMessage("Stoping server");
+			userManager.disconnectAllUsers();
 			server.close();
 			interrupt();
 		} catch (IOException e) {
@@ -99,6 +99,6 @@ public class MainServerThread extends Thread {
 	 *            the message we want to display on to the UI.
 	 */
 	public void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + message + "\n");
+		controler.displayMessage(message);
 	}
 }

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.JTextArea;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -14,6 +13,7 @@ import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
+import com.sirma.itt.javacourse.chat.server.controler.ServerController;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
@@ -32,20 +32,20 @@ public class UserManager {
 	private List<ClientListenerThread> tempHolder;
 	private MessageInterpreter interpretator;
 	private ChatRoomManager chatRoomManager;
-	private JTextArea messageArea;
+	private ServerController controler;
 
 	/**
 	 * Private constructor.
 	 * 
-	 * @param messageArea
+	 * @param controler
 	 *            text area of the main UI to display the disconnected users.
 	 */
-	public UserManager(JTextArea messageArea) {
+	public UserManager(ServerController controler) {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
 		chatRoomManager = new ChatRoomManager();
 		interpretator = new ServerMessageInterpreter(this, chatRoomManager);
-		this.messageArea = messageArea;
+		this.controler = controler;
 	}
 
 	public ChatRoomManager getChatRoomManager() {
@@ -93,7 +93,8 @@ public class UserManager {
 	 *         is a user with this username.
 	 */
 	public boolean isValidName(String userName) {
-		if (userName.contains("[") || userName.contains("]")) {
+		if (!userName.equals(null) && userName.contains("[")
+				|| userName.contains("]")) {
 			return false;
 		}
 		if (userMap.keySet() != null) {
@@ -234,6 +235,12 @@ public class UserManager {
 	 *            the message we want to display on to the UI.
 	 */
 	public void displayMessage(String message) {
-		messageArea.setText(messageArea.getText() + message + "\n");
+		controler.displayMessage(message);
+	}
+
+	public void disconnectAllUsers() {
+		for (Entry<String, ClientListenerThread> user : userMap.entrySet()) {
+			user.getValue().disconnect();
+		}
 	}
 }

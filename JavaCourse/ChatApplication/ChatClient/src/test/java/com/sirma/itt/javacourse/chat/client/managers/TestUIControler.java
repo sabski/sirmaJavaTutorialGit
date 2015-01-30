@@ -172,7 +172,7 @@ public class TestUIControler {
 	}
 
 	@Test
-	public void tesSendMessahe() {
+	public void tesSendMessage() {
 		interpretor = Mockito.mock(ClientMessageInterpretor.class);
 		String result = "simeon";
 		Message resultingMessage = new Message(result, 0, MessageType.CONNECT,

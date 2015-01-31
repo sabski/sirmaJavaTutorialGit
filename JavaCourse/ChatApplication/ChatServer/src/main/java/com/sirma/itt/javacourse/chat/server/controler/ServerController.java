@@ -1,5 +1,6 @@
 package com.sirma.itt.javacourse.chat.server.controler;
 
+import com.sirma.itt.javacourse.chat.server.interfaces.ServerSideController;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 import com.sirma.itt.javacourse.chat.server.ui.ServerWindow;
 
@@ -9,7 +10,7 @@ import com.sirma.itt.javacourse.chat.server.ui.ServerWindow;
  * @author Simon Iliev
  * 
  */
-public class ServerController {
+public class ServerController implements ServerSideController {
 
 	private ServerWindow window;
 	private MainServerThread mainThread;
@@ -18,32 +19,20 @@ public class ServerController {
 		window = new ServerWindow(this);
 	}
 
-	/**
-	 * Starts the server on a specified port.
-	 * 
-	 * @param port
-	 *            the port on which to start the server.
-	 */
+	@Override
 	public void startServer(int port) {
 		mainThread = new MainServerThread(this, port);
 		mainThread.start();
 	}
 
-	/**
-	 * Stops the server thread.
-	 */
+	@Override
 	public void stopServer() {
 		if (mainThread != null) {
 			mainThread.stopServer();
 		}
 	}
 
-	/**
-	 * Relays a message to the UI.
-	 * 
-	 * @param message
-	 *            the message to be displayed.
-	 */
+	@Override
 	public void displayMessage(String message) {
 		window.displayMessage(message);
 	}

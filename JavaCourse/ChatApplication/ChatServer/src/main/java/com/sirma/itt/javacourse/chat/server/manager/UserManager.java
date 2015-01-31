@@ -13,12 +13,12 @@ import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
 import com.sirma.itt.javacourse.chat.common.MessageType;
 import com.sirma.itt.javacourse.chat.common.exceptions.ChatException;
-import com.sirma.itt.javacourse.chat.server.controler.ServerController;
+import com.sirma.itt.javacourse.chat.server.interfaces.ServerSideController;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
 /**
- * A singleton class that its purpose is to keep an accurate list of the current
- * users that are logged on to the server.
+ * User manager that keeps an accurate list of the current users that are logged
+ * on to the server.
  * 
  * 
  * @author siliev
@@ -32,7 +32,7 @@ public class UserManager {
 	private List<ClientListenerThread> tempHolder;
 	private MessageInterpreter interpretator;
 	private ChatRoomManager chatRoomManager;
-	private ServerController controler;
+	private ServerSideController controler;
 
 	/**
 	 * Private constructor.
@@ -40,7 +40,7 @@ public class UserManager {
 	 * @param controler
 	 *            text area of the main UI to display the disconnected users.
 	 */
-	public UserManager(ServerController controler) {
+	public UserManager(ServerSideController controler) {
 		userMap = new HashMap<String, ClientListenerThread>();
 		tempHolder = new ArrayList<ClientListenerThread>();
 		chatRoomManager = new ChatRoomManager();
@@ -56,7 +56,6 @@ public class UserManager {
 		this.chatRoomManager = chatRoomManager;
 	}
 
-	
 	public Map<String, ClientListenerThread> getUserMap() {
 		return userMap;
 	}
@@ -73,7 +72,6 @@ public class UserManager {
 		this.tempHolder = tempHolder;
 	}
 
-	
 	public void setInterpretator(MessageInterpreter interpretator) {
 		this.interpretator = interpretator;
 	}

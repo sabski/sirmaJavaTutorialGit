@@ -18,6 +18,12 @@ import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
 
+/**
+ * Test class for {@link UserManager}
+ * 
+ * @author Simon Iliev
+ * 
+ */
 public class TestUserManager {
 
 	@Spy
@@ -48,12 +54,18 @@ public class TestUserManager {
 		manager = Mockito.spy(new UserManager(controler));
 	}
 
+	/**
+	 * Test validation of user names.
+	 */
 	@Test
 	public void testValidateUserName() {
 		assertTrue(manager.isValidName("user"));
 		assertFalse(manager.isValidName("[user]"));
 	}
 
+	/**
+	 * Test the registration of users.
+	 */
 	@Test
 	public void testRegisterUser() {
 		String username = "name";
@@ -64,6 +76,9 @@ public class TestUserManager {
 		assertTrue(manager.getUser(username) != null);
 	}
 
+	/**
+	 * Test if user is rejected by sending him the proper message.
+	 */
 	@Test
 	public void testRejectUser() {
 		String username = "name";
@@ -81,6 +96,9 @@ public class TestUserManager {
 				.sendMessage(message);
 	}
 
+	/**
+	 * Test if user is added properly.
+	 */
 	@Test
 	public void testAddUser() {
 		String username = "name";

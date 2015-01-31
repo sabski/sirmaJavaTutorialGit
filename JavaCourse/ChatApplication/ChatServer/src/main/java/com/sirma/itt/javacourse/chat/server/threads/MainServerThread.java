@@ -7,6 +7,7 @@ import java.net.Socket;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.chat.server.controler.ServerController;
+import com.sirma.itt.javacourse.chat.server.interfaces.ServerSideController;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
 
 /**
@@ -22,7 +23,7 @@ public class MainServerThread extends Thread {
 			.getLogger(MainServerThread.class);
 	private ServerSocket server;
 	private UserManager userManager;
-	private ServerController controler;
+	private ServerSideController controler;
 	private int port;
 
 	/**

@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.chat.client.controller.UIControler;
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.managers.ClientMessageInterpretor;
 import com.sirma.itt.javacourse.chat.common.Message;
@@ -30,26 +30,23 @@ public class ClientThread extends Thread {
 	private String username;
 	private String address = "localhost";
 	private int port = 7000;
-	private UIControler controller;
+	private UserController controller;
 
 	public ClientThread(String username, String address, int port,
-			UIControler controller) {
+			UserController controler) {
 		this.username = username;
 		this.address = address;
 		this.port = port;
-		this.controller = controller;
+		this.controller = controler;
 	}
 
-	
 	public MessageInterpreter getManager() {
 		return manager;
 	}
 
-
 	public void setManager(MessageInterpreter manager) {
 		this.manager = manager;
 	}
-
 
 	@Override
 	public void run() {

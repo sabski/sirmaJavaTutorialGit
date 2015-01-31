@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.javacourse.MessageMemento;
 import com.sirma.itt.javacourse.MessageOriginator;
-import com.sirma.itt.javacourse.chat.client.controller.UIControler;
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.LimitTextField;
 import com.sirma.itt.javacourse.chat.client.ui.listeners.LanguageListener;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
@@ -45,7 +45,7 @@ public class TextArea extends JPanel implements Observer {
 	private JButton connectButton;
 	private JButton disconnectButton;
 	private JButton languageButton;
-	private UIControler controler;
+	private UserController controler;
 	private MainClientWindow mainClientWindow;
 
 	/**
@@ -60,7 +60,7 @@ public class TextArea extends JPanel implements Observer {
 	 * 
 	 */
 	public TextArea(JButton connectButton, JButton disconnectButton,
-			MainClientWindow mainClientWindow, UIControler controler) {
+			MainClientWindow mainClientWindow, UserController controler) {
 		this.connectButton = connectButton;
 		this.disconnectButton = disconnectButton;
 		this.mainClientWindow = mainClientWindow;

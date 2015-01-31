@@ -17,7 +17,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.sirma.itt.javacourse.chat.client.controller.UIControler;
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.componnents.InputDialog;
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
@@ -44,12 +44,12 @@ public class MainClientWindow extends JFrame implements Observer {
 	private JScrollPane scroll;
 
 	private DefaultListModel<String> users;
-	private UIControler controler;
+	private UserController controler;
 
 	/**
 	 * Constructor.
 	 */
-	public MainClientWindow(UIControler controler) {
+	public MainClientWindow(UserController controler) {
 		this.controler = controler;
 		setUp();
 	}

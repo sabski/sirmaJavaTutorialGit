@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sirma.itt.javacourse.chat.client.controller.UIControler;
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.TextArea;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
@@ -21,9 +21,9 @@ public class InputDialog {
 	private String address;
 	private int port;
 	private TextArea textArea;
-	private UIControler controler;
+	private UserController controler;
 
-	public InputDialog(TextArea textArea, UIControler controler) {
+	public InputDialog(TextArea textArea, UserController controler) {
 		this.textArea = textArea;
 		this.controler = controler;
 	}
@@ -68,11 +68,10 @@ public class InputDialog {
 		myPanel.add(new JLabel(LanguageController.getWord("inputUsername")));
 		myPanel.add(usernameField);
 
-		
-		JPanel buttonPannel= new JPanel();
+		JPanel buttonPannel = new JPanel();
 		buttonPannel.add(okButton);
 		buttonPannel.add(cancelButton);
-		
+
 		myPanel.add(buttonPannel);
 		final JFrame frame = new JFrame();
 		frame.add(myPanel);
@@ -91,7 +90,7 @@ public class InputDialog {
 					port = Integer.parseInt(portField.getText());
 
 					ClientThread client = new ClientThread(username, address,
-							port,controler);
+							port, controler);
 					controler.setThread(client);
 					client.start();
 					textArea.toogleText();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.managers.ClientInfo;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.ChatsPanel;
@@ -20,7 +21,7 @@ import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
  * @author siliev
  * 
  */
-public class UIControler {
+public class UIControler implements UserController {
 
 	private static final Logger LOGGER = Logger.getLogger(UIControler.class);
 
@@ -29,14 +30,6 @@ public class UIControler {
 	private ClientThread clientThread;
 	private ClientInfo clientInfo;
 	private PopUpMessages popUps;
-
-	public ClientInfo getClientInfo() {
-		return clientInfo;
-	}
-
-	public void setClientInfo(ClientInfo clientInfo) {
-		this.clientInfo = clientInfo;
-	}
 
 	public UIControler() {
 		this.mainWindow = new MainClientWindow(this);
@@ -48,6 +41,14 @@ public class UIControler {
 		this.chatsPanel = chatsPanel;
 	}
 
+
+	public ClientInfo getClientInfo() {
+		return clientInfo;
+	}
+
+	public void setClientInfo(ClientInfo clientInfo) {
+		this.clientInfo = clientInfo;
+	}
 	/**
 	 * @return the chatsPanel
 	 */
@@ -78,12 +79,7 @@ public class UIControler {
 		this.popUps = popUps;
 	}
 
-	/**
-	 * Updates the user list.
-	 * 
-	 * @param usersList
-	 *            the new userList that must be processed.
-	 */
+	@Override
 	public void updateUserList(String usersList) {
 		String[] users = CommonUtils.splitList(usersList);
 		mainWindow.getUsers().clear();
@@ -94,12 +90,7 @@ public class UIControler {
 		mainWindow.getUserList().invalidate();
 	}
 
-	/**
-	 * Adds a single user to the user list.
-	 * 
-	 * @param content
-	 *            the user to be added.
-	 */
+	@Override
 	public void updateUserListAdd(Message message) {
 		mainWindow.getUsers().addElement(message.getContent());
 		mainWindow.getUserList().invalidate();
@@ -108,27 +99,18 @@ public class UIControler {
 		displayMessage(message);
 	}
 
-	/**
-	 * Removes a single user from the user list.
-	 * 
-	 * @param content
-	 *            the user to be removed.
-	 */
+	@Override
 	public void updateUserListRemove(String content) {
 		mainWindow.getUsers().removeElement(content);
 		mainWindow.getUserList().invalidate();
 	}
 
+	@Override
 	public void registerMainWindow(MainClientWindow mainClientWindow) {
 		this.mainWindow = mainClientWindow;
 	}
 
-	/**
-	 * Sends a message to a speified chat room.
-	 * 
-	 * @param text
-	 *            the text to send.
-	 */
+	@Override
 	public void sendMessage(String text) {
 		clientThread.sendMessage(clientThread.getManager().generateMessage(
 				MessageType.MESSAGE, chatsPanel.getSelectedChat(), text,
@@ -143,11 +125,7 @@ public class UIControler {
 		return mainWindow;
 	}
 
-	/**
-	 * 
-	 * @param list
-	 *            the user names for the new chat room.
-	 */
+	@Override
 	public void createChatRoom(List<String> list) {
 		if (list.contains(clientInfo.getUserName())) {
 			list.remove(clientInfo.getUserName());
@@ -160,22 +138,26 @@ public class UIControler {
 		}
 	}
 
+	@Override
 	public void toogleText() {
 		mainWindow.toogleText();
 	}
 
+	@Override
 	public void serverDisconnect() {
 		popUps.serverDisconnect();
 		mainWindow.toogleText();
 		chatsPanel.resetChats();
 	}
 
+	@Override
 	public void welcomeClient(Message message) {
 		popUps.welcomeClient(message);
 		mainWindow.setTitle(LanguageController.getWord("titleclient") + " "
 				+ message.getContent());
 	}
 
+	@Override
 	public void userNameRejected(Message message) {
 		popUps.showDialog(message);
 		String username = inputUserName();
@@ -186,11 +168,7 @@ public class UIControler {
 
 	}
 
-	/**
-	 * Opens a dialog window so the user can enter a user name he wants.
-	 * 
-	 * @return the user name that was inputed by the user.
-	 */
+	@Override
 	public String inputUserName() {
 		LOGGER.info("Input user name");
 		String name = null;
@@ -204,23 +182,12 @@ public class UIControler {
 		return name;
 	}
 
-	/**
-	 * Creates a new UI tab.
-	 * 
-	 * @param message
-	 *            the message that tell us the information about the new tab.
-	 */
+	@Override
 	public void createTab(Message message) {
 		chatsPanel.addNewTab(message);
 	}
 
-	/**
-	 * Displays a message on to a UI tab.
-	 * 
-	 * 
-	 * @param message
-	 *            the message that is to be displayed.
-	 */
+	@Override
 	public void displayMessage(Message message) {
 		chatsPanel.processMessage(message);
 	}

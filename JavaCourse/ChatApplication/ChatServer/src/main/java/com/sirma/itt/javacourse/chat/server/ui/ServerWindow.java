@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import com.sirma.itt.javacourse.StringUtil;
 import com.sirma.itt.javacourse.chat.common.utils.LANGUAGES;
 import com.sirma.itt.javacourse.chat.common.utils.LanguageController;
-import com.sirma.itt.javacourse.chat.server.controler.ServerController;
+import com.sirma.itt.javacourse.chat.server.interfaces.ServerSideController;
 import com.sirma.itt.javacourse.chat.server.threads.MainServerThread;
 
 /**
@@ -37,14 +37,14 @@ public class ServerWindow extends JFrame {
 	private JTextArea messageArea;
 	private JScrollPane scroll;
 	private MainServerThread server;
-	private ServerController controler;
+	private ServerSideController controler;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param serverControler
 	 */
-	public ServerWindow(ServerController serverControler) {
+	public ServerWindow(ServerSideController serverControler) {
 		this.controler = serverControler;
 		setUp();
 	}

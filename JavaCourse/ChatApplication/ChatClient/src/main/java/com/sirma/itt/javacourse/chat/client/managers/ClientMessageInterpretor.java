@@ -2,7 +2,7 @@ package com.sirma.itt.javacourse.chat.client.managers;
 
 import org.apache.log4j.Logger;
 
-import com.sirma.itt.javacourse.chat.client.controller.UIControler;
+import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageInterpreter;
@@ -19,10 +19,10 @@ public class ClientMessageInterpretor implements MessageInterpreter {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(ClientMessageInterpretor.class);
-	private UIControler controller;
+	private UserController controller;
 	private ClientInfo client;
 
-	public ClientMessageInterpretor(UIControler controller) {
+	public ClientMessageInterpretor(UserController controller) {
 		client = ClientInfo.getInstance();
 		this.controller = controller;
 	}

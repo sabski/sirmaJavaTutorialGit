@@ -56,6 +56,28 @@ public class UserManager {
 		this.chatRoomManager = chatRoomManager;
 	}
 
+	
+	public Map<String, ClientListenerThread> getUserMap() {
+		return userMap;
+	}
+
+	public void setUserMap(Map<String, ClientListenerThread> userMap) {
+		this.userMap = userMap;
+	}
+
+	public List<ClientListenerThread> getTempHolder() {
+		return tempHolder;
+	}
+
+	public void setTempHolder(List<ClientListenerThread> tempHolder) {
+		this.tempHolder = tempHolder;
+	}
+
+	
+	public void setInterpretator(MessageInterpreter interpretator) {
+		this.interpretator = interpretator;
+	}
+
 	/**
 	 * Adds a {@link ChatUser} to the map of users.
 	 * 

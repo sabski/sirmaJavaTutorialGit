@@ -11,7 +11,6 @@ import org.mockito.Spy;
 import com.sirma.itt.javacourse.chat.common.ChatUser;
 import com.sirma.itt.javacourse.chat.common.Message;
 import com.sirma.itt.javacourse.chat.common.MessageType;
-import com.sirma.itt.javacourse.chat.server.controler.ServerController;
 import com.sirma.itt.javacourse.chat.server.manager.ChatRoomManager;
 import com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter;
 import com.sirma.itt.javacourse.chat.server.manager.UserManager;
@@ -25,9 +24,8 @@ import com.sirma.itt.javacourse.chat.server.threads.ClientListenerThread;
  */
 public class TestServerMessageInterpretor {
 
-	@Spy
-	private UserManager manager = Mockito.spy(new UserManager(
-			new ServerController()));
+	@Mock
+	private UserManager manager = Mockito.mock(UserManager.class);
 
 	@Spy
 	private ChatRoomManager chatRoom = Mockito.spy(new ChatRoomManager());
@@ -66,23 +64,6 @@ public class TestServerMessageInterpretor {
 		interpreter.interpretMessage(message, user);
 		Mockito.verify(chatRoom).getRoomById(0L);
 	}
-
-	/**
-	 * Test method for
-	 * {@link com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter#interpretMessage(com.sirma.itt.javacourse.chat.common.Message, com.sirma.itt.javacourse.chat.common.ChatUser)}
-	 * .
-	 */
-	@Test
-	public void testInterpretConnect() {
-		listener = Mockito.mock(ClientListenerThread.class);
-		Mockito.when(user.getUsername()).thenReturn("Joke", "Joke");
-		Mockito.when(listener.getUser()).thenReturn(user);
-		Message message = new Message("Joke", 0, MessageType.CONNECT, "MEME");
-		Mockito.when(manager.getUser("Joke")).thenReturn(listener);
-		interpreter.interpretMessage(message, user);
-		assertTrue(manager.getUserList().contains("Joke"));
-	}
-
 	/**
 	 * Test method for
 	 * {@link com.sirma.itt.javacourse.chat.server.manager.ServerMessageInterpreter#generateMessage(com.sirma.itt.javacourse.chat.common.Message.TYPE, long, java.lang.String, java.lang.String)}

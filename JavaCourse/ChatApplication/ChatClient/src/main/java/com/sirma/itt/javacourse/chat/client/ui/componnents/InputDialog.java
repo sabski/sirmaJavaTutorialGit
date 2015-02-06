@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.sirma.itt.javacourse.StringUtil;
 import com.sirma.itt.javacourse.chat.client.interfaces.UserController;
 import com.sirma.itt.javacourse.chat.client.threads.ClientThread;
 import com.sirma.itt.javacourse.chat.client.ui.TextArea;
@@ -22,10 +23,12 @@ public class InputDialog {
 	private int port;
 	private TextArea textArea;
 	private UserController controler;
+	private PopUpMessages popUp;
 
 	public InputDialog(TextArea textArea, UserController controler) {
 		this.textArea = textArea;
 		this.controler = controler;
+		popUp = new PopUpMessages();
 	}
 
 	public String getUsername() {
@@ -84,6 +87,9 @@ public class InputDialog {
 			public void actionPerformed(ActionEvent e) {
 				if (1 <= addressField.getText().length()
 						&& 1 <= portField.getText().length()
+						&& StringUtil.validateStringWithRegex(
+								StringUtil.REGEX_VALIDATOR_NUMBERS_ONLY,
+								portField.getText())
 						&& 1 <= usernameField.getText().length()) {
 					address = addressField.getText();
 					username = usernameField.getText();
@@ -95,6 +101,8 @@ public class InputDialog {
 					client.start();
 					textArea.toogleText();
 					frame.dispose();
+				} else {
+					popUp.invalidData();
 				}
 			}
 		});

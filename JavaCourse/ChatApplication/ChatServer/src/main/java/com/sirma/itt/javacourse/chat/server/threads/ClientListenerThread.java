@@ -30,7 +30,8 @@ public class ClientListenerThread extends Thread {
 	private UserManager manager;
 
 	/**
-	 * 
+	 * Constructor for the clients listener thread. This thread receives and
+	 * sends messages to and from the client.
 	 * 
 	 * @param user
 	 *            the user that is associated with this thread.
@@ -110,6 +111,9 @@ public class ClientListenerThread extends Thread {
 		}
 	}
 
+	/**
+	 * Closes the client socket.
+	 */
 	public void disconnect() {
 		try {
 			user.getClientSocket().close();

@@ -258,6 +258,9 @@ public class UserManager {
 		controler.displayMessage(message);
 	}
 
+	/**
+	 * Disconnects all users from the server.
+	 */
 	public void disconnectAllUsers() {
 		for (Entry<String, ClientListenerThread> user : userMap.entrySet()) {
 			user.getValue().disconnect();

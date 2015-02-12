@@ -37,15 +37,4 @@ public class ServerController implements ServerSideController {
 		window.displayMessage(message);
 	}
 
-	/**
-	 * Main method.
-	 * 
-	 * @param args
-	 *            arguments for the main method.
-	 */
-	public static void main(String[] args) {
-
-		new ServerController();
-
-	}
 }

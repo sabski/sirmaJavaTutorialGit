@@ -19,7 +19,7 @@ public abstract class AbstractFactory {
 	 * 
 	 * @param className
 	 *            the name of the class we want to create.
-	 * @return a new {@link MyProduct} object or null if an error has ocured.
+	 * @return a new {@link MyProduct} object or null if an error has occurred.
 	 */
 	abstract public MyProduct createInstanceByReflection(String className);
 
